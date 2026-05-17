@@ -90,7 +90,7 @@ If you want fonts to work offline, download and self-host them.
 1. Go to your GitHub repository
 2. Navigate to Settings → Pages
 3. Select "Deploy from a branch" → choose `main` branch
-4. Select folder: `/ (root)`
+4. Upload all files in the `github-ready` folder to the root of your repository
 5. Your site will be live at `https://yourusername.github.io/repository-name/`
 
 ### Option B: Git Command Line

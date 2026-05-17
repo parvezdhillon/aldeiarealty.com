@@ -1,1 +1,354 @@
-<!-- COPY FULL FILE FROM GITHUB-READY */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About &mdash; Aldeia Realty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Work Sans',sans-serif;color:#1c0a04;background:#ffffff;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Domine',serif;font-weight:400}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+ul{list-style:none}
+
+.container{max-width:1280px;margin:0 auto;padding:0 24px}
+.section-pad{padding:80px 0}
+@media(max-width:768px){.section-pad{padding:56px 0}}
+.label-text{font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.75rem;line-height:1.4;letter-spacing:0.08em;text-transform:uppercase}
+.text-center{text-align:center}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.flex{display:flex}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-between{justify-content:space-between}.justify-center{justify-content:center}
+.gap-1{gap:4px}.gap-2{gap:8px}.gap-3{gap:16px}.gap-4{gap:24px}
+.mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:16px}.mb-4{margin-bottom:24px}.mb-6{margin-bottom:48px}.mb-8{margin-bottom:64px}
+.mt-4{margin-top:24px}.mt-6{margin-top:48px}.mt-8{margin-top:64px}
+.max-w-2{max-width:640px;margin-left:auto;margin-right:auto}
+.max-w-3{max-width:768px;margin-left:auto;margin-right:auto}
+.max-w-4{max-width:1024px;margin-left:auto;margin-right:auto}
+
+.bg-teal{background:#296662}.bg-teal-dark{background:#1e4d49}.bg-gold{background:#efd48f}.bg-parchment{background:#f4ecdc}.bg-dove{background:#e4e7e6}.bg-coral{background:#c64f2f}.bg-coral-dark{background:#a33d22}.bg-white{background:#fff}
+.text-teal{color:#296662}.text-gold{color:#efd48f}.text-coral{color:#c64f2f}.text-white{color:#fff}.text-brand{color:#1c0a04}.text-brand-70{color:rgba(28,10,4,0.7)}.text-brand-60{color:rgba(28,10,4,0.6)}.text-brand-50{color:rgba(28,10,4,0.5)}
+.text-white-90{color:rgba(255,255,255,0.9)}.text-white-80{color:rgba(255,255,255,0.8)}.text-white-70{color:rgba(255,255,255,0.7)}.text-white-60{color:rgba(255,255,255,0.6)}
+
+.btn{padding:12px 28px;border-radius:6px;font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.8125rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:none;display:inline-block;text-align:center;transition:all .2s}
+.btn-primary{background:#296662;color:#fff}.btn-primary:hover{background:#1e4d49}
+.btn-secondary{background:#efd48f;color:#1c0a04}.btn-secondary:hover{background:#e5c97f}
+.btn-white{background:#fff;color:#296662}.btn-white:hover{background:#f4ecdc}
+.btn-outline-white{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.4)}.btn-outline-white:hover{background:rgba(255,255,255,0.08)}
+.btn-coral{background:#c64f2f;color:#fff}.btn-coral:hover{background:#a33d22}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.1);transition:background .3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-links a{font-weight:600;font-size:0.78rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(28,10,4,.5);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#296662}
+.nav-toggle{display:none;background:none;border:none;color:#296662}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:120}
+.mobile-overlay.active{display:block}
+.mobile-drawer{position:fixed;top:0;right:0;width:280px;height:100%;background:#fff;transform:translateX(100%);transition:transform .3s;z-index:130;padding:80px 32px;display:flex;flex-direction:column;gap:20px;box-shadow:-4px 0 20px rgba(0,0,0,.15)}
+.mobile-drawer.open{transform:translateX(0)}
+.mobile-drawer a{font-family:'Domine',serif;font-size:1.125rem;color:#1c0a04;font-weight:400}
+
+.page-hero{padding-top:64px;padding-bottom:16px;background:#296662}
+.page-hero h1{font-size:clamp(1.5rem,3vw,2.25rem);color:#fff;margin-bottom:4px}
+.page-hero p{color:rgba(255,255,255,0.75);font-size:0.875rem}
+
+.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
+.card-img{width:100%;object-fit:cover}
+.card-body{padding:24px}
+
+.testimonial-card{background:rgba(255,255,255,0.08);border-radius:12px;padding:32px}
+
+.team-photo{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px}
+.placeholder-headshot{width:100%;aspect-ratio:3/4;background:#e4e7e6;border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(28,10,4,0.4);font-size:0.875rem;font-family:'Work Sans',sans-serif}
+
+.footer{background:#1c0a04;color:#fff;padding:48px 0 24px}
+.footer a{color:rgba(255,255,255,0.6);transition:color .2s}
+.footer a:hover{color:#efd48f}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .nav-links,.nav .btn{display:none}
+  .nav-toggle{display:block}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="container nav-inner">
+  <a href="index.html"><img src="logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty" style="height:47px;width:auto;display:block;" /></a>
+  <div class="nav-links">
+    <a href="properties.html">Buy</a><a href="sell.html">Sell</a><a href="about.html" class="active">About</a><a href="careers.html">Careers</a><a href="resources.html">Resources</a><a href="faq.html">FAQ</a><a href="partner.html">Partner</a><a href="calculator.html">Tools</a><a href="contact.html">Contact</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="pt/about.html" style="font-weight:600;font-size:0.7rem;letter-spacing:0.04em;text-transform:uppercase;color:#296662;border:1px solid #296662;padding:4px 8px;border-radius:4px;">PT</a>
+    <a href="contact.html" class="btn btn-primary">Get A Free Valuation</a>
+  </div>
+  <button class="nav-toggle" id="mobileToggle" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</div>
+</nav>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html">Home</a><a href="properties.html">Buy</a><a href="sell.html">Sell</a><a href="about.html" class="active">About</a><a href="careers.html">Careers</a><a href="resources.html">Resources</a><a href="faq.html">FAQ</a><a href="partner.html">Partner</a><a href="calculator.html">Tools</a><a href="contact.html">Contact</a>
+  <a href="pt/about.html" style="font-weight:600;font-size:0.7rem;letter-spacing:0.04em;text-transform:uppercase;color:#efd48f;border:1px solid #efd48f;padding:4px 8px;border-radius:4px;display:inline-block;margin-top:16px;text-align:center;">Português (PT)</a>
+  <a href="contact.html" class="btn btn-primary" style="margin-top:16px;text-align:center;">Get A Free Valuation</a>
+</div>
+
+<section class="page-hero">
+<div class="container" style="padding-top:64px;padding-bottom:16px;">
+  <p class="label-text text-gold" style="margin-bottom:4px;">ABOUT US</p>
+  <h1 class="font-domine">Meet the Team</h1>
+</div>
+</section>
+
+<!-- MISSION -->
+<section class="section-pad bg-white" style="padding-bottom:32px;">
+<div class="container">
+  <div class="reveal" style="max-width:860px;margin:0 auto;">
+    <p class="label-text text-teal mb-4 text-center">OUR STORY</p>
+    <h2 class="font-domine text-brand text-center mb-4" style="font-size:clamp(1.5rem,3vw,2rem);line-height:1.3;">Where Modern Heritage Meets Modern Business</h2>
+    <p class="text-brand-70 text-center" style="font-size:1.05rem;max-width:680px;margin:0 auto;">Aldeia Realty was founded on a simple belief: that transparency, hustle, genuine care, and collaboration are the foundation of every great client relationship. Modern heritage. Modern business. We combine deep local knowledge of Portugal's Silver Coast with a client-first approach that puts your goals at the centre of everything we do.</p>
+  </div>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section-pad bg-white" style="padding-top:0;">
+<div class="container">
+  <div class="reveal" style="max-width:800px;margin:0 auto;">
+    <h2 class="font-domine text-brand text-center mb-8" style="font-size:clamp(1.5rem,3vw,2rem);">Experience That Delivers</h2>
+    <div class="grid-2" style="gap:24px;">
+      <div class="reveal">
+        <h4 class="font-domine text-teal mb-2" style="font-size:1.1rem;">Strategic Negotiation</h4>
+        <p class="text-brand-70 text-sm">Years of high-stakes deal-making across multiple markets, ensuring you get the best outcome whether buying or selling.</p>
+      </div>
+      <div class="reveal">
+        <h4 class="font-domine text-teal mb-2" style="font-size:1.1rem;">Local Silver Coast Expertise</h4>
+        <p class="text-brand-70 text-sm">Deep knowledge of Caldas da Rainha, Óbidos, Peniche, Nazaré, Leiria, and surrounding municipalities.</p>
+      </div>
+      <div class="reveal">
+        <h4 class="font-domine text-teal mb-2" style="font-size:1.1rem;">International Buyer Specialists</h4>
+        <p class="text-brand-70 text-sm">We understand the unique challenges of buying property abroad and guide you through every step.</p>
+      </div>
+      <div class="reveal">
+        <h4 class="font-domine text-teal mb-2" style="font-size:1.1rem;">50/50 Partilha Promise</h4>
+        <p class="text-brand-70 text-sm">We share commissions with all licensed agents, giving your property maximum market exposure.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TEAM -->
+<section class="section-pad bg-parchment">
+<div class="container">
+  <p class="label-text text-teal text-center mb-4 reveal">THE TEAM</p>
+  <h2 class="font-domine text-brand text-center mb-8 reveal" style="font-size:clamp(1.5rem,3vw,2.5rem);">The People Behind Aldeia</h2>
+
+  <!-- Angela -->
+  <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
+    <div class="reveal">
+      <img src="images/team/angela-headshot.jpg" alt="Angela Dhillon" class="team-photo" style="max-width:360px;" />
+    </div>
+    <div class="reveal">
+      <p class="label-text text-teal mb-2">CEO &amp; FOUNDING PARTNER</p>
+      <h3 class="font-domine text-brand mb-3" style="font-size:1.75rem;">Angela Dhillon</h3>
+      <p class="text-brand-70 mb-3">With over a decade of real estate experience, Angela brings a highly strategic, client-centered approach to Aldeia Realty. Rooted in her academic background in Speech and Language Pathology, she possesses a unique ability to navigate complex negotiations and ensure clear, transparent communication for international buyers entering the Portuguese market.</p>
+      <p class="text-brand-70 mb-3">Prior to relocating to the Silver Coast, Angela built a formidable career in Greenville, North Carolina. As the founding agent of one of Eastern North Carolina's top real estate firms, she set the benchmark for the firm's success, consistently ranking as the highest-performing agent year-over-year and securing the brokerage's highest-value listings. During her tenure, she also helped design the firm's agent training programs and built a robust, referral-based network.</p>
+      <p class="text-brand-70">Today, Angela and her family are proud to call the Caldas da Rainha area home. Deeply passionate about Portuguese culture, she is actively involved in the local community and is dedicated to helping fellow expats seamlessly transition into the beautiful lifestyle the Silver Coast has to offer.</p>
+      <div class="mt-4">
+        <h4 class="font-domine text-teal mb-3" style="font-size:1.1rem;">Experience That Delivers</h4>
+        <ul style="list-style:none;padding:0;">
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">CEO, Aldeia Realty</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">10+ Years of Real Estate Industry Experience</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Founding Agent, Haystack Realty (Greenville, NC)</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Top Producer: Consistently ranked as firm's highest-performing agent</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Education: BS in Speech and Language Pathology, East Carolina University</span></li>
+          <li class="flex items-start gap-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Licensure: Active NC Real Estate Broker License</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Patrick -->
+  <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
+    <div class="reveal">
+      <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
+    </div>
+    <div class="reveal">
+      <p class="label-text text-teal mb-2">SENIOR REAL ESTATE AGENT</p>
+      <h3 class="font-domine text-brand mb-3" style="font-size:1.75rem;">Patrick Reid</h3>
+      <p class="text-brand-70 mb-3">Patrick brings a wealth of experience in high-level communication and strategic planning to the Aldeia Realty team. With a background deeply rooted in education and professional development, he excels at breaking down the complexities of the Portuguese property market into clear, actionable steps for his clients. Patrick's approach is defined by patience, thoroughness, and a commitment to ensuring every buyer feels fully informed and confident.</p>
+      <p class="text-brand-70 mb-3">Having successfully relocated his own family from Greenville, North Carolina, to the Silver Coast, Patrick offers a unique, first-hand perspective on the logistical and emotional journey of moving abroad. His transition from the US to Caldas da Rainha has given him a sharp eye for the specific details that international clients care about most &mdash; from school districts to local infrastructure and community integration.</p>
+      <p class="text-brand-70">Now a proud resident of the West region, Patrick is dedicated to providing a premium, high-touch service that prioritises long-term relationships over simple transactions.</p>
+      <div class="mt-4">
+        <h4 class="font-domine text-teal mb-3" style="font-size:1.1rem;">Experience That Delivers</h4>
+        <ul style="list-style:none;padding:0;">
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Senior Real Estate Agent, Aldeia Realty</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Relocation Specialist: Expert in US-to-Portugal transition and family integration</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Strategic Communication: Background in professional education and training</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Local Expert: Deep knowledge of Caldas da Rainha and surrounding Silver Coast municipalities</span></li>
+          <li class="flex items-start gap-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Education: Graduate of East Carolina University (ECU)</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Telmo -->
+  <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
+    <div class="reveal">
+      <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
+    </div>
+    <div class="reveal">
+      <p class="label-text text-teal mb-2">ACQUISITION SPECIALIST</p>
+      <h3 class="font-domine text-brand mb-3" style="font-size:1.75rem;">Telmo Raimundo</h3>
+      <p class="text-brand-70 mb-3">With a professional foundation rooted in premium hospitality and international tourism, Telmo is a master of high-level communication and relationship-building. Raised in a family connected to a nationally recognised restaurant business, he developed an early talent for creating genuine trust and connection with clients from diverse cultural and social backgrounds.</p>
+      <p class="text-brand-70 mb-3">Before joining Aldeia Realty, Telmo spent nearly a decade in leadership roles at the prestigious Royal Óbidos Golf &amp; Spa Resort, part of the Albatroz Collection. There, he managed operations for high-pressure international events and guest experiences, eventually founding the "Royal Market" concept from the ground up &mdash; curating luxury brands like Vista Alegre for a global clientele.</p>
+      <p class="text-brand-70">A true ambassador for the West region, Telmo's deep connection to Portuguese identity &mdash; from his work within the Óbidos Castle to his passion for local culture &mdash; allows him to source unique opportunities that others miss. He combines a contemporary vision for premium positioning with a relentless, client-focused approach built on trust and long-term satisfaction.</p>
+      <div class="mt-4">
+        <h4 class="font-domine text-teal mb-3" style="font-size:1.1rem;">Experience That Delivers</h4>
+        <ul style="list-style:none;padding:0;">
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Acquisition Specialist, Aldeia Realty</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">10+ Years in Premium Hospitality &amp; Guest Experience Management</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Leadership, Royal Óbidos Golf &amp; Spa Resort (Albatroz Collection)</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Founder, The Royal Market (Premium Retail &amp; Luxury Boutique Management)</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Local Identity: Former Tourism Host &amp; Cultural Ambassador for Óbidos</span></li>
+          <li class="flex items-start gap-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Education: Degree in Restaurant and Catering Management</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parvez -->
+  <div class="grid-2 gap-4" style="align-items:start;">
+    <div class="reveal">
+      <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
+    </div>
+    <div class="reveal">
+      <p class="label-text text-teal mb-2">HEAD OF RESEARCH &amp; FINANCE</p>
+      <h3 class="font-domine text-brand mb-3" style="font-size:1.75rem;">Parvez Dhillon</h3>
+      <p class="text-brand-70 mb-3">Parvez leads strategic planning and financial structuring at Aldeia Realty, with a track record spanning executive decision-making at the highest levels. Prior to joining the agency, he served as Managing Director of a global consulting and advisory firm in North America, overseeing multimillion-euro engagements across advisory services, executive coaching, and corporate restructuring.</p>
+      <p class="text-brand-70 mb-3">His experience includes direct oversight of board-level strategy, P&amp;L ownership, and cross-border market expansion &mdash; all within highly competitive, regulated industries. This background gives Aldeia Realty a distinctive edge: every transaction is underpinned by rigorous financial analysis and commercial acumen rarely found in boutique real estate.</p>
+      <p class="text-brand-70">Parvez holds a BSc in Business Administration & Accounting from East Carolina University and brings an analytical, strategic lens to the agency's growth, investment insights, and long-term market positioning on the Silver Coast.</p>
+      <div class="mt-4">
+        <h4 class="font-domine text-teal mb-3" style="font-size:1.1rem;">Experience That Delivers</h4>
+        <ul style="list-style:none;padding:0;">
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Managing Director &amp; P&amp;L Owner, Global Advisory Firm</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Board-Level Strategy &amp; Executive Decision-Making</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">BSc in Business Administration &amp; Accounting, East Carolina University</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Cross-Border Market Expansion &amp; Corporate Restructuring</span></li>
+          <li class="flex items-start gap-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Head of Research &amp; Finance, Aldeia Realty</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-pad bg-teal">
+<div class="container">
+  <p class="label-text text-gold text-center mb-3 reveal">TESTIMONIALS</p>
+  <h2 class="font-domine text-white text-center mb-3 reveal" style="font-size:clamp(1.5rem,3vw,2.5rem);">What Our Clients Say</h2>
+  <p class="text-white-80 text-center mb-8 reveal">Real reviews from Angela's years serving buyers and sellers across Eastern North Carolina</p>
+  <div class="grid-2">
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"Angela was truly instrumental in finding and purchasing our dream home. From the very beginning she was friendly, knowledgeable, and really listened to what our family needed. We were looking at listings for houses we thought would work, however it was Angela who ultimately recommended the showing that ended up being our dream home. She made the entire buying process smooth and stress-free, and we always felt like we were in the best hands. I would recommend her to anyone looking to buy or sell a home."</p>
+      <p class="text-gold font-semibold text-sm">Lisa Wharton</p>
+      <p class="text-white-70 text-sm">Direct 5.0 Stars</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"Angela was fantastic and made the process of buying our first home so easy. She always responded quickly to the many questions we asked her and made sure we had all of the information we needed. I would highly recommend working with Angela!"</p>
+      <p class="text-gold font-semibold text-sm">hcyoung18</p>
+      <p class="text-white-70 text-sm">Bought a home in 2021 &mdash; Zillow 5.0 Stars</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"Excellent professionalism and knowledge. We did not have to worry about anything when working with Angela, as she took care of everything promptly and precisely."</p>
+      <p class="text-gold font-semibold text-sm">Zillow Reviewer</p>
+      <p class="text-white-70 text-sm">Bought and sold in Greenville, NC 2021 &mdash; Zillow 5.0 Stars</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"Angela walked us through the home buying process a year ago and is still part of our lives today. She is professional, knowledgeable, reliable, genuine, honest and goes the extra mile. This lady moves mountains for her clients. I will always recommend Angela to anyone looking for a realtor!"</p>
+      <p class="text-gold font-semibold text-sm">terryrayers64</p>
+      <p class="text-white-70 text-sm">Bought in Plymouth, NC 2021 &mdash; Zillow 5.0 Stars</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="bg-teal" style="padding:36px 0;">
+<div class="container text-center reveal">
+  <h2 class="font-domine text-xl text-white mb-2">Ready to Work With Us?</h2>
+  <p class="text-white-90 text-sm mb-4 max-w-2">Whether buying your dream home or selling a property, we are here to guide you every step of the way.</p>
+  <div class="flex flex-wrap justify-center gap-3">
+    <a href="contact.html" class="btn btn-white" style="padding:8px 20px;font-size:0.75rem;">Contact Us</a>
+    <a href="properties.html" class="btn btn-outline-white" style="padding:8px 20px;font-size:0.75rem;">Browse Properties</a>
+  </div>
+</div>
+</section>
+
+<footer class="footer" style="padding:40px 0 24px;">
+<div class="container">
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;margin-bottom:24px;">
+    <img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" height="22" alt="Aldeia Realty" />
+    <p style="color:#efd48f;font-weight:600;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">MODERN HERITAGE &middot; MODERN BUSINESS</p>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-bottom:16px;">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <span style="color:rgba(255,255,255,0.2);">|</span>
+    <a href="complaints.html">Dispute Resolution</a>
+    <span style="color:rgba(255,255,255,0.2);">|</span>
+    <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclamações</a>
+  </div>
+  <p style="text-align:center;color:rgba(255,255,255,0.5);font-size:0.75rem;margin-top:12px;">&copy; 2026 Aldeia Realty - Real Estate, LDA. All rights reserved.</p>
+</div>
+</footer>
+
+<a href="https://wa.me/351912771309" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:250;text-decoration:none;" aria-label="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#1c0a04;color:#fff;padding:16px 24px;display:none;z-index:300;align-items:center;justify-content:center;gap:16px;">
+  <p style="font-size:0.875rem;margin:0;">We use cookies to improve your experience. By continuing, you agree to our <a href="privacy-policy.html" style="color:#efd48f;text-decoration:underline;">Privacy Policy</a>.</p>
+  <button id="cookieAccept" class="btn btn-primary" style="padding:8px 16px;font-size:0.75rem;">Accept</button>
+  <button id="cookieDecline" class="btn btn-outline-white" style="padding:8px 16px;font-size:0.75rem;">Decline</button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var els=document.querySelectorAll('.reveal');
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+  els.forEach(function(el){obs.observe(el)});
+  var toggle=document.getElementById('mobileToggle');
+  var drawer=document.getElementById('mobileDrawer');
+  var overlay=document.getElementById('mobileOverlay');
+  if(toggle){
+    toggle.addEventListener('click',function(){drawer.classList.add('open');overlay.classList.add('active')});
+    overlay.addEventListener('click',function(){drawer.classList.remove('open');overlay.classList.remove('active')});
+  }
+  var banner=document.getElementById('cookieBanner');
+  var acceptBtn=document.getElementById('cookieAccept');
+  var declineBtn=document.getElementById('cookieDecline');
+  if(banner && !localStorage.getItem('cookies')){
+    banner.style.display='flex';
+    acceptBtn.addEventListener('click',function(){localStorage.setItem('cookies','1');banner.style.display='none'});
+    declineBtn.addEventListener('click',function(){localStorage.setItem('cookies','0');banner.style.display='none'});
+  }
+});
+</script>
+</body>
+</html>
