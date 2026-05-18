@@ -7,81 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Work Sans',sans-serif;color:#296662;background:#ffffff;line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4{font-family:'Domine',serif;font-weight:400}
-img{max-width:100%;height:auto;display:block}
-a{text-decoration:none;color:inherit}
-button{cursor:pointer;font-family:inherit}
-ul{list-style:none}
-
-.container{max-width:1280px;margin:0 auto;padding:0 24px}
-.section-pad{padding:80px 0}
-@media(max-width:768px){.section-pad{padding:56px 0}}
-.label-text{font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.75rem;line-height:1.4;letter-spacing:0.08em;text-transform:uppercase}
-.text-center{text-align:center}
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-.flex{display:flex}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-between{justify-content:space-between}.justify-center{justify-content:center}
-.gap-1{gap:4px}.gap-2{gap:8px}.gap-3{gap:16px}.gap-4{gap:24px}
-.mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:16px}.mb-4{margin-bottom:24px}.mb-6{margin-bottom:48px}.mb-8{margin-bottom:64px}
-.mt-4{margin-top:24px}.mt-6{margin-top:48px}.mt-8{margin-top:64px}
-.max-w-2{max-width:640px;margin-left:auto;margin-right:auto}
-.max-w-3{max-width:768px;margin-left:auto;margin-right:auto}
-.max-w-4{max-width:1024px;margin-left:auto;margin-right:auto}
-
-.bg-teal{background:#296662}.bg-teal-dark{background:#1e4d49}.bg-gold{background:#efd48f}.bg-parchment{background:#f4ecdc}.bg-dove{background:#e4e7e6}.bg-coral{background:#c64f2f}.bg-coral-dark{background:#a33d22}.bg-white{background:#fff}
-.text-teal{color:#296662}.text-gold{color:#efd48f}.text-coral{color:#c64f2f}.text-white{color:#fff}.text-brand{color:#296662}.text-brand-70{color:rgba(28,10,4,0.7)}.text-brand-60{color:rgba(28,10,4,0.6)}.text-brand-50{color:rgba(28,10,4,0.5)}
-.text-white-90{color:rgba(255,255,255,0.9)}.text-white-80{color:rgba(255,255,255,0.8)}.text-white-70{color:rgba(255,255,255,0.7)}.text-white-60{color:rgba(255,255,255,0.6)}
-
-.btn{padding:12px 28px;border-radius:6px;font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.8125rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:none;display:inline-block;text-align:center;transition:all .2s}
-.btn-primary{background:#296662;color:#fff}.btn-primary:hover{background:#1e4d49}
-.btn-secondary{background:#efd48f;color:#296662}.btn-secondary:hover{background:#e5c97f}
-.btn-white{background:#fff;color:#296662}.btn-white:hover{background:#f4ecdc}
-.btn-outline-white{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.4)}.btn-outline-white:hover{background:rgba(255,255,255,0.08)}
-.btn-coral{background:#c64f2f;color:#fff}.btn-coral:hover{background:#a33d22}
-
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.1);transition:background .3s}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
-.nav-links{display:flex;align-items:center;gap:20px}
-.nav-links a{font-weight:600;font-size:0.78rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(28,10,4,.5);transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:#296662}
-.nav-toggle{display:none;background:none;border:none;color:#296662}
-.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:120}
-.mobile-overlay.active{display:block}
-.mobile-drawer{position:fixed;top:0;right:0;width:280px;height:100%;background:#fff;transform:translateX(100%);transition:transform .3s;z-index:130;padding:80px 32px;display:flex;flex-direction:column;gap:20px;box-shadow:-4px 0 20px rgba(0,0,0,.15)}
-.mobile-drawer.open{transform:translateX(0)}
-.mobile-drawer a{font-family:'Domine',serif;font-size:1.125rem;color:#296662;font-weight:400}
-
-.page-hero{padding-top:64px;padding-bottom:16px;background:#296662}
-.page-hero h1{font-size:clamp(1.5rem,3vw,2.25rem);color:#fff;margin-bottom:4px}
-.page-hero p{color:rgba(255,255,255,0.75);font-size:0.875rem}
-
-.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s}
-.card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
-.card-img{width:100%;object-fit:cover}
-.card-body{padding:24px}
-
-.testimonial-card{background:rgba(255,255,255,0.08);border-radius:12px;padding:32px}
-
-.team-photo{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px}
-.placeholder-headshot{width:100%;aspect-ratio:3/4;background:#e4e7e6;border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(28,10,4,0.4);font-size:0.875rem;font-family:'Work Sans',sans-serif}
-
-.footer{background:#296662;color:#fff;padding:48px 0 24px}
-.footer a{color:rgba(255,255,255,0.6);transition:color .2s}
-.footer a:hover{color:#efd48f}
-
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
-.reveal.visible{opacity:1;transform:none}
-
-@media(max-width:768px){
-  .nav-links,.nav .btn{display:none}
-  .nav-toggle{display:block}
-  .grid-2,.grid-3{grid-template-columns:1fr}
-}
-</style>
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
@@ -102,7 +28,7 @@ ul{list-style:none}
 <div class="mobile-drawer" id="mobileDrawer">
   <a href="index.html">Home</a><a href="properties.html">Buy</a><a href="sell.html">Sell</a><a href="about.html" class="active">About</a><a href="careers.html">Careers</a><a href="resources.html">Resources</a><a href="faq.html">FAQ</a><a href="partner.html">Partner</a><a href="calculator.html">Tools</a><a href="contact.html">Contact</a>
   <a href="pt/about.html" style="font-weight:600;font-size:0.7rem;letter-spacing:0.04em;text-transform:uppercase;color:#efd48f;border:1px solid #efd48f;padding:4px 8px;border-radius:4px;display:inline-block;margin-top:16px;text-align:center;">Português (PT)</a>
-  <a href="contact.html" class="btn btn-primary" style="margin-top:16px;text-align:center;">Get A Free Valuation</a>
+  <a href="contact.html" class="btn btn-primary" style="margin-top:16px;text-align:center;padding:8px 16px;font-size:0.7rem;">Get A Free Valuation</a>
 </div>
 
 <section class="page-hero">
@@ -111,6 +37,9 @@ ul{list-style:none}
   <h1 class="font-domine">Meet the Team</h1>
 </div>
 </section>
+
+<!-- WATERCOLOR DIVIDER -->
+<div style="text-align:center;padding:2.5rem 1rem;background:#fbf8f3;"><img src="images/watercolor/wc-7.jpg" alt="" style="max-width:320px;width:80%;height:auto;border-radius:12px;opacity:0.65;display:inline-block;"></div>
 
 <!-- MISSION -->
 <section class="section-pad bg-white" style="padding-bottom:32px;">
@@ -181,7 +110,30 @@ ul{list-style:none}
     </div>
   </div>
 
-  <!-- Patrick -->
+  <!-- Parvez -->
+  <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
+    <div class="reveal">
+      <img src="images/team/parvez-headshot.jpg" alt="Parvez Dhillon" class="team-photo" style="max-width:360px;" />
+    </div>
+    <div class="reveal">
+      <p class="label-text text-teal mb-2">HEAD OF RESEARCH &amp; FINANCE</p>
+      <h3 class="font-domine text-brand mb-3" style="font-size:1.75rem;">Parvez Dhillon</h3>
+      <p class="text-brand-70 mb-3">Parvez leads strategic planning and financial structuring at Aldeia Realty, with a track record spanning executive decision-making at the highest levels. Prior to joining the agency, he served as Managing Director of a global consulting and advisory firm in North America, overseeing multimillion-euro engagements across advisory services, executive coaching, and corporate restructuring.</p>
+      <p class="text-brand-70 mb-3">His experience includes direct oversight of board-level strategy, P&amp;L ownership, and cross-border market expansion &mdash; all within highly competitive, regulated industries. This background gives Aldeia Realty a distinctive edge: every transaction is underpinned by rigorous financial analysis and commercial acumen rarely found in boutique real estate.</p>
+      <p class="text-brand-70">Parvez holds a BSc in Business Administration & Accounting from East Carolina University and brings an analytical, strategic lens to the agency's growth, investment insights, and long-term market positioning on the Silver Coast.</p>
+      <div class="mt-4">
+        <h4 class="font-domine text-teal mb-3" style="font-size:1.1rem;">Experience That Delivers</h4>
+        <ul style="list-style:none;padding:0;">
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Managing Director &amp; P&amp;L Owner, Global Advisory Firm</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Board-Level Strategy &amp; Executive Decision-Making</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">BSc in Business Administration &amp; Accounting, East Carolina University</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Cross-Border Market Expansion &amp; Corporate Restructuring</span></li>
+          <li class="flex items-start gap-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Head of Research &amp; Finance, Aldeia Realty</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<!-- Patrick -->
   <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
     <div class="reveal">
       <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
@@ -206,7 +158,7 @@ ul{list-style:none}
   </div>
 
   <!-- Telmo -->
-  <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
+  <div class="grid-2 gap-4" style="align-items:start;">
     <div class="reveal">
       <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
     </div>
@@ -230,33 +182,7 @@ ul{list-style:none}
     </div>
   </div>
 
-  <!-- Parvez -->
-  <div class="grid-2 gap-4" style="align-items:start;">
-    <div class="reveal">
-      <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
-    </div>
-    <div class="reveal">
-      <p class="label-text text-teal mb-2">HEAD OF RESEARCH &amp; FINANCE</p>
-      <h3 class="font-domine text-brand mb-3" style="font-size:1.75rem;">Parvez Dhillon</h3>
-      <p class="text-brand-70 mb-3">Parvez leads strategic planning and financial structuring at Aldeia Realty, with a track record spanning executive decision-making at the highest levels. Prior to joining the agency, he served as Managing Director of a global consulting and advisory firm in North America, overseeing multimillion-euro engagements across advisory services, executive coaching, and corporate restructuring.</p>
-      <p class="text-brand-70 mb-3">His experience includes direct oversight of board-level strategy, P&amp;L ownership, and cross-border market expansion &mdash; all within highly competitive, regulated industries. This background gives Aldeia Realty a distinctive edge: every transaction is underpinned by rigorous financial analysis and commercial acumen rarely found in boutique real estate.</p>
-      <p class="text-brand-70">Parvez holds a BSc in Business Administration & Accounting from East Carolina University and brings an analytical, strategic lens to the agency's growth, investment insights, and long-term market positioning on the Silver Coast.</p>
-      <div class="mt-4">
-        <h4 class="font-domine text-teal mb-3" style="font-size:1.1rem;">Experience That Delivers</h4>
-        <ul style="list-style:none;padding:0;">
-          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Managing Director &amp; P&amp;L Owner, Global Advisory Firm</span></li>
-          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Board-Level Strategy &amp; Executive Decision-Making</span></li>
-          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">BSc in Business Administration &amp; Accounting, East Carolina University</span></li>
-          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Cross-Border Market Expansion &amp; Corporate Restructuring</span></li>
-          <li class="flex items-start gap-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Head of Research &amp; Finance, Aldeia Realty</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS -->
 <section class="section-pad bg-teal">
 <div class="container">
   <p class="label-text text-gold text-center mb-3 reveal">TESTIMONIALS</p>
@@ -328,27 +254,6 @@ ul{list-style:none}
   <button id="cookieDecline" class="btn btn-outline-white" style="padding:8px 16px;font-size:0.75rem;">Decline</button>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded',function(){
-  var els=document.querySelectorAll('.reveal');
-  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
-  els.forEach(function(el){obs.observe(el)});
-  var toggle=document.getElementById('mobileToggle');
-  var drawer=document.getElementById('mobileDrawer');
-  var overlay=document.getElementById('mobileOverlay');
-  if(toggle){
-    toggle.addEventListener('click',function(){drawer.classList.add('open');overlay.classList.add('active')});
-    overlay.addEventListener('click',function(){drawer.classList.remove('open');overlay.classList.remove('active')});
-  }
-  var banner=document.getElementById('cookieBanner');
-  var acceptBtn=document.getElementById('cookieAccept');
-  var declineBtn=document.getElementById('cookieDecline');
-  if(banner && !localStorage.getItem('cookies')){
-    banner.style.display='flex';
-    acceptBtn.addEventListener('click',function(){localStorage.setItem('cookies','1');banner.style.display='none'});
-    declineBtn.addEventListener('click',function(){localStorage.setItem('cookies','0');banner.style.display='none'});
-  }
-});
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
