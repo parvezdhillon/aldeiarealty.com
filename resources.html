@@ -434,7 +434,7 @@ ul { list-style: none; }
       <div class="reveal" style="background:#f4ecdc;border-radius:8px;padding:32px;box-shadow:0 4px 24px rgba(28,10,4,0.08);">
         <h3 class="font-domine text-brand mb-1" style="font-size:1.15rem;">Request Your Consultation</h3>
         <p class="text-brand-60 text-sm mb-4">Fill in your details and we will be in touch within 24 hours.</p>
-        <form id="consultForm" method="POST" action="https://formspree.io/f/xkoenyzb" style="display:flex;flex-direction:column;gap:12px;">
+        <form method="POST" action="https://formspree.io/f/xkoenyzb" style="display:flex;flex-direction:column;gap:12px;">
           <input type="hidden" name="_subject" value="Seller Strategy Consultation Request">
           <input type="text" name="name" class="calc-input" placeholder="Your Name" required style="font-size:0.875rem;">
           <input type="email" name="email" class="calc-input" placeholder="Email Address" required style="font-size:0.875rem;">
@@ -450,7 +450,7 @@ ul { list-style: none; }
           </select>
           <textarea name="notes" class="calc-input" rows="2" placeholder="Any questions or notes..." style="font-size:0.875rem;resize:vertical;"></textarea>
           <button type="submit" class="btn btn-primary" style="margin-top:4px;">Book Consultation</button>
-          <p id="consultStatus" style="margin-top:8px;font-size:0.875rem;display:none;"></p>
+          
         </form>
       </div>
     </div>
@@ -740,23 +740,7 @@ function runLocalCalc() {
   document.getElementById('local-results').style.display = 'block';
 }
 
-// ===== CONSULTATION FORM =====
-function initConsultForm() {
-  var f = document.getElementById('consultForm');
-  var s = document.getElementById('consultStatus');
-  if (!f) return;
-  f.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = f.querySelector('button[type="submit"]');
-    var orig = btn.textContent;
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    fetch(f.action, {method: 'POST', body: new FormData(f), headers: {'Accept': 'application/json'}})
-      .then(function(r) { if (r.ok) { s.textContent = 'Thank you! We will contact you within 24 hours to schedule your consultation.'; s.style.color = '#296662'; s.style.display = 'block'; f.reset(); } else { throw new Error(); } })
-      .catch(function() { s.textContent = 'Unable to send. Please WhatsApp us at +351 912 771 309'; s.style.color = '#c64f2f'; s.style.display = 'block'; })
-      .finally(function() { btn.textContent = orig; btn.disabled = false; });
-  });
-}
+
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -764,7 +748,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initMobileNav();
   initAccordion();
-  initConsultForm();
+
 });
 
 </script>

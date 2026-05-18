@@ -154,7 +154,7 @@ body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-he
 <div class="lead-form">
 <h3 class="font-domine" style="font-size:1.15rem;margin-bottom:8px;">Registar o Seu Comprador</h3>
 <p class="text-brand-70" style="font-size:0.875rem;margin-bottom:20px;">Preencha os seus dados de AMI e os requisitos do comprador. Confirmamos o registo em 24 horas.</p>
-<form id="partnerForm" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+<form method="POST" action="https://formspree.io/f/xkoenyzb">
 <input type="hidden" name="_subject" value="Registo de Parceiro - AldeiaRealty.com PT">
 <input type="text" name="agent_name" class="form-input" placeholder="Nome" required style="margin-bottom:12px;">
 <input type="text" name="ami_license" class="form-input" placeholder="Número de Licença AMI" required style="margin-bottom:12px;">
@@ -163,7 +163,6 @@ body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-he
 <input type="text" name="buyer_name" class="form-input" placeholder="Nome do Comprador" style="margin-bottom:12px;">
 <textarea name="requirements" class="form-input" rows="3" placeholder="Requisitos (localização, tipo, orçamento...)"></textarea>
 <button type="submit" class="btn btn-primary" style="width:100%;margin-top:12px;">Registar Comprador</button>
-<p id="partnerStatus" style="margin-top:12px;font-size:0.875rem;display:none;"></p>
 </form>
 </div>
 </div>
@@ -202,7 +201,7 @@ body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-he
 document.addEventListener('DOMContentLoaded',function(){
 var els=document.querySelectorAll('.reveal');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});els.forEach(function(el){obs.observe(el)});
 var b=document.getElementById('cookieBanner');if(b&&!localStorage.getItem('cookies')){setTimeout(function(){b.classList.add('show')},1000)}document.getElementById('cookieAccept').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','1')});document.getElementById('cookieDecline').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','0')});
-var f=document.getElementById('partnerForm');var s=document.getElementById('partnerStatus');if(f){f.addEventListener('submit',function(e){e.preventDefault();var btn=f.querySelector('button[type="submit"]');var orig=btn.textContent;btn.textContent='A enviar...';btn.disabled=true;fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}}).then(function(r){if(r.ok){s.textContent='Obrigado! Confirmaremos o registo em 24 horas.';s.style.color='#296662';s.style.display='block';f.reset()}else{throw new Error()}}).catch(function(){s.textContent='Erro ao enviar. Contacte-nos por WhatsApp: +351 912 771 309';s.style.color='#c64f2f';s.style.display='block'}).finally(function(){btn.textContent=orig;btn.disabled=false})})}
+
 });
 </script>
 </body>

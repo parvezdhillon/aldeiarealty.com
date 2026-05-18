@@ -356,9 +356,8 @@ ul { list-style: none; }
     <div class="grid-2 gap-4">
       <div class="reveal">
         <!-- FORMSPREE: works on ANY host. Get your free ID at https://formspree.io -->
-        <form id="contactForm" method="POST" action="https://formspree.io/f/YOUR_FORM_ID" style="margin-bottom:40px;">
+        <form action="https://formspree.io/f/xkoenyzb" method="POST" style="margin-bottom:40px;">
           <input type="hidden" name="_subject" value="New inquiry from AldeiaRealty.com" />
-          <input type="hidden" name="_next" value="https://aldeiarealty.com/success.html" />
           <h2 class="font-domine text-2xl text-brand mb-4">Send us a message</h2>
           <div class="grid-2" style="gap:16px;">
             <div class="mb-3">
@@ -387,37 +386,7 @@ ul { list-style: none; }
             <textarea name="message" rows="5" class="form-input" style="resize:none;" placeholder="Tell us about your property goals..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send Message</button>
-          <p id="formStatus" style="margin-top:12px;font-size:0.875rem;display:none;"></p>
         </form>
-        <script>
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const btn = this.querySelector('button[type="submit"]');
-          const status = document.getElementById('formStatus');
-          const originalText = btn.textContent;
-          btn.textContent = 'Sending...';
-          btn.disabled = true;
-          try {
-            const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
-            if (res.ok) {
-              status.textContent = 'Thank you! We will contact you shortly.';
-              status.style.color = '#296662';
-              status.style.display = 'block';
-              this.reset();
-            } else {
-              status.textContent = 'Something went wrong. Please email us at info@aldeiarealty.com';
-              status.style.color = '#c64f2f';
-              status.style.display = 'block';
-            }
-          } catch(err) {
-            status.textContent = 'Unable to send. Please email us at info@aldeiarealty.com';
-            status.style.color = '#c64f2f';
-            status.style.display = 'block';
-          }
-          btn.textContent = originalText;
-          btn.disabled = false;
-        });
-        </script>
 
         <div class="space-y-4">
           <div class="flex items-start gap-3">

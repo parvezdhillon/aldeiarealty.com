@@ -242,7 +242,7 @@ body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-he
 <div class="lead-form reveal">
 <h3 class="font-domine" style="font-size:1.25rem;margin-bottom:8px;">Request a Free Valuation</h3>
 <p class="text-brand-70" style="font-size:0.9375rem;margin-bottom:20px;">Fill in your details and we'll be in touch to schedule your no-obligation property valuation.</p>
-<form id="valuationForm" method="POST" action="https://formspree.io/f/xkoenyzb">
+<form method="POST" action="https://formspree.io/f/xkoenyzb">
 <input type="hidden" name="_subject" value="Valuation Request - AldeiaRealty.com">
 <div class="grid-2" style="gap:16px;">
 <div><input type="text" name="name" class="form-input" placeholder="Your Name" required></div>
@@ -257,7 +257,6 @@ body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-he
 </div>
 <div style="margin-top:16px;">
 <button type="submit" class="btn btn-primary">Request Valuation</button>
-<p id="valStatus" style="margin-top:12px;font-size:0.875rem;display:none;"></p>
 </div>
 </form>
 </div>
@@ -308,7 +307,7 @@ body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-he
 document.addEventListener('DOMContentLoaded',function(){
 var els=document.querySelectorAll('.reveal');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});els.forEach(function(el){obs.observe(el)});
 var b=document.getElementById('cookieBanner');if(b&&!localStorage.getItem('cookies')){setTimeout(function(){b.classList.add('show')},1000)}document.getElementById('cookieAccept').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','1')});document.getElementById('cookieDecline').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','0')});
-var f=document.getElementById('valuationForm');var s=document.getElementById('valStatus');if(f){f.addEventListener('submit',function(e){e.preventDefault();var btn=f.querySelector('button[type="submit"]');var orig=btn.textContent;btn.textContent='Sending...';btn.disabled=true;fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}}).then(function(r){if(r.ok){s.textContent='Thank you! We will contact you shortly.';s.style.color='#296662';s.style.display='block';f.reset()}else{throw new Error()}}).catch(function(){s.textContent='Unable to send. Please email angela@aldeiarealty.com';s.style.color='#c64f2f';s.style.display='block'}).finally(function(){btn.textContent=orig;btn.disabled=false})})}
+
 });
 </script>
 </body>

@@ -61,7 +61,7 @@
       <div class="reveal">
         <div class="card" style="padding:32px;">
           <h3 class="font-domine text-lg text-brand mb-4">Envie-nos uma Mensagem</h3>
-          <form id="contactForm" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+          <form method="POST" action="https://formspree.io/f/xkoenyzb">
             <input type="hidden" name="_subject" value="Novo contacto de AldeiaRealty.com" />
             <div style="display:flex;flex-direction:column;gap:12px;">
               <div><label style="display:block;font-weight:600;font-size:0.875rem;color:rgba(28,10,4,0.7);margin-bottom:4px;">Nome</label><input type="text" name="name" class="form-input" placeholder="O seu nome" required /></div>
@@ -78,30 +78,9 @@
               </div>
               <div><label style="display:block;font-weight:600;font-size:0.875rem;color:rgba(28,10,4,0.7);margin-bottom:4px;">Mensagem</label><textarea name="message" class="form-input" rows="4" placeholder="Como podemos ajudar?"></textarea></div>
               <button type="submit" class="btn btn-primary" style="width:100%;">Enviar Mensagem</button>
-              <p id="formStatus" style="margin-top:12px;font-size:0.875rem;display:none;"></p>
             </div>
           </form>
-          <script>
-          document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            var btn = this.querySelector('button[type="submit"]');
-            var status = document.getElementById('formStatus');
-            var originalText = btn.textContent;
-            btn.textContent = 'A enviar...';
-            btn.disabled = true;
-            try {
-              const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
-              if (res.ok) {
-                status.textContent = 'Obrigado! Entraremos em contacto em breve.';
-                status.style.color = '#296662'; status.style.display = 'block'; this.reset();
-              } else { throw new Error(); }
-            } catch(err) {
-              status.textContent = 'Erro ao enviar. Por favor contacte-nos por email.';
-              status.style.color = '#c64f2f'; status.style.display = 'block';
-            }
-            btn.textContent = originalText; btn.disabled = false;
-          });
-          </script>
+
         </div>
       </div>
     </div>
