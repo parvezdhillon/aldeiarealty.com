@@ -14,7 +14,7 @@
     .font-domine{font-family:'Domine',serif}
     .nav{position:fixed;top:0;left:0;right:0;z-index:50;height:52px;background:#fff;box-shadow:0 1px 4px rgba(28,10,4,0.08)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
-    .nav-links{display:flex;gap:1.5rem}@media(max-width:768px){.nav-links{display:none}}
+    .nav-links{display:flex;gap:1.5rem}.nav-inner>a:first-child{flex-shrink:0}.nav-inner img{height:28px;width:auto;object-fit:contain}@media(max-width:768px){.nav-inner img{height:22px}.nav-links{display:none}}
     .nav-links a{font-weight:600;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(28,10,4,.6);text-decoration:none;transition:color .2s}
     .nav-links a:hover{color:#296662}
     .btn{display:inline-block;padding:10px 20px;border-radius:4px;font-weight:600;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:'Work Sans',sans-serif;white-space:nowrap}
@@ -43,7 +43,7 @@
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
     .reveal.visible{opacity:1;transform:none}
     .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
-    @media(max-width:768px){.grid-2{grid-template-columns:1fr}}
+    .nav-inner>a:first-child{flex-shrink:0}.nav-inner img{height:28px;width:auto;object-fit:contain}@media(max-width:768px){.nav-inner img{height:22px}.grid-2{grid-template-columns:1fr}}
   </style>
 </head>
 <body>

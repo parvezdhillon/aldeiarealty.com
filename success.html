@@ -137,6 +137,8 @@ ul { list-style: none; }
   background: #efd48f; transition: width 0.2s ease;
 }
 .nav-links a:hover::after { width: 100%; }
+.nav-inner>a:first-child{flex-shrink:0}
+.nav-inner img{height:28px;width:auto;object-fit:contain}
 .nav-scrolled .nav-links a { color: #1c0a04; }
 .nav-transparent .nav-links a { color: #ffffff; }
 
@@ -319,7 +321,7 @@ ul { list-style: none; }
   box-shadow: 0 1px 4px rgba(28,10,4,0.05);
 }
 
-</style>
+@media(max-width:768px){.nav-links,.nav .btn{display:none}.nav-toggle{display:block}.grid-2,.grid-3{grid-template-columns:1fr}.nav-inner img{height:22px}}</style>
 </head>
 <body>
 
