@@ -7,7 +7,81 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Work Sans',sans-serif;color:#1c0a04;background:#ffffff;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Domine',serif;font-weight:400}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+ul{list-style:none}
+
+.container{max-width:1280px;margin:0 auto;padding:0 24px}
+.section-pad{padding:80px 0}
+@media(max-width:768px){.section-pad{padding:56px 0}}
+.label-text{font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.75rem;line-height:1.4;letter-spacing:0.08em;text-transform:uppercase}
+.text-center{text-align:center}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.flex{display:flex}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-between{justify-content:space-between}.justify-center{justify-content:center}
+.gap-1{gap:4px}.gap-2{gap:8px}.gap-3{gap:16px}.gap-4{gap:24px}
+.mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:16px}.mb-4{margin-bottom:24px}.mb-6{margin-bottom:48px}.mb-8{margin-bottom:64px}
+.mt-4{margin-top:24px}.mt-6{margin-top:48px}.mt-8{margin-top:64px}
+.max-w-2{max-width:640px;margin-left:auto;margin-right:auto}
+.max-w-3{max-width:768px;margin-left:auto;margin-right:auto}
+.max-w-4{max-width:1024px;margin-left:auto;margin-right:auto}
+
+.bg-teal{background:#296662}.bg-teal-dark{background:#1e4d49}.bg-gold{background:#efd48f}.bg-parchment{background:#f4ecdc}.bg-dove{background:#e4e7e6}.bg-coral{background:#c64f2f}.bg-coral-dark{background:#a33d22}.bg-white{background:#fff}
+.text-teal{color:#296662}.text-gold{color:#efd48f}.text-coral{color:#c64f2f}.text-white{color:#fff}.text-brand{color:#1c0a04}.text-brand-70{color:rgba(28,10,4,0.7)}.text-brand-60{color:rgba(28,10,4,0.6)}.text-brand-50{color:rgba(28,10,4,0.5)}
+.text-white-90{color:rgba(255,255,255,0.9)}.text-white-80{color:rgba(255,255,255,0.8)}.text-white-70{color:rgba(255,255,255,0.7)}.text-white-60{color:rgba(255,255,255,0.6)}
+
+.btn{padding:12px 28px;border-radius:6px;font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.8125rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:none;display:inline-block;text-align:center;transition:all .2s}
+.btn-primary{background:#296662;color:#fff}.btn-primary:hover{background:#1e4d49}
+.btn-secondary{background:#efd48f;color:#1c0a04}.btn-secondary:hover{background:#e5c97f}
+.btn-white{background:#fff;color:#296662}.btn-white:hover{background:#f4ecdc}
+.btn-outline-white{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.4)}.btn-outline-white:hover{background:rgba(255,255,255,0.08)}
+.btn-coral{background:#c64f2f;color:#fff}.btn-coral:hover{background:#a33d22}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.1);transition:background .3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-links a{font-weight:600;font-size:0.78rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(28,10,4,.5);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#296662}
+.nav-toggle{display:none;background:none;border:none;color:#296662}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:120}
+.mobile-overlay.active{display:block}
+.mobile-drawer{position:fixed;top:0;right:0;width:280px;height:100%;background:#fff;transform:translateX(100%);transition:transform .3s;z-index:130;padding:80px 32px;display:flex;flex-direction:column;gap:20px;box-shadow:-4px 0 20px rgba(0,0,0,.15)}
+.mobile-drawer.open{transform:translateX(0)}
+.mobile-drawer a{font-family:'Domine',serif;font-size:1.125rem;color:#1c0a04;font-weight:400}
+
+.page-hero{padding-top:64px;padding-bottom:16px;background:#296662}
+.page-hero h1{font-size:clamp(1.5rem,3vw,2.25rem);color:#fff;margin-bottom:4px}
+.page-hero p{color:rgba(255,255,255,0.75);font-size:0.875rem}
+
+.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
+.card-img{width:100%;object-fit:cover}
+.card-body{padding:24px}
+
+.testimonial-card{background:rgba(255,255,255,0.08);border-radius:12px;padding:32px}
+
+.team-photo{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px}
+.placeholder-headshot{width:100%;aspect-ratio:3/4;background:#e4e7e6;border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(28,10,4,0.4);font-size:0.875rem;font-family:'Work Sans',sans-serif}
+
+.footer{background:#296662;color:#fff;padding:48px 0 24px}
+.footer a{color:rgba(255,255,255,0.6);transition:color .2s}
+.footer a:hover{color:#efd48f}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .nav-links,.nav .btn{display:none}
+  .nav-toggle{display:block}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
@@ -28,7 +102,7 @@
 <div class="mobile-drawer" id="mobileDrawer">
   <a href="index.html">Home</a><a href="properties.html">Buy</a><a href="sell.html">Sell</a><a href="about.html" class="active">About</a><a href="careers.html">Careers</a><a href="resources.html">Resources</a><a href="faq.html">FAQ</a><a href="partner.html">Partner</a><a href="calculator.html">Tools</a><a href="contact.html">Contact</a>
   <a href="pt/about.html" style="font-weight:600;font-size:0.7rem;letter-spacing:0.04em;text-transform:uppercase;color:#efd48f;border:1px solid #efd48f;padding:4px 8px;border-radius:4px;display:inline-block;margin-top:16px;text-align:center;">Português (PT)</a>
-  <a href="contact.html" class="btn btn-primary" style="margin-top:16px;text-align:center;padding:8px 16px;font-size:0.7rem;">Get A Free Valuation</a>
+  <a href="contact.html" class="btn btn-primary" style="margin-top:16px;text-align:center;">Get A Free Valuation</a>
 </div>
 
 <section class="page-hero">
@@ -37,9 +111,6 @@
   <h1 class="font-domine">Meet the Team</h1>
 </div>
 </section>
-
-<!-- WATERCOLOR DIVIDER -->
-<div style="text-align:center;padding:2.5rem 1rem;background:#fbf8f3;"><img src="images/watercolor/wc-7.jpg" alt="" style="max-width:320px;width:80%;height:auto;border-radius:12px;opacity:0.65;display:inline-block;"></div>
 
 <!-- MISSION -->
 <section class="section-pad bg-white" style="padding-bottom:32px;">
@@ -91,7 +162,7 @@
       <img src="images/team/angela-headshot.jpg" alt="Angela Dhillon" class="team-photo" style="max-width:360px;" />
     </div>
     <div class="reveal">
-      <p class="label-text text-teal mb-2">CEO &amp; Broker In Charge</p>
+      <p class="label-text text-teal mb-2">CEO &amp; FOUNDING PARTNER</p>
       <h3 class="font-domine text-brand mb-3" style="font-size:1.75rem;">Angela Dhillon</h3>
       <p class="text-brand-70 mb-3">With over a decade of real estate experience, Angela brings a highly strategic, client-centered approach to Aldeia Realty. Rooted in her academic background in Speech and Language Pathology, she possesses a unique ability to navigate complex negotiations and ensure clear, transparent communication for international buyers entering the Portuguese market.</p>
       <p class="text-brand-70 mb-3">Prior to relocating to the Silver Coast, Angela built a formidable career in Greenville, North Carolina. As the founding agent of one of Eastern North Carolina's top real estate firms, she set the benchmark for the firm's success, consistently ranking as the highest-performing agent year-over-year and securing the brokerage's highest-value listings. During her tenure, she also helped design the firm's agent training programs and built a robust, referral-based network.</p>
@@ -113,7 +184,7 @@
   <!-- Parvez -->
   <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
     <div class="reveal">
-      <img src="images/team/parvez-headshot.jpg" alt="Parvez Dhillon" class="team-photo" style="max-width:360px;" />
+      <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
     </div>
     <div class="reveal">
       <p class="label-text text-teal mb-2">HEAD OF RESEARCH &amp; FINANCE</p>
@@ -133,7 +204,8 @@
       </div>
     </div>
   </div>
-<!-- Patrick -->
+
+  <!-- Patrick -->
   <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
     <div class="reveal">
       <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
@@ -158,7 +230,7 @@
   </div>
 
   <!-- Telmo -->
-  <div class="grid-2 gap-4" style="align-items:start;">
+  <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
     <div class="reveal">
       <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
     </div>
@@ -182,7 +254,10 @@
     </div>
   </div>
 
-  <!-- TESTIMONIALS -->
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
 <section class="section-pad bg-teal">
 <div class="container">
   <p class="label-text text-gold text-center mb-3 reveal">TESTIMONIALS</p>
@@ -248,12 +323,33 @@
 
 <a href="https://wa.me/351912771309" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:250;text-decoration:none;" aria-label="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 
-<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#296662;color:#fff;padding:16px 24px;display:none;z-index:300;align-items:center;justify-content:center;gap:16px;">
+<div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#1c0a04;color:#fff;padding:16px 24px;display:none;z-index:300;align-items:center;justify-content:center;gap:16px;">
   <p style="font-size:0.875rem;margin:0;">We use cookies to improve your experience. By continuing, you agree to our <a href="privacy-policy.html" style="color:#efd48f;text-decoration:underline;">Privacy Policy</a>.</p>
   <button id="cookieAccept" class="btn btn-primary" style="padding:8px 16px;font-size:0.75rem;">Accept</button>
   <button id="cookieDecline" class="btn btn-outline-white" style="padding:8px 16px;font-size:0.75rem;">Decline</button>
 </div>
 
-<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var els=document.querySelectorAll('.reveal');
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+  els.forEach(function(el){obs.observe(el)});
+  var toggle=document.getElementById('mobileToggle');
+  var drawer=document.getElementById('mobileDrawer');
+  var overlay=document.getElementById('mobileOverlay');
+  if(toggle){
+    toggle.addEventListener('click',function(){drawer.classList.add('open');overlay.classList.add('active')});
+    overlay.addEventListener('click',function(){drawer.classList.remove('open');overlay.classList.remove('active')});
+  }
+  var banner=document.getElementById('cookieBanner');
+  var acceptBtn=document.getElementById('cookieAccept');
+  var declineBtn=document.getElementById('cookieDecline');
+  if(banner && !localStorage.getItem('cookies')){
+    banner.style.display='flex';
+    acceptBtn.addEventListener('click',function(){localStorage.setItem('cookies','1');banner.style.display='none'});
+    declineBtn.addEventListener('click',function(){localStorage.setItem('cookies','0');banner.style.display='none'});
+  }
+});
+</script>
 </body>
 </html>
