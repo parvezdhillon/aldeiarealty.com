@@ -17,8 +17,10 @@ function initNav() {
   const nav = document.getElementById('mainNav');
   if (!nav) return;
   const logo = nav.querySelector('img[alt="Aldeia Realty"]');
-  const scrolledSrc = 'logos/AR-Logo-Horizontal-FullColour@2x.png';
-  const transparentSrc = 'logos/AR-Logo-Horizontal-InverseColour@2x.png';
+  // Auto-detect if we're in PT subdirectory and adjust logo path
+  const prefix = location.pathname.startsWith('/pt/') ? '../' : '';
+  const scrolledSrc = prefix + 'logos/AR-Logo-Horizontal-FullColour@2x.png';
+  const transparentSrc = prefix + 'logos/AR-Logo-Horizontal-InverseColour@2x.png';
   function update() {
     if (window.scrollY > 100) {
       nav.classList.add('nav-scrolled');

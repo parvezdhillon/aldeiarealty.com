@@ -19,7 +19,7 @@ ul{list-style:none}
 
 .container{max-width:1280px;margin:0 auto;padding:0 24px}
 .section-pad{padding:80px 0}
-@media(max-width:768px){.section-pad{padding:56px 0}}
+@media(max-width:768px){.nav-inner img{height:38px}.section-pad{padding:56px 0}}
 .label-text{font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.75rem;line-height:1.4;letter-spacing:0.08em;text-transform:uppercase}
 .text-center{text-align:center}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
@@ -48,6 +48,8 @@ ul{list-style:none}
 .nav-links{display:flex;align-items:center;gap:20px}
 .nav-links a{font-weight:600;font-size:0.78rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(28,10,4,.5);transition:color .2s}
 .nav-links a:hover,.nav-links a.active{color:#296662}
+.nav-inner>a:first-child{flex-shrink:0}
+.nav-inner img{height:47px;width:auto;object-fit:contain}
 .nav-toggle{display:none;background:none;border:none;color:#296662}
 .mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:120}
 .mobile-overlay.active{display:block}
@@ -76,10 +78,11 @@ ul{list-style:none}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
 .reveal.visible{opacity:1;transform:none}
 
-@media(max-width:768px){
+@media(max-width:768px){.nav-inner img{height:38px}
   .nav-links,.nav .btn{display:none}
   .nav-toggle{display:block}
   .grid-2,.grid-3{grid-template-columns:1fr}
+  .team-photo{max-width:100%!important;margin:0 auto}
 }
 </style>
 </head>
@@ -184,7 +187,7 @@ ul{list-style:none}
   <!-- Parvez -->
   <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
     <div class="reveal">
-      <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
+      <img src="images/team/parvez-headshot.jpg" alt="Parvez Dhillon" class="team-photo" style="max-width:360px;" />
     </div>
     <div class="reveal">
       <p class="label-text text-teal mb-2">HEAD OF RESEARCH &amp; FINANCE</p>
