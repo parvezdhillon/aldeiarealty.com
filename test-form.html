@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formspree Test</title>
+</head>
+<body style="font-family:sans-serif;max-width:400px;margin:50px auto;padding:20px;">
+
+  <h2>Formspree Test</h2>
+  <p>If this works, the issue is in the website code. If this fails, the issue is Formspree.</p>
+
+  <form action="https://formspree.io/f/xkoenyzb" method="POST">
+    <div style="margin-bottom:12px;">
+      <input type="email" name="email" placeholder="Your email" required style="width:100%;padding:10px;font-size:16px;" />
+    </div>
+    <div style="margin-bottom:12px;">
+      <textarea name="message" placeholder="Your message" required style="width:100%;padding:10px;font-size:16px;height:80px;"></textarea>
+    </div>
+    <button type="submit" style="padding:12px 24px;font-size:16px;cursor:pointer;">Send Test</button>
+  </form>
+
+  <p style="margin-top:30px;color:#666;font-size:14px;">
+    Form ID: xkoenyzb<br/>
+    No JavaScript. No CSS conflicts. No fetch().<br/>
+    Just a plain HTML form posting to Formspree.
+  </p>
+
+</body>
+</html>
