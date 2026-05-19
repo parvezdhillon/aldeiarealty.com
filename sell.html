@@ -7,13 +7,61 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.font-domine{font-family:'Domine',serif}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;background:#fff;box-shadow:0 1px 4px rgba(28,10,4,0.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-links a{font-weight:600;font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;color:rgba(28,10,4,0.6);text-decoration:none}
+.nav-links a:hover,.nav-links a.active{color:#296662}
+.nav-inner>a:first-child{flex-shrink:0}
+.nav-inner img{height:28px;width:auto;object-fit:contain}
+.nav-links a.active::after{content:'';display:block;height:2px;background:#296662;margin-top:2px}
+.btn{display:inline-block;padding:10px 24px;border-radius:4px;font-weight:600;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;font-family:'Work Sans',sans-serif;text-align:center}
+.btn-primary{background:#296662;color:#fff}.btn-primary:hover{background:#1e4d4a}
+.btn-secondary{background:#efd48f;color:#1c0a04}.btn-secondary:hover{background:#e5c97f}
+.btn-white{background:#fff;color:#296662}.btn-white:hover{background:#f4ecdc}
+.btn-outline-white{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.5)}
+.page-hero{padding-top:64px;padding-bottom:16px;background:#296662}
+.page-hero h1{font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;margin-bottom:4px}
+.page-hero p{color:rgba(255,255,255,0.75);font-size:0.875rem}
+.section-pad{padding:64px 0}
+.label-text{font-weight:600;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#296662;margin-bottom:12px;display:block}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:768px){.nav-inner img{height:22px}.grid-2,.grid-3{grid-template-columns:1fr}.nav-links{display:none}}
+.card{background:#fff;border-radius:8px;padding:32px;box-shadow:0 2px 12px rgba(28,10,4,0.06)}
+.text-center{text-align:center}
+.mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:12px}.mb-4{margin-bottom:16px}.mb-6{margin-bottom:24px}.mb-8{margin-bottom:32px}
+.mt-4{margin-top:16px}.mt-6{margin-top:24px}
+.bg-white{background:#fff}.bg-teal{background:#296662}.bg-gold{background:#efd48f}.bg-parchment{background:#f4ecdc}.bg-dove{background:#e4e7e6}
+.text-white{color:#fff}.text-teal{color:#296662}.text-gold{color:#efd48f}.text-brand-70{color:rgba(28,10,4,0.7)}.text-brand-60{color:rgba(28,10,4,0.6)}
+.form-input{width:100%;padding:10px 14px;border:1px solid #e4e7e6;border-radius:4px;font-family:'Work Sans',sans-serif;font-size:0.875rem}
+.form-input:focus{outline:none;border-color:#296662}
+.lead-form{background:#fff;border-radius:8px;padding:32px;box-shadow:0 4px 24px rgba(28,10,4,0.08);border:1px solid #e4e7e6}
+.accordion-btn{width:100%;text-align:left;padding:20px 0;background:none;border:none;border-bottom:1px solid #e4e7e6;font-family:'Work Sans',sans-serif;font-weight:600;font-size:1.05rem;color:#1c0a04;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height 0.3s;padding:0}
+.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:250;text-decoration:none}
+.whatsapp-float:hover{transform:scale(1.1);color:#fff}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#296662;color:#fff;padding:16px 24px;z-index:300;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;transform:translateY(100%);transition:transform 0.4s}
+.cookie-banner.show{transform:translateY(0)}
+.cookie-banner p{font-size:0.8125rem;color:rgba(255,255,255,0.8);margin:0}
+.footer{padding:40px 0 24px;background:#296662}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:12px}
+.footer-links a{color:rgba(255,255,255,0.5);font-size:0.75rem;text-decoration:none}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s,transform 0.6s}
+.reveal.visible{opacity:1;transform:none}
+</style>
 </head>
 <body>
 
 <nav class="nav">
 <div class="container nav-inner">
-<a href="index.html"><img src="logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty" style="height:47px;width:auto;display:block;"></a>
+<a href="index.html"><img src="logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty" ></a>
 <div class="nav-links">
 <a href="properties.html">Buy</a><a href="sell.html" class="active">Sell</a><a href="about.html">About</a><a href="careers.html">Careers</a><a href="resources.html">Resources</a><a href="faq.html">FAQ</a><a href="partner.html">Partner</a><a href="contact.html">Contact</a>
 </div>
@@ -106,30 +154,29 @@
 <div class="text-center reveal mb-8">
 <p class="label-text text-gold">OUR PROMISE</p>
 <h2 class="font-domine text-white" style="font-size:clamp(1.5rem,3vw,2rem);">The 50/50 Partilha Guarantee</h2>
-<p class="text-white-70 mt-4" style="max-width:640px;margin-left:auto;margin-right:auto;">Did you know many traditional agencies refuse to work with outside realtors just so they can keep 100% of the commission? We do things differently.</p>
+<p class="text-white-70 mt-4" style="max-width:640px;margin-left:auto;margin-right:auto;">When selling a home, some approaches focus on keeping the listing strictly within one agency's internal network. While this is a common practice, we believe in a fully open approach.</p>
 </div>
 
 <div class="grid-2" style="max-width:800px;margin:0 auto;">
 <div class="card reveal" style="opacity:0.85;">
-<h3 class="font-domine mb-4" style="color:#c64f2f;">Traditional Agencies</h3>
+<h3 class="font-domine mb-4" style="color:#1c0a04;">The In-House Approach</h3>
 <ul style="list-style:none;padding:0;">
-<li style="padding:8px 0;border-bottom:1px solid #e4e7e6;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:#c64f2f;margin-right:8px;">✗</span> Restrict your home to their internal network</li>
-<li style="padding:8px 0;border-bottom:1px solid #e4e7e6;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:#c64f2f;margin-right:8px;">✗</span> Fewer offers & longer days on market</li>
-<li style="padding:8px 0;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:#c64f2f;margin-right:8px;">✗</span> Prioritizing their commission over your sale</li>
+<li style="padding:8px 0;border-bottom:1px solid #e4e7e6;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:rgba(28,10,4,0.4);margin-right:8px;">•</span> Limits your home's exposure to one agency's buyers</li>
+<li style="padding:8px 0;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:rgba(28,10,4,0.4);margin-right:8px;">•</span> Relies on a smaller pool of potential offers</li>
 </ul>
 </div>
 <div class="card reveal" style="border:2px solid #efd48f;">
-<h3 class="font-domine mb-4 text-teal">Our Way</h3>
+<h3 class="font-domine mb-4 text-teal">Our Collaborative Approach</h3>
 <ul style="list-style:none;padding:0;">
-<li style="padding:8px 0;border-bottom:1px solid #e4e7e6;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:#296662;margin-right:8px;">✓</span> 100% Market Exposure to all buyers</li>
-<li style="padding:8px 0;border-bottom:1px solid #e4e7e6;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:#296662;margin-right:8px;">✓</span> Maximum buyer competition</li>
-<li style="padding:8px 0;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:#296662;margin-right:8px;">✓</span> Guaranteed 50/50 split in writing</li>
+<li style="padding:8px 0;border-bottom:1px solid #e4e7e6;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:#296662;margin-right:8px;">✓</span> 100% Market Exposure: We guarantee a 50/50 commission split with any licensed agent who brings a buyer</li>
+<li style="padding:8px 0;border-bottom:1px solid #e4e7e6;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:#296662;margin-right:8px;">✓</span> Maximum Competition: Your home is marketed to the entire real estate community, not just our internal network</li>
+<li style="padding:8px 0;color:rgba(28,10,4,0.7);font-size:0.9375rem;"><span style="color:#296662;margin-right:8px;">✓</span> Seller-First Focus: Faster sales and top-dollar results by maximizing your property's visibility</li>
 </ul>
 </div>
 </div>
 
 <div class="text-center mt-8 reveal">
-<p class="text-white" style="font-size:1.05rem;max-width:700px;margin:0 auto;">By opening the doors to every single buyer's agent in the region, we generate maximum competition for your property, resulting in faster sales and top-dollar results for your equity.</p>
+<p class="text-white" style="font-size:1.05rem;max-width:700px;margin:0 auto;">By ensuring every agent in Portugal has a financial incentive to show your home, we open the doors to every single buyer in the market.</p>
 </div>
 </div>
 </section>
@@ -139,49 +186,48 @@
 <div class="container">
 <p class="label-text text-center reveal">THE PROCESS</p>
 <h2 class="font-domine text-center mb-8 reveal" style="font-size:clamp(1.5rem,3vw,2rem);">From Listed to Sold</h2>
-<div style="text-align:center;padding:1rem 1rem 2rem;"><img src="images/watercolor/wc-2.jpg" alt="" style="max-width:320px;width:75%;height:auto;border-radius:12px;opacity:0.65;display:inline-block;"></div>
 
 <div class="max-w-3" style="margin:0 auto;position:relative;padding-left:24px;">
 <div style="position:absolute;left:16px;top:0;bottom:0;width:2px;background:#e4e7e6;"></div>
 
 <div class="reveal" style="position:relative;margin-bottom:32px;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">1</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">1</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Initial Consultation</h3><p class="text-brand-70" style="font-size:0.9375rem;">We meet to discuss your goals, timeline, and expectations. We walk through your home and begin crafting a personalized selling strategy.</p>
 </div>
 <div class="reveal" style="position:relative;margin-bottom:32px;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">2</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">2</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Market Analysis & Pricing</h3><p class="text-brand-70" style="font-size:0.9375rem;">We research recent sales and current listings to determine the optimal listing price for your property.</p>
 </div>
 <div class="reveal" style="position:relative;margin-bottom:32px;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">3</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">3</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Home Preparation</h3><p class="text-brand-70" style="font-size:0.9375rem;">We provide guidance on repairs, decluttering, and staging to showcase your home's best features.</p>
 </div>
 <div class="reveal" style="position:relative;margin-bottom:32px;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">4</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">4</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Professional Photography</h3><p class="text-brand-70" style="font-size:0.9375rem;">High-quality photos, video tours, and drone footage to present your home in the best light.</p>
 </div>
 <div class="reveal" style="position:relative;margin-bottom:32px;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">5</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">5</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Listing Goes Live</h3><p class="text-brand-70" style="font-size:0.9375rem;">Your property is launched on major portals, social media, and our exclusive network of qualified buyers.</p>
 </div>
 <div class="reveal" style="position:relative;margin-bottom:32px;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">6</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">6</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Showings & Open Houses</h3><p class="text-brand-70" style="font-size:0.9375rem;">We coordinate private showings and open house events, presenting your home professionally.</p>
 </div>
 <div class="reveal" style="position:relative;margin-bottom:32px;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">7</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">7</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Receiving Offers</h3><p class="text-brand-70" style="font-size:0.9375rem;">When offers come in, we review each one together, analyzing price, terms, and buyer qualifications.</p>
 </div>
 <div class="reveal" style="position:relative;margin-bottom:32px;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">8</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">8</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Negotiation</h3><p class="text-brand-70" style="font-size:0.9375rem;">We negotiate on your behalf to secure the best possible price and terms.</p>
 </div>
 <div class="reveal" style="position:relative;margin-bottom:32px;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">9</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">9</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Under Contract</h3><p class="text-brand-70" style="font-size:0.9375rem;">Once accepted, we manage all deadlines, inspections, and communications for a smooth transaction.</p>
 </div>
 <div class="reveal" style="position:relative;padding-left:40px;">
-<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#296662;z-index:2;">10</div>
+<div style="position:absolute;left:-8px;top:0;width:36px;height:47px;border-radius:50%;background:#efd48f;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;color:#1c0a04;z-index:2;">10</div>
 <h3 class="font-domine" style="padding-top:6px;margin-bottom:8px;">Closing Day</h3><p class="text-brand-70" style="font-size:0.9375rem;">We attend closing with you, ensuring all documents are in order. You hand over the keys and celebrate!</p>
 </div>
 </div>
@@ -195,7 +241,7 @@
 <div class="lead-form reveal">
 <h3 class="font-domine" style="font-size:1.25rem;margin-bottom:8px;">Request a Free Valuation</h3>
 <p class="text-brand-70" style="font-size:0.9375rem;margin-bottom:20px;">Fill in your details and we'll be in touch to schedule your no-obligation property valuation.</p>
-<form id="valuationForm" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+<form method="POST" action="https://formspree.io/f/xkoenyzb">
 <input type="hidden" name="_subject" value="Valuation Request - AldeiaRealty.com">
 <div class="grid-2" style="gap:16px;">
 <div><input type="text" name="name" class="form-input" placeholder="Your Name" required></div>
@@ -210,7 +256,6 @@
 </div>
 <div style="margin-top:16px;">
 <button type="submit" class="btn btn-primary">Request Valuation</button>
-<p id="valStatus" style="margin-top:12px;font-size:0.875rem;display:none;"></p>
 </div>
 </form>
 </div>
@@ -257,6 +302,12 @@
 <button class="btn btn-outline-white" id="cookieDecline" style="padding:6px 16px;color:#fff;border-color:rgba(255,255,255,0.4);">Decline</button>
 </div>
 
-<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+var els=document.querySelectorAll('.reveal');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});els.forEach(function(el){obs.observe(el)});
+var b=document.getElementById('cookieBanner');if(b&&!localStorage.getItem('cookies')){setTimeout(function(){b.classList.add('show')},1000)}document.getElementById('cookieAccept').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','1')});document.getElementById('cookieDecline').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','0')});
+
+});
+</script>
 </body>
 </html>
