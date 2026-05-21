@@ -325,7 +325,11 @@ ul { list-style: none; }
 </head>
 <body>
 
-<nav id="mainNav" class="nav nav-scrolled">
+<!-- IMPIC DISCLAIMER TOP -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;position:fixed;top:0;left:0;right:0;z-index:200;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
+<!-- Nav Spacer for Top Banner -->
+<div style="height:36px;"></div>
+<nav id="mainNav" class="nav nav-scrolled" style="top:36px">
   <div class="container nav-inner">
     <a href="index.html"><img src="logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty"  /></a>
     <div class="nav-links">
@@ -354,7 +358,7 @@ ul { list-style: none; }
 
 <section style="padding:12px 0;background:rgba(41,102,98,0.05);border-bottom:1px solid rgba(41,102,98,0.1);">
   <div class="container flex gap-4 justify-center flex-wrap">
-    <a href="calculator.html" class="text-brand-60 hover:text-teal text-sm transition-colors">Expat Capital &amp; Mortgage</a>
+    <a href="calculator.html" class="text-brand-60 hover:text-teal text-sm transition-colors">Capital &amp; Mortgage</a>
     <a href="tax-calculator.html" class="text-teal font-semibold text-sm" style="border-bottom:2px solid #296662;">Property Tax Calculator</a>
   </div>
 </section>
@@ -433,6 +437,9 @@ ul { list-style: none; }
   </div>
 </section>
 
+
+<!-- IMPIC DISCLAIMER -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
 <footer class="footer" style="padding:48px 0 24px;">
   <div class="container">
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:24px;align-items:center;">
@@ -560,7 +567,7 @@ function calcIMT(price, location, purpose) {
 
 function fmtEUR(n) { return '\u20ac' + Math.round(n).toLocaleString('en-US'); }
 
-// ===== EXPAT CALCULATOR (with mortgage) =====
+// ===== CALCULATOR (with mortgage) =====
 function updateRateHint() {
   const euriborEl = document.getElementById('euriborRate');
   const typeEl = document.getElementById('mortgageType');

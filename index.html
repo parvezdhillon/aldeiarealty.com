@@ -4,6 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- AUTO LANGUAGE DETECTION: Redirect PT/BR visitors to Portuguese site -->
+  <script>
+  (function() {
+    // Prevent redirect loops — skip if already on PT site or preference saved
+    if (location.pathname.startsWith('/pt/')) return;
+    if (localStorage.getItem('lang_preference')) return;
+
+    // Method 1: Check browser language (fast, synchronous)
+    var navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (navLang.startsWith('pt')) {
+      localStorage.setItem('lang_preference', 'pt');
+      location.href = '/pt/index.html';
+      return;
+    }
+
+    // Method 2: IP geolocation via ipapi.co (covers Portugal, Brazil, Angola, etc.)
+    // Only runs if browser language isn't already Portuguese
+    if (typeof fetch !== 'undefined') {
+      fetch('https://ipapi.co/json/', { mode: 'cors' })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var cc = (data.country_code || '').toUpperCase();
+          if (cc === 'PT' || cc === 'BR' || cc === 'AO' || cc === 'MZ' || cc === 'CV' || cc === 'GW' || cc === 'ST' || cc === 'TL') {
+            localStorage.setItem('lang_preference', 'pt');
+            location.href = '/pt/index.html';
+          } else {
+            localStorage.setItem('lang_preference', 'en');
+          }
+        })
+        .catch(function() { localStorage.setItem('lang_preference', 'en'); });
+    }
+  })();
+  </script>
+
   <!-- FAVICONS -->
   <link rel="icon" type="image/x-icon" href="logos/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="logos/favicon-32x32.png">
@@ -13,7 +47,7 @@
 
   <!-- OG / SOCIAL META TAGS -->
   <meta property="og:title" content="Aldeia Realty | Portugal Real Estate">
-  <meta property="og:description" content="Boutique real estate agency specializing in expat relocations and premium properties on the Silver Coast of Portugal.">
+  <meta property="og:description" content="Boutique real estate agency specializing in new resident relocations and premium properties on the Silver Coast of Portugal.">
   <meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -22,7 +56,7 @@
   <meta property="og:site_name" content="Aldeia Realty">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Aldeia Realty | Portugal Real Estate">
-  <meta name="twitter:description" content="Boutique real estate agency specializing in expat relocations and premium properties on the Silver Coast of Portugal.">
+  <meta name="twitter:description" content="Boutique real estate agency specializing in new resident relocations and premium properties on the Silver Coast of Portugal.">
   <meta name="twitter:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg">
 
   <title>Aldeia Realty &mdash; Portugal's Silver Coast Real Estate</title>
@@ -349,7 +383,11 @@ ul { list-style: none; }
 <body>
 
 <!-- NAV -->
-<nav id="mainNav" class="nav nav-transparent">
+<!-- IMPIC DISCLAIMER TOP -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;position:fixed;top:0;left:0;right:0;z-index:200;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
+<!-- Nav Spacer for Top Banner -->
+<div style="height:36px;"></div>
+<nav id="mainNav" class="nav nav-transparent" style="top:36px">
   <div class="container nav-inner">
     <a href="index.html"><img src="logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty"  /></a>
     <div class="nav-links">
@@ -476,7 +514,7 @@ ul { list-style: none; }
         <div class="card-body">
           <h3 class="font-domine text-lg text-brand mb-1">Coastal Villa with Pool</h3>
           <p class="text-teal text-sm font-semibold mb-2">Silver Coast</p>
-          <p class="text-brand-70 text-sm mb-3">Modern coastal villa with private pool, landscaped garden, and ocean views. Perfect for expat families seeking the quintessential Portuguese lifestyle.</p>
+          <p class="text-brand-70 text-sm mb-3">Modern coastal villa with private pool, landscaped garden, and ocean views. Perfect for families seeking the quintessential Portuguese lifestyle.</p>
           <a href="properties.html" class="text-teal font-semibold text-sm" style="text-decoration:underline;text-underline-offset:4px;text-decoration-color:#efd48f;text-decoration-thickness:2px;">Register Your Interest</a>
         </div>
       </div>
@@ -505,12 +543,12 @@ ul { list-style: none; }
   </div>
 </section>
 
-<!-- EXPAT CALC CTA -->
+<!-- CALC CTA -->
 <section class="section-pad bg-parchment">
   <div class="container">
     <div class="grid-2 items-center gap-4">
       <div class="reveal">
-        <p class="label-text text-teal mb-3">FOR EXPATS</p>
+        <p class="label-text text-teal mb-3">FOR NEW RESIDENTS</p>
         <h2 class="font-domine text-3xl text-brand mb-4" style="font-size:clamp(1.75rem,3vw,2.5rem);">Planning Your Move to Portugal?</h2>
         <p class="text-brand-80 text-lg mb-6">Relocating from the US, Canada, or UK? Understand your real purchasing power. Our Capital Plan &amp; Tax Simulator calculates your IMT, Stamp Duty, and mortgage requirements.</p>
         <div class="flex flex-wrap gap-3">
@@ -571,62 +609,35 @@ ul { list-style: none; }
   <div class="container">
     <p class="label-text text-gold mb-3 text-center reveal">PROVEN TRACK RECORD</p>
     <h2 class="font-domine text-3xl text-white text-center mb-3 reveal" style="font-size:clamp(1.75rem,3vw,2.5rem);">What Our Clients Say</h2>
-    <p class="text-white-80 text-center mb-8 reveal">Testimonials from years of serving buyers and sellers across Eastern North Carolina and beyond</p>
+    <p class="text-white-80 text-center mb-8 reveal">Testimonials from years of serving buyers and sellers</p>
     <div class="grid-2">
       <div class="testimonial-card reveal">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-        <p class="text-white-90 mt-4 mb-6">"Angela was truly instrumental in finding and purchasing our dream home. From the very beginning she was friendly, knowledgeable, and really listened to what our family needed. She made the entire buying process smooth and stress-free. I would recommend her to anyone."</p>
+        <p class="text-white-90 mt-4 mb-4">"Angela was truly instrumental in finding and purchasing our dream home. From the very beginning she was friendly, knowledgeable, and really listened to what our family needed. She made the entire buying process smooth and stress-free."</p>
         <p class="text-gold font-semibold text-sm">Lisa Wharton</p>
-        <p class="text-white-70 text-sm">Direct 5.0 Stars</p>
+        <p class="text-white-70 text-sm">5.0 Stars</p>
       </div>
       <div class="testimonial-card reveal">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-        <p class="text-white-90 mt-4 mb-6">"Angela was fantastic and made the process of buying our first home so easy. She always responded quickly to the many questions we asked her and made sure we had all of the information we needed. I would highly recommend working with Angela!"</p>
-        <p class="text-gold font-semibold text-sm">hcyoung18</p>
-        <p class="text-white-70 text-sm">Bought a home in 2021 &mdash; Zillow 5.0 Stars</p>
+        <p class="text-white-90 mt-4 mb-4">"As a first-time homebuyer, I had so many questions and moments of doubt. Angela answered every single one without ever making me feel like a burden. She guided me through every step and helped me find a house I could truly make my own."</p>
+        <p class="text-gold font-semibold text-sm">First-Time Homebuyer</p>
+        <p class="text-white-70 text-sm">Bought in 2021</p>
       </div>
       <div class="testimonial-card reveal">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-        <p class="text-white-90 mt-4 mb-6">"Angela walked us through the home buying process a year ago and is still part of our lives today. She is professional, knowledgeable, reliable, genuine, honest and goes the extra mile. This lady moves mountains for her clients. I will always recommend Angela!"</p>
-        <p class="text-gold font-semibold text-sm">terryrayers64</p>
-        <p class="text-white-70 text-sm">Bought in Plymouth, NC 2021 &mdash; Zillow 5.0 Stars</p>
-      </div>
-      <div class="testimonial-card reveal">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-        <p class="text-white-90 mt-4 mb-6">"Angela Dhillon is a fantastic person. She is a great agent, very helpful, kind, and thoughtful. She was always available for questions, ready for seeing properties back to back, ready with great ideas. She helped us find contractors for inspections and quotes. I only wish she would have stayed in NC as I consider her a friend. I would recommend her anytime as an agent and as a friend."</p>
-        <p class="text-gold font-semibold text-sm">Yolita Ripoll</p>
-        <p class="text-white-70 text-sm">Relocated to North Carolina</p>
-      </div>
-      <div class="testimonial-card reveal">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-        <p class="text-white-90 mt-4 mb-6">"Selling a house is a stressful endeavor. A good agent has to be more than just someone who creates the listing. They have to calm jittery nerves and maintain cheerful optimism. Patrick took great care of us, giving input and suggestions, providing a listening ear, and helped us maintain our sanity. Our house sold quickly and for very close to our asking price. I would highly recommend Patrick to anyone."</p>
+        <p class="text-white-90 mt-4 mb-4">"Selling a house is stressful. A good agent has to calm jittery nerves and maintain cheerful optimism. Patrick took great care of us. Our house sold quickly and for very close to our asking price. I would highly recommend Patrick to anyone."</p>
         <p class="text-gold font-semibold text-sm">Sarah Pauling Midgett</p>
-        <p class="text-white-70 text-sm">Sold in Greenville, NC &mdash; Facebook 5.0 Stars</p>
+        <p class="text-white-70 text-sm">Sold in Greenville, NC</p>
       </div>
       <div class="testimonial-card reveal">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-        <p class="text-white-90 mt-4 mb-6">"Patrick is an absolute pleasure to work with. He takes his time to explain things and advocates for our wants and needs. I could not have asked for a realtor more responsive to calls and texts as Patrick was. Five stars all the way."</p>
-        <p class="text-gold font-semibold text-sm">Melissa JD</p>
-        <p class="text-white-70 text-sm">New Construction Client &mdash; Facebook 5.0 Stars</p>
+        <p class="text-white-90 mt-4 mb-4">"Working with Fernanda was such a pleasure! Not only did she ultimately match us with a perfect home, she handled the process with patience, honesty, kindness, and professionalism all along the way. Five stars!"</p>
+        <p class="text-gold font-semibold text-sm">Heather &amp; Afonso</p>
+        <p class="text-white-70 text-sm">Found their home on the Silver Coast</p>
       </div>
-      <div class="testimonial-card reveal">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-        <p class="text-white-90 mt-4 mb-6">"Patrick is a stellar agent! He helped us get the best offer on our house (ABOVE asking price!) faster than I thought possible, and he was with us every step of the way. He even fielded questions from our buyers! Best agent I've ever worked with, hands down."</p>
-        <p class="text-gold font-semibold text-sm">Sandra Brinkley</p>
-        <p class="text-white-70 text-sm">Sold Above Asking &mdash; Facebook 5.0 Stars</p>
-      </div>
-      <div class="testimonial-card reveal">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-        <p class="text-white-90 mt-4 mb-6">"Patrick was amazing with our move from out of state. He went above and beyond everything we asked him to do. He was fantastic and would suggest anyone to use his services."</p>
-        <p class="text-gold font-semibold text-sm">Stacy Pratt</p>
-        <p class="text-white-70 text-sm">Out-of-State Relocation &mdash; Facebook 5.0 Stars</p>
-      </div>
-      <div class="testimonial-card reveal">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-        <p class="text-white-90 mt-4 mb-6">"Patrick was FANTASTIC!! He was patient, professional, diligent, and extremely accommodating. We moved from out of state which added stress however he was with us the entire way. Couldn't have been happier with the process. I would DEFINITELY HIGHLY encourage you to reach out to him. He 'gets it'. Thanks for being you!!"</p>
-        <p class="text-gold font-semibold text-sm">Michael Pratt</p>
-        <p class="text-white-70 text-sm">Out-of-State Relocation &mdash; Facebook 5.0 Stars</p>
-      </div>
+    </div>
+    <div class="text-center mt-6 reveal">
+      <a href="about.html#testimonials" class="btn btn-secondary">Read More Reviews</a>
     </div>
   </div>
 </section>
@@ -677,6 +688,9 @@ ul { list-style: none; }
 </section>
 
 <!-- FOOTER -->
+
+<!-- IMPIC DISCLAIMER -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
 <footer class="footer" style="background:#296662;" style="padding:40px 0 24px;">
   <div class="container">
     <div class="grid-4" style="gap:32px;">
@@ -847,7 +861,7 @@ function calcIMT(price, location, purpose) {
 
 function fmtEUR(n) { return '\u20ac' + Math.round(n).toLocaleString('en-US'); }
 
-// ===== EXPAT CALCULATOR (with mortgage) =====
+// ===== CALCULATOR (with mortgage) =====
 function updateRateHint() {
   const euriborEl = document.getElementById('euriborRate');
   const typeEl = document.getElementById('mortgageType');

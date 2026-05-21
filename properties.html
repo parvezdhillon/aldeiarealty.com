@@ -325,7 +325,11 @@ ul { list-style: none; }
 </head>
 <body>
 
-<nav id="mainNav" class="nav nav-scrolled">
+<!-- IMPIC DISCLAIMER TOP -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;position:fixed;top:0;left:0;right:0;z-index:200;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
+<!-- Nav Spacer for Top Banner -->
+<div style="height:36px;"></div>
+<nav id="mainNav" class="nav nav-scrolled" style="top:36px">
   <div class="container nav-inner">
     <a href="index.html"><img src="logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty"  /></a>
     <div class="nav-links">
@@ -365,7 +369,7 @@ ul { list-style: none; }
     <p class="text-brand-60 text-sm mb-6 reveal">Sample property types &mdash; register your interest</p>
     <div class="grid-3">
       <!-- Card 1 -->
-      <div class="card reveal"><div style="position:relative;overflow:hidden;"><img src="images/properties/prop-villa-rolica.jpg" alt="Coastal Villa" class="card-img" /><span style="position:absolute;top:12px;right:12px;background:#efd48f;color:#1c0a04;padding:4px 10px;border-radius:4px;font-size:0.7rem;font-weight:600;">SAMPLE &ndash; REGISTER INTEREST</span></div><div class="card-body"><h3 class="font-domine text-lg text-brand mb-1">Coastal Villa with Pool</h3><p class="text-teal text-sm font-semibold mb-2">Silver Coast</p><p class="text-brand-60 text-xs mb-2">3 beds &middot; 2 baths &middot; 180m&sup2; &middot; A</p><p class="text-brand-70 text-sm mb-3">Modern coastal villa with private pool, landscaped garden, and ocean views. Perfect for expat families.</p><a href="contact.html" class="text-teal font-semibold text-sm" style="text-decoration:underline;text-underline-offset:4px;text-decoration-color:#efd48f;text-decoration-thickness:2px;">Register Your Interest</a></div></div>
+      <div class="card reveal"><div style="position:relative;overflow:hidden;"><img src="images/properties/prop-villa-rolica.jpg" alt="Coastal Villa" class="card-img" /><span style="position:absolute;top:12px;right:12px;background:#efd48f;color:#1c0a04;padding:4px 10px;border-radius:4px;font-size:0.7rem;font-weight:600;">SAMPLE &ndash; REGISTER INTEREST</span></div><div class="card-body"><h3 class="font-domine text-lg text-brand mb-1">Coastal Villa with Pool</h3><p class="text-teal text-sm font-semibold mb-2">Silver Coast</p><p class="text-brand-60 text-xs mb-2">3 beds &middot; 2 baths &middot; 180m&sup2; &middot; A</p><p class="text-brand-70 text-sm mb-3">Modern coastal villa with private pool, landscaped garden, and ocean views. Perfect for families.</p><a href="contact.html" class="text-teal font-semibold text-sm" style="text-decoration:underline;text-underline-offset:4px;text-decoration-color:#efd48f;text-decoration-thickness:2px;">Register Your Interest</a></div></div>
       <!-- Card 2 -->
       <div class="card reveal"><div style="position:relative;overflow:hidden;"><img src="images/properties/prop-house-amoreira.jpg" alt="Renovated Townhouse" class="card-img" /><span style="position:absolute;top:12px;right:12px;background:#efd48f;color:#1c0a04;padding:4px 10px;border-radius:4px;font-size:0.7rem;font-weight:600;">SAMPLE &ndash; REGISTER INTEREST</span></div><div class="card-body"><h3 class="font-domine text-lg text-brand mb-1">Renovated Village Townhouse</h3><p class="text-teal text-sm font-semibold mb-2">Historic Village Center</p><p class="text-brand-60 text-xs mb-2">2 beds &middot; 2 baths &middot; 110m&sup2; &middot; B</p><p class="text-brand-70 text-sm mb-3">Beautifully restored traditional townhouse with original character features and a sun-drenched courtyard.</p><a href="contact.html" class="text-teal font-semibold text-sm" style="text-decoration:underline;text-underline-offset:4px;text-decoration-color:#efd48f;text-decoration-thickness:2px;">Register Your Interest</a></div></div>
       <!-- Card 3 -->
@@ -397,6 +401,9 @@ ul { list-style: none; }
   </div>
 </section>
 
+
+<!-- IMPIC DISCLAIMER -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
 <footer class="footer" style="padding:64px 0 32px;">
   <div class="container">
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;">
@@ -524,7 +531,7 @@ function calcIMT(price, location, purpose) {
 
 function fmtEUR(n) { return '\u20ac' + Math.round(n).toLocaleString('en-US'); }
 
-// ===== EXPAT CALCULATOR (with mortgage) =====
+// ===== CALCULATOR (with mortgage) =====
 function updateRateHint() {
   const euriborEl = document.getElementById('euriborRate');
   const typeEl = document.getElementById('mortgageType');

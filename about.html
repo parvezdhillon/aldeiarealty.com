@@ -84,11 +84,21 @@ ul{list-style:none}
   .grid-2,.grid-3{grid-template-columns:1fr}
   .team-photo{max-width:100%!important;margin:0 auto}
 }
+.testimonial-text{max-height:120px;overflow:hidden;transition:max-height .3s ease;position:relative}
+.testimonial-text.collapsed{max-height:120px}
+.testimonial-text:not(.collapsed){max-height:800px}
+.testimonial-text.collapsed::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(transparent,#fff8ee)}
+.read-more-btn{background:none;border:none;color:#296662;font-size:.8125rem;font-weight:600;cursor:pointer;padding:4px 0;margin-top:4px;text-decoration:underline}
+.read-more-btn:hover{color:#1c0a04}
 </style>
 </head>
 <body>
 
-<nav class="nav">
+<!-- IMPIC DISCLAIMER TOP -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;position:fixed;top:0;left:0;right:0;z-index:200;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
+<!-- Nav Spacer for Top Banner -->
+<div style="height:36px;"></div>
+<nav class="nav" style="top:36px">
 <div class="container nav-inner">
   <a href="index.html"><img src="logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty"  /></a>
   <div class="nav-links">
@@ -169,7 +179,7 @@ ul{list-style:none}
       <h3 class="font-domine text-brand mb-3" style="font-size:1.75rem;">Angela Dhillon</h3>
       <p class="text-brand-70 mb-3">With over a decade of real estate experience, Angela brings a highly strategic, client-centered approach to Aldeia Realty. Rooted in her academic background in Speech and Language Pathology, she possesses a unique ability to navigate complex negotiations and ensure clear, transparent communication for international buyers entering the Portuguese market.</p>
       <p class="text-brand-70 mb-3">Prior to relocating to the Silver Coast, Angela built a formidable career in Greenville, North Carolina. As the founding agent of one of Eastern North Carolina's top real estate firms, she set the benchmark for the firm's success, consistently ranking as the highest-performing agent year-over-year and securing the brokerage's highest-value listings. During her tenure, she also helped design the firm's agent training programs and built a robust, referral-based network.</p>
-      <p class="text-brand-70">Today, Angela and her family are proud to call the Caldas da Rainha area home. Deeply passionate about Portuguese culture, she is actively involved in the local community and is dedicated to helping fellow expats seamlessly transition into the beautiful lifestyle the Silver Coast has to offer.</p>
+      <p class="text-brand-70">Today, Angela and her family are proud to call the Caldas da Rainha area home. Deeply passionate about Portuguese culture, she is actively involved in the local community and is dedicated to helping international newcomers seamlessly transition into the beautiful lifestyle the Silver Coast has to offer.</p>
       <div class="mt-4">
         <h4 class="font-domine text-teal mb-3" style="font-size:1.1rem;">Experience That Delivers</h4>
         <ul style="list-style:none;padding:0;">
@@ -187,7 +197,7 @@ ul{list-style:none}
   <!-- Parvez -->
   <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
     <div class="reveal">
-      <img src="images/team/parvez-headshot.jpg" alt="Parvez Dhillon" class="team-photo" style="max-width:360px;" />
+      <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
     </div>
     <div class="reveal">
       <p class="label-text text-teal mb-2">HEAD OF RESEARCH &amp; FINANCE</p>
@@ -258,6 +268,30 @@ ul{list-style:none}
     </div>
   </div>
 
+  <!-- Luciana -->
+  <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
+    <div class="reveal">
+      <div class="placeholder-headshot" style="max-width:360px;">Photo Coming Soon</div>
+    </div>
+    <div class="reveal">
+      <p class="label-text text-teal mb-2">REAL ESTATE AGENT</p>
+      <h3 class="font-domine text-brand mb-3" style="font-size:1.75rem;">Luciana Aires</h3>
+      <p class="text-brand-70 mb-3">With a solid background in financial counselling and client advocacy, Luciana brings a meticulous, detail-oriented approach to every transaction at Aldeia Realty. Her experience navigating complex financial decisions with clarity and care makes her an invaluable guide for buyers and sellers alike.</p>
+      <p class="text-brand-70 mb-3">Before transitioning into real estate, Luciana spent years advising clients on financial matters, developing a sharp eye for due diligence, contract review, and risk assessment. Her ability to break down intricate processes into clear, manageable steps ensures that her clients feel informed and confident at every stage of their property journey.</p>
+      <p class="text-brand-70">Now a proud resident of Caldas da Rainha for over five years, Luciana has personally experienced the challenges and rewards of buying, selling, and renovating property on the Silver Coast. This firsthand knowledge, combined with her financial precision and passionate advocacy for her clients' best interests, defines her approach to real estate.</p>
+      <div class="mt-4">
+        <h4 class="font-domine text-teal mb-3" style="font-size:1.1rem;">Experience That Delivers</h4>
+        <ul style="list-style:none;padding:0;">
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Real Estate Agent, Aldeia Realty</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Financial Counselor: Expert in Due Diligence and Risk Assessment</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">5+ Years Living in Caldas da Rainha, Silver Coast</span></li>
+          <li class="flex items-start gap-2 mb-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">First-Hand Property Experience: Buying, Selling &amp; Renovating in Portugal</span></li>
+          <li class="flex items-start gap-2"><span style="color:#296662;font-weight:700;">&#10003;</span><span class="text-brand-70 text-sm">Client Advocacy: Committed to Transparent, Precision-Driven Service</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <!-- Telmo -->
   <div class="grid-2 gap-4" style="align-items:start;margin-bottom:64px;">
     <div class="reveal">
@@ -286,12 +320,24 @@ ul{list-style:none}
 </div>
 </section>
 
+<!-- CTA -->
+<section class="bg-teal" style="padding:36px 0;">
+<div class="container text-center reveal">
+  <h2 class="font-domine text-xl text-white mb-2">Ready to Work With Us?</h2>
+  <p class="text-white-90 text-sm mb-4 max-w-2">Whether buying your dream home or selling a property, we are here to guide you every step of the way.</p>
+  <div class="flex flex-wrap justify-center gap-3">
+    <a href="contact.html" class="btn btn-white" style="padding:8px 20px;font-size:0.75rem;">Contact Us</a>
+    <a href="properties.html" class="btn btn-outline-white" style="padding:8px 20px;font-size:0.75rem;">Browse Properties</a>
+  </div>
+</div>
+</section>
+
 <!-- TESTIMONIALS -->
-<section class="section-pad bg-teal">
+<section class="section-pad bg-teal" id="testimonials">
 <div class="container">
-  <p class="label-text text-gold text-center mb-3 reveal">TESTIMONIALS</p>
+  <p class="label-text text-gold text-center mb-3 reveal">CLIENT REVIEWS</p>
   <h2 class="font-domine text-white text-center mb-3 reveal" style="font-size:clamp(1.5rem,3vw,2.5rem);">What Our Clients Say</h2>
-  <p class="text-white-80 text-center mb-8 reveal">Real reviews from Angela's years serving buyers and sellers across Eastern North Carolina</p>
+  <p class="text-white-80 text-center mb-8 reveal">Real reviews from buyers and sellers across Eastern North Carolina and Portugal's Silver Coast</p>
   <div class="grid-2">
     <div class="testimonial-card reveal">
       <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
@@ -317,22 +363,49 @@ ul{list-style:none}
       <p class="text-gold font-semibold text-sm">terryrayers64</p>
       <p class="text-white-70 text-sm">Bought in Plymouth, NC 2021 &mdash; Zillow 5.0 Stars</p>
     </div>
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"Angela Dhillon is a fantastic person. She was always available for questions, ready for seeing properties back to back. She helped us find contractors for inspections. I consider her a friend and would recommend her anytime as an agent and as a friend."</p>
+      <p class="text-gold font-semibold text-sm">Yolita Ripoll</p>
+      <p class="text-white-70 text-sm">Relocated to North Carolina</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"Patrick is an absolute pleasure to work with. He takes his time to explain things and advocates for our wants and needs. I could not have asked for a realtor more responsive to calls and texts as Patrick was. Five stars all the way."</p>
+      <p class="text-gold font-semibold text-sm">Melissa JD</p>
+      <p class="text-white-70 text-sm">New Construction Client</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"Patrick is a stellar agent! He helped us get the best offer on our house (ABOVE asking price!) faster than I thought possible, and he was with us every step of the way. Best agent I've ever worked with, hands down."</p>
+      <p class="text-gold font-semibold text-sm">Sandra Brinkley</p>
+      <p class="text-white-70 text-sm">Sold Above Asking Price</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"Patrick was FANTASTIC! He was patient, professional, diligent, and extremely accommodating. We moved from out of state and he was with us the entire way. I would DEFINITELY HIGHLY encourage you to reach out to him."</p>
+      <p class="text-gold font-semibold text-sm">Michael &amp; Stacy Pratt</p>
+      <p class="text-white-70 text-sm">Out-of-State Relocation</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"Working with Fernanda was such a pleasure! Not only did she ultimately match us with a perfect home, she handled the process with patience, honesty, kindness, and professionalism all along the way. Five stars!"</p>
+      <p class="text-gold font-semibold text-sm">Heather &amp; Afonso</p>
+      <p class="text-white-70 text-sm">Found their home on the Silver Coast</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#efd48f"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <p class="text-white-90 mt-4 mb-6">"I had an amazing experience working with Fernanda. She was incredibly kind, sensitive, dedicated, and truly committed. What impressed me most was how much she genuinely cared. She was always attentive, patient, and available."</p>
+      <p class="text-gold font-semibold text-sm">Graziela Monteiro</p>
+      <p class="text-white-70 text-sm">Silver Coast Property</p>
+    </div>
   </div>
 </div>
 </section>
 
-<!-- CTA -->
-<section class="bg-teal" style="padding:36px 0;">
-<div class="container text-center reveal">
-  <h2 class="font-domine text-xl text-white mb-2">Ready to Work With Us?</h2>
-  <p class="text-white-90 text-sm mb-4 max-w-2">Whether buying your dream home or selling a property, we are here to guide you every step of the way.</p>
-  <div class="flex flex-wrap justify-center gap-3">
-    <a href="contact.html" class="btn btn-white" style="padding:8px 20px;font-size:0.75rem;">Contact Us</a>
-    <a href="properties.html" class="btn btn-outline-white" style="padding:8px 20px;font-size:0.75rem;">Browse Properties</a>
-  </div>
-</div>
-</section>
 
+<!-- IMPIC DISCLAIMER -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
 <footer class="footer" style="padding:40px 0 24px;">
 <div class="container">
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;margin-bottom:24px;">

@@ -8,10 +8,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+  .testimonial-text{max-height:120px;overflow:hidden;transition:max-height .3s ease;position:relative}
+  .testimonial-text.collapsed{max-height:120px}
+  .testimonial-text:not(.collapsed){max-height:800px}
+  .testimonial-text.collapsed::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(transparent,#fff8ee)}
+  .read-more-btn{background:none;border:none;color:#296662;font-size:.8125rem;font-weight:600;cursor:pointer;padding:4px 0;margin-top:4px;text-decoration:underline}
+  .read-more-btn:hover{color:#1c0a04}
+  @media(max-width:768px){#testimonials .grid-3{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 
-<nav id="mainNav" class="nav nav-scrolled">
+<!-- IMPIC DISCLAIMER TOP -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;position:fixed;top:0;left:0;right:0;z-index:200;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
+<!-- Nav Spacer for Top Banner -->
+<div style="height:36px;"></div>
+<nav id="mainNav" class="nav nav-scrolled" style="top:36px">
   <div class="container nav-inner">
     <a href="index.html"><img src="../logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty"  /></a>
     <div class="nav-links">
@@ -76,7 +89,7 @@
     <div class="grid-2 gap-4">
       <div class="reveal">
         <div style="max-width:280px;margin:0 auto;">
-          <div class="card"><img src="../images/team/parvez-headshot.jpg" alt="Parvez Dhillon" style="width:100%;aspect-ratio:1;object-fit:cover;" /><div class="card-body"><h3 class="font-domine text-lg text-brand">Parvez Dhillon</h3><p class="text-teal font-semibold text-sm mb-2">Conselheiro Estratégico</p><p class="text-brand-70 text-sm">+351 913 148 143<br />parvez@aldeiarealty.com</p></div></div>
+          <div class="card"><div class="placeholder-headshot" style="width:100%;aspect-ratio:1;">Photo Coming Soon</div><div class="card-body"><h3 class="font-domine text-lg text-brand">Parvez Dhillon</h3><p class="text-teal font-semibold text-sm mb-2">Conselheiro Estratégico</p><p class="text-brand-70 text-sm">+351 913 148 143<br />parvez@aldeiarealty.com</p></div></div>
         </div>
       </div>
       <div class="reveal">
@@ -121,7 +134,7 @@
       </div>
       <div class="reveal">
         <div style="max-width:280px;margin:0 auto;">
-          <div class="card"><div class="placeholder-headshot" style="width:100%;aspect-ratio:1;background:#e4e7e6;display:flex;align-items:center;justify-content:center;color:rgba(28,10,4,0.4);font-size:0.875rem;">Foto Brevemente</div><div class="card-body"><h3 class="font-domine text-lg text-brand">Patrick Reid</h3><p class="text-teal font-semibold text-sm mb-2">Agente Sénior</p></div></div>
+          <div class="card"><div class="placeholder-headshot" style="width:100%;aspect-ratio:3/4;">Photo Coming Soon</div><div class="card-body"><h3 class="font-domine text-lg text-brand">Patrick Reid</h3><p class="text-teal font-semibold text-sm mb-2">Agente Sénior</p></div></div>
         </div>
       </div>
     </div>
@@ -134,7 +147,7 @@
     <div class="grid-2 gap-4">
       <div class="reveal">
         <div style="max-width:280px;margin:0 auto;">
-          <div class="card"><div class="placeholder-headshot" style="width:100%;aspect-ratio:1;background:#e4e7e6;display:flex;align-items:center;justify-content:center;color:rgba(28,10,4,0.4);font-size:0.875rem;">Foto Brevemente</div><div class="card-body"><h3 class="font-domine text-lg text-brand">Fernanda Gray</h3><p class="text-teal font-semibold text-sm mb-2">Agente Imobiliária</p></div></div>
+          <div class="card"><div class="placeholder-headshot" style="width:100%;aspect-ratio:3/4;">Photo Coming Soon</div><div class="card-body"><h3 class="font-domine text-lg text-brand">Fernanda Gray</h3><p class="text-teal font-semibold text-sm mb-2">Agente Imobiliária</p></div></div>
         </div>
       </div>
       <div class="reveal">
@@ -159,13 +172,42 @@
   </div>
 </section>
 
-<!-- Telmo -->
+<!-- Luciana -->
 <section class="section-pad bg-white">
   <div class="container">
     <div class="grid-2 gap-4">
       <div class="reveal">
+        <p class="label-text text-teal mb-3">AGENTE IMOBILIÁRIA</p>
+        <h2 class="font-domine text-3xl text-brand mb-4" style="font-size:clamp(1.75rem,3vw,2.25rem);">Luciana Aires</h2>
+        <p class="text-brand-80 mb-4">Com uma sólida formação em aconselhamento financeiro e defesa dos interesses dos clientes, Luciana traz uma abordagem meticulosa e orientada para o detalhe a cada transação na Aldeia Realty. A sua experiência em navegar decisões financeiras complexas com clareza e cuidado torna-a uma guia inestimável tanto para compradores como para vendedores.</p>
+        <p class="text-brand-80 mb-4">Antes de transitar para o imobiliário, Luciana passou anos a aconselhar clientes em matérias financeiras, desenvolvendo um olhar aguçado para due diligence, revisão de contratos e avaliação de riscos. A sua capacidade de dividir processos intricados em passos claros e geríveis garante que os seus clientes se sintam informados e confiantes em todas as etapas da sua jornada imobiliária.</p>
+        <div class="bg-white rounded-lg p-5">
+          <h4 class="font-domine text-base text-brand mb-2">Percurso</h4>
+          <ul class="text-brand-70 text-sm space-y-1">
+            <li>&bull; Agente Imobiliária, Aldeia Realty</li>
+            <li>&bull; Aconselhamento Financeiro: Especialista em Due Diligence e Avaliação de Riscos</li>
+            <li>&bull; 5+ Anos a Viver em Caldas da Rainha, Costa de Prata</li>
+            <li>&bull; Experiência Prática em Compra, Venda e Renovação de Imóveis em Portugal</li>
+            <li>&bull; Defesa do Cliente: Compromisso com um Serviço Transparente e de Precisão</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal">
         <div style="max-width:280px;margin:0 auto;">
-          <div class="card"><div class="placeholder-headshot" style="width:100%;aspect-ratio:1;background:#e4e7e6;display:flex;align-items:center;justify-content:center;color:rgba(28,10,4,0.4);font-size:0.875rem;">Foto Brevemente</div><div class="card-body"><h3 class="font-domine text-lg text-brand">Telmo Raimundo</h3><p class="text-teal font-semibold text-sm mb-2">Especialista em Aquisição</p></div></div>
+          <div class="card"><div class="placeholder-headshot" style="width:100%;aspect-ratio:3/4;">Photo Coming Soon</div><div class="card-body"><h3 class="font-domine text-lg text-brand">Luciana Aires</h3><p class="text-teal font-semibold text-sm mb-2">Agente Imobiliária</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Telmo -->
+<section class="section-pad bg-parchment">
+  <div class="container">
+    <div class="grid-2 gap-4">
+      <div class="reveal">
+        <div style="max-width:280px;margin:0 auto;">
+          <div class="card"><div class="placeholder-headshot" style="width:100%;aspect-ratio:3/4;">Photo Coming Soon</div><div class="card-body"><h3 class="font-domine text-lg text-brand">Telmo Raimundo</h3><p class="text-teal font-semibold text-sm mb-2">Especialista em Aquisição</p></div></div>
         </div>
       </div>
       <div class="reveal">
@@ -238,6 +280,61 @@
   <img src="../images/homes/classic-manor.jpg" alt="Solar português clássico" style="width:100%;height:220px;object-fit:cover;display:block;" />
 </section>
 
+
+<!-- TESTEMUNHOS -->
+<section class="section-pad" style="background:#f4ecdc;" id="testimonials">
+<div class="container">
+  <p class="label-text text-teal text-center mb-3">AVALIA&Ccedil;&Otilde;ES DE CLIENTES</p>
+  <h2 class="font-domine text-3xl text-brand text-center mb-8" style="font-size:clamp(1.75rem,3vw,2.25rem);">O Que os Nossos Clientes Dizem</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div style="background:#fff8ee;border-radius:8px;padding:28px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#296662"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <div class="testimonial-text collapsed"><p class="text-brand-80 mt-4 mb-2">"A Angela foi fant&aacute;stica e tornou o processo de compra da nossa primeira casa muito f&aacute;cil. Respondeu sempre rapidamente &agrave;s perguntas e garantiu que t&iacute;nhamos toda a informa&ccedil;&atilde;o. Recomendo vivamente!"</p></div>
+      <button class="read-more-btn" onclick="this.previousElementSibling.classList.toggle('collapsed');this.textContent=this.previousElementSibling.classList.contains('collapsed')?'Ler mais':'Mostrar menos'">Ler mais</button>
+      <p class="text-teal font-semibold text-sm mt-2">hcyoung18</p>
+      <p class="text-brand-50 text-xs">Comprou em 2021</p>
+    </div>
+    <div style="background:#fff8ee;border-radius:8px;padding:28px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#296662"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <div class="testimonial-text collapsed"><p class="text-brand-80 mt-4 mb-2">"A Angela guiou-nos no processo de compra de casa h&aacute; um ano e ainda faz parte das nossas vidas hoje. &Eacute; profissional, conhecedora, fi&aacute;vel, genu&iacute;na, honesta e vai al&eacute;m do dever. Recomendarei sempre!"</p></div>
+      <button class="read-more-btn" onclick="this.previousElementSibling.classList.toggle('collapsed');this.textContent=this.previousElementSibling.classList.contains('collapsed')?'Ler mais':'Mostrar menos'">Ler mais</button>
+      <p class="text-teal font-semibold text-sm mt-2">terryrayers64</p>
+      <p class="text-brand-50 text-xs">Comprou em Plymouth, NC 2021</p>
+    </div>
+    <div style="background:#fff8ee;border-radius:8px;padding:28px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#296662"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <div class="testimonial-text collapsed"><p class="text-brand-80 mt-4 mb-2">"A Angela Dhillon &eacute; uma pessoa fant&aacute;stica. Estava sempre dispon&iacute;vel para quest&otilde;es e pronta para ver im&oacute;veis. Ajudou-nos a encontrar contratantes para inspe&ccedil;&otilde;es. Considero-a uma amiga e recomendo-a sempre!"</p></div>
+      <button class="read-more-btn" onclick="this.previousElementSibling.classList.toggle('collapsed');this.textContent=this.previousElementSibling.classList.contains('collapsed')?'Ler mais':'Mostrar menos'">Ler mais</button>
+      <p class="text-teal font-semibold text-sm mt-2">Yolita Ripoll</p>
+      <p class="text-brand-50 text-xs">Relocada para a Carolina do Norte</p>
+    </div>
+    <div style="background:#fff8ee;border-radius:8px;padding:28px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#296662"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <div class="testimonial-text collapsed"><p class="text-brand-80 mt-4 mb-2">"O Patrick &eacute; um prazer trabalhar com ele. Explica as coisas com calma e defende os nossos interesses. N&atilde;o podia pedir um corretor mais atencioso. Cinco estrelas!"</p></div>
+      <button class="read-more-btn" onclick="this.previousElementSibling.classList.toggle('collapsed');this.textContent=this.previousElementSibling.classList.contains('collapsed')?'Ler mais':'Mostrar menos'">Ler mais</button>
+      <p class="text-teal font-semibold text-sm mt-2">Melissa JD</p>
+      <p class="text-brand-50 text-xs">Cliente de Constru&ccedil;&atilde;o Nova</p>
+    </div>
+    <div style="background:#fff8ee;border-radius:8px;padding:28px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#296662"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <div class="testimonial-text collapsed"><p class="text-brand-80 mt-4 mb-2">"O Patrick &eacute; um agente estelar! Ajudou-nos a obter a melhor oferta (ACIMA do pre&ccedil;o pedido!) mais r&aacute;pido do que eu pensava poss&iacute;vel. O melhor agente com quem j&aacute; trabalhei!"</p></div>
+      <button class="read-more-btn" onclick="this.previousElementSibling.classList.toggle('collapsed');this.textContent=this.previousElementSibling.classList.contains('collapsed')?'Ler mais':'Mostrar menos'">Ler mais</button>
+      <p class="text-teal font-semibold text-sm mt-2">Sandra Brinkley</p>
+      <p class="text-brand-50 text-xs">Vendeu Acima do Pre&ccedil;o</p>
+    </div>
+    <div style="background:#fff8ee;border-radius:8px;padding:28px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="#296662"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+      <div class="testimonial-text collapsed"><p class="text-brand-80 mt-4 mb-2">"O Patrick foi FANT&Aacute;STICO! Paciente, profissional, diligente e extremamente atencioso. Mud&aacute;mos de outro estado e ele esteve connosco em todo o caminho. Encorajo-vos vivamente a contact&aacute;-lo!"</p></div>
+      <button class="read-more-btn" onclick="this.previousElementSibling.classList.toggle('collapsed');this.textContent=this.previousElementSibling.classList.contains('collapsed')?'Ler mais':'Mostrar menos'">Ler mais</button>
+      <p class="text-teal font-semibold text-sm mt-2">Michael e Stacy Pratt</p>
+      <p class="text-brand-50 text-xs">Reloca&ccedil;&atilde;o de Outro Estado</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- IMPIC DISCLAIMER -->
+<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
 <footer class="footer" style="padding:40px 0 24px;">
   <div class="container">
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;">

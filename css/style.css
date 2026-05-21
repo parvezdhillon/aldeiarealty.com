@@ -11,7 +11,7 @@ body {
 h1, h2, h3, h4 { font-family: 'Domine', serif; font-weight: 400; }
 img { max-width: 100%; height: auto; display: block; }
 .nav-inner > a:first-child { flex-shrink: 0; }
-.nav-inner img { height: 35px; width: auto; object-fit: contain; }
+.nav-inner img { height: 28px; width: auto; object-fit: contain; }
 a { text-decoration: none; color: inherit; }
 button { cursor: pointer; font-family: inherit; }
 ul { list-style: none; }
@@ -272,7 +272,7 @@ ul { list-style: none; }
   .hero-tagline { right: 24px; bottom: 24px; }
 }
 @media (max-width: 767px) {
-  .nav-inner img { height: 28px; }
+  .nav-inner img { height: 22px; }
   .grid-2, .grid-3, .grid-4, .trust-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2rem; }
   .hero p { font-size: 1rem; }
