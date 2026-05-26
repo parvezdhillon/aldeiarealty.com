@@ -332,6 +332,46 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
   .cookie-title{font-size:9px}
   .cookie-body{font-size:13px}
 }
+
+/* === MENU COLOR REFRESH: teal/gold instead of black === */
+/* Desktop "More" dropdown */
+.nav-dropdown{background:var(--teal) !important;border:1px solid rgba(239,212,143,0.35) !important;box-shadow:0 8px 32px rgba(28,10,4,0.45) !important}
+.nav-dropdown a{color:var(--gold) !important;opacity:0.85}
+.nav-dropdown a:hover{color:var(--parchment) !important;background:rgba(239,212,143,0.10) !important;opacity:1}
+
+/* Mobile drawer (the hamburger-opened full-width menu) */
+@media(max-width:900px){
+  .site-nav-links.open{
+    background:var(--teal) !important;
+    border-top:1px solid rgba(239,212,143,0.30) !important;
+    box-shadow:0 10px 30px rgba(28,10,4,0.45) !important;
+  }
+  .site-nav-links.open > a,
+  .site-nav-links.open > .nav-more-wrap > a,
+  .site-nav-links.open > .nav-more-wrap .nav-dropdown a{
+    color:var(--gold) !important;
+    border-bottom:1px solid rgba(239,212,143,0.14) !important;
+    opacity:0.90;
+  }
+  .site-nav-links.open > a:hover,
+  .site-nav-links.open > .nav-more-wrap .nav-dropdown a:hover,
+  .site-nav-links.open > a.active{
+    color:var(--parchment) !important;
+    background:rgba(239,212,143,0.08) !important;
+    opacity:1;
+  }
+  .site-nav-links.open .nav-dropdown{
+    background:transparent !important;
+    border:none !important;
+    box-shadow:none !important;
+  }
+  /* Mobile CTA stays gold-on-black-text — already correct, keep */
+  .site-nav-links.open .mobile-cta-link{
+    background:var(--gold) !important;
+    color:var(--black) !important;
+    opacity:1 !important;
+  }
+}
 </style>
 </head>
 <body>

@@ -388,6 +388,46 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
   .cookie-title{font-size:9px}
   .cookie-body{font-size:13px}
 }
+
+/* === MENU COLOR REFRESH: teal/gold instead of black === */
+/* Desktop "More" dropdown */
+.nav-dropdown{background:var(--teal) !important;border:1px solid rgba(239,212,143,0.35) !important;box-shadow:0 8px 32px rgba(28,10,4,0.45) !important}
+.nav-dropdown a{color:var(--gold) !important;opacity:0.85}
+.nav-dropdown a:hover{color:var(--parchment) !important;background:rgba(239,212,143,0.10) !important;opacity:1}
+
+/* Mobile drawer (the hamburger-opened full-width menu) */
+@media(max-width:900px){
+  .site-nav-links.open{
+    background:var(--teal) !important;
+    border-top:1px solid rgba(239,212,143,0.30) !important;
+    box-shadow:0 10px 30px rgba(28,10,4,0.45) !important;
+  }
+  .site-nav-links.open > a,
+  .site-nav-links.open > .nav-more-wrap > a,
+  .site-nav-links.open > .nav-more-wrap .nav-dropdown a{
+    color:var(--gold) !important;
+    border-bottom:1px solid rgba(239,212,143,0.14) !important;
+    opacity:0.90;
+  }
+  .site-nav-links.open > a:hover,
+  .site-nav-links.open > .nav-more-wrap .nav-dropdown a:hover,
+  .site-nav-links.open > a.active{
+    color:var(--parchment) !important;
+    background:rgba(239,212,143,0.08) !important;
+    opacity:1;
+  }
+  .site-nav-links.open .nav-dropdown{
+    background:transparent !important;
+    border:none !important;
+    box-shadow:none !important;
+  }
+  /* Mobile CTA stays gold-on-black-text — already correct, keep */
+  .site-nav-links.open .mobile-cta-link{
+    background:var(--gold) !important;
+    color:var(--black) !important;
+    opacity:1 !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -447,9 +487,8 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 <div class="calc-field"><label>Municipality</label><select id="municipality"><option value="caldas">Caldas da Rainha</option><option value="obidos">&Oacute;bidos</option><option value="alcobaca">Alcoba&ccedil;a</option><option value="nazare">Nazar&eacute;</option><option value="peniche">Peniche</option><option value="other">Other Silver Coast</option></select></div>
 </div>
 <div class="calc-toggle"><input type="checkbox" id="primaryResidence" checked /><label for="primaryResidence">This is my primary residence (held > 24 months)</label></div>
-<div class="calc-toggle"><input type="checkbox" id="nhrStatus" /><label for="nhrStatus">I hold Non-Habitual Resident (NHR) status</label></div>
 <div class="calc-toggle"><input type="checkbox" id="reinvest" /><label for="reinvest">I plan to reinvest in EU/EEA property within 36 months</label></div>
-<div class="calc-disclaimer">Educational estimate. Not financial or tax advice. Consult a licensed accountant before transacting.</div>
+<div class="calc-disclaimer">Indicative estimate. Not legal, tax, or financial advice.</div>
 <div class="calc-actions"><button type="submit" class="btn btn-primary">Calculate</button></div>
 </form></div>
 <div class="calc-results" id="results">
@@ -550,11 +589,30 @@ document.addEventListener('click',function(e){
     { max: 1000000, fee: 2200 },
     { max: Infinity, fee: 3000 },
   ];
-  const ENERGY_CERT = 150;
-  const MUNICIPAL_TAX_RATE = 0.001;
+  const ENERGY_CERT = 250;
+  const IVA_RATE = 0.23;
+
+  // Portuguese tax-law inflation coefficients (CIRS Art. 50).
+  // Source: most recently published Portaria de Coeficientes (annual).
+  // Multiply original purchase price + renovations by this factor when
+  // the asset has been held >24 months. Verify table annually.
+  const INFLATION_COEFS = {
+    2024: 1.00, 2023: 1.02, 2022: 1.07, 2021: 1.09,
+    2020: 1.11, 2019: 1.13, 2018: 1.15, 2017: 1.17,
+    2016: 1.20, 2015: 1.22, 2014: 1.24, 2013: 1.25,
+    2012: 1.27, 2011: 1.28, 2010: 1.31, 2009: 1.32,
+    2008: 1.36, 2007: 1.40, 2006: 1.46, 2005: 1.51,
+    2004: 1.55, 2003: 1.58, 2002: 1.66, 2001: 1.72, 2000: 1.79
+  };
 
   function getNotary(p){ for(const t of NOTARY_FEES) if(p<=t.max) return t.fee; return 3000; }
   function fmt(n){ if(!isFinite(n))return "€0"; return "€"+Math.round(n).toLocaleString('en-US').replace(/,/g,'.'); }
+
+  function getInflationCoef(year){
+    if (!year || year < 2000) return 1.00;
+    if (year >= 2024) return 1.00;
+    return INFLATION_COEFS[year] || 1.00;
+  }
 
   let last = null;
 
@@ -567,48 +625,61 @@ document.addEventListener('click',function(e){
     const renovations = +document.getElementById('renovations').value || 0;
     const commissionPct = +document.getElementById('commission').value || 5;
     const primaryRes = document.getElementById('primaryResidence').checked;
-    const nhr = document.getElementById('nhrStatus').checked;
     const reinvest = document.getElementById('reinvest').checked;
-    const municipality = document.getElementById('municipality').value;
 
     if(salePrice <= 0) return;
 
     const yearsHeld = 2026 - purchaseYear;
-    const commission = salePrice * (commissionPct/100);
+
+    // Commission: PT real-estate commission is quoted ex-IVA. Real cost = base × 1.23
+    const commissionBase = salePrice * (commissionPct / 100);
+    const commissionIVA = commissionBase * IVA_RATE;
+    const commissionTotal = commissionBase + commissionIVA;
+
     const notary = getNotary(salePrice);
-    const municipal = salePrice * MUNICIPAL_TAX_RATE;
     const energy = ENERGY_CERT;
 
-    let capGains = 0; let cgNote = '';
-    const gain = salePrice - purchasePrice - renovations;
-    if(gain > 0){
-      if(primaryRes && yearsHeld >= 2){
-        let taxable = gain * 0.5;
-        if(reinvest){ taxable = taxable * 0.5; cgNote = 'IRS: 50% primary res + 50% reinvest exemption = 75% total exempt'; }
-        else cgNote = 'IRS: 50% exemption for primary residence held >24 months';
-        const rate = nhr ? 0.10 : 0.28;
+    // Capital gains - with inflation adjustment for assets held >24 months
+    let capGains = 0;
+    let cgNote = '';
+    const inflationCoef = (yearsHeld >= 2) ? getInflationCoef(purchaseYear) : 1.00;
+    const adjustedBasis = (purchasePrice + renovations) * inflationCoef;
+    const gain = salePrice - adjustedBasis;
+
+    if (gain > 0) {
+      const rate = 0.28; // Portuguese resident flat rate on capital gains (CIRS Art. 72)
+      if (primaryRes && yearsHeld >= 2) {
+        let taxable = gain * 0.5; // 50% exemption for primary residence held >24 months
+        if (reinvest) {
+          taxable = taxable * 0.5; // approximation: additional 50% if full reinvestment in EU/EEA primary residence within 36 months
+          cgNote = '50% primary residence exemption + ~50% reinvestment exemption (full reinvestment assumed)';
+        } else {
+          cgNote = '50% primary residence exemption (held >24 months)';
+        }
         capGains = taxable * rate;
-        cgNote += nhr ? ' | NHR 10% flat rate applied' : ' | Standard 28% rate on taxable portion';
+        cgNote += ' | 28% flat rate on taxable portion';
+        if (inflationCoef > 1.0) {
+          cgNote += ' | Cost basis inflation-adjusted by ' + inflationCoef.toFixed(2) + 'x (CIRS Art. 50)';
+        }
       } else {
-        const rate = nhr ? 0.10 : 0.28;
         capGains = gain * rate;
-        cgNote = primaryRes ? 'Held <24 months - no primary residence exemption' : 'Not primary residence';
-        cgNote += nhr ? ' | NHR 10% flat rate applied' : ' | Standard 28% rate on taxable portion';
+        cgNote = primaryRes ? 'Held <24 months - no exemption' : 'Not primary residence - full gain taxable';
+        cgNote += ' | 28% flat rate';
       }
     } else {
-      cgNote = 'No capital gain - sale price below adjusted cost basis';
+      cgNote = 'No capital gain - sale price below inflation-adjusted cost basis';
     }
 
-    const net = salePrice - mortgage - commission - capGains - notary - municipal - energy;
+    const net = salePrice - mortgage - commissionTotal - capGains - notary - energy;
 
-    last = {salePrice, mortgage, commission, commissionPct, capGains, cgNote, notary, municipal, energy, net, municipality};
+    last = {salePrice, mortgage, commissionBase, commissionIVA, commissionTotal, commissionPct, capGains, cgNote, notary, energy, net, inflationCoef, adjustedBasis};
 
     const items = [
       {label:'Mortgage payoff', sub:'Outstanding balance', amt: mortgage, zero: mortgage<=0},
-      {label:'Agent commission', sub: commissionPct.toString()+'%' + ' of sale price', amt: commission, zero: false},
+      {label:'Agent commission', sub: commissionPct.toString()+'% of sale price (ex-IVA)', amt: commissionBase, zero: false},
+      {label:'IVA on commission', sub:'23% on the commission line', amt: commissionIVA, zero: false},
       {label:'Capital gains tax', sub: cgNote, amt: capGains, zero: capGains<=0},
       {label:'Legal & notary', sub:'Deed registration, notary fees', amt: notary, zero: false},
-      {label:'Municipal cost', sub: municipality.charAt(0).toUpperCase()+municipality.slice(1), amt: municipal, zero: false},
       {label:'Energy certificate', sub:'Mandatory SCE certification', amt: energy, zero: false},
     ];
 
@@ -639,15 +710,18 @@ document.addEventListener('click',function(e){
     doc.setFont('helvetica','normal'); doc.setFontSize(10);
     doc.text("Sale price: EUR " + Math.round(last.salePrice).toLocaleString(), 14, y); y+=6;
     doc.text("Mortgage payoff: -EUR " + Math.round(last.mortgage).toLocaleString(), 14, y); y+=6;
-    doc.text("Agent commission (" + last.commissionPct + "%): -EUR " + Math.round(last.commission).toLocaleString(), 14, y); y+=6;
+    doc.text("Commission (" + last.commissionPct + "%, ex-IVA): -EUR " + Math.round(last.commissionBase).toLocaleString(), 14, y); y+=6;
+    doc.text("IVA on commission (23%): -EUR " + Math.round(last.commissionIVA).toLocaleString(), 14, y); y+=6;
     doc.text("Capital gains tax: -EUR " + Math.round(last.capGains).toLocaleString(), 14, y); y+=6;
     doc.text("Legal & notary: -EUR " + Math.round(last.notary).toLocaleString(), 14, y); y+=6;
-    doc.text("Municipal cost: -EUR " + Math.round(last.municipal).toLocaleString(), 14, y); y+=6;
     doc.text("Energy certificate: -EUR " + Math.round(last.energy).toLocaleString(), 14, y); y+=10;
     doc.setFont('helvetica','bold'); doc.setFontSize(13);
     doc.setFillColor(239,212,143); doc.rect(14, y-5, 182, 14, 'F');
     doc.text("YOU WALK AWAY WITH: EUR " + Math.round(last.net).toLocaleString(), 18, y+4); y+=20;
     doc.setFontSize(9); doc.setFont('helvetica','normal');
+    if (last.inflationCoef > 1.0) {
+      doc.text("Inflation-adjusted cost basis: EUR " + Math.round(last.adjustedBasis).toLocaleString() + " (coef " + last.inflationCoef.toFixed(2) + "x per CIRS Art. 50)", 14, y); y+=6;
+    }
     doc.text("Capital gains note: " + (last.cgNote||'').replace(/&/g,'and'), 14, y, {maxWidth: 182}); y+=14;
     doc.setFontSize(8); doc.setTextColor(120,120,120);
     doc.text("Educational estimate. Not financial or tax advice. Consult a licensed accountant.", 14, y); y+=5;
@@ -673,7 +747,7 @@ document.addEventListener('click',function(e){
     form.append('_subject', 'Seller Net Proceeds - Aldeia');
     form.append('summary', 'Sale: EUR ' + Math.round(last.salePrice).toLocaleString()
               + ' | Mortgage: EUR ' + Math.round(last.mortgage).toLocaleString()
-              + ' | Commission: EUR ' + Math.round(last.commission).toLocaleString()
+              + ' | Commission+IVA: EUR ' + Math.round(last.commissionTotal).toLocaleString()
               + ' | CapGains: EUR ' + Math.round(last.capGains).toLocaleString()
               + ' | Net: EUR ' + Math.round(last.net).toLocaleString());
     try{
