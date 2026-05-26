@@ -237,6 +237,72 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
   color: rgba(255,255,255,0.94) !important;
   text-shadow: 0 1px 6px rgba(0,0,0,0.50);
 }
+
+/* === EMERGENCY MOBILE NAV PATCH === */
+.site-nav-toggle{display:none;background:none;border:none;color:rgba(244,236,220,0.85);cursor:pointer;padding:6px;align-items:center;justify-content:center;border-radius:2px;transition:color 0.2s}
+.site-nav-toggle:hover{color:var(--gold)}
+@media(max-width:900px){
+  .site-nav-cta{display:none !important}
+  .site-nav-toggle{display:flex !important}
+  .site-nav-logo img{height:32px !important}
+  .site-nav-inner{gap:12px !important;padding:0 16px !important}
+  .site-nav-actions{gap:10px !important}
+  /* Show nav-links as a full-width drawer when toggled .open */
+  .site-nav-links{display:none !important}
+  .site-nav-links.open{
+    display:flex !important;
+    flex-direction:column !important;
+    position:fixed !important;
+    top:66px !important;
+    left:0 !important;
+    right:0 !important;
+    background:var(--black) !important;
+    padding:14px 0 !important;
+    align-items:stretch !important;
+    gap:0 !important;
+    z-index:99 !important;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4) !important;
+    max-height:calc(100vh - 66px) !important;
+    overflow-y:auto !important;
+    flex:initial !important;
+  }
+  .site-nav-links.open > a,
+  .site-nav-links.open > .nav-more-wrap > a,
+  .site-nav-links.open > .nav-more-wrap .nav-dropdown a{
+    display:block !important;
+    padding:14px 28px !important;
+    border-bottom:1px solid rgba(244,236,220,0.06) !important;
+    font-size:11px !important;
+    text-align:left !important;
+  }
+  .site-nav-links.open .nav-more-wrap{position:static !important}
+  .site-nav-links.open .nav-more-btn{display:none !important}
+  .site-nav-links.open .nav-dropdown{
+    display:block !important;
+    position:static !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    border:none !important;
+    padding:0 !important;
+    min-width:0 !important;
+  }
+  /* Add CTA into the bottom of the open drawer */
+  .site-nav-links.open::after{
+    content:'';display:block;height:8px
+  }
+  .mobile-cta-link{display:none}
+  .site-nav-links.open .mobile-cta-link{
+    display:block !important;
+    background:var(--gold) !important;
+    color:var(--black) !important;
+    margin:14px 24px 14px !important;
+    padding:14px 18px !important;
+    text-align:center !important;
+    border-radius:2px !important;
+    border-bottom:none !important;
+    font-weight:600 !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -263,8 +329,12 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
           <a href="contact.html">Contact</a>
         </div>
       </div>
+    <a class="mobile-cta-link" href="contact.html">Get A Free Valuation</a>
     </div>
     <div class="site-nav-actions">
+      <button class="site-nav-toggle" id="mobileNavToggle" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
       <a class="site-nav-lang" href="pt/careers.html">PT</a>
       <a class="site-nav-cta" href="contact.html">Get A Free Valuation</a>
     </div>
@@ -394,6 +464,12 @@ document.addEventListener('click',function(e){
     if(btn){btn.setAttribute('aria-expanded','false');}
   }
 });
+</script>
+<script>
+function toggleMobileMenu(){
+  var nav = document.querySelector('.site-nav-links');
+  if(nav) nav.classList.toggle('open');
+}
 </script>
 </body>
 </html>
