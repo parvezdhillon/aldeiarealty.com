@@ -488,7 +488,7 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
     <div class="max-w-3 reveal">
       <h2 class="font-domine text-2xl text-brand mb-4">The Property Tax Culture Shock</h2>
       <p class="text-brand-80 mb-4">Portugal taxes the <strong class="text-teal">transaction</strong> heavily (IMT + Stamp Duty upfront) but annual property tax (IMI) is very low. Use this calculator to stress-test your capital plan.</p>
-      <div class="bg-dove rounded-lg p-4 text-sm text-brand-60 italic">Disclaimer: Educational purposes only. Not financial advice. Verify with a legal professional before signing a CPCV.</div>
+      
     </div>
 
     <div class="max-w-3 reveal" style="margin-top:40px;">
@@ -556,6 +556,7 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
         </label>
 
         <button onclick="runExpatCalc()" class="btn btn-primary" style="width:100%;">Run Full Analysis</button>
+        <p class="mini-disclaimer" style="font-size:11.5px;font-style:italic;color:rgba(28,10,4,0.55);text-align:center;margin:14px auto 0;max-width:540px;line-height:1.5">Indicative estimate. Not legal, tax, or financial advice.</p>
 
         <!-- RESULTS -->
         <div id="calc-results" style="display:none;margin-top:24px;">
@@ -727,38 +728,40 @@ function toEUR(amount, currency, rate) {
 }
 
 function calcIMT(price, location, purpose) {
+  // 2025 IMT brackets per Decreto-Lei (review annually).
+  // Mainland values from CIMT Article 17. Islands = mainland * 1.25.
   let imt = 0;
   if (location === 'mainland' && purpose === 'primary') {
-    if (price <= 101917) imt = 0;
-    else if (price <= 139412) imt = price * 0.02 - 2038.34;
-    else if (price <= 199642) imt = price * 0.05 - 6220.70;
-    else if (price <= 316772) imt = price * 0.07 - 10213.54;
-    else if (price <= 633453) imt = price * 0.08 - 13381.26;
-    else if (price <= 1102920) imt = price * 0.06;
+    if (price <= 104261) imt = 0;
+    else if (price <= 142618) imt = price * 0.02 - 2085.22;
+    else if (price <= 194458) imt = price * 0.05 - 6363.76;
+    else if (price <= 324058) imt = price * 0.07 - 10252.93;
+    else if (price <= 621501) imt = price * 0.08 - 23185.25;
+    else if (price <= 1128287) imt = price * 0.06;
     else imt = price * 0.075;
   } else if (location === 'mainland' && purpose === 'secondary') {
-    if (price <= 101917) imt = price * 0.01;
-    else if (price <= 139412) imt = price * 0.02 - 1019.17;
-    else if (price <= 199642) imt = price * 0.05 - 5201.53;
-    else if (price <= 316772) imt = price * 0.07 - 9194.37;
-    else if (price <= 633453) imt = price * 0.08 - 12362.09;
-    else if (price <= 1102920) imt = price * 0.06;
+    if (price <= 104261) imt = price * 0.01;
+    else if (price <= 142618) imt = price * 0.02 - 1042.61;
+    else if (price <= 194458) imt = price * 0.05 - 5321.15;
+    else if (price <= 324058) imt = price * 0.07 - 9210.32;
+    else if (price <= 621501) imt = price * 0.08 - 22142.65;
+    else if (price <= 1128287) imt = price * 0.06;
     else imt = price * 0.075;
   } else if (location === 'islands' && purpose === 'primary') {
-    if (price <= 127396) imt = 0;
-    else if (price <= 174265) imt = price * 0.02 - 2547.92;
-    else if (price <= 249552) imt = price * 0.05 - 7775.87;
-    else if (price <= 395965) imt = price * 0.07 - 12766.91;
-    else if (price <= 791816) imt = price * 0.08 - 16726.56;
-    else if (price <= 1378650) imt = price * 0.06;
+    if (price <= 130326) imt = 0;
+    else if (price <= 178273) imt = price * 0.02 - 2606.53;
+    else if (price <= 243073) imt = price * 0.05 - 7954.70;
+    else if (price <= 405073) imt = price * 0.07 - 12816.16;
+    else if (price <= 776876) imt = price * 0.08 - 28981.56;
+    else if (price <= 1410359) imt = price * 0.06;
     else imt = price * 0.075;
   } else if (location === 'islands' && purpose === 'secondary') {
-    if (price <= 127396) imt = price * 0.01;
-    else if (price <= 174265) imt = price * 0.02 - 1273.96;
-    else if (price <= 249552) imt = price * 0.05 - 6501.91;
-    else if (price <= 395965) imt = price * 0.07 - 11492.95;
-    else if (price <= 791816) imt = price * 0.08 - 15452.60;
-    else if (price <= 1378650) imt = price * 0.06;
+    if (price <= 130326) imt = price * 0.01;
+    else if (price <= 178273) imt = price * 0.02 - 1303.26;
+    else if (price <= 243073) imt = price * 0.05 - 6651.44;
+    else if (price <= 405073) imt = price * 0.07 - 11512.90;
+    else if (price <= 776876) imt = price * 0.08 - 27678.31;
+    else if (price <= 1410359) imt = price * 0.06;
     else imt = price * 0.075;
   }
   return Math.max(0, imt);
@@ -876,9 +879,9 @@ function runLocalCalc() {
       const barEl = document.getElementById('phaseBar');
       const posEl = document.getElementById('phasePosition');
       let pct = 0;
-      if (price <= 101917) pct = 0;
-      else if (price >= 633453) pct = 100;
-      else pct = ((price - 101917) / (633453 - 101917)) * 100;
+      if (price <= 104261) pct = 0;
+      else if (price >= 621501) pct = 100;
+      else pct = ((price - 104261) / (621501 - 104261)) * 100;
       if (barEl) {
         barEl.style.width = pct + '%';
         barEl.style.background = pct > 80 ? '#c64f2f' : pct > 50 ? '#efd48f' : '#16a34a';
