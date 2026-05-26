@@ -1,137 +1,783 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora Impostos &mdash; Aldeia Realty</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calculadora de Capital &mdash; Aldeia Realty</title>
+<meta name="description" content="Simulador completo de capital, IMT, Imposto do Selo, cr&eacute;dito habita&ccedil;&atilde;o e c&acirc;mbio para compradores internacionais." />
+<meta property="og:title" content="Calculadora de Capital &mdash; Aldeia Realty" />
+<meta property="og:description" content="Simulador completo de capital, IMT, Imposto do Selo, cr&eacute;dito habita&ccedil;&atilde;o e c&acirc;mbio para compradores internacionais." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aldeia Realty" />
+<meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/x-icon" href="../logos/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../logos/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../logos/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --teal:#296662;--teal-dark:#1f4f4c;--black:#1c0a04;--gold:#efd48f;--dove:#e4e7e6;
+  --parchment:#f4ecdc;--white:#ffffff;--coral:#c64f2f;
+  --muted:rgba(28,10,4,0.55);--border:rgba(41,102,98,0.18);
+  --border-s:rgba(41,102,98,0.10);
+  --display:'Domine',Georgia,serif;
+  --body:'Work Sans',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--parchment);color:var(--black);font-family:var(--body);font-weight:400;line-height:1.6;overflow-x:hidden}
+
+/* NAV - teal with gold accent */
+.site-nav{background:var(--teal);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold);box-shadow:0 2px 20px rgba(28,10,4,0.18)}
+.site-nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:66px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.site-nav-logo img{height:30px;width:auto;display:block}
+.site-nav-links{display:flex;gap:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;align-items:center;flex:1;justify-content:center}
+.site-nav-links a{color:rgba(244,236,220,0.62);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+.site-nav-links a:hover,.site-nav-links a.active{color:var(--gold)}
+.nav-more-wrap{position:relative}
+.nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.62);padding:0;transition:color 0.2s}
+.nav-more-btn:hover{color:var(--gold)}
+.nav-dropdown{position:absolute;top:calc(100% + 14px);right:0;background:var(--black);border:1px solid rgba(239,212,143,0.18);border-radius:3px;padding:8px 0;min-width:170px;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.30);z-index:200}
+.nav-dropdown.open{display:block}
+.nav-dropdown a{display:block;padding:11px 18px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.65);text-decoration:none;transition:color 0.2s,background 0.2s}
+.nav-dropdown a:hover{color:var(--gold);background:rgba(41,102,98,0.20)}
+.site-nav-actions{display:flex;align-items:center;gap:14px}
+.site-nav-lang{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:rgba(244,236,220,0.50);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.site-nav-lang:hover{color:var(--gold)}
+.site-nav-cta{background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;white-space:nowrap;transition:opacity 0.2s}
+.site-nav-cta:hover{opacity:0.85}
+
+/* CONTAINER */
+.container{max-width:1200px;margin:0 auto;padding:0 56px}
+
+/* KICKER - DEFAULT TEAL (for cream backgrounds). Gold only on dark backgrounds. */
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;font-weight:500}
+/* Gold kicker variants - explicit class for dark contexts where needed */
+.kicker-gold{color:var(--gold)}
+
+/* PAGE HERO (teal background - gold kicker OK here) */
+.page-hero{background:var(--teal);padding:80px 0 70px;border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
+.page-hero .kicker{color:var(--gold);opacity:0.85}
+.page-hero h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.02em;color:var(--parchment);margin-bottom:20px}
+.page-hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.page-hero .sub{font-family:var(--body);font-size:17px;color:rgba(244,236,220,0.78);max-width:580px;line-height:1.6;font-style:italic}
+.page-hero.with-image{position:relative}
+.page-hero.with-image::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.22;z-index:0}
+.page-hero.with-image .container{position:relative;z-index:1}
+
+/* SECTION (generic) */
+.section{padding:80px 0;background:var(--parchment)}
+.section.dove{background:var(--dove)}
+.section.parchment{background:var(--parchment)}
+.section.white{background:var(--white)}
+.section-header{margin-bottom:48px;max-width:820px}
+.section-header h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.07;letter-spacing:-0.02em;margin-top:10px;color:var(--black)}
+.section-header h2 em{font-style:italic;color:var(--teal);font-weight:400}
+.section-header .sub{font-family:var(--body);font-style:italic;font-size:16px;color:var(--muted);margin-top:14px;max-width:620px;line-height:1.55}
+
+/* PROSE */
+.prose{font-size:15.5px;line-height:1.72;color:var(--black);max-width:760px;margin:0 auto}
+.prose p{margin-bottom:16px}
+.prose p:last-child{margin-bottom:0}
+.prose strong{font-weight:600;color:var(--teal)}
+.prose ul{margin:14px 0 18px 22px}
+.prose ul li{margin-bottom:8px}
+.prose h3{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.2;letter-spacing:-0.01em;margin:30px 0 12px;color:var(--black)}
+.prose h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.prose a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.prose a:hover{color:var(--coral)}
+
+/* CALLOUTS - teal accent border, text in dark on dove/white */
+.callout{margin:24px 0;padding:22px 26px;background:var(--dove);border-left:3px solid var(--teal);border-radius:0 3px 3px 0}
+.callout .callout-label{font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600}
+.callout .callout-text{font-size:15px;line-height:1.62;color:var(--black)}
+.callout.teal{background:rgba(41,102,98,0.07);border-left-color:var(--teal)}
+.callout.gold{background:rgba(239,212,143,0.22);border-left-color:var(--teal)}
+.callout.coral{background:rgba(198,79,47,0.08);border-left-color:var(--coral)}
+.callout.coral .callout-label{color:var(--coral)}
+
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+
+/* FEATURE CARD */
+.f-card{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:30px 28px;transition:box-shadow 0.25s,transform 0.25s;display:flex;flex-direction:column}
+.f-card:hover{box-shadow:0 8px 28px rgba(28,10,4,0.08);transform:translateY(-2px)}
+.f-card .f-icon{width:46px;height:46px;border-radius:50%;background:rgba(41,102,98,0.10);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.f-card .f-icon svg{stroke:var(--teal)}
+.f-card h3{font-family:var(--display);font-weight:700;font-size:20px;line-height:1.18;color:var(--black);margin-bottom:10px}
+.f-card h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.f-card p{font-size:14.5px;line-height:1.6;color:rgba(28,10,4,0.74);flex:1}
+.f-card .f-link{margin-top:14px;display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);text-decoration:none;font-weight:500}
+.f-card .f-link:hover{color:var(--coral)}
+.f-card.with-image .f-img{aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:2px;margin:-30px -28px 22px;border-bottom:3px solid var(--teal)}
+
+/* IMAGE STRIPS */
+.image-strip{padding:0}
+.image-strip-grid{display:grid;gap:0}
+.image-strip-grid img{display:block;width:100%;height:220px;object-fit:cover}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:background 0.2s,color 0.2s,opacity 0.2s,border-color 0.2s;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:var(--teal);color:var(--parchment);border-color:var(--teal)}
+.btn-primary:hover{opacity:0.88}
+.btn-secondary{background:transparent;color:var(--teal);border-color:var(--teal)}
+.btn-secondary:hover{background:var(--teal);color:var(--parchment)}
+.btn-gold{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.btn-gold:hover{opacity:0.88}
+.btn-on-dark{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.btn-on-dark:hover{opacity:0.88}
+.btn-outline-light{background:transparent;color:var(--parchment);border-color:var(--parchment)}
+.btn-outline-light:hover{background:var(--parchment);color:var(--teal)}
+
+/* CTA SECTION - teal background, gold accents */
+.cta-section{padding:80px 0;background:var(--teal);text-align:center;color:var(--parchment);position:relative}
+.cta-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
+.cta-section .kicker{color:var(--gold);opacity:0.88}
+.cta-section h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.07;letter-spacing:-0.02em;margin-top:10px;margin-bottom:18px;color:var(--parchment)}
+.cta-section h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.cta-section p{font-style:italic;font-size:17px;color:rgba(244,236,220,0.80);max-width:560px;margin:0 auto 30px;line-height:1.56}
+.cta-section .btn-row{justify-content:center}
+.cta-section .btn-primary{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.cta-section .btn-secondary{color:var(--parchment);border-color:var(--parchment);background:transparent}
+.cta-section .btn-secondary:hover{background:var(--parchment);color:var(--teal)}
+
+/* FOOTER - TEAL-DOMINANT with small black strip at very bottom */
+.site-footer{background:var(--teal);color:var(--parchment);padding:56px 0 0;position:relative;border-top:3px solid var(--gold)}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 56px 44px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+.footer-logo img{height:28px;width:auto;margin-bottom:16px;display:block}
+.footer-tagline{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:0.92}
+.footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.72);max-width:280px}
+.footer-col-title{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500;opacity:0.92}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:9px}
+.footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.72);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-contact{font-size:13.5px;color:rgba(244,236,220,0.72);margin-bottom:9px;line-height:1.55}
+.footer-contact a{color:inherit;text-decoration:none}
+.footer-contact a:hover{color:var(--gold)}
+
+/* Small black strip at very bottom - just for license/legal/copyright */
+.footer-bottom{background:var(--black);color:rgba(244,236,220,0.55)}
+.footer-bottom-inner{max-width:1200px;margin:0 auto;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:48px}
+.footer-license{font-family:var(--mono);font-size:8.5px;letter-spacing:0.10em;color:rgba(244,236,220,0.50);line-height:1.5}
+.footer-legal{display:flex;gap:18px}
+.footer-legal a{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:rgba(244,236,220,0.45);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.footer-legal a:hover{color:var(--gold)}
+
+/* WHATSAPP FLOAT */
+.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.30);z-index:250;text-decoration:none;transition:transform 0.2s}
+.whatsapp-float:hover{transform:scale(1.1);color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .container{padding:0 28px}
+  .site-nav-links{display:none}
+  .site-nav-inner{padding:0 20px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;padding:0 28px 36px;gap:32px}
+  .footer-bottom-inner{padding:12px 28px;flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .footer-inner{grid-template-columns:1fr}
+  .page-hero{padding:54px 0 44px}
+}
+
+
+/* Bridge: style original calculator's utility classes with new brand */
+.calc-input, .calc-select{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:2px;font-family:var(--body);font-size:15px;color:var(--black);background:var(--white)}
+.calc-input:focus,.calc-select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(41,102,98,0.10)}
+.calc-group{margin-bottom:14px}
+.calc-row{display:flex;gap:12px;align-items:flex-end;margin-bottom:14px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.flex{display:flex}
+.flex-1{flex:1}
+.flex-wrap{flex-wrap:wrap}
+.gap-3{gap:12px}
+.gap-4{gap:16px}
+.items-end{align-items:flex-end}
+.items-center{align-items:center}
+.justify-center{justify-content:center}
+.mb-2{margin-bottom:8px}
+.mb-3{margin-bottom:12px}
+.mb-4{margin-bottom:16px}
+.mb-5{margin-bottom:20px}
+.mb-6{margin-bottom:24px}
+.mb-8{margin-bottom:32px}
+.mt-4{margin-top:16px}
+.mt-2{margin-top:8px}
+.pt-2{padding-top:8px}
+.p-3{padding:12px}
+.p-4{padding:16px}
+.block{display:block}
+.font-semibold{font-weight:600}
+.font-bold{font-weight:700}
+.font-domine{font-family:var(--display)}
+.text-teal{color:var(--teal)}
+.text-coral{color:var(--coral)}
+.text-brand{color:var(--black)}
+.text-brand-50{color:rgba(28,10,4,0.5)}
+.text-brand-60{color:rgba(28,10,4,0.6)}
+.text-brand-70{color:rgba(28,10,4,0.7)}
+.text-brand-80{color:rgba(28,10,4,0.8)}
+.text-white{color:var(--parchment)}
+.text-white-70{color:rgba(244,236,220,0.7)}
+.text-white-90{color:rgba(244,236,220,0.9)}
+.text-sm{font-size:14px}
+.text-xs{font-size:12px}
+.text-lg{font-size:18px}
+.text-xl{font-size:20px}
+.text-2xl{font-size:24px}
+.text-3xl{font-size:32px}
+.italic{font-style:italic}
+.text-center{text-align:center}
+.justify-between{justify-content:space-between}
+.space-y-2 > * + *{margin-top:8px}
+.space-y-1 > * + *{margin-top:4px}
+.border-t{border-top:1px solid var(--border)}
+.border-t-2{border-top:2px solid var(--border)}
+.border-dove{border-color:var(--dove)}
+.border-dashed{border-top-style:dashed}
+.rounded{border-radius:3px}
+.rounded-lg{border-radius:6px}
+.bg-white{background:var(--white)}
+.bg-parchment{background:var(--parchment)}
+.bg-dove{background:var(--dove)}
+.bg-teal{background:var(--teal)}
+.section-pad{padding:64px 0}
+.card{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:32px;margin-bottom:16px}
+.max-w-3{max-width:920px;margin:0 auto}
+.accent-teal{accent-color:var(--teal)}
+.w-4{width:16px}
+.h-4{height:16px}
+.cursor-pointer{cursor:pointer}
+.bg-coral{background:var(--coral)}
+.btn-primary{background:var(--teal);color:var(--parchment);border:1px solid var(--teal);font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;cursor:pointer;display:inline-block}
+.btn-primary:hover{opacity:0.88}
+button.btn-primary{border:none}
+/* Make heading sizes work */
+h1.font-domine{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.02em}
+h2.font-domine, .font-domine.text-2xl{font-family:var(--display);font-weight:700;color:var(--black)}
+h3.font-domine{font-family:var(--display);font-weight:700;color:var(--black);font-size:20px}
+h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);font-size:18px}
+.font-domine.text-3xl{font-size:32px}
+.font-domine.text-xl{font-size:24px}
+/* Hide the old page-hero (we add our own) */
+.section-pad.bg-white .max-w-3{background:var(--white)}
+.page-hero.bg-teal{display:none}
+/* Override card backgrounds inside calc */
+.card{background:var(--white);border:1px solid var(--border)}
+.bg-teal.card{background:var(--teal);color:var(--parchment)}
+.bg-teal.card .text-brand-70{color:rgba(244,236,220,0.78)}
+.bg-teal.card .text-brand{color:var(--parchment)}
+.bg-teal.card .text-teal{color:var(--gold)}
+.bg-teal.card .border-t,.bg-teal.card .border-t-2{border-color:rgba(244,236,220,0.18)}
+/* Section padding default */
+.section-pad{padding:64px 0}
+.section-pad.bg-parchment{background:var(--parchment)}
+.section-pad.bg-white{background:var(--white)}
+
+
+/* === POLISH PASS === */
+/* Bird-bullet lists - use AR icon as bullet marker */
+.prose ul, ul.bird-list { list-style: none; padding-left: 0; margin-left: 0 }
+.prose ul li, ul.bird-list li { padding-left: 30px; position: relative; margin-bottom: 10px }
+.prose ul li::before, ul.bird-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 18px;
+  height: 18px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+}
+/* Compare list: neutral bullets use bird, good keeps checkmark */
+.compare-list li.neutral { padding-left: 30px }
+.compare-list li.neutral::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+  opacity: 0.45;
+  top: 0.45em;
+}
+/* Nav logo +33% (30 -> 40px) */
+.site-nav-logo img { height: 40px !important }
+/* Footer logo +28% (28 -> 36px) */
+.footer-logo img { height: 36px !important }
+/* Stronger area-card overlay + text-shadow */
+.area-card::before {
+  background: linear-gradient(180deg, rgba(28,10,4,0.18) 0%, rgba(28,10,4,0.45) 45%, rgba(28,10,4,0.92) 100%) !important;
+}
+.area-card .area-content { padding: 26px 22px !important }
+.area-card h3 {
+  font-size: 23px !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  margin-bottom: 6px !important;
+}
+.area-card p {
+  font-size: 13.5px !important;
+  color: rgba(255,255,255,0.94) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.50);
+}
+</style>
 </head>
 <body>
 
-<!-- IMPIC DISCLAIMER TOP -->
-<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;position:fixed;top:0;left:0;right:0;z-index:200;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
-<!-- Nav Spacer for Top Banner -->
-<div style="height:36px;"></div>
-<nav id="mainNav" class="nav nav-scrolled" style="top:36px">
-  <div class="container nav-inner">
-    <a href="index.html"><img src="../logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty"  /></a>
-    <div class="nav-links">
-      <a href="properties.html">Comprar</a><a href="sell.html">Vender</a><a href="about.html">Sobre</a><a href="careers.html">Carreiras</a><a href="resources.html">Recursos</a><a href="faq.html">FAQ</a><a href="partner.html">Parceiro</a><a href="calculator.html">Ferramentas</a><a href="contact.html">Contacto</a>
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <div class="site-nav-logo">
+      <a href="index.html"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></a>
     </div>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <a href="../tax-calculator.html" style="font-weight:600;font-size:0.7rem;letter-spacing:0.04em;text-transform:uppercase;color:#296662;border:1px solid #296662;padding:4px 8px;border-radius:4px;">EN</a>
-      <a href="contact.html" class="btn btn-primary" style="display:block;">Avaliação Grátis</a>
+    <div class="site-nav-links">
+      <a href="index.html">In&iacute;cio</a>
+      <a href="properties.html">Comprar</a>
+      <a href="sell.html">Vender</a>
+      <a href="our-story.html">A Nossa Hist&oacute;ria</a>
+      <a href="our-team.html">A Nossa Equipa</a>
+      <a href="tools.html">Ferramentas</a>
+      <div class="nav-more-wrap">
+        <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">Mais &#9662;</button>
+        <div class="nav-dropdown" id="moreDropdown" role="menu">
+          <a href="careers.html">Carreiras</a>
+          <a href="resources.html">Recursos</a>
+          <a href="faq.html">FAQ</a>
+          <a href="partner.html">Parceiro</a>
+          <a href="contact.html">Contacto</a>
+        </div>
+      </div>
     </div>
-    <button class="nav-toggle" id="mobileToggle" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <div class="site-nav-actions">
+      <a class="site-nav-lang" href="../tax-calculator.html">EN</a>
+      <a class="site-nav-cta" href="contact.html">Avalia&ccedil;&atilde;o Gr&aacute;tis</a>
+    </div>
   </div>
 </nav>
-<div class="mobile-overlay" id="mobileOverlay"></div>
-<div class="mobile-drawer" id="mobileDrawer">
-  <a href="index.html">Início</a><a href="properties.html">Comprar</a><a href="sell.html">Vender</a><a href="about.html">Sobre</a><a href="careers.html">Carreiras</a><a href="resources.html">Recursos</a><a href="faq.html">FAQ</a><a href="partner.html">Parceiro</a><a href="calculator.html">Ferramentas</a><a href="contact.html">Contacto</a>
-  <a href="../tax-calculator.html" style="font-weight:600;font-size:0.7rem;letter-spacing:0.04em;text-transform:uppercase;color:#efd48f;border:1px solid #efd48f;padding:4px 8px;border-radius:4px;display:inline-block;margin-top:16px;text-align:center;">English (EN)</a>
-</div>
 
-<section class="page-hero bg-teal" style="padding-top:64px;padding-bottom:12px;">
+<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('../images/sell/us-home-sale.jpg');background-size:cover;background-position:center">
+  <div class="container">
+    <div class="kicker">Calculadora Fiscal para Compradores Locais</div>
+    <h1>Impostos sobre im&oacute;veis, <em>detalhados</em>.</h1>
+    <p class="sub">IMT, Imposto do Selo, escritura, registo — o detalhe completo para qualquer compra de im&oacute;vel em Portugal.</p>
+  </div>
+</section>
+<section class="section">
+<div class="container">
+<section class="page-hero bg-teal">
   <div class="container reveal">
-    <p class="label-text text-gold mb-1">FERRAMENTAS</p>
-    <h1 class="font-domine">Calculadora de Impostos</h1>
-    <p class="max-w-2" style="color:rgba(255,255,255,0.8);">Calcule o seu IMT e Imposto de Selo. Veja como os descontos de residência própria diminuem com o preço.</p>
+    <p class="label-text text-gold mb-1">TOOLS</p>
+    <h1 class="font-domine">Property Tax Calculator</h1>
   </div>
 </section>
 
 <section style="padding:12px 0;background:rgba(41,102,98,0.05);border-bottom:1px solid rgba(41,102,98,0.1);">
   <div class="container flex gap-4 justify-center flex-wrap">
-    <a href="calculator.html" class="text-brand-60 hover:text-teal text-sm transition-colors">Capital e Hipoteca</a>
-    <a href="tax-calculator.html" class="text-teal font-semibold text-sm" style="border-bottom:2px solid #296662;">Calculadora Impostos</a>
+    <a href="calculator.html" class="text-brand-60 hover:text-teal text-sm transition-colors">Capital &amp; Mortgage</a>
+    <a href="tax-calculator.html" class="text-teal font-semibold text-sm" style="border-bottom:2px solid #296662;">Property Tax Calculator</a>
   </div>
 </section>
 
 <section class="section-pad bg-white">
   <div class="container">
-    <div class="max-w-3" style="margin:0 auto;">
-      <div class="card reveal" style="padding:32px;">
-        <h2 class="font-domine text-xl text-brand mb-6">Calculadora de Impostos de Compra</h2>
-        <div style="display:flex;flex-direction:column;gap:16px;">
-          <div class="grid-2">
-            <div><label style="font-weight:600;font-size:0.875rem;">Preço de Compra (€)</label><input type="number" id="localPrice" class="form-input" placeholder="e.g. 350000" /></div>
-            <div><label style="font-weight:600;font-size:0.875rem;">Localização</label><select id="localLocation" class="form-input"><option value="mainland">Portugal Continental</option><option value="islands">Açores ou Madeira</option></select></div>
-          </div>
-          <div>
-            <label style="font-weight:600;font-size:0.875rem;">Finalidade</label>
-            <select id="localPurpose" class="form-input">
-              <option value="primary">Residência Própria Permanente (desconto IMT)</option>
-              <option value="secondary">Segunda Casa / Investimento (sem desconto)</option>
-            </select>
-          </div>
-          <button onclick="runLocalCalc()" class="btn btn-primary" style="width:100%;margin-top:8px;">Calcular Impostos</button>
+    <div class="max-w-3 reveal">
+      <h2 class="font-domine text-2xl text-brand mb-4">Understanding Your Purchase Taxes</h2>
+      <p class="text-brand-80 mb-4">Portugal's <strong class="text-teal">IMT</strong> (property transfer tax) uses progressive brackets. <strong class="text-teal">Primary residences get significant discounts</strong> at lower price points, but these benefits phase out as price increases.</p>
+      <p class="text-brand-80 mb-4">The chart below shows exactly how much IMT discount you get at each price level &mdash; and where the discount phases to zero.</p>
+    </div>
+
+    <div class="max-w-2 reveal" style="margin-top:32px;">
+      <div class="card" style="padding:32px;">
+        <h3 class="font-domine text-xl text-brand mb-5">IMT &amp; Stamp Duty Calculator</h3>
+        <div class="calc-group mb-4">
+          <label class="block font-semibold text-brand-70 text-sm mb-1">Purchase Price (&euro;)</label>
+          <input type="number" id="localPrice" value="350000" step="1000" class="calc-input" />
         </div>
-        <div id="local-results" class="results-panel" style="display:none;margin-top:24px;">
-          <h3 class="font-domine text-lg text-brand mb-4">Resumo dos Impostos</h3>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div class="bg-parchment rounded-lg p-4" style="background:rgba(228,231,230,0.4);"><p class="text-brand-60 text-sm">IMT (Imposto Municipal)</p><p id="resLocalIMT" class="font-domine text-xl text-brand"></p></div>
-            <div class="bg-parchment rounded-lg p-4" style="background:rgba(228,231,230,0.4);"><p class="text-brand-60 text-sm">Imposto de Selo</p><p id="resLocalStamp" class="font-domine text-xl text-brand"></p></div>
-            <div class="bg-parchment rounded-lg p-4" style="background:rgba(228,231,230,0.4);"><p class="text-brand-60 text-sm">Total em Impostos</p><p id="resLocalTotal" class="font-domine text-xl text-brand"></p></div>
-            <div class="bg-parchment rounded-lg p-4" style="background:rgba(228,231,230,0.4);"><p class="text-brand-60 text-sm">Taxa Efetiva</p><p id="resLocalRate" class="font-domine text-xl text-brand"></p></div>
-          </div>
-          <div id="discountRow" class="mt-4 p-4 rounded-lg" style="display:none;background:rgba(41,102,98,0.1);"><p class="text-teal text-sm"><strong>Desconto de Residência Própria:</strong> <span id="resLocalDiscount"></span></p></div>
+        <div class="grid-2 gap-3 mb-4">
+          <div><label class="block font-semibold text-brand-70 text-sm mb-1">Region</label><select id="localLocation" class="calc-select"><option value="mainland">Mainland Portugal</option><option value="islands">Azores / Madeira</option></select></div>
+          <div><label class="block font-semibold text-brand-70 text-sm mb-1">Property Purpose</label><select id="localPurpose" class="calc-select"><option value="primary">Primary Residence</option><option value="secondary">Secondary / Investment</option></select></div>
         </div>
+        <button onclick="runLocalCalc()" class="btn btn-primary" style="width:100%;">Calculate My Taxes</button>
+
+        <div id="local-results" style="display:none;margin-top:24px;">
+          <div style="background:#f4ecdc;border-radius:8px;border:1px solid #e4e7e6;padding:24px;">
+            <h4 class="font-domine text-lg text-brand mb-4">Your Tax Breakdown</h4>
+            <div class="space-y-2">
+              <div class="flex justify-between"><span class="text-brand-70">IMT (Property Transfer Tax):</span><span id="resLocalIMT" class="text-teal font-bold">&euro;0</span></div>
+              <div class="flex justify-between"><span class="text-brand-70">Without Primary Residence Discount:</span><span id="resLocalIMTNoDisc" class="text-brand-60">&euro;0</span></div>
+              <div id="discountRow" class="flex justify-between text-sm" style="display:none;"><span class="text-green-600">&darr; Primary Residence Discount:</span><span id="resLocalDiscount" class="text-green-600 font-bold">-&euro;0</span></div>
+              <div class="flex justify-between pt-2 border-t border-dove"><span class="text-brand-70">Stamp Duty (0.8%):</span><span id="resLocalStamp" class="font-bold text-brand">&euro;0</span></div>
+              <div class="flex justify-between text-lg font-bold pt-2 border-t-2 border-dove"><span>Total Upfront Taxes:</span><span id="resLocalTotal" class="text-coral">&euro;0</span></div>
+              <p class="text-right text-sm text-brand-50">Effective rate: <span id="resLocalRate">0%</span></p>
+            </div>
+
+            <!-- IMT Discount Phasing Visual -->
+            <div id="discountPhase" style="display:none;margin-top:20px;padding:16px;background:#fff;border-radius:8px;border:1px solid #e4e7e6;">
+              <h5 class="font-domine text-base text-brand mb-3">Primary Residence IMT Discount Phasing</h5>
+              <p class="text-brand-60 text-sm mb-3">Your discount savings at this price: <strong class="text-green-600" id="phaseSavings">&euro;0</strong></p>
+              <div class="space-y-2">
+                <div class="flex justify-between text-sm"><span class="text-brand-60">Up to &euro;101,917</span><span class="text-green-600 font-semibold">100% exempt (IMT = &euro;0)</span></div>
+                <div style="height:4px;background:#e4e7e6;border-radius:2px;overflow:hidden;"><div id="phaseBar" style="height:100%;background:#16a34a;border-radius:2px;width:0%;transition:width 0.5s;"></div></div>
+                <div class="flex justify-between text-xs text-brand-50"><span>Full discount</span><span id="phasePosition">Your property</span><span>No discount</span></div>
+              </div>
+              <p class="text-brand-50 text-xs mt-3">Discount phases out progressively between &euro;101,917 and &euro;633,453 on mainland Portugal.</p>
+            </div>
+
+            <div class="mt-4 bg-white rounded-lg p-4 border border-dove">
+              <p class="text-brand-70 text-sm"><strong class="text-teal">Budget tip:</strong> Add notary and registration fees (&euro;1,000&ndash;&euro;2,000) for total closing costs. These taxes must be paid in cash at closing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMT Brackets Reference Table -->
+    <div class="max-w-3 reveal" style="margin-top:48px;">
+      <h3 class="font-domine text-xl text-brand mb-4">IMT Brackets: Mainland Primary Residence</h3>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead><tr><th>Price Range</th><th>IMT Rate</th><th>Primary Discount</th></tr></thead>
+          <tbody>
+            <tr><td>&euro;0 &ndash; &euro;101,917</td><td>0%</td><td class="text-green-600 font-semibold">100% exempt</td></tr>
+            <tr><td>&euro;101,917 &ndash; &euro;139,412</td><td>2% &minus; &euro;2,038</td><td class="text-green-600">Partial discount applies</td></tr>
+            <tr><td>&euro;139,412 &ndash; &euro;199,642</td><td>5% &minus; &euro;6,221</td><td class="text-green-600">Partial discount applies</td></tr>
+            <tr><td>&euro;199,642 &ndash; &euro;316,772</td><td>7% &minus; &euro;10,214</td><td class="text-green-600">Partial discount applies</td></tr>
+            <tr><td>&euro;316,772 &ndash; &euro;633,453</td><td>8% &minus; &euro;13,381</td><td class="text-brand-60">Discount phasing out</td></tr>
+            <tr><td>&euro;633,453 &ndash; &euro;1,102,920</td><td>Flat 6%</td><td class="text-brand-50">No discount</td></tr>
+            <tr><td>Above &euro;1,102,920</td><td>Flat 7.5%</td><td class="text-brand-50">No discount</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section-pad bg-parchment">
-  <div class="container">
-    <div class="max-w-3 reveal" style="margin:0 auto;">
-      <h3 class="font-domine text-lg text-brand mb-3">Tabelas de IMT para Referência</h3>
-      <p class="text-brand-60 text-sm mb-4">O IMT em Portugal utiliza taxas progressivas. A tabela abaixo mostra os escalões para imóveis no continente. As ilhas dos Açores e da Madeira têm escalões ligeiramente diferentes com valores mais elevados para a isenção.</p>
-      <table style="width:100%;border-collapse:collapse;font-size:0.875rem;">
-        <thead><tr style="background:#296662;color:#fff;"><th style="padding:10px;text-align:left;">Escalão (€)</th><th style="padding:10px;text-align:right;">Taxa</th><th style="padding:10px;text-align:right;">Dedução</th></tr></thead>
-        <tbody>
-          <tr style="border-bottom:1px solid rgba(28,10,4,0.1);"><td style="padding:10px;">Até 101.917</td><td style="padding:10px;text-align:right;">0%</td><td style="padding:10px;text-align:right;">&mdash;</td></tr>
-          <tr style="border-bottom:1px solid rgba(28,10,4,0.1);"><td style="padding:10px;">101.917 &ndash; 139.412</td><td style="padding:10px;text-align:right;">2%</td><td style="padding:10px;text-align:right;">&minus; 2.038,34€</td></tr>
-          <tr style="border-bottom:1px solid rgba(28,10,4,0.1);"><td style="padding:10px;">139.412 &ndash; 199.642</td><td style="padding:10px;text-align:right;">5%</td><td style="padding:10px;text-align:right;">&minus; 6.220,70€</td></tr>
-          <tr style="border-bottom:1px solid rgba(28,10,4,0.1);"><td style="padding:10px;">199.642 &ndash; 316.772</td><td style="padding:10px;text-align:right;">7%</td><td style="padding:10px;text-align:right;">&minus; 10.213,54€</td></tr>
-          <tr style="border-bottom:1px solid rgba(28,10,4,0.1);"><td style="padding:10px;">316.772 &ndash; 633.453</td><td style="padding:10px;text-align:right;">8%</td><td style="padding:10px;text-align:right;">&minus; 13.381,26€</td></tr>
-          <tr style="border-bottom:1px solid rgba(28,10,4,0.1);"><td style="padding:10px;">633.453 &ndash; 1.102.920</td><td style="padding:10px;text-align:right;">6% (plano)</td><td style="padding:10px;text-align:right;">&mdash;</td></tr>
-          <tr><td style="padding:10px;">Acima de 1.102.920</td><td style="padding:10px;text-align:right;">7,5%</td><td style="padding:10px;text-align:right;">&mdash;</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+
+
+
+</div>
 </section>
 
-
-<!-- IMPIC DISCLAIMER -->
-<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
-<footer class="footer" style="padding:40px 0 24px;">
-  <div class="container">
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;">
-      <img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" height="22" />
-      <p class="label-text text-gold">MODERN HERITAGE &middot; MODERN BUSINESS</p>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></div>
+      <div class="footer-tagline">Modern Heritage &middot; Modern Business</div>
+      <p class="footer-desc">Uma ag&ecirc;ncia imobili&aacute;ria boutique que o guia para casa na Costa de Prata de Portugal com confian&ccedil;a, experi&ecirc;ncia e servi&ccedil;o moderno.</p>
     </div>
-    <p class="text-center text-white-60 text-sm mt-4">&copy; 2026 Aldeia Realty. Todos os direitos reservados.</p>
+    <div class="footer-col">
+      <div class="footer-col-title">Navega&ccedil;&atilde;o</div>
+      <ul>
+        <li><a href="properties.html">Comprar</a></li>
+        <li><a href="sell.html">Vender</a></li>
+        <li><a href="our-story.html">A Nossa Hist&oacute;ria</a></li>
+        <li><a href="our-team.html">A Nossa Equipa</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <ul>
+        <li><a href="sell.html">Guia do Vendedor</a></li>
+        <li><a href="resources.html">Perspetivas de Mercado</a></li>
+        <li><a href="tools.html">Calculadoras</a></li>
+        <li><a href="nhr-guide.html">Guia NHR</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contacto</div>
+      <div class="footer-contact"><a href="https://wa.me/351912771309">+351 912 771 309 (WhatsApp)</a></div>
+      <div class="footer-contact"><a href="mailto:info@aldeiarealty.com">info@aldeiarealty.com</a></div>
+      <div class="footer-contact">Rua Dr. &Acirc;ngelo Ferrari, n.&ordm; 7, R/C Dt.&ordm;<br>2500-113 Caldas da Rainha, Portugal</div>
+    </div>
   </div>
-<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:12px;">
-      <a href="privacy-policy.html" style="color:rgba(255,255,255,0.5);font-size:0.75rem;text-decoration:none;">Política de Privacidade</a>
-      <span style="color:rgba(255,255,255,0.2);">|</span>
-      <a href="complaints.html" style="color:rgba(255,255,255,0.5);font-size:0.75rem;text-decoration:none;">Resolução de Litígios</a>
-      <span style="color:rgba(255,255,255,0.2);">|</span>
-      <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.5);font-size:0.75rem;text-decoration:none;">Livro de Reclamações</a>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-license">&copy; 2026 Aldeia Realty &middot; Atividade de Mediacao Imobiliaria &middot; Lei 15/2013 &middot; Guia n.&ordm; 12456-GAMI / 2026 T, de 2026/05/25</div>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Pol&iacute;tica de Privacidade</a>
+        <a href="complaints.html">Resolu&ccedil;&atilde;o de Lit&iacute;gios</a>
+        <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclama&ccedil;&otilde;es</a>
+      </div>
     </div>
+  </div>
 </footer>
 
-<script src="../js/script.js"></script>
 <a href="https://wa.me/351912771309" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
-<div class="cookie-banner" id="cookieBanner">
-  <p>Utilizamos cookies para melhorar a sua experiência. Ao continuar, concorda com a nossa <a href="privacy-policy.html">Política de Privacidade</a>.</p>
-  <button class="btn btn-primary" id="cookieAccept">Aceitar</button>
-  <button class="btn btn-outline-white" id="cookieDecline" style="color:#fff;border-color:rgba(255,255,255,0.4)">Recusar</button>
-</div>
+
+<script>
+function toggleMore(){
+  var dd=document.getElementById('moreDropdown');
+  var btn=document.getElementById('moreBtn');
+  if(!dd) return;
+  var open=dd.classList.toggle('open');
+  if(btn) btn.setAttribute('aria-expanded',open);
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-more-wrap')){
+    var dd=document.getElementById('moreDropdown');
+    if(dd){dd.classList.remove('open');}
+    var btn=document.getElementById('moreBtn');
+    if(btn){btn.setAttribute('aria-expanded','false');}
+  }
+});
+</script>
+<script>
+// ===== SCROLL REVEAL =====
+function initReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+  reveals.forEach(el => observer.observe(el));
+}
+
+// ===== NAV SCROLL =====
+function initNav() {
+  const nav = document.getElementById('mainNav');
+  if (!nav) return;
+  const logo = nav.querySelector('img[alt="Aldeia Realty"]');
+  const prefix = location.pathname.startsWith('/pt/') ? '../' : '';
+  const scrolledSrc = prefix + 'logos/AR-Logo-Horizontal-FullColour@2x.png';
+  const transparentSrc = prefix + 'logos/AR-Logo-Horizontal-InverseColour@2x.png';
+  function update() {
+    if (window.scrollY > 100) {
+      nav.classList.add('nav-scrolled');
+      nav.classList.remove('nav-transparent');
+      if (logo) logo.src = scrolledSrc;
+    } else {
+      nav.classList.add('nav-transparent');
+      nav.classList.remove('nav-scrolled');
+      if (logo) logo.src = transparentSrc;
+    }
+  }
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+}
+
+// ===== MOBILE NAV =====
+function initMobileNav() {
+  const toggle = document.getElementById('mobileToggle');
+  const drawer = document.getElementById('mobileDrawer');
+  const overlay = document.getElementById('mobileOverlay');
+  if (!toggle || !drawer || !overlay) return;
+  function open() { drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function close() { drawer.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  toggle.addEventListener('click', () => drawer.classList.contains('open') ? close() : open());
+  overlay.addEventListener('click', close);
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+}
+
+// ===== ACCORDION =====
+function initAccordion() {
+  document.querySelectorAll('.accordion-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      const isOpen = content.classList.contains('active');
+      document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+      if (!isOpen) content.classList.add('active');
+    });
+  });
+}
+
+// ===== CALCULATOR HELPERS =====
+function toEUR(amount, currency, rate) {
+  if (currency === 'EUR') return amount;
+  if (currency === 'USD') return amount / rate;
+  return amount;
+}
+
+function calcIMT(price, location, purpose) {
+  let imt = 0;
+  if (location === 'mainland' && purpose === 'primary') {
+    if (price <= 101917) imt = 0;
+    else if (price <= 139412) imt = price * 0.02 - 2038.34;
+    else if (price <= 199642) imt = price * 0.05 - 6220.70;
+    else if (price <= 316772) imt = price * 0.07 - 10213.54;
+    else if (price <= 633453) imt = price * 0.08 - 13381.26;
+    else if (price <= 1102920) imt = price * 0.06;
+    else imt = price * 0.075;
+  } else if (location === 'mainland' && purpose === 'secondary') {
+    if (price <= 101917) imt = price * 0.01;
+    else if (price <= 139412) imt = price * 0.02 - 1019.17;
+    else if (price <= 199642) imt = price * 0.05 - 5201.53;
+    else if (price <= 316772) imt = price * 0.07 - 9194.37;
+    else if (price <= 633453) imt = price * 0.08 - 12362.09;
+    else if (price <= 1102920) imt = price * 0.06;
+    else imt = price * 0.075;
+  } else if (location === 'islands' && purpose === 'primary') {
+    if (price <= 127396) imt = 0;
+    else if (price <= 174265) imt = price * 0.02 - 2547.92;
+    else if (price <= 249552) imt = price * 0.05 - 7775.87;
+    else if (price <= 395965) imt = price * 0.07 - 12766.91;
+    else if (price <= 791816) imt = price * 0.08 - 16726.56;
+    else if (price <= 1378650) imt = price * 0.06;
+    else imt = price * 0.075;
+  } else if (location === 'islands' && purpose === 'secondary') {
+    if (price <= 127396) imt = price * 0.01;
+    else if (price <= 174265) imt = price * 0.02 - 1273.96;
+    else if (price <= 249552) imt = price * 0.05 - 6501.91;
+    else if (price <= 395965) imt = price * 0.07 - 11492.95;
+    else if (price <= 791816) imt = price * 0.08 - 15452.60;
+    else if (price <= 1378650) imt = price * 0.06;
+    else imt = price * 0.075;
+  }
+  return Math.max(0, imt);
+}
+
+function fmtEUR(n) { return '\u20ac' + Math.round(n).toLocaleString('en-US'); }
+
+// ===== CALCULATOR (with mortgage) =====
+function updateRateHint() {
+  const euriborEl = document.getElementById('euriborRate');
+  const typeEl = document.getElementById('mortgageType');
+  const appliedEl = document.getElementById('appliedRate');
+  const hintEl = document.getElementById('rateHint');
+  if (!euriborEl || !typeEl || !appliedEl) return;
+  const euribor = parseFloat(euriborEl.value) || 2.65;
+  const type = typeEl.value;
+  let spread = 1.0, label = 'Mixed';
+  if (type === 'fixed2') { spread = 2.0; label = 'Fixed'; }
+  if (type === 'fixed3') { spread = 3.0; label = 'Fixed'; }
+  const total = (euribor + spread).toFixed(2);
+  appliedEl.value = total + '%';
+  if (hintEl) hintEl.textContent = label + ' rate = ' + euribor + '% EURIBOR + ' + spread + '% spread = ' + total + '% total interest';
+}
+
+function runExpatCalc() {
+  const exRate = parseFloat(document.getElementById('exRate').value) || 1.08;
+  const salePrice = toEUR(parseFloat(document.getElementById('salePrice').value)||0, document.getElementById('currSale').value, exRate);
+  const mortgageBal = toEUR(parseFloat(document.getElementById('mortgageBalance').value)||0, document.getElementById('currMortgage').value, exRate);
+  const cashOnHand = toEUR(parseFloat(document.getElementById('cashOnHand').value)||0, document.getElementById('currCash').value, exRate);
+  const purchasePrice = parseFloat(document.getElementById('purchasePrice').value)||0;
+  const downpayment = parseFloat(document.getElementById('downpaymentAmount').value)||0;
+  const ptLoc = document.getElementById('ptLocation').value;
+  const ptPurpose = document.getElementById('ptPurpose').value;
+  const homeOffice = document.getElementById('homeOffice').checked;
+
+  const euribor = parseFloat(document.getElementById('euriborRate').value)||2.65;
+  const mType = document.getElementById('mortgageType').value;
+  let spread = 1.0;
+  if (mType === 'fixed2') spread = 2.0;
+  if (mType === 'fixed3') spread = 3.0;
+  const annualRate = (euribor + spread) / 100;
+  const termYears = parseInt(document.getElementById('loanTerm').value)||25;
+
+  const equity = salePrice - mortgageBal;
+  const totalCashPool = equity + cashOnHand;
+  const newMortgage = Math.max(0, purchasePrice - downpayment);
+  const imt = calcIMT(purchasePrice, ptLoc, ptPurpose);
+  const stampDuty = purchasePrice * 0.008;
+  const totalTaxes = imt + stampDuty;
+  const totalCashReq = downpayment + totalTaxes;
+  const remainingLiquid = totalCashPool - totalCashReq;
+
+  let monthlyPayment = 0, totalInterest = 0;
+  if (newMortgage > 0 && annualRate > 0) {
+    const monthlyRate = annualRate / 12;
+    const numPayments = termYears * 12;
+    monthlyPayment = newMortgage * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+    totalInterest = monthlyPayment * numPayments - newMortgage;
+  }
+
+  document.getElementById('resCashPool').textContent = fmtEUR(totalCashPool);
+  document.getElementById('resDownpayment').textContent = fmtEUR(downpayment);
+  document.getElementById('resClosing').textContent = fmtEUR(totalTaxes);
+  document.getElementById('resTaxBreakdown').textContent = '(IMT: ' + fmtEUR(imt) + ' | Stamp: ' + fmtEUR(stampDuty) + ')';
+  document.getElementById('resNewMortgage').textContent = fmtEUR(newMortgage);
+  document.getElementById('resInterestRate').textContent = ((annualRate)*100).toFixed(2) + '%';
+  document.getElementById('resLoanTerm').textContent = termYears + ' years';
+  document.getElementById('resMonthly').textContent = fmtEUR(monthlyPayment) + '/mo';
+  document.getElementById('resTotalInterest').textContent = fmtEUR(totalInterest);
+  const liquidEl = document.getElementById('resLiquid');
+  liquidEl.textContent = fmtEUR(remainingLiquid);
+  liquidEl.className = remainingLiquid >= 0 ? 'text-green-600 font-bold' : 'text-coral font-bold';
+
+  const warnOffice = document.getElementById('warningOffice');
+  if (warnOffice) warnOffice.style.display = homeOffice ? 'block' : 'none';
+  const warnShort = document.getElementById('shortfallWarning');
+  if (warnShort) warnShort.style.display = remainingLiquid < 0 ? 'block' : 'none';
+  if (remainingLiquid < 0) {
+    const shortAmt = document.getElementById('shortfallAmt');
+    if (shortAmt) shortAmt.textContent = fmtEUR(Math.abs(remainingLiquid));
+  }
+  document.getElementById('calc-results').style.display = 'block';
+}
+
+// ===== LOCAL TAX CALCULATOR (with IMT discount phasing) =====
+function runLocalCalc() {
+  const price = parseFloat(document.getElementById('localPrice').value)||0;
+  const ptLoc = document.getElementById('localLocation').value;
+  const ptPurpose = document.getElementById('localPurpose').value;
+
+  const imt = calcIMT(price, ptLoc, ptPurpose);
+  const imtNoDiscount = calcIMT(price, ptLoc, 'secondary');
+  const discount = Math.max(0, imtNoDiscount - imt);
+  const stampDuty = price * 0.008;
+  const totalTaxes = imt + stampDuty;
+  const effectiveRate = price > 0 ? (totalTaxes/price)*100 : 0;
+
+  document.getElementById('resLocalIMT').textContent = fmtEUR(imt);
+  const noDiscEl = document.getElementById('resLocalIMTNoDisc');
+  if (noDiscEl) noDiscEl.textContent = fmtEUR(imtNoDiscount);
+  const discRow = document.getElementById('discountRow');
+  if (discRow) discRow.style.display = (ptPurpose === 'primary' && discount > 0) ? 'flex' : 'none';
+  const discEl = document.getElementById('resLocalDiscount');
+  if (discEl) discEl.textContent = '-' + fmtEUR(discount);
+  document.getElementById('resLocalStamp').textContent = fmtEUR(stampDuty);
+  document.getElementById('resLocalTotal').textContent = fmtEUR(totalTaxes);
+  document.getElementById('resLocalRate').textContent = effectiveRate.toFixed(2) + '%';
+
+  const phaseEl = document.getElementById('discountPhase');
+  if (phaseEl) {
+    if (ptPurpose === 'primary') {
+      phaseEl.style.display = 'block';
+      const savingsEl = document.getElementById('phaseSavings');
+      if (savingsEl) savingsEl.textContent = fmtEUR(discount);
+      const barEl = document.getElementById('phaseBar');
+      const posEl = document.getElementById('phasePosition');
+      let pct = 0;
+      if (price <= 101917) pct = 0;
+      else if (price >= 633453) pct = 100;
+      else pct = ((price - 101917) / (633453 - 101917)) * 100;
+      if (barEl) {
+        barEl.style.width = pct + '%';
+        barEl.style.background = pct > 80 ? '#c64f2f' : pct > 50 ? '#efd48f' : '#16a34a';
+      }
+      if (posEl) posEl.textContent = pct < 10 ? 'Full discount' : pct > 90 ? 'No discount' : 'Your property';
+    } else {
+      phaseEl.style.display = 'none';
+    }
+  }
+
+  document.getElementById('local-results').style.display = 'block';
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  initNav();
+  initMobileNav();
+  initAccordion();
+});
+
+</script>
 </body>
 </html>

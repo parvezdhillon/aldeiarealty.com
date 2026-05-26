@@ -1,310 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NHR Tax Guide — Aldeia Realty</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NHR Guide &mdash; Aldeia Realty</title>
+<meta name="description" content="Plain-language guide to Portugal's Non-Habitual Resident regime and the new IFICI successor program." />
+<meta property="og:title" content="NHR Guide &mdash; Aldeia Realty" />
+<meta property="og:description" content="Plain-language guide to Portugal's Non-Habitual Resident regime and the new IFICI successor program." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aldeia Realty" />
+<meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/x-icon" href="logos/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="logos/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="logos/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-height:1.6}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.container-sm{max-width:800px;margin:0 auto;padding:0 24px}
-.font-domine{font-family:'Domine',serif}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;background:#fff;box-shadow:0 1px 4px rgba(28,10,4,0.08)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
-.nav-links{display:flex;align-items:center;gap:20px}
-.nav-links a{font-weight:600;font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;color:rgba(28,10,4,0.6);text-decoration:none}
-.nav-links a:hover,.nav-links a.active{color:#296662}
-.nav-inner>a:first-child{flex-shrink:0}
-.nav-inner img{height:28px;width:auto;object-fit:contain}
-.btn{display:inline-block;padding:10px 24px;border-radius:4px;font-weight:600;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;font-family:'Work Sans',sans-serif;text-align:center}
-.btn-primary{background:#296662;color:#fff}.btn-primary:hover{background:#1e4d4a}
-.btn-secondary{background:#efd48f;color:#1c0a04}.btn-secondary:hover{background:#e5c97f}
-.btn-white{background:#fff;color:#296662}.btn-white:hover{background:#f4ecdc}
-.page-hero{padding-top:64px;padding-bottom:16px;background:#296662}
-.page-hero h1{font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff}
-.page-hero p{color:rgba(255,255,255,0.75);font-size:0.875rem}
-.section-pad{padding:64px 0}
-.label-text{font-weight:600;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#296662;margin-bottom:12px;display:block}
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+
+:root{
+  --teal:#296662;--teal-dark:#1f4f4c;--black:#1c0a04;--gold:#efd48f;--dove:#e4e7e6;
+  --parchment:#f4ecdc;--white:#ffffff;--coral:#c64f2f;
+  --muted:rgba(28,10,4,0.55);--border:rgba(41,102,98,0.18);
+  --border-s:rgba(41,102,98,0.10);
+  --display:'Domine',Georgia,serif;
+  --body:'Work Sans',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--parchment);color:var(--black);font-family:var(--body);font-weight:400;line-height:1.6;overflow-x:hidden}
+
+/* NAV - teal with gold accent */
+.site-nav{background:var(--teal);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold);box-shadow:0 2px 20px rgba(28,10,4,0.18)}
+.site-nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:66px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.site-nav-logo img{height:30px;width:auto;display:block}
+.site-nav-links{display:flex;gap:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;align-items:center;flex:1;justify-content:center}
+.site-nav-links a{color:rgba(244,236,220,0.62);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+.site-nav-links a:hover,.site-nav-links a.active{color:var(--gold)}
+.nav-more-wrap{position:relative}
+.nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.62);padding:0;transition:color 0.2s}
+.nav-more-btn:hover{color:var(--gold)}
+.nav-dropdown{position:absolute;top:calc(100% + 14px);right:0;background:var(--black);border:1px solid rgba(239,212,143,0.18);border-radius:3px;padding:8px 0;min-width:170px;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.30);z-index:200}
+.nav-dropdown.open{display:block}
+.nav-dropdown a{display:block;padding:11px 18px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.65);text-decoration:none;transition:color 0.2s,background 0.2s}
+.nav-dropdown a:hover{color:var(--gold);background:rgba(41,102,98,0.20)}
+.site-nav-actions{display:flex;align-items:center;gap:14px}
+.site-nav-lang{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:rgba(244,236,220,0.50);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.site-nav-lang:hover{color:var(--gold)}
+.site-nav-cta{background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;white-space:nowrap;transition:opacity 0.2s}
+.site-nav-cta:hover{opacity:0.85}
+
+/* CONTAINER */
+.container{max-width:1200px;margin:0 auto;padding:0 56px}
+
+/* KICKER - DEFAULT TEAL (for cream backgrounds). Gold only on dark backgrounds. */
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;font-weight:500}
+/* Gold kicker variants - explicit class for dark contexts where needed */
+.kicker-gold{color:var(--gold)}
+
+/* PAGE HERO (teal background - gold kicker OK here) */
+.page-hero{background:var(--teal);padding:80px 0 70px;border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
+.page-hero .kicker{color:var(--gold);opacity:0.85}
+.page-hero h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.02em;color:var(--parchment);margin-bottom:20px}
+.page-hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.page-hero .sub{font-family:var(--body);font-size:17px;color:rgba(244,236,220,0.78);max-width:580px;line-height:1.6;font-style:italic}
+.page-hero.with-image{position:relative}
+.page-hero.with-image::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.22;z-index:0}
+.page-hero.with-image .container{position:relative;z-index:1}
+
+/* SECTION (generic) */
+.section{padding:80px 0;background:var(--parchment)}
+.section.dove{background:var(--dove)}
+.section.parchment{background:var(--parchment)}
+.section.white{background:var(--white)}
+.section-header{margin-bottom:48px;max-width:820px}
+.section-header h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.07;letter-spacing:-0.02em;margin-top:10px;color:var(--black)}
+.section-header h2 em{font-style:italic;color:var(--teal);font-weight:400}
+.section-header .sub{font-family:var(--body);font-style:italic;font-size:16px;color:var(--muted);margin-top:14px;max-width:620px;line-height:1.55}
+
+/* PROSE */
+.prose{font-size:15.5px;line-height:1.72;color:var(--black);max-width:760px}
+.prose p{margin-bottom:16px}
+.prose p:last-child{margin-bottom:0}
+.prose strong{font-weight:600;color:var(--teal)}
+.prose ul{margin:14px 0 18px 22px}
+.prose ul li{margin-bottom:8px}
+.prose h3{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.2;letter-spacing:-0.01em;margin:30px 0 12px;color:var(--black)}
+.prose h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.prose a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.prose a:hover{color:var(--coral)}
+
+/* CALLOUTS - teal accent border, text in dark on dove/white */
+.callout{margin:24px 0;padding:22px 26px;background:var(--dove);border-left:3px solid var(--teal);border-radius:0 3px 3px 0}
+.callout .callout-label{font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600}
+.callout .callout-text{font-size:15px;line-height:1.62;color:var(--black)}
+.callout.teal{background:rgba(41,102,98,0.07);border-left-color:var(--teal)}
+.callout.gold{background:rgba(239,212,143,0.22);border-left-color:var(--teal)}
+.callout.coral{background:rgba(198,79,47,0.08);border-left-color:var(--coral)}
+.callout.coral .callout-label{color:var(--coral)}
+
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-@media(max-width:768px){.nav-inner img{height:22px}.grid-2,.grid-3{grid-template-columns:1fr}.nav-links{display:none}}
-.card{background:#fff;border-radius:8px;padding:32px;box-shadow:0 2px 12px rgba(28,10,4,0.06)}
-.text-center{text-align:center}
-.mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:12px}.mb-4{margin-bottom:16px}.mb-6{margin-bottom:24px}.mb-8{margin-bottom:32px}
-.mt-4{margin-top:16px}.mt-6{margin-top:24px}
-.bg-white{background:#fff}.bg-teal{background:#296662}.bg-gold{background:#efd48f}.bg-parchment{background:#f4ecdc}
-.text-white{color:#fff}.text-teal{color:#296662}.text-gold{color:#efd48f}.text-brand-70{color:rgba(28,10,4,0.7)}
-.step-num{width:48px;height:48px;border-radius:50%;background:#296662;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Domine',serif;font-weight:700;font-size:1.1rem;margin-bottom:16px}
-.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:250;text-decoration:none}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+
+/* FEATURE CARD */
+.f-card{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:30px 28px;transition:box-shadow 0.25s,transform 0.25s;display:flex;flex-direction:column}
+.f-card:hover{box-shadow:0 8px 28px rgba(28,10,4,0.08);transform:translateY(-2px)}
+.f-card .f-icon{width:46px;height:46px;border-radius:50%;background:rgba(41,102,98,0.10);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.f-card .f-icon svg{stroke:var(--teal)}
+.f-card h3{font-family:var(--display);font-weight:700;font-size:20px;line-height:1.18;color:var(--black);margin-bottom:10px}
+.f-card h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.f-card p{font-size:14.5px;line-height:1.6;color:rgba(28,10,4,0.74);flex:1}
+.f-card .f-link{margin-top:14px;display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);text-decoration:none;font-weight:500}
+.f-card .f-link:hover{color:var(--coral)}
+.f-card.with-image .f-img{aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:2px;margin:-30px -28px 22px;border-bottom:3px solid var(--teal)}
+
+/* IMAGE STRIPS */
+.image-strip{padding:0}
+.image-strip-grid{display:grid;gap:0}
+.image-strip-grid img{display:block;width:100%;height:220px;object-fit:cover}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:background 0.2s,color 0.2s,opacity 0.2s,border-color 0.2s;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:var(--teal);color:var(--parchment);border-color:var(--teal)}
+.btn-primary:hover{opacity:0.88}
+.btn-secondary{background:transparent;color:var(--teal);border-color:var(--teal)}
+.btn-secondary:hover{background:var(--teal);color:var(--parchment)}
+.btn-gold{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.btn-gold:hover{opacity:0.88}
+.btn-on-dark{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.btn-on-dark:hover{opacity:0.88}
+.btn-outline-light{background:transparent;color:var(--parchment);border-color:var(--parchment)}
+.btn-outline-light:hover{background:var(--parchment);color:var(--teal)}
+
+/* CTA SECTION - teal background, gold accents */
+.cta-section{padding:80px 0;background:var(--teal);text-align:center;color:var(--parchment);position:relative}
+.cta-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
+.cta-section .kicker{color:var(--gold);opacity:0.88}
+.cta-section h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.07;letter-spacing:-0.02em;margin-top:10px;margin-bottom:18px;color:var(--parchment)}
+.cta-section h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.cta-section p{font-style:italic;font-size:17px;color:rgba(244,236,220,0.80);max-width:560px;margin:0 auto 30px;line-height:1.56}
+.cta-section .btn-row{justify-content:center}
+.cta-section .btn-primary{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.cta-section .btn-secondary{color:var(--parchment);border-color:var(--parchment);background:transparent}
+.cta-section .btn-secondary:hover{background:var(--parchment);color:var(--teal)}
+
+/* FOOTER - TEAL-DOMINANT with small black strip at very bottom */
+.site-footer{background:var(--teal);color:var(--parchment);padding:56px 0 0;position:relative;border-top:3px solid var(--gold)}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 56px 44px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+.footer-logo img{height:28px;width:auto;margin-bottom:16px;display:block}
+.footer-tagline{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:0.92}
+.footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.72);max-width:280px}
+.footer-col-title{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500;opacity:0.92}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:9px}
+.footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.72);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-contact{font-size:13.5px;color:rgba(244,236,220,0.72);margin-bottom:9px;line-height:1.55}
+.footer-contact a{color:inherit;text-decoration:none}
+.footer-contact a:hover{color:var(--gold)}
+
+/* Small black strip at very bottom - just for license/legal/copyright */
+.footer-bottom{background:var(--black);color:rgba(244,236,220,0.55)}
+.footer-bottom-inner{max-width:1200px;margin:0 auto;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:48px}
+.footer-license{font-family:var(--mono);font-size:8.5px;letter-spacing:0.10em;color:rgba(244,236,220,0.50);line-height:1.5}
+.footer-legal{display:flex;gap:18px}
+.footer-legal a{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:rgba(244,236,220,0.45);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.footer-legal a:hover{color:var(--gold)}
+
+/* WHATSAPP FLOAT */
+.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.30);z-index:250;text-decoration:none;transition:transform 0.2s}
 .whatsapp-float:hover{transform:scale(1.1);color:#fff}
-.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#296662;color:#fff;padding:16px 24px;z-index:300;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;transform:translateY(100%);transition:transform 0.4s}
-.cookie-banner.show{transform:translateY(0)}
-.cookie-banner p{font-size:0.8125rem;color:rgba(255,255,255,0.8);margin:0}
-.footer{padding:40px 0 24px;background:#296662}
-.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:12px}
-.footer-links a{color:rgba(255,255,255,0.5);font-size:0.75rem;text-decoration:none}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s,transform 0.6s}
-.reveal.visible{opacity:1;transform:none}
-ul.benefit-list{list-style:none;padding:0;margin:0}
-ul.benefit-list li{padding-left:28px;position:relative;margin-bottom:12px;font-size:0.9375rem;color:rgba(28,10,4,0.75)}
-ul.benefit-list li::before{content:'✓';position:absolute;left:0;color:#296662;font-weight:700}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .container{padding:0 28px}
+  .site-nav-links{display:none}
+  .site-nav-inner{padding:0 20px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;padding:0 28px 36px;gap:32px}
+  .footer-bottom-inner{padding:12px 28px;flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .footer-inner{grid-template-columns:1fr}
+  .page-hero{padding:54px 0 44px}
+}
+
+
+
+/* === POLISH PASS === */
+/* Bird-bullet lists - use AR icon as bullet marker */
+.prose ul, ul.bird-list { list-style: none; padding-left: 0; margin-left: 0 }
+.prose ul li, ul.bird-list li { padding-left: 30px; position: relative; margin-bottom: 10px }
+.prose ul li::before, ul.bird-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 18px;
+  height: 18px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+}
+/* Compare list: neutral bullets use bird, good keeps checkmark */
+.compare-list li.neutral { padding-left: 30px }
+.compare-list li.neutral::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+  opacity: 0.45;
+  top: 0.45em;
+}
+/* Nav logo +33% (30 -> 40px) */
+.site-nav-logo img { height: 40px !important }
+/* Footer logo +28% (28 -> 36px) */
+.footer-logo img { height: 36px !important }
+/* Stronger area-card overlay + text-shadow */
+.area-card::before {
+  background: linear-gradient(180deg, rgba(28,10,4,0.18) 0%, rgba(28,10,4,0.45) 45%, rgba(28,10,4,0.92) 100%) !important;
+}
+.area-card .area-content { padding: 26px 22px !important }
+.area-card h3 {
+  font-size: 23px !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  margin-bottom: 6px !important;
+}
+.area-card p {
+  font-size: 13.5px !important;
+  color: rgba(255,255,255,0.94) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.50);
+}
 </style>
 </head>
 <body>
 
-<!-- IMPIC DISCLAIMER TOP -->
-<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;position:fixed;top:0;left:0;right:0;z-index:200;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
-<!-- Nav Spacer for Top Banner -->
-<div style="height:36px;"></div>
-<nav class="nav" style="top:36px">
-<div class="container nav-inner">
-<a href="index.html"><img src="logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty" ></a>
-<div class="nav-links">
-<a href="properties.html">Buy</a><a href="sell.html">Sell</a><a href="about.html">About</a><a href="careers.html">Careers</a><a href="resources.html">Resources</a><a href="faq.html">FAQ</a><a href="partner.html">Partner</a><a href="contact.html">Contact</a>
-</div>
-<div style="display:flex;align-items:center;gap:12px;">
-<a href="pt/nhr-guide.html" style="font-weight:600;font-size:0.7rem;letter-spacing:0.04em;text-transform:uppercase;color:#296662;border:1px solid #296662;padding:4px 8px;border-radius:4px;">PT</a>
-<a href="contact.html" class="btn btn-primary">Get Advice</a>
-</div>
-</div>
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <div class="site-nav-logo">
+      <a href="index.html"><img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></a>
+    </div>
+    <div class="site-nav-links">
+      <a href="index.html">Home</a>
+      <a href="properties.html">Buy</a>
+      <a href="sell.html">Sell</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="our-team.html">Our Team</a>
+      <a href="tools.html">Tools</a>
+      <div class="nav-more-wrap">
+        <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">More &#9662;</button>
+        <div class="nav-dropdown" id="moreDropdown" role="menu">
+          <a href="careers.html">Careers</a>
+          <a href="resources.html">Resources</a>
+          <a href="faq.html">FAQ</a>
+          <a href="partner.html">Partner</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-nav-actions">
+      <a class="site-nav-lang" href="pt/nhr-guide.html">PT</a>
+      <a class="site-nav-cta" href="contact.html">Get A Free Valuation</a>
+    </div>
+  </div>
 </nav>
 
-<section class="page-hero">
-<div class="container" style="padding-top:64px;padding-bottom:16px;">
-<p class="label-text text-gold" style="margin-bottom:4px;">TAX GUIDE</p>
-<h1 class="font-domine">Non-Habitual Resident (NHR) Scheme</h1>
-<p>Portugal's 10-year tax advantage for new residents — explained simply.</p>
-</div>
+<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('images/nhr-couple.jpg');background-size:cover;background-position:center">
+  <div class="container">
+    <div class="kicker">Tax & Residency</div>
+    <h1>The <em>NHR Guide</em>.</h1>
+    <p class="sub">Portugal's Non-Habitual Resident regime, the successor IFICI program, and what they mean for your move.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Background</div>
+      <h2>What is <em>NHR</em>?</h2>
+    </div>
+    <div class="prose">
+      <p>The Non-Habitual Resident regime was a Portuguese tax program offering significant benefits for up to ten years to foreign professionals, retirees, and investors moving to Portugal. While the original regime closed to new applicants in January 2024, current holders keep their benefits, and transitional rules may apply to certain late applicants.</p>
+      <p>Most foreign-source income — including <strong>pensions</strong>, dividends, interest, royalties and rents — was exempt from taxation in Portugal under NHR (provided a double-taxation treaty exists).</p>
+      <p>For property owners and investors on the Silver Coast, understanding the current tax landscape — including the new IFICI regime — is <strong>indispensable</strong> for informed decisions.</p>
+    </div>
+  </div>
+</section>
+<section class="section dove">
+  <div class="container">
+    <div class="section-header"><div class="kicker">Key callouts</div><h2>What to <em>know now</em>.</h2></div>
+    <div class="prose">
+      <div class="callout teal">
+        <div class="callout-label">If you arrived before December 31, 2023</div>
+        <div class="callout-text">You retain full NHR benefits for ten years from your registration date. No action required.</div>
+      </div>
+      <div class="callout gold">
+        <div class="callout-label">If you are arriving now</div>
+        <div class="callout-text">NHR is closed. Look at the <strong>IFICI</strong> regime (Tax Incentive for Scientific Research and Innovation) for similar benefits if you qualify.</div>
+      </div>
+      <div class="callout coral">
+        <div class="callout-label">Professional advice is indispensable</div>
+        <div class="callout-text">NHR rules are complex and subject to change. We strongly recommend working with an English-speaking accountant who specializes in international resident taxation. We can introduce you to trusted professionals on the Silver Coast.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta-section">
+  <div class="container">
+    <div class="kicker">Need an introduction?</div>
+    <h2>We know the <em>right people</em>.</h2>
+    <p>Tax advisors, immigration lawyers, fiscal representatives — vetted and English-speaking.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="contact.html">Get Connected</a>
+      
+    </div>
+  </div>
 </section>
 
-<!-- IMPORTANT NOTICE -->
-<section class="section-pad bg-white" style="padding-bottom:32px;">
-<div class="container">
-<div class="reveal" style="background:#fff3cd;border-radius:8px;padding:24px;border-left:4px solid #e5a800;margin-bottom:16px;">
-<p style="font-weight:700;color:#856404;margin-bottom:8px;font-size:1rem;">Important Update: NHR Regime Closure</p>
-<p style="font-size:0.9375rem;color:#856404;margin-bottom:8px;">The original NHR regime <strong>closed to new applicants on 1 January 2024</strong> under Portugal's State Budget Law. However, several important categories can still benefit from transitional rules or alternative regimes. This guide explains the current landscape for 2024/2025.</p>
-<p style="font-size:0.875rem;color:#856404;margin:0;"><strong>Who still qualifies:</strong> existing NHR holders (full 10-year benefits), 2023 residents who applied by 31 March 2024, certain professionals with specific employment contracts, and qualifying individuals under the new IFICI regime. We strongly recommend consulting a Portuguese tax advisor for your specific situation.</p>
-</div>
-</div>
-</section>
-
-<!-- OVERVIEW -->
-<section class="section-pad bg-white" style="padding-top:0;">
-<div class="container">
-<div class="grid-2" style="align-items:center;">
-<div class="reveal">
-<p class="label-text">WHAT IS NHR?</p>
-<h2 class="font-domine mb-4" style="font-size:clamp(1.5rem,3vw,2rem);">A Decade of Tax Efficiency</h2>
-<p class="text-brand-70 mb-4">The Non-Habitual Resident (NHR) regime was a Portuguese tax programme that offered significant benefits for up to 10 years to foreign professionals, retirees, and investors moving to Portugal. While the original regime closed to new applicants in January 2024, existing holders retain their benefits, and transitional rules may apply for certain late applicants.</p>
-<p class="text-brand-70 mb-4">For property owners and investors on the Silver Coast, understanding the current tax landscape &mdash; including the new IFICI regime &mdash; is essential for informed decision-making.</p>
-<div style="display:flex;gap:16px;flex-wrap:wrap;">
-<div style="text-align:center;padding:16px;background:#f4ecdc;border-radius:8px;flex:1;min-width:120px;"><p class="font-domine text-teal" style="font-size:1.75rem;font-weight:700;">10</p><p style="font-size:0.8125rem;color:rgba(28,10,4,0.6);">Years of Benefits</p></div>
-<div style="text-align:center;padding:16px;background:#f4ecdc;border-radius:8px;flex:1;min-width:120px;"><p class="font-domine text-teal" style="font-size:1.75rem;font-weight:700;">20%</p><p style="font-size:0.8125rem;color:rgba(28,10,4,0.6);">Flat Tax Rate</p></div>
-<div style="text-align:center;padding:16px;background:#f4ecdc;border-radius:8px;flex:1;min-width:120px;"><p class="font-domine text-teal" style="font-size:1.75rem;font-weight:700;">0%</p><p style="font-size:0.8125rem;color:rgba(28,10,4,0.6);">On Foreign Income*</p></div>
-</div>
-<p style="font-size:0.75rem;color:rgba(28,10,4,0.5);margin-top:12px;">*For qualifying existing NHR holders. Most foreign-sourced income is exempt from Portuguese tax, provided it may be taxed in the source country under the applicable double tax treaty.</p>
-</div>
-<div class="reveal">
-<img src="images/nhr-couple.jpg" alt="Couple enjoying Silver Coast lifestyle" style="width:100%;border-radius:8px;box-shadow:0 8px 32px rgba(28,10,4,0.12);">
-</div>
-</div>
-</div>
-</section>
-
-<!-- KEY BENEFITS -->
-<section class="section-pad bg-parchment">
-<div class="container">
-<p class="label-text text-center reveal">KEY BENEFITS</p>
-<h2 class="font-domine text-center mb-8 reveal" style="font-size:clamp(1.5rem,3vw,2rem);">What NHR Means for You</h2>
-<div class="grid-3">
-<div class="card reveal">
-<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#296662" stroke-width="2" style="margin-bottom:16px;"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-<h3 class="font-domine mb-2">Flat 20% Income Tax</h3>
-<p class="text-brand-70" style="font-size:0.9375rem;">Employment and self-employment income from high-value activities (including many professional and tech roles) is taxed at a flat 20% instead of Portugal's progressive rates up to 48%.</p>
-</div>
-<div class="card reveal">
-<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#296662" stroke-width="2" style="margin-bottom:16px;"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/><path d="M12 12h.01"/></svg>
-<h3 class="font-domine mb-2">Foreign Income Exemption</h3>
-<p class="text-brand-70" style="font-size:0.9375rem;">Most foreign-sourced income — including pensions, dividends, interest, royalties, and rental income — is exempt from Portuguese tax under the NHR regime (provided a tax treaty exists).</p>
-</div>
-<div class="card reveal">
-<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#296662" stroke-width="2" style="margin-bottom:16px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-<h3 class="font-domine mb-2">Property Investment Friendly</h3>
-<p class="text-brand-70" style="font-size:0.9375rem;">Rental income from Portuguese property is taxed at the flat 20% rate. Capital gains on property are generally taxed at 28%, but your primary residence may qualify for full or partial exemption if reinvested.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- WHO STILL QUALIFIES -->
-<section class="section-pad bg-white">
-<div class="container">
-<p class="label-text text-center reveal">CURRENT STATUS 2024/2025</p>
-<h2 class="font-domine text-center mb-8 reveal" style="font-size:clamp(1.5rem,3vw,2rem);">Who Still Benefits?</h2>
-<div class="grid-2">
-<div class="reveal">
-<div class="card" style="height:100%;">
-<h3 class="font-domine text-teal mb-4">Existing NHR Holders</h3>
-<p class="text-brand-70 mb-3" style="font-size:0.9375rem;">If you already hold NHR status, you continue to enjoy the full benefits for your entire 10-year period. There is no change to your tax treatment.</p>
-<h4 class="font-domine text-teal mb-2" style="font-size:0.9375rem;">Transitional Applicants</h4>
-<p class="text-brand-70 mb-3" style="font-size:0.9375rem;">You may still qualify under transitional rules if:</p>
-<ul class="benefit-list">
-<li>You became a Portuguese tax resident in 2023 and submitted your NHR application by 31 March 2024</li>
-<li>You moved to Portugal under a specific professional employment contract registered before the deadline</li>
-<li>You are a digital nomad or remote worker who registered under the regime before the 2024 closure</li>
-<li>You hold a Golden Visa obtained before the 2023 legislative changes and met the residency timeline</li>
-</ul>
-</div>
-</div>
-<div class="reveal">
-<div class="card" style="height:100%;">
-<h3 class="font-domine text-teal mb-4">The New IFICI Regime</h3>
-<p class="text-brand-70 mb-3" style="font-size:0.9375rem;">Portugal introduced the <strong>Incentivo Fiscal para o Investimento, a Criação e a Inovação (IFICI)</strong> as a partial replacement for NHR.</p>
-<p class="text-brand-70 mb-3" style="font-size:0.9375rem;">IFICI offers a <strong>20% flat tax rate</strong> on employment and self-employment income from qualifying high-value activities, including:</p>
-<ul class="benefit-list">
-<li>Directors and managers of qualified companies</li>
-<li>IT professionals, software engineers, and data scientists</li>
-<li>Engineers, architects, and technical specialists</li>
-<li>Medical professionals and researchers</li>
-<li>University-level teachers and educators</li>
-<li>Artists, designers, and creative professionals</li>
-<li>Investors and professional investors</li>
-<li>Senior executives and board members</li>
-</ul>
-<p class="text-brand-70" style="font-size:0.875rem;"><strong>Note:</strong> IFICI does not include the foreign income exemption that was a key feature of NHR. We recommend comparing both regimes with a tax advisor.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- HOW TO APPLY -->
-<section class="section-pad bg-teal">
-<div class="container">
-<p class="label-text text-gold text-center reveal">APPLICATION</p>
-<h2 class="font-domine text-center text-white mb-8 reveal" style="font-size:clamp(1.5rem,3vw,2rem);">How to Apply for NHR</h2>
-<div class="grid-3">
-<div class="reveal" style="background:rgba(255,255,255,0.08);border-radius:8px;padding:32px;">
-<div class="step-num">1</div>
-<h3 class="font-domine text-white mb-2">Obtain Your NIF</h3>
-<p style="color:rgba(255,255,255,0.8);font-size:0.9375rem;">First, get your Portuguese tax number (NIF) from the local tax office (Finanças) or through a fiscal representative. Non-residents need a fiscal representative.</p>
-</div>
-<div class="reveal" style="background:rgba(255,255,255,0.08);border-radius:8px;padding:32px;">
-<div class="step-num">2</div>
-<h3 class="font-domine text-white mb-2">Establish Tax Residency</h3>
-<p style="color:rgba(255,255,255,0.8);font-size:0.9375rem;">Move to Portugal, register your address, and spend 183+ days per year in the country. Register as a tax resident at Finanças.</p>
-</div>
-<div class="reveal" style="background:rgba(255,255,255,0.08);border-radius:8px;padding:32px;">
-<div class="step-num">3</div>
-<h3 class="font-domine text-white mb-2">Submit NHR Application</h3>
-<p style="color:rgba(255,255,255,0.8);font-size:0.9375rem;">Apply for NHR status through the Portuguese tax portal or with assistance from your accountant. The deadline is March 31 of the year after you become resident.</p>
-</div>
-</div>
-<div class="text-center mt-6 reveal">
-<p style="color:rgba(255,255,255,0.7);font-size:0.9375rem;max-width:600px;margin:0 auto 24px;">We work with experienced English-speaking accountants who specialize in NHR applications. <a href="contact.html" style="color:#efd48f;text-decoration:underline;">Contact us</a> for a referral.</p>
-</div>
-</div>
-</section>
-
-<!-- TIMELINE -->
-<section class="section-pad bg-parchment">
-<div class="container">
-<div class="grid-2" style="align-items:center;">
-<div class="reveal">
-<img src="images/nhr-document.jpg" alt="NHR documentation" style="width:100%;border-radius:8px;box-shadow:0 8px 32px rgba(28,10,4,0.12);">
-</div>
-<div class="reveal">
-<p class="label-text">TIMELINE</p>
-<h2 class="font-domine mb-4" style="font-size:clamp(1.5rem,3vw,2rem);">What to Expect</h2>
-<div style="display:flex;flex-direction:column;gap:20px;">
-<div style="padding:20px;background:#fff;border-radius:8px;border-left:4px solid #296662;">
-<p class="font-domine" style="color:#296662;font-weight:700;margin-bottom:4px;">Month 1–2</p>
-<p class="text-brand-70" style="font-size:0.9375rem;">Arrive in Portugal, secure accommodation, obtain NIF, open bank account, and register as tax resident at your local Finanças office.</p>
-</div>
-<div style="padding:20px;background:#fff;border-radius:8px;border-left:4px solid #efd48f;">
-<p class="font-domine" style="color:#296662;font-weight:700;margin-bottom:4px;">Month 3–6</p>
-<p class="text-brand-70" style="font-size:0.9375rem;">Establish habitual residency (183+ days), finalize property purchase if applicable, and prepare NHR application with your accountant.</p>
-</div>
-<div style="padding:20px;background:#fff;border-radius:8px;border-left:4px solid #c64f2f;">
-<p class="font-domine" style="color:#296662;font-weight:700;margin-bottom:4px;">By March 31 (Year 2)</p>
-<p class="text-brand-70" style="font-size:0.9375rem;">Submit your NHR application. Approval typically takes 2–4 weeks. Your 10-year benefit period begins from your first year of tax residency.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- IMPORTANT NOTES -->
-<section class="section-pad bg-white">
-<div class="container container-sm">
-<p class="label-text text-center reveal">IMPORTANT NOTES</p>
-<h2 class="font-domine text-center mb-6 reveal" style="font-size:clamp(1.5rem,3vw,2rem);">Things to Keep in Mind</h2>
-<div class="reveal">
-<div style="background:#fff3cd;border-radius:8px;padding:20px;margin-bottom:16px;border-left:4px solid #e5a800;">
-<p style="font-weight:600;margin-bottom:4px;color:#856404;">NHR is not a "zero tax" scheme</p>
-<p style="font-size:0.9375rem;color:#856404;margin:0;">While many types of foreign income are exempt, Portuguese-sourced income and some foreign income may still be taxable. Always consult a qualified Portuguese tax advisor for your specific situation.</p>
-</div>
-<div style="background:#d1ecf1;border-radius:8px;padding:20px;margin-bottom:16px;border-left:4px solid #0c5460;">
-<p style="font-weight:600;margin-bottom:4px;color:#0c5460;">Tax benefits can be combined with property purchase</p>
-<p style="font-size:0.9375rem;color:#0c5460;margin:0;">Whether you hold NHR, qualify for IFICI, or are under the standard Portuguese tax regime, property ownership remains an attractive investment. Rental income is taxed at a flat 28% regardless of regime, and primary residence sales may qualify for capital gains exemption when reinvested. Use our <a href="calculator.html" style="color:#296662;text-decoration:underline;">Tax Calculator</a> to estimate your purchase costs.</p>
-</div>
-<div style="background:#d4edda;border-radius:8px;padding:20px;border-left:4px solid #155724;">
-<p style="font-weight:600;margin-bottom:4px;color:#155724;">Professional guidance is essential</p>
-<p style="font-size:0.9375rem;color:#155724;margin:0;">NHR rules are complex and subject to change. We strongly recommend working with an English-speaking accountant who specializes in international tax matters. We can introduce you to trusted professionals on the Silver Coast.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- CTA -->
-<section style="padding:48px 0;background:#c64f2f;">
-<div class="container text-center reveal">
-<h2 class="font-domine text-white" style="font-size:1.5rem;margin-bottom:12px;">Need Expert Guidance?</h2>
-<p style="color:rgba(255,255,255,0.8);margin-bottom:20px;max-width:600px;margin-left:auto;margin-right:auto;">We can connect you with English-speaking tax advisors who specialize in NHR applications for foreign residents.</p>
-<a href="contact.html" class="btn btn-white">Contact Us</a>
-<a href="faq.html" class="btn btn-outline-white" style="margin-left:12px;border:1px solid rgba(255,255,255,0.5);color:#fff;background:transparent;">Back to FAQ</a>
-</div>
-</section>
-
-
-<!-- IMPIC DISCLAIMER -->
-<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
-<footer class="footer">
-<div class="container">
-<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;">
-<img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" height="22" alt="Aldeia Realty">
-<p style="color:#efd48f;font-weight:600;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin:0;">MODERN HERITAGE · MODERN BUSINESS</p>
-</div>
-<div class="footer-links">
-<a href="privacy-policy.html">Privacy Policy</a>
-<span style="color:rgba(255,255,255,0.2);">|</span>
-<a href="complaints.html">Dispute Resolution</a>
-<span style="color:rgba(255,255,255,0.2);">|</span>
-<a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclamacoes</a>
-</div>
-<p style="text-align:center;color:rgba(255,255,255,0.5);font-size:0.75rem;margin-top:12px;margin-bottom:0;">&copy; 2026 Aldeia Realty - Real Estate, LDA. All rights reserved.</p>
-</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></div>
+      <div class="footer-tagline">Modern Heritage &middot; Modern Business</div>
+      <p class="footer-desc">A boutique real estate agency guiding you home on Portugal's Silver Coast with trust, expertise, and modern service.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <ul>
+        <li><a href="properties.html">Buy</a></li>
+        <li><a href="sell.html">Sell</a></li>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <ul>
+        <li><a href="sell.html">Seller Guide</a></li>
+        <li><a href="resources.html">Market Insights</a></li>
+        <li><a href="tools.html">Calculators</a></li>
+        <li><a href="nhr-guide.html">NHR Guide</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact"><a href="https://wa.me/351912771309">+351 912 771 309 (WhatsApp)</a></div>
+      <div class="footer-contact"><a href="mailto:info@aldeiarealty.com">info@aldeiarealty.com</a></div>
+      <div class="footer-contact">Rua Dr. &Acirc;ngelo Ferrari, n.&ordm; 7, R/C Dt.&ordm;<br>2500-113 Caldas da Rainha, Portugal</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-license">&copy; 2026 Aldeia Realty &middot; Real Estate Mediation Activity &middot; Law 15/2013 &middot; License No. 12456-GAMI / 2026 T, of 2026/05/25</div>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="complaints.html">Dispute Resolution</a>
+        <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclama&ccedil;&otilde;es</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <a href="https://wa.me/351912771309" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<div class="cookie-banner" id="cookieBanner">
-<p>We use cookies to improve your experience. By continuing, you agree to our <a href="privacy-policy.html" style="color:#efd48f;">Privacy Policy</a>.</p>
-<button class="btn btn-primary" id="cookieAccept" style="padding:6px 16px;">Accept</button>
-<button class="btn btn-outline-white" id="cookieDecline" style="padding:6px 16px;color:#fff;border-color:rgba(255,255,255,0.4);">Decline</button>
-</div>
-
 <script>
-document.addEventListener('DOMContentLoaded',function(){
-var els=document.querySelectorAll('.reveal');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});els.forEach(function(el){obs.observe(el)});
-var b=document.getElementById('cookieBanner');if(b&&!localStorage.getItem('cookies')){setTimeout(function(){b.classList.add('show')},1000)}document.getElementById('cookieAccept').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','1')});document.getElementById('cookieDecline').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','0')});
+function toggleMore(){
+  var dd=document.getElementById('moreDropdown');
+  var btn=document.getElementById('moreBtn');
+  if(!dd) return;
+  var open=dd.classList.toggle('open');
+  if(btn) btn.setAttribute('aria-expanded',open);
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-more-wrap')){
+    var dd=document.getElementById('moreDropdown');
+    if(dd){dd.classList.remove('open');}
+    var btn=document.getElementById('moreBtn');
+    if(btn){btn.setAttribute('aria-expanded','false');}
+  }
 });
 </script>
 </body>

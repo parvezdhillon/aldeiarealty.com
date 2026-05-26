@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Nossa História — Aldeia Realty</title>
+<meta name="description" content="Não estudámos a relocação — vivemo-la. Como os fundadores da Aldeia Realty mudaram uma família de cinco pessoas da Carolina do Norte para a Costa de Prata." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal:#296662; --black:#1c0a04; --gold:#efd48f; --dove:#e4e7e6;
+    --parchment:#f4ecdc; --white:#ffffff; --coral:#c64f2f;
+    --muted:rgba(28,10,4,0.50); --border:rgba(41,102,98,0.15);
+    --border-s:rgba(41,102,98,0.08);
+    --display:'Domine',Georgia,serif;
+    --body:'Work Sans',-apple-system,sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--parchment);color:var(--black);font-family:var(--body);font-weight:400;line-height:1.6;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;opacity:0.18;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.04 0 0 0 0 0.01 0 0 0 0.10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* NAV */
+  .site-nav{background:var(--teal);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold);box-shadow:0 2px 20px rgba(28,10,4,0.18)}
+  .site-nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:66px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+  .site-nav-logo img{height:28px;width:auto;display:block}
+  .site-nav-links{display:flex;gap:20px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;align-items:center;flex:1;justify-content:center}
+  .site-nav-links a{color:rgba(244,236,220,0.55);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+  .site-nav-links a:hover,.site-nav-links a.active{color:var(--gold)}
+  .nav-more-wrap{position:relative}
+  .nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,236,220,0.55);padding:0;transition:color 0.2s}
+  .nav-more-btn:hover{color:var(--gold)}
+  .nav-dropdown{position:absolute;top:calc(100% + 14px);right:0;background:var(--black);border:1px solid rgba(239,212,143,0.18);border-radius:3px;padding:8px 0;min-width:160px;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.30);z-index:200}
+  .nav-dropdown.open{display:block}
+  .nav-dropdown a{display:block;padding:10px 18px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,236,220,0.60);text-decoration:none;transition:color 0.2s,background 0.2s}
+  .nav-dropdown a:hover{color:var(--gold);background:rgba(41,102,98,0.20)}
+  .site-nav-actions{display:flex;align-items:center;gap:14px}
+  .site-nav-lang{font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;color:rgba(244,236,220,0.40);text-decoration:none;text-transform:uppercase}
+  .site-nav-cta{background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;padding:8px 16px;border-radius:2px;white-space:nowrap;transition:opacity 0.2s}
+  .site-nav-cta:hover{opacity:0.85}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;position:relative;background-image:linear-gradient(160deg,rgba(41,102,98,0.75) 0%,rgba(28,10,4,0.60) 55%,rgba(239,212,143,0.10) 100%),url('https://www.aldeiarealty.com/images/hero/hero-main.jpg?v=2');background-size:cover;background-position:center;background-attachment:fixed;overflow:hidden}
+  .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:160px;background:linear-gradient(to top,var(--parchment),transparent);pointer-events:none}
+  .hero-content{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1200px;margin:0 auto;padding:80px 56px 60px;width:100%;position:relative;z-index:2}
+  .kicker{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;font-weight:500}
+  .hero-content .kicker,.lessons .kicker,.page-hero .kicker{color:var(--gold)}
+  .hero-content .kicker{opacity:0.90}
+  h1.hero-title{font-family:var(--display);font-weight:700;font-size:clamp(42px,6vw,78px);line-height:0.98;letter-spacing:-0.02em;margin-bottom:26px;max-width:860px;color:var(--parchment)}
+  h1.hero-title em{font-style:italic;color:var(--gold);font-weight:400}
+  .hero-deck{font-family:var(--body);font-style:italic;font-weight:300;font-size:19px;color:rgba(244,236,220,0.80);line-height:1.58;max-width:660px;margin-bottom:44px}
+  .hero-stats{display:flex;gap:0;flex-wrap:wrap;padding-top:32px;border-top:1px solid rgba(244,236,220,0.18)}
+  .hero-stat{padding:16px 36px 16px 0;margin-right:36px;border-right:1px solid rgba(244,236,220,0.14)}
+  .hero-stat:last-child{border-right:none}
+  .hero-stat::before{content:'';display:block;width:20px;height:2px;background:var(--gold);margin-bottom:10px;opacity:0.8}
+  .hero-stat .num{font-family:var(--display);font-weight:700;font-size:34px;line-height:1;letter-spacing:-0.02em;color:var(--parchment);font-style:italic}
+  .hero-stat .label{font-family:var(--mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.48);margin-top:8px}
+
+  /* PROLOGUE */
+  .prologue{padding:80px 0;border-bottom:1px solid var(--border);background:var(--dove);position:relative}
+  .prologue::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(to bottom,var(--teal),rgba(41,102,98,0.4))}
+  .prologue-grid{display:grid;grid-template-columns:1fr 1.55fr;gap:72px;align-items:start}
+  .prologue h2{font-family:var(--display);font-weight:700;font-size:34px;line-height:1.08;letter-spacing:-0.02em;color:var(--black);margin-top:14px}
+  .prologue h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .prologue p{font-size:15.5px;line-height:1.72;margin-bottom:16px;color:var(--black)}
+  .prologue p:last-child{margin-bottom:0}
+  .prologue p strong{font-weight:600;color:var(--teal)}
+
+  /* CONTAINER */
+  .container{max-width:1200px;margin:0 auto;padding:0 56px}
+
+  /* TIMELINE */
+  .timeline-section{padding:88px 0;background:var(--parchment)}
+  .timeline-header{margin-bottom:60px}
+  .timeline-header h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;max-width:760px;color:var(--black);margin-top:12px}
+  .timeline-header h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .timeline{position:relative;padding-left:56px}
+  .timeline::before{content:'';position:absolute;left:16px;top:12px;bottom:12px;width:1px;background:linear-gradient(to bottom,var(--teal) 0%,var(--dove) 10%,var(--dove) 90%,var(--gold) 100%)}
+  .chapter{position:relative;margin-bottom:60px}
+  .chapter:last-child{margin-bottom:0}
+  .chapter::before{content:'';position:absolute;left:-47px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--parchment);border:2px solid var(--dove);z-index:1}
+  .chapter.milestone::before{background:var(--teal);border-color:var(--teal);box-shadow:0 0 0 5px rgba(41,102,98,0.14);width:16px;height:16px;left:-48px}
+  .chapter-date{font-family:var(--mono);font-size:10px;letter-spacing:0.20em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:500}
+  .chapter-title{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.12;letter-spacing:-0.01em;margin-bottom:16px;max-width:660px;color:var(--black)}
+  .chapter-title em{font-style:italic;color:var(--teal);font-weight:400}
+  .chapter-body{font-size:15.5px;line-height:1.72;color:var(--black);max-width:660px}
+  .chapter-body p{margin-bottom:14px}
+  .chapter-body p:last-child{margin-bottom:0}
+  .chapter-body strong{font-weight:600;color:var(--teal)}
+  .detail-card{margin-top:22px;padding:20px 24px;background:var(--dove);border-left:3px solid var(--gold);border-radius:0 3px 3px 0;max-width:660px}
+  .detail-card .detail-label{font-family:var(--mono);font-size:8.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .detail-card .detail-text{font-family:var(--body);font-style:italic;font-size:15.5px;line-height:1.52;color:rgba(28,10,4,0.70)}
+  .chapter-facts{display:flex;flex-wrap:wrap;margin-top:22px;max-width:660px;background:var(--dove);border:1px solid var(--border-s);border-radius:3px;overflow:hidden;margin-bottom:4px}
+  .chapter-fact{padding:16px 24px;border-right:1px solid var(--border-s);flex:1;min-width:100px}
+  .chapter-fact:last-child{border-right:none}
+  .chapter-fact::before{content:'';display:block;width:20px;height:2px;background:var(--gold);margin-bottom:10px}
+  .chapter-fact .fact-num{font-family:var(--display);font-weight:700;font-size:22px;line-height:1;color:var(--teal);font-style:italic}
+  .chapter-fact .fact-label{font-family:var(--mono);font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+  .pull{margin:24px 0;padding:0 0 0 22px;border-left:2px solid var(--teal);font-family:var(--body);font-style:italic;font-weight:400;font-size:19px;line-height:1.42;color:rgba(28,10,4,0.65);max-width:560px}
+  .chapter-image{margin:22px 0;max-width:660px;height:240px;border-radius:3px;overflow:hidden;position:relative;background-color:var(--dove);background-size:cover;background-position:center}
+  .chapter-image.tall{height:320px}
+  .image-caption{position:absolute;bottom:12px;left:14px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--parchment);background:rgba(28,10,4,0.65);padding:5px 10px;border-radius:2px;backdrop-filter:blur(8px)}
+  .image-placeholder{margin:22px 0;max-width:660px;height:200px;border-radius:3px;border:1px dashed rgba(41,102,98,0.25);background:repeating-linear-gradient(45deg,rgba(41,102,98,0.03),rgba(41,102,98,0.03) 8px,rgba(228,231,230,0.5) 8px,rgba(228,231,230,0.5) 16px);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;text-align:center;padding:0 32px}
+  .image-placeholder .ph-label{font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted)}
+  .image-placeholder .ph-desc{font-family:var(--body);font-style:italic;font-size:14px;color:rgba(28,10,4,0.55);max-width:380px;line-height:1.44}
+
+  /* LESSONS */
+  .lessons{padding:88px 0 72px;background:var(--black);color:var(--parchment);position:relative}
+  .lessons::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--teal),var(--gold))}
+  .lessons .kicker{color:rgba(239,212,143,0.75)}
+  .lessons h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;color:var(--parchment);margin-top:12px;margin-bottom:52px;max-width:700px}
+  .lessons h2 em{font-style:italic;color:var(--gold);font-weight:400}
+  .lessons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(244,236,220,0.06);border:1px solid rgba(244,236,220,0.06);border-radius:3px;overflow:hidden}
+  .lesson{padding:28px 26px;background:rgba(28,10,4,0.60);border-right:1px solid rgba(244,236,220,0.06);border-bottom:1px solid rgba(244,236,220,0.06)}
+  .lesson-num{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:500}
+  .lesson-title{font-family:var(--display);font-weight:700;font-size:17px;line-height:1.28;letter-spacing:-0.01em;color:var(--parchment);margin-bottom:10px}
+  .lesson-body{font-size:13.5px;line-height:1.62;color:rgba(244,236,220,0.55)}
+
+  /* CTA */
+  .cta{padding:88px 0;background:var(--parchment);text-align:center;border-bottom:1px solid var(--border)}
+  .cta h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,46px);line-height:1.05;letter-spacing:-0.02em;margin-top:12px;margin-bottom:18px;color:var(--black)}
+  .cta h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .cta p{font-style:italic;font-size:17px;color:rgba(28,10,4,0.58);max-width:540px;margin:0 auto 34px;line-height:1.56}
+  .cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:background 0.2s,color 0.2s,opacity 0.2s}
+  .btn-primary{background:var(--teal);color:var(--parchment);border:1px solid var(--teal)}
+  .btn-primary:hover{opacity:0.85}
+  .btn-secondary{background:transparent;color:var(--teal);border:1px solid var(--teal)}
+  .btn-secondary:hover{background:var(--teal);color:var(--parchment)}
+
+  /* TESTIMONIALS */
+  .testimonials-section{padding:88px 0;background:var(--dove);position:relative;border-bottom:1px solid var(--border)}
+  .testimonials-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--teal),var(--gold))}
+  .section-header{margin-bottom:52px}
+  .section-header h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin-top:12px;color:var(--black)}
+  .section-header h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .section-header .sub{font-family:var(--body);font-style:italic;font-size:16px;color:var(--muted);margin-top:14px;max-width:540px;line-height:1.55}
+  .t-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .t-card{background:var(--parchment);border:1px solid var(--border);border-radius:3px;padding:28px 28px 22px;position:relative;transition:box-shadow 0.25s}
+  .t-card:hover{box-shadow:0 8px 32px rgba(28,10,4,0.08)}
+  .t-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold)}
+  .t-stars{display:flex;gap:3px;margin-bottom:14px}
+  .t-stars span{color:var(--gold);font-size:13px}
+  .t-teaser{font-family:var(--body);font-style:italic;font-size:16.5px;line-height:1.62;color:var(--black);margin-bottom:4px}
+  .t-full{font-family:var(--body);font-style:italic;font-size:16.5px;line-height:1.62;color:var(--black);display:none;margin-bottom:4px}
+  .t-card.expanded .t-teaser{display:none}
+  .t-card.expanded .t-full{display:block}
+  .t-read-more{background:none;border:none;padding:0;cursor:pointer;font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-top:12px;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+  .t-read-more:hover{color:var(--teal)}
+  .t-read-more .arrow{transition:transform 0.25s;display:inline-block}
+  .t-card.expanded .t-read-more .arrow{transform:rotate(180deg)}
+  .t-byline{margin-top:18px;padding-top:14px;border-top:1px solid var(--border-s);display:flex;align-items:center;justify-content:space-between}
+  .t-name{font-family:var(--body);font-weight:600;font-size:13px;color:var(--black)}
+  .t-meta{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+  .t-badge{font-family:var(--mono);font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);background:rgba(41,102,98,0.09);padding:4px 10px;border-radius:2px;border:1px solid rgba(41,102,98,0.15)}
+
+  /* FOOTER */
+  .site-footer{background:var(--teal);color:var(--parchment);padding:56px 0 0;position:relative;border-top:3px solid var(--gold)}
+  
+  .footer-inner{max-width:1200px;margin:0 auto;padding:0 56px 48px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+  .footer-logo img{height:24px;width:auto;margin-bottom:14px;display:block}
+  .footer-tagline{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:0.92}
+  .footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.72);max-width:280px}
+  .footer-col-title{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500;opacity:0.92}
+  .footer-col ul{list-style:none}
+  .footer-col ul li{margin-bottom:8px}
+  .footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.72);text-decoration:none;transition:color 0.2s}
+  .footer-col ul li a:hover{color:var(--gold)}
+  .footer-contact{font-size:13.5px;color:rgba(244,236,220,0.72);margin-bottom:9px;line-height:1.55}
+  .footer-bottom{background:var(--black);margin-top:36px}.footer-bottom-inner{max-width:1200px;margin:0 auto;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;min-height:48px}
+  .footer-license{font-family:var(--mono);font-size:8.5px;letter-spacing:0.10em;color:rgba(244,236,220,0.50);line-height:1.5}
+  .footer-legal{display:flex;gap:18px}
+  .footer-legal a{font-family:var(--mono);font-size:9px;letter-spacing:0.10em;color:rgba(244,236,220,0.28);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+  .footer-legal a:hover{color:var(--gold)}
+
+  /* WHATSAPP */
+  .whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:250;text-decoration:none}
+  .whatsapp-float:hover{transform:scale(1.1);color:#fff}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .container{padding:0 28px}
+    .hero-content{padding:60px 28px 40px}
+    .prologue-grid{grid-template-columns:1fr;gap:32px}
+    .timeline{padding-left:32px}
+    .chapter::before{left:-24px}
+    .chapter.milestone::before{left:-25px}
+    .lessons-grid{grid-template-columns:repeat(2,1fr)}
+    .t-grid{grid-template-columns:1fr}
+    .footer-inner{grid-template-columns:1fr 1fr;padding:0 28px 40px}
+    .footer-bottom{padding:20px 28px}
+    .site-nav-links{display:none}
+  }
+  @media(max-width:600px){
+    .hero-stats{flex-direction:column;gap:8px}
+    .hero-stat{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid rgba(244,236,220,0.10)}
+    .lessons-grid{grid-template-columns:1fr}
+    .footer-inner{grid-template-columns:1fr}
+    .chapter-facts{flex-direction:column}
+    .chapter-fact{border-right:none;border-bottom:1px solid var(--border-s)}
+  }
+
+/* === POLISH PASS === */
+/* Bird-bullet lists - use AR icon as bullet marker */
+.prose ul, ul.bird-list { list-style: none; padding-left: 0; margin-left: 0 }
+.prose ul li, ul.bird-list li { padding-left: 30px; position: relative; margin-bottom: 10px }
+.prose ul li::before, ul.bird-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 18px;
+  height: 18px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+}
+/* Compare list: neutral bullets use bird, good keeps checkmark */
+.compare-list li.neutral { padding-left: 30px }
+.compare-list li.neutral::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+  opacity: 0.45;
+  top: 0.45em;
+}
+/* Nav logo +33% (30 -> 40px) */
+.site-nav-logo img { height: 40px !important }
+/* Footer logo +28% (28 -> 36px) */
+.footer-logo img { height: 36px !important }
+/* Stronger area-card overlay + text-shadow */
+.area-card::before {
+  background: linear-gradient(180deg, rgba(28,10,4,0.18) 0%, rgba(28,10,4,0.45) 45%, rgba(28,10,4,0.92) 100%) !important;
+}
+.area-card .area-content { padding: 26px 22px !important }
+.area-card h3 {
+  font-size: 23px !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  margin-bottom: 6px !important;
+}
+.area-card p {
+  font-size: 13.5px !important;
+  color: rgba(255,255,255,0.94) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.50);
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <div class="site-nav-logo">
+      <a href="index.html"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></a>
+    </div>
+    <div class="site-nav-links">
+      <a href="index.html">Início</a>
+      <a href="properties.html">Comprar</a>
+      <a href="sell.html">Vender</a>
+      <a href="our-story.html" class="active">A Nossa História</a>
+      <a href="our-team.html">A Nossa Equipa</a>
+      <a href="tools.html">Ferramentas</a>
+      <div class="nav-more-wrap">
+        <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">Mais ▾</button>
+        <div class="nav-dropdown" id="moreDropdown" role="menu">
+          <a href="careers.html">Carreiras</a>
+          <a href="resources.html">Recursos</a>
+          <a href="faq.html">FAQ</a>
+          <a href="partner.html">Parceiro</a>
+          <a href="contact.html">Contacto</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-nav-actions">
+      <a class="site-nav-lang" href="../our-story.html">EN</a>
+      <a class="site-nav-cta" href="contact.html">Avaliação Grátis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="kicker">A Família Dhillon · Costa de Prata, Portugal</div>
+    <h1 class="hero-title">O Caminho Que<br>Nos <em>Escolheu</em>.</h1>
+    <p class="hero-deck">O que realmente implica relocar uma família de cinco pessoas dos EUA para Portugal — contado por quem viveu cada passo.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">5</div><div class="label">Membros da família</div></div>
+      <div class="hero-stat"><div class="num">2</div><div class="label">Anos de preparação</div></div>
+      <div class="hero-stat"><div class="num">31 Dez</div><div class="label">Data de chegada</div></div>
+      <div class="hero-stat"><div class="num">2026</div><div class="label">A Aldeia Realty nasce</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROLOGUE -->
+<section class="prologue">
+  <div class="container">
+    <div class="prologue-grid">
+      <div>
+        <div class="kicker">Prólogo</div>
+        <h2>Há mudanças que se <em>calculam</em>. A nossa foi convocada.</h2>
+      </div>
+      <div>
+        <p>O que se segue é um relato honesto do que realmente custa — em tempo, dinheiro, burocracia e coragem — arrancar uma família de cinco pessoas de uma vida confortável na Carolina do Norte e plantá-la numa cidade portuguesa no coração do interior da Costa de Prata.</p>
+        <p>Partilhamos esta história porque gostaríamos que alguém a tivesse partilhado connosco. Não para nos gabarmos da decisão — há dias em que Portugal ainda nos surpreende tanto que nos perguntamos se foi real. Partilhamos porque <strong>se estiver a considerar Portugal, merece saber que o seu agente imobiliário percorreu o mesmo caminho</strong>. Com três filhos no banco de trás.</p>
+        <p>A Aldeia Realty não nasceu de um plano de negócios. Nasceu de uma experiência — uma experiência que nos tornou em clientes dos nossos próprios serviços antes de abrirmos portas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="timeline-header">
+      <div class="kicker">A Jornada Completa</div>
+      <h2>O que <em>realmente implica</em> relocar uma família dos EUA para Portugal.</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="chapter milestone">
+        <div class="chapter-date">Primavera de 2022 · A Expedição de Reconhecimento</div>
+        <h3 class="chapter-title">Escolher onde <em>pousar</em>.</h3>
+        <div class="chapter-body">
+          <p>A pesquisa em linha tem limites. Para saber se um lugar é certo para a família, é preciso caminhar nas suas ruas, sentar nos seus cafés, e estar nos pátios das escolas. <strong>Angela e a sua cunhada vieram a Portugal de propósito — para conhecer a Costa de Prata pessoalmente</strong> — visitando Caldas da Rainha, Óbidos, Peniche, Nazaré e Leiria.</p>
+          <div class="chapter-image" style="background-image:url('https://www.aldeiarealty.com/images/locations/loc-caldas.jpg')"><div class="image-caption">Caldas da Rainha · A Visita de Reconhecimento</div></div>
+          <p>A decisão ficou clara rapidamente. Uma escola bilingue em Caldas da Rainha — que funcionava para os três filhos — e a comunidade envolvente parecia o encaixe certo. A própria Caldas, uma cidade portuguesa autêntica e não um destino turístico, pareceu um lugar onde seria possível construir uma vida real.</p>
+          <div class="detail-card"><div class="detail-label">O que aprendemos</div><div class="detail-text">"Não se escolhe a cidade portuguesa por uma folha de cálculo. Venha. Caminhe até à padaria. Sente-se no mercado. O lugar certo anuncia-se por si."</div></div>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">Verão–Outono de 2022 · A Questão do Rendimento</div>
+        <h3 class="chapter-title">Resolver primeiro o <em>maior obstáculo</em>: a perda de rendimento.</h3>
+        <div class="chapter-body">
+          <p>A questão financeira mais difícil não era o custo da casa — era o custo da transição. No dia em que chegássemos a Portugal, <strong>o rendimento imobiliário de Angela na Carolina do Norte seria zero</strong> até conseguir reconstruir a carreira no mercado português.</p>
+          <p>A resposta foi planeamento deliberado, não improvisação. Tanto a substituição do rendimento principal como a reconversão profissional foram estruturadas pelo menos um ano antes da mudança — não resolvidas após a chegada.</p>
+          <p class="pull">"A mudança custa mais na transição do que em velocidade de cruzeiro. Planeie o intervalo, não o destino."</p>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">Verão de 2022 – Final de 2023 · Os Anos da Burocracia</div>
+        <h3 class="chapter-title">Dezoito meses de <em>preparação metódica e silenciosa</em>.</h3>
+        <div class="chapter-body">
+          <p>Esta é a parte que nenhuma publicação de Instagram mostra. Passámos a maior parte de 2022 e 2023 em modo de preparação — papelada, decisões e a moenda administrativa sem qualquer fotografia glamorosa.</p>
+          <p>As admissões escolares eram a nossa preocupação de maior ansiedade. <strong>Garantimos as vagas dos nossos filhos em maio de 2023</strong> — mais de seis meses antes de pisarmos Portugal como residentes. Mantivemos os lugares durante o resto do ano e estruturámos toda a mudança em torno do calendário escolar.</p>
+          <p>Contratámos também <strong>uma empresa de imigração de confiança sediada em Lisboa</strong> para coordenar a logística transcontinental: pedidos de visto, registo no NIF, contas bancárias portuguesas, coordenação do contrato de arrendamento, análise de documentos, apostilas. A honorária pareceu elevada no início; em retrospetiva, foi o investimento com melhor retorno de toda a mudança.</p>
+          <div class="chapter-facts">
+            <div class="chapter-fact"><div class="fact-num">Maio 2023</div><div class="fact-label">Vagas escolares garantidas</div></div>
+            <div class="chapter-fact"><div class="fact-num">6+ meses</div><div class="fact-label">A segurar vagas antes da chegada</div></div>
+            <div class="chapter-fact"><div class="fact-num">1</div><div class="fact-label">Empresa de imigração em Lisboa</div></div>
+          </div>
+          <div class="detail-card"><div class="detail-label">Conselho conquistado a custo</div><div class="detail-text">"Garanta as vagas escolares antes de reservar os voos. Tudo o resto resolve-se após a chegada — mas uma lista de admissão fechada não reabre."</div></div>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">Verão–Outono de 2023 · A Grande Simplificação</div>
+        <h3 class="chapter-title">De uma casa com 5 quartos para <em>um contentor de 6 metros</em>.</h3>
+        <div class="chapter-body">
+          <p>Cada objeto que possuíamos teve de passar por uma de três portas: <strong>levar, vender, ou deixar para trás</strong>. Tínhamos uma casa de 5 quartos e 4 casas de banho na Carolina do Norte, cheia do acumular de uma década. O contentor de 6 metros que enviámos para Portugal conseguia guardar uma fração.</p>
+          <div class="chapter-image" style="background-image:url('../images/container-relocation.jpg');aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:3px;margin:20px 0"></div>
+          <p>Uma coisa que fizemos mal: <strong>enviámos grande parte da mobília pelo Atlântico</strong>. O que descobrimos ao desembalar foi que <strong>as casas portuguesas têm proporções diferentes, pés-direitos diferentes, normas elétricas diferentes e uma relação diferente com a escala</strong>.</p>
+          <p>A lição: <strong>a mobília raramente sobrevive à matemática do Atlântico</strong>. Envie o que é insubstituível — livros, arte, as memórias significativas dos filhos, as ferramentas de cozinha que realmente usa — e compre mobília quando cá chegar.</p>
+          <p class="pull">"Vai enviar mais do que precisa, menos do que queria, e acabar por substituir quase tudo na mesma."</p>
+        </div>
+      </div>
+
+      <div class="chapter milestone">
+        <div class="chapter-date">31 de Dezembro de 2023 · A Chegada</div>
+        <h3 class="chapter-title">Por que razão a data de chegada <em>não foi coincidência</em>.</h3>
+        <div class="chapter-body">
+          <p>Chegámos a Portugal a <strong>31 de dezembro de 2023</strong>. A data foi escolhida com intenção.</p>
+          <p>O regime fiscal de <strong>Residente Não Habitual (RNH)</strong> de Portugal estava previsto terminar no final de 2023. A diferença entre chegar a 31 de dezembro ou a 1 de janeiro podia significar uma década de tratamento fiscal diferente. Por isso voámos na Véspera de Ano Novo, com três filhos exaustos do fuso horário, para um país que já parecia casa antes de desfazermos as malas.</p>
+          <p>Poucos dias depois, a <strong>4 de janeiro de 2024, os nossos filhos entraram nas suas novas salas de aula portuguesas</strong> — nas carteiras que os esperavam desde maio.</p>
+          <div class="chapter-image" style="background-image:url('https://www.aldeiarealty.com/images/banner/classic-1.jpg')"><div class="image-caption">Em Casa · Caldas da Rainha</div></div>
+          <div class="detail-card"><div class="detail-label">Perspetiva estratégica</div><div class="detail-text">"A legislação fiscal portuguesa não é uma nota de rodapé da sua mudança — pode ser a própria mudança. A data em que chega é tão importante quanto o destino."</div></div>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">Janeiro – Agosto de 2024 · A Tormenta</div>
+        <h3 class="chapter-title">Os primeiros meses: <em>tudo é novo</em>.</h3>
+        <div class="chapter-body">
+          <p>A chegada não é o destino — é o início de um novo sprint. Nos primeiros meses navegámos: <strong>serviços públicos, registo de residência, matrícula de automóvel portugueses, contrato de arrendamento, explicações de português para os miúdos, e a aprendizagem dos ritmos de uma cidade portuguesa autêntica</strong>.</p>
+          <p>É aqui que a experiência vivida substitui o planeamento. <strong>Aprende-se que o supermercado fecha domingo à tarde. Que os correios de Caldas têm a sua própria dialeto de paciência. Que o "para a semana" do empreiteiro é real, mas elástico.</strong></p>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">Setembro de 2024 – Abril de 2025 · Comprar e Renovar</div>
+        <h3 class="chapter-title">Tornámo-nos os <em>nossos primeiros clientes</em>.</h3>
+        <div class="chapter-body">
+          <p>Em setembro de 2024, comprámos a nossa primeira casa portuguesa. E então lançámo-nos numa <strong>renovação que demorou aproximadamente sete meses</strong> do início à mudança.</p>
+          <div class="chapter-image" style="background-image:url('../images/renovation-progress.jpg');aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:3px;margin:20px 0"></div>
+          <p>Trabalhar com empreiteiros portugueses, navegar o tratamento de IVA nas obras, perceber quais as licenças que exigiam aprovação da Câmara Municipal — fizemos tudo isto. E mudámos para casa em abril de 2025.</p>
+          <p><strong>Não estimamos custos de renovação a partir de uma folha de cálculo — estimamos a partir de uma obra que vivemos na pele.</strong></p>
+          <div class="chapter-facts">
+            <div class="chapter-fact"><div class="fact-num">7 meses</div><div class="fact-label">Início da obra à entrega</div></div>
+            <div class="chapter-fact"><div class="fact-num">1ª</div><div class="fact-label">Casa portuguesa própria</div></div>
+            <div class="chapter-fact"><div class="fact-num">Abr 2025</div><div class="fact-label">Mudança para casa</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter milestone">
+        <div class="chapter-date">2026 · Hoje</div>
+        <h3 class="chapter-title">Filhos a falar português fluente, e uma <em>nova aventura</em>.</h3>
+        <div class="chapter-body">
+          <p>Já passaram quase três anos desde a nossa chegada. Os filhos estão a crescer de forma extraordinária — falam português fluentemente, estão plenamente integrados na comunidade escolar, com amizades que atravessam as mesmas ruas por onde vão a pé para a escola todas as manhãs.</p>
+          <p>E assim lançámo-nos numa nova aventura: <strong>construir a Aldeia Realty</strong>. Uma agência desenhada para as pessoas que fomos — famílias internacionais à beira da sua própria relocação, a fazer as mesmas perguntas que fizemos nós, e a merecer melhores respostas do que as que recebemos.</p>
+          <p>Não escrevemos esta história para impressionar. Escrevemo-la porque <strong>se está a ler isto e a considerar Portugal, merece saber que o seu consultor imobiliário percorreu o caminho que está prestes a percorrer</strong>. Cada passo. Com três filhos no banco de trás.</p>
+          <div class="chapter-image tall" style="background-image:url('https://www.aldeiarealty.com/images/banner/seaside-1.jpg')"><div class="image-caption">Costa de Prata · 2026</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section class="lessons">
+  <div class="container">
+    <div class="kicker">O que a nossa jornada significa para a sua</div>
+    <h2>Seis coisas que <em>gostaríamos que alguém nos tivesse dito</em> em 2022.</h2>
+    <div class="lessons-grid">
+      <div class="lesson"><div class="lesson-num">01</div><div class="lesson-title">Planeie a fase de transição, não o destino.</div><div class="lesson-body">O custo mais difícil da relocação é a quebra de rendimento durante a mudança. Resolva isso antes de tudo o resto.</div></div>
+      <div class="lesson"><div class="lesson-num">02</div><div class="lesson-title">A escola primeiro. Sempre a escola primeiro.</div><div class="lesson-body">Se tem filhos, a lista de escolas é a decisão que condiciona tudo — não a casa. Candidate-se com 12 a 18 meses de antecedência.</div></div>
+      <div class="lesson"><div class="lesson-num">03</div><div class="lesson-title">A data de chegada é uma escolha estratégica.</div><div class="lesson-body">A legislação fiscal portuguesa, o regime RNH e as regras de visto podem depender do momento em que atravessa a fronteira.</div></div>
+      <div class="lesson"><div class="lesson-num">04</div><div class="lesson-title">Contrate a empresa de imigração. Vale a pena.</div><div class="lesson-body">A burocracia transcontinental é uma disciplina própria. Os honorários poupam semanas de erros que não pode dar-se ao luxo de cometer.</div></div>
+      <div class="lesson"><div class="lesson-num">05</div><div class="lesson-title">Envie menos mobília do que pensa.</div><div class="lesson-body">As proporções e a eletricidade portuguesa são diferentes. Leve o que é insubstituível; compre mobília cá.</div></div>
+      <div class="lesson"><div class="lesson-num">06</div><div class="lesson-title">O primeiro ano é um sprint, não um aconchego.</div><div class="lesson-body">Serviços, automóvel, residência, explicações, banca. Chegue a esperar mais seis meses de trabalho, não umas férias.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <div class="kicker">A Sua Jornada Começa Aqui</div>
+    <h2>Se está a considerar Portugal, <em>vamos conversar</em>.</h2>
+    <p>Sem pressão, sem discurso de vendas. Apenas uma conversa com pessoas que fizeram isso mesmo — e que teriam dado tudo por essa chamada em 2022.</p>
+    <div class="cta-buttons">
+      <a class="btn btn-primary" href="contact.html">Marcar uma Consulta de Relocação</a>
+      <a class="btn btn-secondary" href="calculator.html">Experimente o Simulador de Capital</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Historial Comprovado · O Que Dizem os Nossos Clientes</div>
+      <h2>Testemunhos de <em>anos a servir</em> compradores e vendedores.</h2>
+      <p class="sub">De compradores de primeira casa a relocações internacionais complexas — nas suas próprias palavras.</p>
+    </div>
+    <div class="t-grid">
+
+      <div class="t-card">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="t-teaser">"A Angela foi verdadeiramente fundamental para encontrarmos e comprarmos a nossa casa de sonho. Desde o início foi simpática, conhecedora, e ouviu realmente o que a nossa família precisava…"</div>
+        <div class="t-full">"A Angela foi verdadeiramente fundamental para encontrarmos e comprarmos a nossa casa de sonho. Desde o início foi simpática, conhecedora, e ouviu realmente o que a nossa família precisava. Tornou todo o processo de compra simples e sem stress. Cada preocupação que tive foi tratada com paciência e verdadeira competência. Não consigo recomendá-la suficientemente a quem queira navegar o mercado imobiliário português com confiança."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">↓</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Lisa Wharton</div><div class="t-meta">Costa de Prata · Compradora</div></div>
+          <div class="t-badge">5.0 Estrelas</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="t-teaser">"Como compradora de primeira casa, tinha tantas dúvidas e momentos de hesitação. A Angela respondeu a todas sem me fazer sentir nunca um fardo…"</div>
+        <div class="t-full">"Como compradora de primeira casa, tinha tantas dúvidas e momentos de hesitação. A Angela respondeu a todas sem me fazer sentir nunca um fardo. Guiou-me em cada etapa do processo — desde a pesquisa inicial até ao fecho — e ajudou-me a encontrar uma casa que pudesse verdadeiramente fazer minha. Mudar para o estrangeiro sozinha é assustador. Ter alguém do seu lado que se preocupa genuinamente faz toda a diferença."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">↓</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Compradora de Primeira Casa</div><div class="t-meta">Comprou em 2021</div></div>
+          <div class="t-badge">Verificado</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="t-teaser">"Vender uma casa é stressante. Um bom consultor tem de acalmar os nervos e manter o otimismo. O Patrick cuidou muito bem de nós. A nossa casa vendeu rapidamente e muito perto do preço pedido…"</div>
+        <div class="t-full">"Vender uma casa é stressante. Um bom consultor tem de acalmar os nervos e manter o otimismo. O Patrick cuidou muito bem de nós ao longo de todo o processo. A nossa casa vendeu rapidamente e muito perto do preço pedido. Foi comunicativo, profissional, e tratou cada imprevisto com calma e competência. Recomendo vivamente o Patrick a quem queira comprar ou vender na Costa de Prata."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">↓</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Sarah Pauling Midgett</div><div class="t-meta">Vendeu em Greenville, NC</div></div>
+          <div class="t-badge">Vendedor</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="t-teaser">"Trabalhar com a Fernanda foi uma verdadeira alegria! Não só nos encontrou a casa perfeita, como geriu todo o processo com paciência, honestidade, amabilidade e profissionalismo…"</div>
+        <div class="t-full">"Trabalhar com a Fernanda foi uma verdadeira alegria! Não só nos encontrou a casa perfeita, como geriu todo o processo com paciência, honestidade, amabilidade e profissionalismo. Como casal internacional a navegar um mercado imobiliário estrangeiro, precisávamos de alguém capaz de antecipar perguntas que nem sabíamos fazer — e a Fernanda fez exatamente isso. Cinco estrelas sem hesitar."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">↓</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Heather &amp; Afonso</div><div class="t-meta">Encontraram a sua casa na Costa de Prata</div></div>
+          <div class="t-badge">Comprador</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></div>
+      <div class="footer-tagline">Modern Heritage · Modern Business</div>
+      <p class="footer-desc">Uma agência imobiliária boutique que o guia para casa na Costa de Prata de Portugal com confiança, experiência e serviço moderno.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navegação</div>
+      <ul>
+        <li><a href="properties.html">Comprar</a></li>
+        <li><a href="sell.html">Vender</a></li>
+        <li><a href="our-story.html">A Nossa História</a></li>
+        <li><a href="our-team.html">A Nossa Equipa</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <ul>
+        <li><a href="sell.html">Guia do Vendedor</a></li>
+        <li><a href="resources.html">Perspetivas de Mercado</a></li>
+        <li><a href="calculator.html">Calculadora de Capital</a></li>
+        <li><a href="nhr-guide.html">Guia NHR</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contacto</div>
+      <div class="footer-contact">+351 912 771 309 (WhatsApp)</div>
+      <div class="footer-contact">info@aldeiarealty.com</div>
+      <div class="footer-contact">Rua Dr. Ângelo Ferrari, n.º 7, R/C Dt.º<br>2500-113 Caldas da Rainha, Portugal</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner"><div class="footer-license">&copy; 2026 Aldeia Realty &middot; Atividade de Mediação Imobiliária &middot; Lei 15/2013 &middot; Guia n.º 12456-GAMI / 2026 T, de 2026/05/25</div>
+    <div class="footer-legal">
+      <a href="privacy-policy.html">Política de Privacidade</a>
+      <a href="complaints.html">Resolução de Litígios</a>
+      <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclamações</a>
+    </div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/351912771309" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+function toggleMore() {
+  const dd = document.getElementById('moreDropdown');
+  const btn = document.getElementById('moreBtn');
+  const open = dd.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more-wrap')) {
+    document.getElementById('moreDropdown').classList.remove('open');
+    document.getElementById('moreBtn').setAttribute('aria-expanded', 'false');
+  }
+});
+function toggleT(btn) {
+  const card = btn.closest('.t-card');
+  const expanding = !card.classList.contains('expanded');
+  card.classList.toggle('expanded');
+  btn.firstChild.textContent = expanding ? 'Ler menos ' : 'Ler mais ';
+}
+</script>
+</body>
+</html>

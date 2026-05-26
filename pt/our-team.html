@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Nossa Equipa — Aldeia Realty</title>
+<meta name="description" content="Conheça a equipa da Aldeia Realty — especialistas em relocação, consultores licenciados e conhecedores da Costa de Prata ao seu serviço." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#296662;--black:#1c0a04;--gold:#efd48f;--dove:#e4e7e6;--parchment:#f4ecdc;--white:#ffffff;--coral:#c64f2f;--muted:rgba(28,10,4,0.50);--border:rgba(41,102,98,0.15);--border-s:rgba(41,102,98,0.08);--display:'Domine',Georgia,serif;--body:'Work Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--parchment);color:var(--black);font-family:var(--body);font-weight:400;line-height:1.6;overflow-x:hidden}
+  .site-nav{background:var(--teal);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold);box-shadow:0 2px 20px rgba(28,10,4,0.18)}
+  .site-nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:66px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+  .site-nav-logo img{height:28px;width:auto;display:block}
+  .site-nav-links{display:flex;gap:20px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;align-items:center;flex:1;justify-content:center}
+  .site-nav-links a{color:rgba(244,236,220,0.55);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+  .site-nav-links a:hover,.site-nav-links a.active{color:var(--gold)}
+  .nav-more-wrap{position:relative}
+  .nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,236,220,0.55);padding:0;transition:color 0.2s}
+  .nav-more-btn:hover{color:var(--gold)}
+  .nav-dropdown{position:absolute;top:calc(100% + 14px);right:0;background:var(--black);border:1px solid rgba(239,212,143,0.18);border-radius:3px;padding:8px 0;min-width:160px;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.3);z-index:200}
+  .nav-dropdown.open{display:block}
+  .nav-dropdown a{display:block;padding:10px 18px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,236,220,0.60);text-decoration:none;transition:color 0.2s,background 0.2s}
+  .nav-dropdown a:hover{color:var(--gold);background:rgba(41,102,98,0.20)}
+  .site-nav-actions{display:flex;align-items:center;gap:14px}
+  .site-nav-lang{font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;color:rgba(244,236,220,0.40);text-decoration:none;text-transform:uppercase}
+  .site-nav-cta{background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;padding:8px 16px;border-radius:2px;white-space:nowrap;transition:opacity 0.2s}
+  .site-nav-cta:hover{opacity:0.85}
+  .page-hero{background:var(--teal);padding:72px 0 64px;border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
+  .container{max-width:1200px;margin:0 auto;padding:0 56px}
+  .kicker{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;font-weight:500}
+  .page-hero .kicker{color:var(--gold);opacity:0.85}
+  .page-hero h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.5vw,72px);line-height:1.0;letter-spacing:-0.02em;color:var(--parchment);margin-bottom:20px}
+  .page-hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+  .page-hero .sub{font-family:var(--body);font-size:17px;color:rgba(244,236,220,0.70);max-width:580px;line-height:1.6;font-style:italic}
+  .team-section{padding:80px 0;background:var(--parchment)}
+  .team-grid{display:flex;flex-direction:column;gap:64px}
+  .team-card{display:grid;grid-template-columns:280px 1fr;gap:52px;align-items:start;padding-bottom:64px;border-bottom:1px solid var(--border)}
+  .team-card:last-child{border-bottom:none;padding-bottom:0}
+  .team-photo-wrap{position:relative}
+  .team-photo{width:100%;aspect-ratio:3/4;border-radius:3px;background-size:cover;background-position:center top;background-color:var(--dove)}
+  .team-photo-placeholder{width:100%;aspect-ratio:3/4;border-radius:3px;background:linear-gradient(135deg,var(--teal) 0%,rgba(41,102,98,0.5) 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+  .team-photo-placeholder svg{opacity:0.25}
+  .team-photo-placeholder .ph-note{font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,236,220,0.40)}
+  .team-role-badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:0.20em;text-transform:uppercase;color:var(--teal);background:rgba(41,102,98,0.10);border:1px solid rgba(41,102,98,0.20);padding:5px 12px;border-radius:2px;margin-top:14px}
+  .advisory-note{font-family:var(--mono);font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,10,4,0.40);margin-top:8px;font-style:italic}
+  .team-info h3{font-family:var(--display);font-weight:700;font-size:34px;line-height:1.05;letter-spacing:-0.01em;color:var(--black);margin-top:16px;margin-bottom:20px}
+  .team-info h3::after{content:'';display:block;width:32px;height:3px;background:var(--gold);margin-top:12px}
+  .team-bio p{font-size:15.5px;line-height:1.72;color:var(--black);margin-bottom:14px}
+  .team-bio p:last-child{margin-bottom:0}
+  .team-bio strong{font-weight:600;color:var(--teal)}
+  .team-exp{margin-top:24px;padding:20px 22px;background:var(--dove);border-radius:3px;border-left:3px solid var(--gold)}
+  .team-exp-title{font-family:var(--mono);font-size:8.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500}
+  .team-exp ul{list-style:none;padding:0}
+  .team-exp ul li{font-size:13.5px;color:var(--black);padding:5px 0;border-bottom:1px solid var(--border-s)}
+  .team-exp ul li:last-child{border-bottom:none}
+  .team-exp ul li::before{content:'—';color:var(--gold);margin-right:8px;font-family:var(--mono)}
+  .testimonials-section{padding:88px 0;background:var(--dove);position:relative;border-top:1px solid var(--border)}
+  .testimonials-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--teal),var(--gold))}
+  .section-header{margin-bottom:52px}
+  .section-header h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin-top:12px;color:var(--black)}
+  .section-header h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .section-header .sub{font-family:var(--body);font-style:italic;font-size:16px;color:var(--muted);margin-top:14px;max-width:540px;line-height:1.55}
+  .t-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .t-card{background:var(--parchment);border:1px solid var(--border);border-radius:3px;padding:28px 28px 22px;position:relative;transition:box-shadow 0.25s}
+  .t-card:hover{box-shadow:0 8px 32px rgba(28,10,4,0.08)}
+  .t-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold)}
+  .t-stars{display:flex;gap:3px;margin-bottom:14px}
+  .t-stars span{color:var(--gold);font-size:13px}
+  .t-teaser,.t-full{font-family:var(--body);font-style:italic;font-size:16.5px;line-height:1.62;color:var(--black);margin-bottom:4px}
+  .t-full{display:none}
+  .t-card.expanded .t-teaser{display:none}
+  .t-card.expanded .t-full{display:block}
+  .t-read-more{background:none;border:none;padding:0;cursor:pointer;font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-top:12px;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+  .t-read-more:hover{color:var(--teal)}
+  .t-read-more .arrow{transition:transform 0.25s;display:inline-block}
+  .t-card.expanded .t-read-more .arrow{transform:rotate(180deg)}
+  .t-byline{margin-top:18px;padding-top:14px;border-top:1px solid var(--border-s);display:flex;align-items:center;justify-content:space-between}
+  .t-name{font-family:var(--body);font-weight:600;font-size:13px;color:var(--black)}
+  .t-meta{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+  .t-badge{font-family:var(--mono);font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);background:rgba(41,102,98,0.09);padding:4px 10px;border-radius:2px;border:1px solid rgba(41,102,98,0.15)}
+  .cta-section{padding:88px 0;background:var(--parchment);text-align:center;border-top:1px solid var(--border)}
+  .cta-section h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,46px);line-height:1.05;letter-spacing:-0.02em;margin-top:12px;margin-bottom:18px;color:var(--black)}
+  .cta-section h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .cta-section p{font-style:italic;font-size:17px;color:rgba(28,10,4,0.58);max-width:540px;margin:0 auto 34px;line-height:1.56}
+  .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:background 0.2s,color 0.2s,opacity 0.2s}
+  .btn-primary{background:var(--teal);color:var(--parchment);border:1px solid var(--teal)}
+  .btn-primary:hover{opacity:0.85}
+  .btn-secondary{background:transparent;color:var(--teal);border:1px solid var(--teal)}
+  .btn-secondary:hover{background:var(--teal);color:var(--parchment)}
+  .site-footer{background:var(--teal);color:var(--parchment);padding:56px 0 0;position:relative;border-top:3px solid var(--gold)}
+  
+  .footer-inner{max-width:1200px;margin:0 auto;padding:0 56px 48px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+  .footer-logo img{height:24px;width:auto;margin-bottom:14px;display:block}
+  .footer-tagline{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:0.92}
+  .footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.72);max-width:280px}
+  .footer-col-title{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500;opacity:0.92}
+  .footer-col ul{list-style:none}
+  .footer-col ul li{margin-bottom:8px}
+  .footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.72);text-decoration:none;transition:color 0.2s}
+  .footer-col ul li a:hover{color:var(--gold)}
+  .footer-contact{font-size:13.5px;color:rgba(244,236,220,0.72);margin-bottom:9px;line-height:1.55}
+  .footer-bottom{background:var(--black);margin-top:36px}.footer-bottom-inner{max-width:1200px;margin:0 auto;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;min-height:48px}
+  .footer-license{font-family:var(--mono);font-size:8.5px;letter-spacing:0.10em;color:rgba(244,236,220,0.50);line-height:1.5}
+  .footer-legal{display:flex;gap:18px}
+  .footer-legal a{font-family:var(--mono);font-size:9px;letter-spacing:0.10em;color:rgba(244,236,220,0.28);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+  .footer-legal a:hover{color:var(--gold)}
+  .whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:250;text-decoration:none}
+  .whatsapp-float:hover{transform:scale(1.1);color:#fff}
+  @media(max-width:900px){.container{padding:0 28px}.team-card{grid-template-columns:1fr;gap:28px}.site-nav-links{display:none}.t-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr;padding:0 28px 40px}.footer-bottom{padding:20px 28px}}
+  @media(max-width:600px){.footer-inner{grid-template-columns:1fr}}
+
+/* === POLISH PASS === */
+/* Bird-bullet lists - use AR icon as bullet marker */
+.prose ul, ul.bird-list { list-style: none; padding-left: 0; margin-left: 0 }
+.prose ul li, ul.bird-list li { padding-left: 30px; position: relative; margin-bottom: 10px }
+.prose ul li::before, ul.bird-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 18px;
+  height: 18px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+}
+/* Compare list: neutral bullets use bird, good keeps checkmark */
+.compare-list li.neutral { padding-left: 30px }
+.compare-list li.neutral::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+  opacity: 0.45;
+  top: 0.45em;
+}
+/* Nav logo +33% (30 -> 40px) */
+.site-nav-logo img { height: 40px !important }
+/* Footer logo +28% (28 -> 36px) */
+.footer-logo img { height: 36px !important }
+/* Stronger area-card overlay + text-shadow */
+.area-card::before {
+  background: linear-gradient(180deg, rgba(28,10,4,0.18) 0%, rgba(28,10,4,0.45) 45%, rgba(28,10,4,0.92) 100%) !important;
+}
+.area-card .area-content { padding: 26px 22px !important }
+.area-card h3 {
+  font-size: 23px !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  margin-bottom: 6px !important;
+}
+.area-card p {
+  font-size: 13.5px !important;
+  color: rgba(255,255,255,0.94) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.50);
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <div class="site-nav-logo">
+      <a href="index.html"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></a>
+    </div>
+    <div class="site-nav-links">
+      <a href="index.html">Início</a>
+      <a href="properties.html">Comprar</a>
+      <a href="sell.html">Vender</a>
+      <a href="our-story.html">A Nossa História</a>
+      <a href="our-team.html" class="active">A Nossa Equipa</a>
+      <a href="tools.html">Ferramentas</a>
+      <div class="nav-more-wrap">
+        <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">Mais ▾</button>
+        <div class="nav-dropdown" id="moreDropdown" role="menu">
+          <a href="careers.html">Carreiras</a>
+          <a href="resources.html">Recursos</a>
+          <a href="faq.html">FAQ</a>
+          <a href="partner.html">Parceiro</a>
+          <a href="contact.html">Contacto</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-nav-actions">
+      <a class="site-nav-lang" href="../our-team.html">EN</a>
+      <a class="site-nav-cta" href="contact.html">Avaliação Grátis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="kicker">As Pessoas por Detrás da Aldeia · Costa de Prata, Portugal</div>
+    <h1>Experiência real.<br><em>Relocação real.</em></h1>
+    <p class="sub">Uma equipa de consultores licenciados, especialistas em relocação e conhecedores locais da Costa de Prata — unidos por uma missão: guiá-lo para casa.</p>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="equipa">
+  <div class="container">
+    <div class="team-grid">
+
+    <!-- Angela -->
+    <div class="team-card" id="angela">
+      <div class="team-photo-wrap">
+        <div class="team-photo" style="background-image:url('https://www.aldeiarealty.com/images/team/angela-headshot.jpg')"></div>
+        <div class="team-role-badge">CEO &amp; Sócia Fundadora</div>
+      </div>
+      <div class="team-info">
+        <h3>Angela Dhillon</h3>
+        <div class="team-bio">
+          <p>Com mais de uma década de experiência em mediação imobiliária, Angela traz à Aldeia Realty uma abordagem altamente estratégica e centrada no cliente. Formada em Terapia da Fala e Linguagem, possui uma aptidão singular para navegar negociações complexas e garantir uma comunicação clara e transparente a compradores internacionais que entram no mercado português.</p>
+          <p>Antes de se mudar para a Costa de Prata, Angela construiu uma carreira de referência em Greenville, Carolina do Norte — como agente fundadora de uma das principais empresas imobiliárias da região. Estabeleceu o padrão de excelência da firma, classificando-se de forma consistente como a consultora de maior desempenho ano após ano e conquistando as listagens de maior valor.</p>
+          <p>Hoje, Angela e a sua família têm orgulho em chamar lar à região de Caldas da Rainha. Profundamente apaixonada pela cultura portuguesa, está ativamente envolvida na comunidade local e dedica-se a ajudar os recém-chegados internacionais a integrarem-se de forma harmoniosa no estilo de vida que a Costa de Prata tem para oferecer.</p>
+        </div>
+        <div class="team-exp">
+          <div class="team-exp-title">Percurso</div>
+          <ul>
+            <li>CEO, Aldeia Realty</li>
+            <li>10+ Anos de Experiência em Mediação Imobiliária</li>
+            <li>Agente Fundadora, Uma das Principais Empresas Imobiliárias da Carolina do Norte Oriental</li>
+            <li>Consultora de Topo — Classificada consistentemente como a profissional de maior desempenho da firma</li>
+            <li>Licenciatura em Terapia da Fala e Linguagem, East Carolina University</li>
+            <li>Licença de Mediadora Imobiliária NC ativa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parvez -->
+    <div class="team-card" id="parvez">
+      <div class="team-photo-wrap">
+        <div class="team-photo-placeholder">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span class="ph-note">Fotografia em breve</span>
+        </div>
+        <div class="team-role-badge">Consultor Estratégico</div>
+        <div class="advisory-note">Função Consultiva</div>
+      </div>
+      <div class="team-info">
+        <h3>Parvez Dhillon</h3>
+        <div class="team-bio">
+          <p>Parvez presta apoio consultivo estratégico e financeiro à Aldeia Realty, trazendo uma vasta experiência em desenvolvimento de negócios, planeamento financeiro e estratégia de mercados transfronteiriços. O seu percurso abrange consultoria executiva, serviços de advisory corporativo e análise de investimentos — experiência que informa diretamente a forma como a agência aborda a orientação financeira dos clientes, a investigação de mercado e o posicionamento estratégico a longo prazo.</p>
+          <p>Parvez é licenciado em Administração de Empresas e Contabilidade pela East Carolina University.</p>
+        </div>
+        <div class="team-exp">
+          <div class="team-exp-title">Percurso Consultivo</div>
+          <ul>
+            <li>Consultor Estratégico, Aldeia Realty</li>
+            <li>Consultoria Executiva e Advisory Corporativo</li>
+            <li>Estratégia de Mercados Transfronteiriços e Planeamento Financeiro</li>
+            <li>Análise de Investimentos e Desenvolvimento de Negócios</li>
+            <li>Licenciatura em Administração de Empresas e Contabilidade, East Carolina University</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patrick -->
+    <div class="team-card" id="patrick">
+      <div class="team-photo-wrap">
+        <div class="team-photo-placeholder">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span class="ph-note">Fotografia em breve</span>
+        </div>
+        <div class="team-role-badge">Consultor Imobiliário Sénior</div>
+      </div>
+      <div class="team-info">
+        <h3>Patrick Reid</h3>
+        <div class="team-bio">
+          <p>Patrick traz à equipa da Aldeia Realty uma vasta experiência em comunicação de alto nível e planeamento estratégico. Com uma formação profunda em educação e desenvolvimento profissional, destaca-se em traduzir as complexidades do mercado imobiliário português em passos claros e acionáveis para os seus clientes.</p>
+          <p>Tendo relocado com sucesso a sua própria família de Greenville, Carolina do Norte, para a Costa de Prata, Patrick oferece uma perspetiva genuína e em primeira mão sobre a jornada logística e emocional de mudar para o estrangeiro. A sua experiência de transição dos EUA para Caldas da Rainha confere-lhe um olhar apurado para os detalhes que mais importam aos clientes internacionais — desde as zonas escolares à infraestrutura local e à integração comunitária.</p>
+          <p>Hoje residente orgulhoso da região Oeste, Patrick dedica-se a prestar um serviço premium e personalizado que privilegia as relações duradouras em detrimento das transações simples.</p>
+        </div>
+        <div class="team-exp">
+          <div class="team-exp-title">Percurso</div>
+          <ul>
+            <li>Consultor Imobiliário Sénior, Aldeia Realty</li>
+            <li>Especialista em Relocação — Perito em transições familiares EUA–Portugal</li>
+            <li>Comunicação Estratégica e Formação em Desenvolvimento Profissional</li>
+            <li>Conhecimento Local Profundo de Caldas da Rainha e Costa de Prata</li>
+            <li>Licenciado pela East Carolina University (ECU)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fernanda -->
+    <div class="team-card" id="fernanda">
+      <div class="team-photo-wrap">
+        <div class="team-photo-placeholder">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span class="ph-note">Fotografia em breve</span>
+        </div>
+        <div class="team-role-badge">Consultora Imobiliária</div>
+      </div>
+      <div class="team-info">
+        <h3>Fernanda Gray</h3>
+        <div class="team-bio">
+          <p>Com uma carreira internacional que abrange Recursos Humanos, Finanças, Administração e Relações com Clientes no Brasil e no Reino Unido, Fernanda traz uma abordagem atenta e centrada nas pessoas ao imobiliário da Costa de Prata. Fluente em português e inglês, é reconhecida pelo seu profissionalismo, empatia e capacidade de construir relações sólidas com clientes de origens muito diversas.</p>
+          <p>Antes de se mudar para Portugal em 2022, Fernanda desenvolveu uma extensa carreira corporativa em empresas multinacionais, universidades e organizações no Brasil e no Reino Unido — incluindo a <strong>Universidade de Cardiff</strong> e a <strong>Embratel</strong>, uma das maiores empresas de telecomunicações do Brasil. A sua formação em finanças, negociação, comunicação e apoio ao cliente conferiu-lhe uma base robusta para guiar clientes em decisões importantes de vida e investimento com confiança e cuidado genuínos.</p>
+        </div>
+        <div class="team-exp">
+          <div class="team-exp-title">Percurso</div>
+          <ul>
+            <li>Consultora Imobiliária, Aldeia Realty</li>
+            <li>Carreira Internacional no Brasil e no Reino Unido</li>
+            <li>Formação em Recursos Humanos, Finanças e Relações com Clientes</li>
+            <li>Fluente em Português e Inglês</li>
+            <li>MBA em Gestão de Recursos Humanos</li>
+            <li>MBA em Gestão de Empresas</li>
+            <li>Pós-graduação em Marketing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luciana -->
+    <div class="team-card" id="luciana">
+      <div class="team-photo-wrap">
+        <div class="team-photo-placeholder">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span class="ph-note">Fotografia em breve</span>
+        </div>
+        <div class="team-role-badge">Consultora Imobiliária</div>
+      </div>
+      <div class="team-info">
+        <h3>Luciana Aires</h3>
+        <div class="team-bio">
+          <p>Com uma sólida formação em aconselhamento financeiro e defesa dos interesses dos clientes, Luciana traz uma abordagem meticulosa e orientada para o detalhe a cada transação na Aldeia Realty. A experiência em navegar decisões financeiras complexas com clareza e cuidado torna-a uma guia inestimável tanto para compradores como para vendedores.</p>
+          <p>Antes de transitar para o imobiliário, Luciana passou anos a aconselhar clientes em matérias financeiras, desenvolvendo um olhar aguçado para due diligence, análise contratual e avaliação de riscos. A sua capacidade de desdobrar processos intrincados em etapas claras e geríveis garante que os clientes se sintam informados e confiantes em cada momento da jornada imobiliária. Natural de Caldas da Rainha, conta com mais de cinco anos de experiência prática no mercado local.</p>
+        </div>
+        <div class="team-exp">
+          <div class="team-exp-title">Percurso</div>
+          <ul>
+            <li>Consultora Imobiliária, Aldeia Realty</li>
+            <li>Aconselhamento Financeiro — Especialista em Due Diligence e Avaliação de Riscos</li>
+            <li>5+ Anos a viver e trabalhar em Caldas da Rainha, Costa de Prata</li>
+            <li>Experiência Prática em Compra, Venda e Renovação de Imóveis em Portugal</li>
+            <li>Defesa do Cliente — Compromisso com um Serviço Transparente e Rigoroso</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Telmo -->
+    <div class="team-card" id="telmo">
+      <div class="team-photo-wrap">
+        <div class="team-photo-placeholder">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span class="ph-note">Fotografia em breve</span>
+        </div>
+        <div class="team-role-badge">Especialista em Aquisição</div>
+      </div>
+      <div class="team-info">
+        <h3>Telmo Raimundo</h3>
+        <div class="team-bio">
+          <p>Com raízes profissionais na hotelaria de luxo e no turismo internacional, Telmo é um mestre na comunicação de excelência e na construção de relações duradouras. Cresceu numa família ligada à restauração de renome nacional, o que lhe desenvolveu desde cedo um talento natural para criar confiança genuína com clientes das mais diversas origens culturais.</p>
+          <p>Antes de se juntar à Aldeia Realty, Telmo passou quase uma década em cargos de liderança no prestigiado <strong>Royal Óbidos Golf &amp; Spa Resort</strong>, parte da coleção Albatroz. Nesse contexto, geriu operações para eventos internacionais de grande exigência e fundou o conceito <strong>The Royal Market</strong> — curadoria de marcas de luxo como a Vista Alegre para uma clientela global.</p>
+        </div>
+        <div class="team-exp">
+          <div class="team-exp-title">Percurso</div>
+          <ul>
+            <li>Especialista em Aquisição, Aldeia Realty</li>
+            <li>10+ Anos em Hotelaria de Luxo e Gestão de Experiência</li>
+            <li>Liderança, Royal Óbidos Golf &amp; Spa Resort (Albatroz Collection)</li>
+            <li>Fundador, The Royal Market</li>
+            <li>Anfitrião de Turismo e Embaixador Cultural de Óbidos</li>
+            <li>Formação em Gestão de Restauração e Catering</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Historial Comprovado · O Que Dizem os Nossos Clientes</div>
+      <h2>Testemunhos de <em>anos a servir</em> compradores e vendedores.</h2>
+      <p class="sub">De compradores de primeira casa a relocações internacionais complexas — nas suas próprias palavras.</p>
+    </div>
+    <div class="t-grid">
+
+      <div class="t-card">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="t-teaser">"A Angela foi verdadeiramente fundamental para encontrarmos e comprarmos a nossa casa de sonho. Desde o início foi simpática, conhecedora, e ouviu realmente o que a nossa família precisava…"</div>
+        <div class="t-full">"A Angela foi verdadeiramente fundamental para encontrarmos e comprarmos a nossa casa de sonho. Desde o início foi simpática, conhecedora, e ouviu realmente o que a nossa família precisava. Tornou todo o processo de compra simples e sem stress. Cada preocupação que tive foi tratada com paciência e verdadeira competência. Não consigo recomendá-la suficientemente a quem queira navegar o mercado imobiliário português com confiança."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">↓</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Lisa Wharton</div><div class="t-meta">Costa de Prata · Compradora</div></div>
+          <div class="t-badge">5.0 Estrelas</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="t-teaser">"Como compradora de primeira casa, tinha tantas dúvidas e momentos de hesitação. A Angela respondeu a todas sem me fazer sentir nunca um fardo…"</div>
+        <div class="t-full">"Como compradora de primeira casa, tinha tantas dúvidas e momentos de hesitação. A Angela respondeu a todas sem me fazer sentir nunca um fardo. Guiou-me em cada etapa do processo e ajudou-me a encontrar uma casa que pudesse verdadeiramente fazer minha. Mudar para o estrangeiro sozinha é assustador. Ter alguém genuinamente do seu lado faz toda a diferença."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">↓</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Compradora de Primeira Casa</div><div class="t-meta">Comprou em 2021</div></div>
+          <div class="t-badge">Verificado</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="t-teaser">"Vender uma casa é stressante. Um bom consultor tem de acalmar os nervos e manter o otimismo. O Patrick cuidou muito bem de nós. A nossa casa vendeu rapidamente e muito perto do preço pedido…"</div>
+        <div class="t-full">"Vender uma casa é stressante. Um bom consultor tem de acalmar os nervos e manter o otimismo. O Patrick cuidou muito bem de nós ao longo de todo o processo. A nossa casa vendeu rapidamente e muito perto do preço pedido. Foi comunicativo, profissional, e tratou cada imprevisto com calma e competência. Recomendo-o vivamente a quem queira comprar ou vender na Costa de Prata."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">↓</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Sarah Pauling Midgett</div><div class="t-meta">Vendeu em Greenville, NC</div></div>
+          <div class="t-badge">Vendedor</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="t-teaser">"Trabalhar com a Fernanda foi uma verdadeira alegria! Não só nos encontrou a casa perfeita, como geriu todo o processo com paciência, honestidade, amabilidade e profissionalismo…"</div>
+        <div class="t-full">"Trabalhar com a Fernanda foi uma verdadeira alegria! Não só nos encontrou a casa perfeita, como geriu todo o processo com paciência, honestidade, amabilidade e profissionalismo. Como casal internacional a navegar um mercado imobiliário estrangeiro, precisávamos de alguém capaz de antecipar perguntas que nem sabíamos fazer — e a Fernanda fez exatamente isso. Cinco estrelas sem hesitar."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">↓</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Heather &amp; Afonso</div><div class="t-meta">Encontraram a sua casa na Costa de Prata</div></div>
+          <div class="t-badge">Comprador</div>
+        </div>
+      </div>
+
+    </div>
+  
+      <div class="t-card t-extra" style="display:none">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"A Angela foi fant&aacute;stica e tornou a compra da nossa primeira casa muito f&aacute;cil. Respondeu sempre rapidamente &agrave;s muitas perguntas&hellip;"</div>
+        <div class="t-full">"A Angela foi fant&aacute;stica e tornou a compra da nossa primeira casa muito f&aacute;cil. Respondeu sempre rapidamente &agrave;s perguntas que lhe fizemos e garantiu que t&iacute;nhamos toda a informa&ccedil;&atilde;o necess&aacute;ria. Recomendo vivamente!"</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Compradores de Primeira Casa</div><div class="t-meta">Comprou em 2021</div></div>
+          <div class="t-badge">5.0 Estrelas</div>
+        </div>
+      </div>
+      <div class="t-card t-extra" style="display:none">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"Excelente profissionalismo e conhecimento. Com a Angela n&atilde;o tivemos que nos preocupar com nada &mdash; tratou de tudo com prontid&atilde;o e precis&atilde;o&hellip;"</div>
+        <div class="t-full">"Excelente profissionalismo e conhecimento. Com a Angela n&atilde;o tivemos que nos preocupar com nada. Trabalharemos com ela novamente em futuras mudan&ccedil;as."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Cliente Recorrente</div><div class="t-meta">Costa NC</div></div>
+          <div class="t-badge">Verificado</div>
+        </div>
+      </div>
+      <div class="t-card t-extra" style="display:none">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"A Angela guiou-nos pelo processo de compra h&aacute; um ano e ainda faz parte das nossas vidas. Profissional, conhecedora, fi&aacute;vel, honesta&hellip;"</div>
+        <div class="t-full">"A Angela guiou-nos pelo processo de compra h&aacute; um ano e ainda faz parte das nossas vidas hoje. &Eacute; profissional, conhecedora, fi&aacute;vel, genu&iacute;na, honesta e vai sempre al&eacute;m do esperado. Esta senhora move montanhas pelos seus clientes."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">terryrayers64</div><div class="t-meta">Plymouth, NC 2021</div></div>
+          <div class="t-badge">Comprador</div>
+        </div>
+      </div>
+      <div class="t-card t-extra" style="display:none">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"A Angela Dhillon &eacute; uma pessoa fant&aacute;stica. Esteve sempre dispon&iacute;vel, pronta para ver im&oacute;veis seguidos. Ajudou-nos a encontrar empreiteiros&hellip;"</div>
+        <div class="t-full">"A Angela Dhillon &eacute; uma pessoa fant&aacute;stica. Esteve sempre dispon&iacute;vel para perguntas, pronta para ver im&oacute;veis seguidos. Ajudou-nos a encontrar empreiteiros para inspe&ccedil;&otilde;es. Considero-a uma amiga."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Yolita Ripoll</div><div class="t-meta">Relocada para NC</div></div>
+          <div class="t-badge">Comprador</div>
+        </div>
+      </div>
+      <div class="t-card t-extra" style="display:none">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"O Patrick &eacute; um prazer absoluto. Demora o seu tempo a explicar e defende os nossos interesses&hellip;"</div>
+        <div class="t-full">"O Patrick &eacute; um prazer absoluto. Demora o seu tempo a explicar e defende os nossos interesses. N&atilde;o poderia ter pedido um consultor mais respons&aacute;vel &agrave;s chamadas e mensagens. Cinco estrelas em tudo."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Melissa JD</div><div class="t-meta">Constru&ccedil;&atilde;o nova</div></div>
+          <div class="t-badge">Comprador</div>
+        </div>
+      </div>
+      <div class="t-card t-extra" style="display:none">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"O Patrick &eacute; um consultor estelar! Ajudou-nos a obter a melhor oferta (ACIMA do pre&ccedil;o pedido!) mais r&aacute;pido do que pensava poss&iacute;vel&hellip;"</div>
+        <div class="t-full">"O Patrick &eacute; um consultor estelar! Ajudou-nos a obter a melhor oferta pela nossa casa (ACIMA do pre&ccedil;o pedido!) mais r&aacute;pido do que pensava poss&iacute;vel, e esteve connosco em cada passo. O melhor consultor com quem j&aacute; trabalhei."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Sandra Brinkley</div><div class="t-meta">Vendido acima do pre&ccedil;o</div></div>
+          <div class="t-badge">Vendedor</div>
+        </div>
+      </div>
+      <div class="t-card t-extra" style="display:none">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"O Patrick foi FANT&Aacute;STICO! Foi paciente, profissional, diligente e extremamente acolhedor. Mud&aacute;mos de outro estado e ele esteve connosco todo o caminho&hellip;"</div>
+        <div class="t-full">"O Patrick foi FANT&Aacute;STICO! Foi paciente, profissional, diligente e extremamente acolhedor. Mud&aacute;mos de outro estado e ele esteve connosco todo o caminho. RECOMENDO VIVAMENTE."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Michael &amp; Stacy Pratt</div><div class="t-meta">Reloca&ccedil;&atilde;o interestadual</div></div>
+          <div class="t-badge">Comprador</div>
+        </div>
+      </div>
+      <div class="t-card t-extra" style="display:none">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"Tive uma experi&ecirc;ncia incr&iacute;vel a trabalhar com a Fernanda. Foi incrivelmente gentil, sens&iacute;vel, dedicada, e verdadeiramente empenhada&hellip;"</div>
+        <div class="t-full">"Tive uma experi&ecirc;ncia incr&iacute;vel a trabalhar com a Fernanda. Foi incrivelmente gentil, sens&iacute;vel, dedicada, e verdadeiramente empenhada. O que mais me impressionou foi o quanto se preocupou genuinamente."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Ler mais <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Casal Internacional</div><div class="t-meta">Compradores Costa de Prata</div></div>
+          <div class="t-badge">5.0 Estrelas</div>
+        </div>
+      </div>
+
+      <div style="grid-column:1/-1;text-align:center;margin-top:32px">
+        <button class="btn btn-secondary" id="t-show-more-btn" onclick="toggleAllT()" style="cursor:pointer">Ver todas as avalia&ccedil;&otilde;es</button>
+      </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="kicker">Comece a Sua Jornada</div>
+    <h2>Pronto para encontrar a sua <em>casa em Portugal?</em></h2>
+    <p>Marque uma consulta sem compromisso com um membro da nossa equipa. Ouvimos, aconselhamos e construímos um plano à medida dos seus objetivos.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="contact.html">Marcar uma Consulta</a>
+      <a class="btn btn-secondary" href="our-story.html">Conheça a Nossa História</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></div>
+      <div class="footer-tagline">Modern Heritage · Modern Business</div>
+      <p class="footer-desc">Uma agência imobiliária boutique que o guia para casa na Costa de Prata de Portugal com confiança, experiência e serviço moderno.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navegação</div>
+      <ul>
+        <li><a href="properties.html">Comprar</a></li>
+        <li><a href="sell.html">Vender</a></li>
+        <li><a href="our-story.html">A Nossa História</a></li>
+        <li><a href="our-team.html">A Nossa Equipa</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <ul>
+        <li><a href="sell.html">Guia do Vendedor</a></li>
+        <li><a href="resources.html">Perspetivas de Mercado</a></li>
+        <li><a href="calculator.html">Calculadora de Capital</a></li>
+        <li><a href="nhr-guide.html">Guia NHR</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contacto</div>
+      <div class="footer-contact">+351 912 771 309 (WhatsApp)</div>
+      <div class="footer-contact">info@aldeiarealty.com</div>
+      <div class="footer-contact">Rua Dr. Ângelo Ferrari, n.º 7, R/C Dt.º<br>2500-113 Caldas da Rainha, Portugal</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner"><div class="footer-license">&copy; 2026 Aldeia Realty &middot; Atividade de Mediação Imobiliária &middot; Lei 15/2013 &middot; Guia n.º 12456-GAMI / 2026 T, de 2026/05/25</div>
+    <div class="footer-legal">
+      <a href="privacy-policy.html">Política de Privacidade</a>
+      <a href="complaints.html">Resolução de Litígios</a>
+      <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclamações</a>
+    </div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/351912771309" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+function toggleMore() {
+  const dd = document.getElementById('moreDropdown');
+  const btn = document.getElementById('moreBtn');
+  const open = dd.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more-wrap')) {
+    document.getElementById('moreDropdown').classList.remove('open');
+    document.getElementById('moreBtn').setAttribute('aria-expanded', 'false');
+  }
+});
+function toggleT(btn) {
+  const card = btn.closest('.t-card');
+  const expanding = !card.classList.contains('expanded');
+  card.classList.toggle('expanded');
+  btn.firstChild.textContent = expanding ? 'Ler menos ' : 'Ler mais ';
+}
+</script>
+<script>
+function toggleAllT(){
+  var extras = document.querySelectorAll('.t-extra');
+  var btn = document.getElementById('t-show-more-btn');
+  var anyHidden = false;
+  extras.forEach(function(el){
+    var d = window.getComputedStyle(el).display;
+    if(d === 'none'){ anyHidden = true; }
+  });
+  extras.forEach(function(el){
+    el.style.display = anyHidden ? 'block' : 'none';
+  });
+  if(btn) btn.textContent = anyHidden ? "Ver menos" : "Ver todas as avalia&ccedil;&otilde;es";
+}
+</script>
+</body>
+</html>

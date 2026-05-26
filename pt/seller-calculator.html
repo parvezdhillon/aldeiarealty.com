@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vender o Seu Im&oacute;vel &mdash; Aldeia Realty</title>
-<meta name="description" content="Marketing premium, Partilha colaborativa, 50+ portais internacionais. Venda o seu im&oacute;vel da Costa de Prata com confian&ccedil;a." />
-<meta property="og:title" content="Vender o Seu Im&oacute;vel &mdash; Aldeia Realty" />
-<meta property="og:description" content="Marketing premium, Partilha colaborativa, 50+ portais internacionais. Venda o seu im&oacute;vel da Costa de Prata com confian&ccedil;a." />
+<title>Receita L&iacute;quida de Venda &mdash; Aldeia Realty</title>
+<meta name="description" content="Saiba exatamente o que recebe ao vender. Mais-valias, comiss&atilde;o, escritura, custos municipais." />
+<meta property="og:title" content="Receita L&iacute;quida de Venda &mdash; Aldeia Realty" />
+<meta property="og:description" content="Saiba exatamente o que recebe ao vender. Mais-valias, comiss&atilde;o, escritura, custos municipais." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Aldeia Realty" />
 <meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
@@ -81,7 +81,7 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .section-header .sub{font-family:var(--body);font-style:italic;font-size:16px;color:var(--muted);margin-top:14px;max-width:620px;line-height:1.55}
 
 /* PROSE */
-.prose{font-size:15.5px;line-height:1.72;color:var(--black);max-width:760px;margin:0 auto}
+.prose{font-size:15.5px;line-height:1.72;color:var(--black);max-width:760px}
 .prose p{margin-bottom:16px}
 .prose p:last-child{margin-bottom:0}
 .prose strong{font-weight:600;color:var(--teal)}
@@ -191,118 +191,64 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 }
 
 
-/* Bridge: style original calculator's utility classes with new brand */
-.calc-input, .calc-select{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:2px;font-family:var(--body);font-size:15px;color:var(--black);background:var(--white)}
-.calc-input:focus,.calc-select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(41,102,98,0.10)}
-.calc-group{margin-bottom:14px}
-.calc-row{display:flex;gap:12px;align-items:flex-end;margin-bottom:14px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.flex{display:flex}
-.flex-1{flex:1}
-.flex-wrap{flex-wrap:wrap}
-.gap-3{gap:12px}
-.gap-4{gap:16px}
-.items-end{align-items:flex-end}
-.items-center{align-items:center}
-.justify-center{justify-content:center}
-.mb-2{margin-bottom:8px}
-.mb-3{margin-bottom:12px}
-.mb-4{margin-bottom:16px}
-.mb-5{margin-bottom:20px}
-.mb-6{margin-bottom:24px}
-.mb-8{margin-bottom:32px}
-.mt-4{margin-top:16px}
-.mt-2{margin-top:8px}
-.pt-2{padding-top:8px}
-.p-3{padding:12px}
-.p-4{padding:16px}
-.block{display:block}
-.font-semibold{font-weight:600}
-.font-bold{font-weight:700}
-.font-domine{font-family:var(--display)}
-.text-teal{color:var(--teal)}
-.text-coral{color:var(--coral)}
-.text-brand{color:var(--black)}
-.text-brand-50{color:rgba(28,10,4,0.5)}
-.text-brand-60{color:rgba(28,10,4,0.6)}
-.text-brand-70{color:rgba(28,10,4,0.7)}
-.text-brand-80{color:rgba(28,10,4,0.8)}
-.text-white{color:var(--parchment)}
-.text-white-70{color:rgba(244,236,220,0.7)}
-.text-white-90{color:rgba(244,236,220,0.9)}
-.text-sm{font-size:14px}
-.text-xs{font-size:12px}
-.text-lg{font-size:18px}
-.text-xl{font-size:20px}
-.text-2xl{font-size:24px}
-.text-3xl{font-size:32px}
-.italic{font-style:italic}
-.text-center{text-align:center}
-.justify-between{justify-content:space-between}
-.space-y-2 > * + *{margin-top:8px}
-.space-y-1 > * + *{margin-top:4px}
-.border-t{border-top:1px solid var(--border)}
-.border-t-2{border-top:2px solid var(--border)}
-.border-dove{border-color:var(--dove)}
-.border-dashed{border-top-style:dashed}
-.rounded{border-radius:3px}
-.rounded-lg{border-radius:6px}
-.bg-white{background:var(--white)}
-.bg-parchment{background:var(--parchment)}
-.bg-dove{background:var(--dove)}
-.bg-teal{background:var(--teal)}
-.section-pad{padding:64px 0}
-.card{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:32px;margin-bottom:16px}
-.max-w-3{max-width:920px;margin:0 auto}
-.accent-teal{accent-color:var(--teal)}
-.w-4{width:16px}
-.h-4{height:16px}
-.cursor-pointer{cursor:pointer}
-.bg-coral{background:var(--coral)}
-.btn-primary{background:var(--teal);color:var(--parchment);border:1px solid var(--teal);font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;cursor:pointer;display:inline-block}
-.btn-primary:hover{opacity:0.88}
-button.btn-primary{border:none}
-/* Make heading sizes work */
-h1.font-domine{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.02em}
-h2.font-domine, .font-domine.text-2xl{font-family:var(--display);font-weight:700;color:var(--black)}
-h3.font-domine{font-family:var(--display);font-weight:700;color:var(--black);font-size:20px}
-h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);font-size:18px}
-.font-domine.text-3xl{font-size:32px}
-.font-domine.text-xl{font-size:24px}
-/* Hide the old page-hero (we add our own) */
-.section-pad.bg-white .max-w-3{background:var(--white)}
-.page-hero.bg-teal{display:none}
-/* Override card backgrounds inside calc */
-.card{background:var(--white);border:1px solid var(--border)}
-.bg-teal.card{background:var(--teal);color:var(--parchment)}
-.bg-teal.card .text-brand-70{color:rgba(244,236,220,0.78)}
-.bg-teal.card .text-brand{color:var(--parchment)}
-.bg-teal.card .text-teal{color:var(--gold)}
-.bg-teal.card .border-t,.bg-teal.card .border-t-2{border-color:rgba(244,236,220,0.18)}
-/* Section padding default */
-.section-pad{padding:64px 0}
-.section-pad.bg-parchment{background:var(--parchment)}
-.section-pad.bg-white{background:var(--white)}
-
-/* Sell-specific */
-.icon-circle{width:60px;height:60px;border-radius:50%;background:rgba(41,102,98,0.10);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
-.icon-circle svg{stroke:var(--teal)}
-.partilha-card-old{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:32px;opacity:0.92}
-.partilha-card-new{background:var(--white);border:2px solid var(--gold);border-radius:3px;padding:32px;box-shadow:0 8px 28px rgba(28,10,4,0.10);position:relative}
-.partilha-card-new::before{content:'ALDEIA';position:absolute;top:-12px;left:24px;background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9px;letter-spacing:0.20em;font-weight:600;padding:4px 10px;border-radius:2px}
-.compare-list{list-style:none;padding:0;margin:18px 0 0}
-.compare-list li.neutral{padding:10px 0 10px 22px;position:relative;font-size:14.5px;line-height:1.55;color:rgba(28,10,4,0.72);border-bottom:1px solid var(--border-s)}
-.compare-list li.neutral:last-child{border-bottom:none}
-.compare-list li.neutral::before{content:'\2022';position:absolute;left:0;color:rgba(28,10,4,0.4);font-weight:700;font-size:18px;line-height:1}
-.compare-list li{padding:10px 0 10px 28px;position:relative;font-size:14.5px;line-height:1.55;color:var(--black);border-bottom:1px solid var(--border-s)}
-.compare-list li:last-child{border-bottom:none}
-.compare-list li.bad::before{content:'\2717';position:absolute;left:0;color:#c64f2f;font-weight:700;font-size:16px}
-.compare-list li.good::before{content:'\2713';position:absolute;left:0;color:var(--teal);font-weight:700;font-size:16px}
-.process-step{display:grid;grid-template-columns:60px 1fr;gap:20px;margin-bottom:24px;align-items:flex-start}
-.step-num{width:48px;height:48px;border-radius:50%;background:var(--teal);color:var(--parchment);font-family:var(--display);font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center}
-.process-step h3{font-family:var(--display);font-weight:700;font-size:18px;color:var(--black);margin-bottom:6px}
-.process-step p{font-size:14.5px;line-height:1.6;color:rgba(28,10,4,0.74);margin:0}
-.sell-image{aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:3px}
+.calc-wrap{max-width:900px;margin:0 auto}
+.calc-section{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:36px;margin-bottom:24px}
+.calc-section h3{font-family:var(--display);font-weight:700;font-size:22px;color:var(--black);margin-bottom:18px}
+.calc-section h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+.calc-row.single,.calc-row.full{grid-template-columns:1fr}
+@media(max-width:600px){.calc-row{grid-template-columns:1fr}}
+.calc-field label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:6px}
+.calc-field input,.calc-field select{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:2px;font-family:var(--body);font-size:15px;color:var(--black);background:var(--white)}
+.calc-field input:focus,.calc-field select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(41,102,98,0.10)}
+.calc-field .hint{font-size:12px;color:var(--muted);margin-top:4px;font-style:italic}
+.calc-toggle{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--dove);border-radius:2px;margin-bottom:10px;border-left:3px solid var(--teal)}
+.calc-toggle input[type=checkbox]{appearance:none;-webkit-appearance:none;width:44px;height:24px;background:rgba(28,10,4,0.20);border-radius:12px;position:relative;cursor:pointer;flex-shrink:0;transition:background 0.2s;margin:0}
+.calc-toggle input[type=checkbox]::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+.calc-toggle input[type=checkbox]:checked{background:var(--teal)}
+.calc-toggle input[type=checkbox]:checked::after{transform:translateX(20px)}
+.calc-toggle label{font-size:14px;color:var(--black);font-family:var(--body);text-transform:none;letter-spacing:0;margin:0;cursor:pointer;flex:1}
+.calc-disclaimer{font-size:12px;font-style:italic;color:var(--muted);text-align:center;margin:18px 0 10px;line-height:1.55;padding:0 24px}
+.calc-actions{text-align:center;margin-top:16px}
+.calc-actions .btn{padding:16px 40px;font-size:11px}
+.calc-results{display:none;margin-top:24px}
+.calc-results.visible{display:block;animation:fadeIn 0.4s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.results-card{background:var(--teal);color:var(--parchment);border-radius:3px;padding:36px;margin-bottom:20px;position:relative;overflow:hidden;border-top:3px solid var(--gold)}
+.results-card h3{font-family:var(--display);font-weight:700;font-size:24px;color:var(--parchment);margin-bottom:8px}
+.results-card h3 em{font-style:italic;color:var(--gold);font-weight:400}
+.results-card .results-sub{font-family:var(--mono);font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,236,220,0.55);margin-bottom:24px}
+.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:20px}
+@media(max-width:600px){.results-grid{grid-template-columns:1fr}}
+.result-item{padding:16px 22px;background:rgba(244,236,220,0.08);border-left:3px solid var(--gold);border-radius:0 3px 3px 0}
+.result-item .result-label{font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,236,220,0.70);margin-bottom:6px}
+.result-item .result-value{font-family:var(--display);font-weight:700;font-size:24px;color:var(--gold);line-height:1}
+.result-item .result-sub{font-size:11.5px;color:rgba(244,236,220,0.60);margin-top:4px;font-style:italic;line-height:1.4}
+.deduction-list{margin-top:8px}
+.deduction-row{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(244,236,220,0.12);gap:18px}
+.deduction-row:last-child{border-bottom:none}
+.deduction-row .desc{font-size:14px;color:var(--parchment)}
+.deduction-row .desc .sub{display:block;font-size:11px;color:rgba(244,236,220,0.55);font-style:italic;margin-top:3px;letter-spacing:0.01em}
+.deduction-row .amount{font-family:var(--display);font-weight:700;font-size:16px;color:var(--gold);white-space:nowrap}
+.deduction-row .amount.zero{color:rgba(244,236,220,0.40)}
+.deduction-row.sale{border-bottom:2px solid var(--gold);padding-bottom:18px;margin-bottom:6px}
+.deduction-row.sale .desc{font-family:var(--display);font-size:16px;font-weight:600}
+.deduction-row.sale .amount{font-size:20px}
+.net-box{margin-top:18px;padding:24px;background:var(--gold);color:var(--black);border-radius:3px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.net-box .label{font-family:var(--mono);font-size:10px;letter-spacing:0.20em;text-transform:uppercase;font-weight:600}
+.net-box .value{font-family:var(--display);font-weight:700;font-size:32px;line-height:1}
+.pdf-bar{background:var(--dove);border:1px solid var(--border);border-radius:3px;padding:28px;margin-top:18px}
+.pdf-bar h4{font-family:var(--display);font-weight:700;font-size:18px;color:var(--black);margin-bottom:6px}
+.pdf-bar h4 em{font-style:italic;color:var(--teal);font-weight:400}
+.pdf-bar p{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+.pdf-actions{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.pdf-actions .calc-field{flex:1;min-width:200px}
+.pdf-actions .btn{padding:11px 22px;font-size:9.5px}
+.pdf-msg{margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);font-weight:600;min-height:14px}
+.methodology{margin-top:16px;border:1px solid var(--border-s);border-radius:2px;background:rgba(244,236,220,0.30)}
+.methodology summary{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--teal);padding:14px 18px;cursor:pointer;font-weight:600}
+.methodology[open] summary{border-bottom:1px solid var(--border-s)}
+.methodology p{padding:14px 18px;font-size:13px;line-height:1.6;color:var(--muted)}
 
 
 /* === POLISH PASS === */
@@ -362,7 +308,7 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
     <div class="site-nav-links">
       <a href="index.html">In&iacute;cio</a>
       <a href="properties.html">Comprar</a>
-      <a href="sell.html" class="active">Vender</a>
+      <a href="sell.html">Vender</a>
       <a href="our-story.html">A Nossa Hist&oacute;ria</a>
       <a href="our-team.html">A Nossa Equipa</a>
       <a href="tools.html">Ferramentas</a>
@@ -378,114 +324,57 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
       </div>
     </div>
     <div class="site-nav-actions">
-      <a class="site-nav-lang" href="../sell.html">EN</a>
+      <a class="site-nav-lang" href="../seller-calculator.html">EN</a>
       <a class="site-nav-cta" href="contact.html">Avalia&ccedil;&atilde;o Gr&aacute;tis</a>
     </div>
   </div>
 </nav>
 
-<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('../images/hero/hero-sell.jpg');background-size:cover;background-position:center">
-  <div class="container">
-    <div class="kicker">Para Vendedores</div>
-    <h1>Venda com <em>alcance premium</em>.</h1>
-    <p class="sub">A nossa abordagem de Partilha permite-nos trabalhar com todas as ag&ecirc;ncias para encontrar o seu comprador &mdash; e a sindica&ccedil;&atilde;o internacional coloca o seu im&oacute;vel diante de compradores em todo o mundo.</p>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="section-header" style="text-align:center;margin-left:auto;margin-right:auto">
-      <div class="kicker">Porqu&ecirc; listar com a Aldeia</div>
-      <h2>Tr&ecirc;s pilares da nossa <em>abordagem</em>.</h2>
-    </div>
-    <div class="grid-3">
-      <div class="f-card"><h3>A Estrat&eacute;gia de Lan&ccedil;amento Premium</h3><p>Cada listagem recebe fotografia profissional, filmagem a&eacute;rea, tours virtuais, e descri&ccedil;&otilde;es bilingues &mdash; em portugu&ecirc;s e ingl&ecirc;s.</p></div>
-      <div class="f-card"><h3>Posicionamento de Mercado de Elite</h3><p>Sindicada em 50+ portais internacionais &mdash; Rightmove, Idealista, Green Acres, Kyero, James Edition &mdash; n&atilde;o apenas Idealista PT.</p></div>
-      <div class="f-card"><h3>Negocia&ccedil;&atilde;o Magistral</h3><p>Negociamos com calma e rigor, em duas l&iacute;nguas, sempre representando o seu melhor interesse.</p></div>
-    </div>
-  </div>
-</section>
-<section class="section dove">
-  <div class="container">
-    <div class="grid-2">
-      <div>
-        <div class="kicker">Preparar a venda</div>
-        <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(28px,3.6vw,38px);line-height:1.08;color:var(--black);margin-bottom:12px;margin-top:8px">Maximizar o valor <em>antes de listar</em>.</h2>
-        <p style="font-style:italic;color:var(--muted);margin-bottom:24px;font-size:15.5px">Pequenos investimentos com retorno desproporcional.</p>
-        <div class="sell-image" style="background-image:url('../images/sell/portuguese-home.jpg')"></div>
-      </div>
-      <div>
-      <div class="process-step"><div class="step-num">1</div><div><h3>Desarrumar e Despersonalizar</h3><p>Remova itens pessoais para que os compradores se imaginem no espa&ccedil;o.</p></div></div>
-      <div class="process-step"><div class="step-num">2</div><div><h3>Limpeza Profunda</h3><p>Todas as superf&iacute;cies, por dentro e por fora. As primeiras impress&otilde;es contam.</p></div></div>
-      <div class="process-step"><div class="step-num">3</div><div><h3>Pequenas Reparac&otilde;es</h3><p>Torneiras, portas, retoques de tinta &mdash; detalhes que fazem grande diferen&ccedil;a.</p></div></div>
-      <div class="process-step"><div class="step-num">4</div><div><h3>Decora&ccedil;&atilde;o Estrat&eacute;gica</h3><p>Luz, neutralidade, acolhimento. Em listagens premium, trazemos um decorador.</p></div></div>
-      <div class="process-step"><div class="step-num">5</div><div><h3>Certificado Energ&eacute;tico</h3><p>Obrigat&oacute;rio em qualquer venda. Coordenamos a inspe&ccedil;&atilde;o certificada.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="section-header" style="text-align:center;margin-left:auto;margin-right:auto;max-width:760px">
-      <div class="kicker">A nossa promessa</div>
-      <h2>A Garantia <em>Partilha 50/50</em>.</h2>
-      <p class="sub" style="margin-left:auto;margin-right:auto">Quando se vende uma casa, algumas abordagens focam-se em manter a listagem estritamente dentro da rede interna de uma ag&ecirc;ncia. Embora seja uma pr&aacute;tica comum, acreditamos numa abordagem totalmente aberta.</p>
-    </div>
-    <div class="grid-2" style="max-width:880px;margin:0 auto">
-      <div class="partilha-card-old">
-        <h3 style="font-family:var(--display);font-weight:700;font-size:20px;color:var(--black);margin-bottom:6px">A Abordagem Interna</h3>
-        <ul class="compare-list">
-        <li class="neutral">Limita a exposi&ccedil;&atilde;o do seu im&oacute;vel aos compradores de uma s&oacute; ag&ecirc;ncia</li>
-        <li class="neutral">Depende de um conjunto mais reduzido de potenciais ofertas</li>
-        </ul>
-      </div>
-      <div class="partilha-card-new">
-        <h3 style="font-family:var(--display);font-weight:700;font-size:20px;color:var(--teal);margin-bottom:6px">A Nossa Abordagem Colaborativa</h3>
-        <ul class="compare-list">
-        <li class="good"><strong>100% Exposi&ccedil;&atilde;o ao Mercado:</strong> Garantimos partilha 50/50 da comiss&atilde;o com qualquer agente licenciado que traga um comprador</li>
-        <li class="good"><strong>M&aacute;xima Concorr&ecirc;ncia:</strong> O seu im&oacute;vel &eacute; promovido a toda a comunidade imobili&aacute;ria, n&atilde;o apenas &agrave; nossa rede interna</li>
-        <li class="good"><strong>Foco no Vendedor:</strong> Vendas mais r&aacute;pidas e melhores resultados ao maximizar a visibilidade do seu im&oacute;vel</li>
-        </ul>
-      </div>
-    </div>
-    <p style="text-align:center;font-size:16px;color:var(--black);max-width:720px;margin:36px auto 0;line-height:1.6;font-style:italic">Ao garantir que todos os agentes em Portugal t&ecirc;m incentivo financeiro para mostrar a sua casa, abrimos as portas a todos os compradores no mercado.</p>
-  </div>
-</section>
-<section class="section dove">
-  <div class="container">
-    <div class="section-header" style="text-align:center;margin-left:auto;margin-right:auto">
-      <div class="kicker">Do listado ao vendido</div>
-      <h2>O <em>processo completo</em>, passo a passo.</h2>
-    </div>
-    <div class="grid-2">
-      <div>
-      <div class="process-step"><div class="step-num">1</div><div><h3>Consulta Inicial</h3><p>Conhecemo-nos para discutir os seus objetivos, prazo e expectativas. Visitamos a sua casa e come&ccedil;amos a desenhar a estrat&eacute;gia.</p></div></div>
-      <div class="process-step"><div class="step-num">2</div><div><h3>An&aacute;lise de Mercado e Pre&ccedil;o</h3><p>Investigamos vendas recentes e listagens actuais para determinar o pre&ccedil;o &oacute;ptimo de listagem.</p></div></div>
-      <div class="process-step"><div class="step-num">3</div><div><h3>Prepara&ccedil;&atilde;o da Casa</h3><p>Orienta&ccedil;&atilde;o sobre reparac&otilde;es, desarrumar e decora&ccedil;&atilde;o para destacar o melhor da casa.</p></div></div>
-      <div class="process-step"><div class="step-num">4</div><div><h3>Fotografia Profissional</h3><p>Fotografia de alta qualidade, v&iacute;deo e filmagem a&eacute;rea para apresentar a casa na melhor luz.</p></div></div>
-      <div class="process-step"><div class="step-num">5</div><div><h3>Listagem ao Vivo</h3><p>A casa &eacute; lan&ccedil;ada em portais principais, redes sociais, e na nossa rede de compradores qualificados.</p></div></div>
-      </div>
-      <div>
-      <div class="process-step"><div class="step-num">6</div><div><h3>Visitas e Open Houses</h3><p>Coordenamos visitas privadas e eventos de open house, apresentando a casa com profissionalismo.</p></div></div>
-      <div class="process-step"><div class="step-num">7</div><div><h3>Receber Ofertas</h3><p>Quando chegam ofertas, revemos cada uma juntos &mdash; pre&ccedil;o, condi&ccedil;&otilde;es, qualifica&ccedil;&otilde;es do comprador.</p></div></div>
-      <div class="process-step"><div class="step-num">8</div><div><h3>Negocia&ccedil;&atilde;o</h3><p>Negociamos em seu nome para garantir o melhor pre&ccedil;o e condi&ccedil;&otilde;es poss&iacute;veis.</p></div></div>
-      <div class="process-step"><div class="step-num">9</div><div><h3>Em Contrato</h3><p>Uma vez aceite, gerimos todos os prazos, inspe&ccedil;&otilde;es, e comunica&ccedil;&otilde;es para uma transa&ccedil;&atilde;o sem fric&ccedil;&atilde;o.</p></div></div>
-      <div class="process-step"><div class="step-num">10</div><div><h3>Dia da Escritura</h3><p>Acompanhamo-lo &agrave; escritura, garantindo que todos os documentos est&atilde;o em ordem. Entrega das chaves e celebra&ccedil;&atilde;o.</p></div></div>
-      </div>
-    </div>
-    <div style="margin-top:48px"><div class="sell-image" style="background-image:url('../images/sell/sellers-happy.jpg');aspect-ratio:21/9"></div></div>
-  </div>
-</section>
-<section class="cta-section">
-  <div class="container">
-    <div class="kicker">Avalia&ccedil;&atilde;o gratuita</div>
-    <h2>Descubra <em>quanto vale</em> o seu im&oacute;vel.</h2>
-    <p>Avalia&ccedil;&atilde;o honesta e ancorada no mercado, de um consultor que o guia pelos n&uacute;meros.</p>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="contact.html">Fale com um Consultor</a>
-      <a class="btn btn-secondary" href="our-story.html">Conhe&ccedil;a a Nossa Hist&oacute;ria</a>
-    </div>
-  </div>
-</section>
+<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('../images/sell/sellers-happy.jpg');background-size:cover;background-position:center"><div class="container"><div class="kicker">Receita L&iacute;quida de Venda</div><h1>O que recebe ao <em>vender</em>.</h1><p class="sub">Considera mais-valias (com isen&ccedil;&otilde;es de resid&ecirc;ncia pr&oacute;pria e reinvestimento), comiss&atilde;o, escritura, e custos municipais.</p></div></section>
+<section class="section"><div class="container"><div class="calc-wrap">
+<div class="calc-section">
+<h3>Os seus n&uacute;meros</h3>
+<form onsubmit="runCalc(event)" novalidate>
+<div class="calc-row">
+<div class="calc-field"><label>Pre&ccedil;o de venda estimado (€)</label><input type="number" id="salePrice" value="350000" min="0" step="1000" required /></div>
+<div class="calc-field"><label>Cr&eacute;dito em d&iacute;vida (€)</label><input type="number" id="mortgage" value="120000" min="0" step="1000" /></div>
+</div>
+<div class="calc-row">
+<div class="calc-field"><label>Ano de aquisi&ccedil;&atilde;o</label><input type="number" id="purchaseYear" value="2019" min="1980" max="2026" /></div>
+<div class="calc-field"><label>Pre&ccedil;o de aquisi&ccedil;&atilde;o original (€)</label><input type="number" id="purchasePrice" value="280000" min="0" step="1000" /></div>
+</div>
+<div class="calc-row">
+<div class="calc-field"><label>Renova&ccedil;&otilde;es / melhorias (€)</label><input type="number" id="renovations" value="15000" min="0" step="500" /></div>
+<div class="calc-field"><label>Comiss&atilde;o ag&ecirc;ncia (%)</label><input type="number" id="commission" value="5" min="0" max="10" step="0.5" /></div>
+</div>
+<div class="calc-row single">
+<div class="calc-field"><label>Munic&iacute;pio</label><select id="municipality"><option value="caldas">Caldas da Rainha</option><option value="obidos">&Oacute;bidos</option><option value="alcobaca">Alcoba&ccedil;a</option><option value="nazare">Nazar&eacute;</option><option value="peniche">Peniche</option><option value="other">Outro Costa de Prata</option></select></div>
+</div>
+<div class="calc-toggle"><input type="checkbox" id="primaryResidence" checked /><label for="primaryResidence">Resid&ecirc;ncia pr&oacute;pria permanente (detida > 24 meses)</label></div>
+<div class="calc-toggle"><input type="checkbox" id="nhrStatus" /><label for="nhrStatus">Detenho estatuto de Residente N&atilde;o Habitual (RNH)</label></div>
+<div class="calc-toggle"><input type="checkbox" id="reinvest" /><label for="reinvest">Pretendo reinvestir em im&oacute;vel UE/EEE em 36 meses</label></div>
+<div class="calc-disclaimer">Estimativa educacional. N&atilde;o constitui aconselhamento fiscal ou financeiro. Consulte um contabilista licenciado antes de transaccionar.</div>
+<div class="calc-actions"><button type="submit" class="btn btn-primary">Calcular</button></div>
+</form></div>
+<div class="calc-results" id="results">
+<div class="results-card">
+<h3>A sua <em>simula&ccedil;&atilde;o de venda</em></h3><div class="results-sub">2026 IRS &middot; Continental</div>
+<div class="deduction-list" id="deductions"></div>
+<div class="net-box"><div class="label">Recebe l&iacute;quido</div><div class="value" id="netProceeds">€0</div></div>
+<details class="methodology"><summary>Metodologia e fontes</summary><p>Mais-valias: regras IRS 2026 — 50% isen&ccedil;&atilde;o para resid&ecirc;ncia pr&oacute;pria detida >24 meses. Isen&ccedil;&atilde;o adicional de 50% com reinvestimento em im&oacute;vel UE/EEE em 36 meses. RNH: taxa fixa 10% sobre mais-valias portuguesas. Comiss&atilde;o: padr&atilde;o da Costa de Prata (negoci&aacute;vel). Custos municipais: tabelas C&acirc;mara Caldas 2026 (aprox.). Escritura: aproxima&ccedil;&atilde;o por valor do im&oacute;vel. Certificado energ&eacute;tico: custo fixo obrigat&oacute;rio.</p></details>
+</div>
+<div class="pdf-bar">
+<h4>Receba este resumo em <em>PDF</em></h4>
+<p>Enviamos um PDF para o seu email. Pode tamb&eacute;m descarregar diretamente.</p>
+<form onsubmit="emailPdf(event)" novalidate>
+<div class="pdf-actions">
+<div class="calc-field"><label>Email</label><input type="email" id="pdf-email" placeholder="you@example.com" required /></div>
+<button type="submit" class="btn btn-primary">Enviar por Email</button>
+<button type="button" class="btn btn-secondary" onclick="downloadPdf()">Descarregar PDF</button>
+</div></form>
+<p id="pdf-msg" class="pdf-msg"></p>
+</div></div></div></div></section>
+<section class="cta-section"><div class="container"><div class="kicker">Quer uma avalia&ccedil;&atilde;o real?</div><h2>Marque uma <em>avalia&ccedil;&atilde;o gratuita</em>.</h2><p>Recebemos a estimativa do simulador como ponto de partida. Para um pre&ccedil;o de mercado real, marque uma visita.</p><div class="btn-row"><a class="btn btn-primary" href="contact.html">Avalia&ccedil;&atilde;o Grat&iacute;s</a><a class="btn btn-secondary" href="sell.html">Como Funciona</a></div></div></section>
 
 <footer class="site-footer">
   <div class="footer-inner">
@@ -553,6 +442,154 @@ document.addEventListener('click',function(e){
     if(btn){btn.setAttribute('aria-expanded','false');}
   }
 });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+  const NOTARY_FEES = [
+    { max: 100000, fee: 800 },
+    { max: 250000, fee: 1100 },
+    { max: 500000, fee: 1500 },
+    { max: 1000000, fee: 2200 },
+    { max: Infinity, fee: 3000 },
+  ];
+  const ENERGY_CERT = 150;
+  const MUNICIPAL_TAX_RATE = 0.001;
+
+  function getNotary(p){ for(const t of NOTARY_FEES) if(p<=t.max) return t.fee; return 3000; }
+  function fmt(n){ if(!isFinite(n))return "€0"; return "€"+Math.round(n).toLocaleString('en-US').replace(/,/g,'.'); }
+
+  let last = null;
+
+  function runCalc(e){
+    if(e) e.preventDefault();
+    const salePrice = +document.getElementById('salePrice').value || 0;
+    const mortgage = +document.getElementById('mortgage').value || 0;
+    const purchaseYear = +document.getElementById('purchaseYear').value || 2019;
+    const purchasePrice = +document.getElementById('purchasePrice').value || 0;
+    const renovations = +document.getElementById('renovations').value || 0;
+    const commissionPct = +document.getElementById('commission').value || 5;
+    const primaryRes = document.getElementById('primaryResidence').checked;
+    const nhr = document.getElementById('nhrStatus').checked;
+    const reinvest = document.getElementById('reinvest').checked;
+    const municipality = document.getElementById('municipality').value;
+
+    if(salePrice <= 0) return;
+
+    const yearsHeld = 2026 - purchaseYear;
+    const commission = salePrice * (commissionPct/100);
+    const notary = getNotary(salePrice);
+    const municipal = salePrice * MUNICIPAL_TAX_RATE;
+    const energy = ENERGY_CERT;
+
+    let capGains = 0; let cgNote = '';
+    const gain = salePrice - purchasePrice - renovations;
+    if(gain > 0){
+      if(primaryRes && yearsHeld >= 2){
+        let taxable = gain * 0.5;
+        if(reinvest){ taxable = taxable * 0.5; cgNote = 'IRS: 50% residencia + 50% reinvestimento = 75% isento'; }
+        else cgNote = 'IRS: 50% isencao residencia propria >24 meses';
+        const rate = nhr ? 0.10 : 0.28;
+        capGains = taxable * rate;
+        cgNote += nhr ? ' | RNH taxa fixa 10%' : ' | Taxa standard 28%';
+      } else {
+        const rate = nhr ? 0.10 : 0.28;
+        capGains = gain * rate;
+        cgNote = primaryRes ? 'Detido <24 meses - sem isencao residencia' : 'Nao e residencia propria';
+        cgNote += nhr ? ' | RNH taxa fixa 10%' : ' | Taxa standard 28%';
+      }
+    } else {
+      cgNote = 'Sem mais-valia - preco de venda abaixo do custo ajustado';
+    }
+
+    const net = salePrice - mortgage - commission - capGains - notary - municipal - energy;
+
+    last = {salePrice, mortgage, commission, commissionPct, capGains, cgNote, notary, municipal, energy, net, municipality};
+
+    const items = [
+      {label:'Pagamento de cr&eacute;dito', sub:'Saldo em d&iacute;vida', amt: mortgage, zero: mortgage<=0},
+      {label:'Comiss&atilde;o da ag&ecirc;ncia', sub: commissionPct.toString()+'%' + ' of sale price', amt: commission, zero: false},
+      {label:'IRS mais-valias', sub: cgNote, amt: capGains, zero: capGains<=0},
+      {label:'Escritura e legal', sub:'Registo predial, escritura', amt: notary, zero: false},
+      {label:'Custos municipais', sub: municipality.charAt(0).toUpperCase()+municipality.slice(1), amt: municipal, zero: false},
+      {label:'Certificado energ&eacute;tico', sub:'Certifica&ccedil;&atilde;o SCE obrigat&oacute;ria', amt: energy, zero: false},
+    ];
+
+    let html = '<div class="deduction-row sale"><div class="desc">Sale price</div><div class="amount">'+fmt(salePrice)+'</div></div>';
+    for(const it of items){
+      html += '<div class="deduction-row"><div class="desc">'+it.label+'<span class="sub">'+it.sub+'</span></div><div class="amount '+(it.zero?'zero':'')+'">'+(it.zero?'€0':'-'+fmt(it.amt))+'</div></div>';
+    }
+    document.getElementById('deductions').innerHTML = html;
+    document.getElementById('netProceeds').textContent = fmt(net);
+    document.getElementById('results').classList.add('visible');
+    document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function buildPdf(){
+    if(!last) return null;
+    if(typeof window.jspdf === 'undefined') return null;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.setFillColor(41,102,98); doc.rect(0,0,210,30,'F');
+    doc.setTextColor(244,236,220); doc.setFontSize(18); doc.setFont('helvetica','bold');
+    doc.text('Aldeia Realty', 14, 14);
+    doc.setFontSize(10); doc.setFont('helvetica','normal');
+    doc.text('Seller Net Proceeds', 14, 22);
+    doc.setTextColor(28,10,4);
+    let y = 46;
+    doc.setFontSize(11); doc.setFont('helvetica','bold');
+    doc.text("BREAKDOWN", 14, y); y+=8;
+    doc.setFont('helvetica','normal'); doc.setFontSize(10);
+    doc.text("Sale price: EUR " + Math.round(last.salePrice).toLocaleString(), 14, y); y+=6;
+    doc.text("Mortgage payoff: -EUR " + Math.round(last.mortgage).toLocaleString(), 14, y); y+=6;
+    doc.text("Agent commission (" + last.commissionPct + "%): -EUR " + Math.round(last.commission).toLocaleString(), 14, y); y+=6;
+    doc.text("Capital gains tax: -EUR " + Math.round(last.capGains).toLocaleString(), 14, y); y+=6;
+    doc.text("Legal & notary: -EUR " + Math.round(last.notary).toLocaleString(), 14, y); y+=6;
+    doc.text("Municipal cost: -EUR " + Math.round(last.municipal).toLocaleString(), 14, y); y+=6;
+    doc.text("Energy certificate: -EUR " + Math.round(last.energy).toLocaleString(), 14, y); y+=10;
+    doc.setFont('helvetica','bold'); doc.setFontSize(13);
+    doc.setFillColor(239,212,143); doc.rect(14, y-5, 182, 14, 'F');
+    doc.text("YOU WALK AWAY WITH: EUR " + Math.round(last.net).toLocaleString(), 18, y+4); y+=20;
+    doc.setFontSize(9); doc.setFont('helvetica','normal');
+    doc.text("Capital gains note: " + (last.cgNote||'').replace(/&/g,'and'), 14, y, {maxWidth: 182}); y+=14;
+    doc.setFontSize(8); doc.setTextColor(120,120,120);
+    doc.text("Educational estimate. Not financial or tax advice. Consult a licensed accountant.", 14, y); y+=5;
+    doc.text("Aldeia Realty | Caldas da Rainha | Licenca AMI 12456-GAMI / 2026 T", 14, y);
+    return doc;
+  }
+
+  function downloadPdf(){
+    const doc = buildPdf();
+    if(!doc){ document.getElementById('pdf-msg').textContent = 'PDF library not loaded.'; return; }
+    doc.save("aldeia-seller-net-proceeds.pdf");
+  }
+
+  async function emailPdf(e){
+    e.preventDefault();
+    const em = document.getElementById('pdf-email').value;
+    if(!em || !em.includes('@')){ document.getElementById('pdf-msg').textContent = 'Adicione um email v&aacute;lido.'; return; }
+    if(!last){ document.getElementById('pdf-msg').textContent = 'Run the calculation first.'; return; }
+    const msgEl = document.getElementById('pdf-msg');
+    msgEl.textContent = 'A enviar...';
+    const form = new FormData();
+    form.append('email', em);
+    form.append('_subject', 'Seller Net Proceeds - Aldeia');
+    form.append('summary', 'Sale: EUR ' + Math.round(last.salePrice).toLocaleString()
+              + ' | Mortgage: EUR ' + Math.round(last.mortgage).toLocaleString()
+              + ' | Commission: EUR ' + Math.round(last.commission).toLocaleString()
+              + ' | CapGains: EUR ' + Math.round(last.capGains).toLocaleString()
+              + ' | Net: EUR ' + Math.round(last.net).toLocaleString());
+    try{
+      const r = await fetch('https://formspree.io/f/xkoenyzb', {method:'POST',body:form,headers:{'Accept':'application/json'}});
+      if(r.ok){ msgEl.textContent = 'PDF enviado para o seu email.'; document.getElementById('pdf-email').value=''; }
+      else { msgEl.textContent = 'Falha no envio. Use o bot&atilde;o de descarregar.'; }
+    } catch(err){ msgEl.textContent = 'Falha no envio. Use o bot&atilde;o de descarregar.'; }
+  }
+
+  window.runCalc = runCalc;
+  window.downloadPdf = downloadPdf;
+  window.emailPdf = emailPdf;
+})();
 </script>
 </body>
 </html>

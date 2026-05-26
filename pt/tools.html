@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vender o Seu Im&oacute;vel &mdash; Aldeia Realty</title>
-<meta name="description" content="Marketing premium, Partilha colaborativa, 50+ portais internacionais. Venda o seu im&oacute;vel da Costa de Prata com confian&ccedil;a." />
-<meta property="og:title" content="Vender o Seu Im&oacute;vel &mdash; Aldeia Realty" />
-<meta property="og:description" content="Marketing premium, Partilha colaborativa, 50+ portais internacionais. Venda o seu im&oacute;vel da Costa de Prata com confian&ccedil;a." />
+<title>Ferramentas &mdash; Aldeia Realty</title>
+<meta name="description" content="Tr&ecirc;s calculadoras para o imobili&aacute;rio da Costa de Prata: capital, impostos, receita de venda. Gr&aacute;tis, imediato, em PDF." />
+<meta property="og:title" content="Ferramentas &mdash; Aldeia Realty" />
+<meta property="og:description" content="Tr&ecirc;s calculadoras para o imobili&aacute;rio da Costa de Prata: capital, impostos, receita de venda. Gr&aacute;tis, imediato, em PDF." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Aldeia Realty" />
 <meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
@@ -81,7 +81,7 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .section-header .sub{font-family:var(--body);font-style:italic;font-size:16px;color:var(--muted);margin-top:14px;max-width:620px;line-height:1.55}
 
 /* PROSE */
-.prose{font-size:15.5px;line-height:1.72;color:var(--black);max-width:760px;margin:0 auto}
+.prose{font-size:15.5px;line-height:1.72;color:var(--black);max-width:760px}
 .prose p{margin-bottom:16px}
 .prose p:last-child{margin-bottom:0}
 .prose strong{font-weight:600;color:var(--teal)}
@@ -191,118 +191,8 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 }
 
 
-/* Bridge: style original calculator's utility classes with new brand */
-.calc-input, .calc-select{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:2px;font-family:var(--body);font-size:15px;color:var(--black);background:var(--white)}
-.calc-input:focus,.calc-select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(41,102,98,0.10)}
-.calc-group{margin-bottom:14px}
-.calc-row{display:flex;gap:12px;align-items:flex-end;margin-bottom:14px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.flex{display:flex}
-.flex-1{flex:1}
-.flex-wrap{flex-wrap:wrap}
-.gap-3{gap:12px}
-.gap-4{gap:16px}
-.items-end{align-items:flex-end}
-.items-center{align-items:center}
-.justify-center{justify-content:center}
-.mb-2{margin-bottom:8px}
-.mb-3{margin-bottom:12px}
-.mb-4{margin-bottom:16px}
-.mb-5{margin-bottom:20px}
-.mb-6{margin-bottom:24px}
-.mb-8{margin-bottom:32px}
-.mt-4{margin-top:16px}
-.mt-2{margin-top:8px}
-.pt-2{padding-top:8px}
-.p-3{padding:12px}
-.p-4{padding:16px}
-.block{display:block}
-.font-semibold{font-weight:600}
-.font-bold{font-weight:700}
-.font-domine{font-family:var(--display)}
-.text-teal{color:var(--teal)}
-.text-coral{color:var(--coral)}
-.text-brand{color:var(--black)}
-.text-brand-50{color:rgba(28,10,4,0.5)}
-.text-brand-60{color:rgba(28,10,4,0.6)}
-.text-brand-70{color:rgba(28,10,4,0.7)}
-.text-brand-80{color:rgba(28,10,4,0.8)}
-.text-white{color:var(--parchment)}
-.text-white-70{color:rgba(244,236,220,0.7)}
-.text-white-90{color:rgba(244,236,220,0.9)}
-.text-sm{font-size:14px}
-.text-xs{font-size:12px}
-.text-lg{font-size:18px}
-.text-xl{font-size:20px}
-.text-2xl{font-size:24px}
-.text-3xl{font-size:32px}
-.italic{font-style:italic}
-.text-center{text-align:center}
-.justify-between{justify-content:space-between}
-.space-y-2 > * + *{margin-top:8px}
-.space-y-1 > * + *{margin-top:4px}
-.border-t{border-top:1px solid var(--border)}
-.border-t-2{border-top:2px solid var(--border)}
-.border-dove{border-color:var(--dove)}
-.border-dashed{border-top-style:dashed}
-.rounded{border-radius:3px}
-.rounded-lg{border-radius:6px}
-.bg-white{background:var(--white)}
-.bg-parchment{background:var(--parchment)}
-.bg-dove{background:var(--dove)}
-.bg-teal{background:var(--teal)}
-.section-pad{padding:64px 0}
-.card{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:32px;margin-bottom:16px}
-.max-w-3{max-width:920px;margin:0 auto}
-.accent-teal{accent-color:var(--teal)}
-.w-4{width:16px}
-.h-4{height:16px}
-.cursor-pointer{cursor:pointer}
-.bg-coral{background:var(--coral)}
-.btn-primary{background:var(--teal);color:var(--parchment);border:1px solid var(--teal);font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;cursor:pointer;display:inline-block}
-.btn-primary:hover{opacity:0.88}
-button.btn-primary{border:none}
-/* Make heading sizes work */
-h1.font-domine{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.02em}
-h2.font-domine, .font-domine.text-2xl{font-family:var(--display);font-weight:700;color:var(--black)}
-h3.font-domine{font-family:var(--display);font-weight:700;color:var(--black);font-size:20px}
-h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);font-size:18px}
-.font-domine.text-3xl{font-size:32px}
-.font-domine.text-xl{font-size:24px}
-/* Hide the old page-hero (we add our own) */
-.section-pad.bg-white .max-w-3{background:var(--white)}
-.page-hero.bg-teal{display:none}
-/* Override card backgrounds inside calc */
-.card{background:var(--white);border:1px solid var(--border)}
-.bg-teal.card{background:var(--teal);color:var(--parchment)}
-.bg-teal.card .text-brand-70{color:rgba(244,236,220,0.78)}
-.bg-teal.card .text-brand{color:var(--parchment)}
-.bg-teal.card .text-teal{color:var(--gold)}
-.bg-teal.card .border-t,.bg-teal.card .border-t-2{border-color:rgba(244,236,220,0.18)}
-/* Section padding default */
-.section-pad{padding:64px 0}
-.section-pad.bg-parchment{background:var(--parchment)}
-.section-pad.bg-white{background:var(--white)}
-
-/* Sell-specific */
-.icon-circle{width:60px;height:60px;border-radius:50%;background:rgba(41,102,98,0.10);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
-.icon-circle svg{stroke:var(--teal)}
-.partilha-card-old{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:32px;opacity:0.92}
-.partilha-card-new{background:var(--white);border:2px solid var(--gold);border-radius:3px;padding:32px;box-shadow:0 8px 28px rgba(28,10,4,0.10);position:relative}
-.partilha-card-new::before{content:'ALDEIA';position:absolute;top:-12px;left:24px;background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9px;letter-spacing:0.20em;font-weight:600;padding:4px 10px;border-radius:2px}
-.compare-list{list-style:none;padding:0;margin:18px 0 0}
-.compare-list li.neutral{padding:10px 0 10px 22px;position:relative;font-size:14.5px;line-height:1.55;color:rgba(28,10,4,0.72);border-bottom:1px solid var(--border-s)}
-.compare-list li.neutral:last-child{border-bottom:none}
-.compare-list li.neutral::before{content:'\2022';position:absolute;left:0;color:rgba(28,10,4,0.4);font-weight:700;font-size:18px;line-height:1}
-.compare-list li{padding:10px 0 10px 28px;position:relative;font-size:14.5px;line-height:1.55;color:var(--black);border-bottom:1px solid var(--border-s)}
-.compare-list li:last-child{border-bottom:none}
-.compare-list li.bad::before{content:'\2717';position:absolute;left:0;color:#c64f2f;font-weight:700;font-size:16px}
-.compare-list li.good::before{content:'\2713';position:absolute;left:0;color:var(--teal);font-weight:700;font-size:16px}
-.process-step{display:grid;grid-template-columns:60px 1fr;gap:20px;margin-bottom:24px;align-items:flex-start}
-.step-num{width:48px;height:48px;border-radius:50%;background:var(--teal);color:var(--parchment);font-family:var(--display);font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center}
-.process-step h3{font-family:var(--display);font-weight:700;font-size:18px;color:var(--black);margin-bottom:6px}
-.process-step p{font-size:14.5px;line-height:1.6;color:rgba(28,10,4,0.74);margin:0}
-.sell-image{aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:3px}
+.f-card.with-image{display:flex;flex-direction:column}
+.f-card .f-img{aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:2px;margin:-30px -28px 22px;border-bottom:3px solid var(--teal)}
 
 
 /* === POLISH PASS === */
@@ -362,10 +252,10 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
     <div class="site-nav-links">
       <a href="index.html">In&iacute;cio</a>
       <a href="properties.html">Comprar</a>
-      <a href="sell.html" class="active">Vender</a>
+      <a href="sell.html">Vender</a>
       <a href="our-story.html">A Nossa Hist&oacute;ria</a>
       <a href="our-team.html">A Nossa Equipa</a>
-      <a href="tools.html">Ferramentas</a>
+      <a href="tools.html" class="active">Ferramentas</a>
       <div class="nav-more-wrap">
         <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">Mais &#9662;</button>
         <div class="nav-dropdown" id="moreDropdown" role="menu">
@@ -378,112 +268,52 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
       </div>
     </div>
     <div class="site-nav-actions">
-      <a class="site-nav-lang" href="../sell.html">EN</a>
+      <a class="site-nav-lang" href="../tools.html">EN</a>
       <a class="site-nav-cta" href="contact.html">Avalia&ccedil;&atilde;o Gr&aacute;tis</a>
     </div>
   </div>
 </nav>
 
-<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('../images/hero/hero-sell.jpg');background-size:cover;background-position:center">
+<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('../images/homes/classic-manor.jpg');background-size:cover;background-position:center">
   <div class="container">
-    <div class="kicker">Para Vendedores</div>
-    <h1>Venda com <em>alcance premium</em>.</h1>
-    <p class="sub">A nossa abordagem de Partilha permite-nos trabalhar com todas as ag&ecirc;ncias para encontrar o seu comprador &mdash; e a sindica&ccedil;&atilde;o internacional coloca o seu im&oacute;vel diante de compradores em todo o mundo.</p>
+    <div class="kicker">Ferramentas para a sua jornada</div>
+    <h1>Calculadoras que <em>respondem</em>.</h1>
+    <p class="sub">Tr&ecirc;s ferramentas para responder &agrave;s perguntas mais comuns: o que custa comprar, o que paga em impostos, o que recebe ao vender.</p>
   </div>
 </section>
 <section class="section">
   <div class="container">
-    <div class="section-header" style="text-align:center;margin-left:auto;margin-right:auto">
-      <div class="kicker">Porqu&ecirc; listar com a Aldeia</div>
-      <h2>Tr&ecirc;s pilares da nossa <em>abordagem</em>.</h2>
-    </div>
     <div class="grid-3">
-      <div class="f-card"><h3>A Estrat&eacute;gia de Lan&ccedil;amento Premium</h3><p>Cada listagem recebe fotografia profissional, filmagem a&eacute;rea, tours virtuais, e descri&ccedil;&otilde;es bilingues &mdash; em portugu&ecirc;s e ingl&ecirc;s.</p></div>
-      <div class="f-card"><h3>Posicionamento de Mercado de Elite</h3><p>Sindicada em 50+ portais internacionais &mdash; Rightmove, Idealista, Green Acres, Kyero, James Edition &mdash; n&atilde;o apenas Idealista PT.</p></div>
-      <div class="f-card"><h3>Negocia&ccedil;&atilde;o Magistral</h3><p>Negociamos com calma e rigor, em duas l&iacute;nguas, sempre representando o seu melhor interesse.</p></div>
-    </div>
-  </div>
-</section>
-<section class="section dove">
-  <div class="container">
-    <div class="grid-2">
-      <div>
-        <div class="kicker">Preparar a venda</div>
-        <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(28px,3.6vw,38px);line-height:1.08;color:var(--black);margin-bottom:12px;margin-top:8px">Maximizar o valor <em>antes de listar</em>.</h2>
-        <p style="font-style:italic;color:var(--muted);margin-bottom:24px;font-size:15.5px">Pequenos investimentos com retorno desproporcional.</p>
-        <div class="sell-image" style="background-image:url('../images/sell/portuguese-home.jpg')"></div>
+      <div class="f-card with-image">
+        <div class="f-img" style="background-image:url('https://www.aldeiarealty.com/images/sell/us-home-sale.jpg')"></div>
+        <div class="f-audience" style="font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600">Para compradores internacionais</div>
+        <h3>Simulador de <em>Capital</em></h3>
+        <p>Converta o capital da venda da sua casa em poder de compra em euros. Calcula IMT, Imposto do Selo e cr&eacute;dito necess&aacute;rio.</p>
+        <a class="btn btn-primary" href="calculator.html" style="margin-top:18px;align-self:flex-start;padding:11px 22px;font-size:9.5px">Abrir Simulador</a>
       </div>
-      <div>
-      <div class="process-step"><div class="step-num">1</div><div><h3>Desarrumar e Despersonalizar</h3><p>Remova itens pessoais para que os compradores se imaginem no espa&ccedil;o.</p></div></div>
-      <div class="process-step"><div class="step-num">2</div><div><h3>Limpeza Profunda</h3><p>Todas as superf&iacute;cies, por dentro e por fora. As primeiras impress&otilde;es contam.</p></div></div>
-      <div class="process-step"><div class="step-num">3</div><div><h3>Pequenas Reparac&otilde;es</h3><p>Torneiras, portas, retoques de tinta &mdash; detalhes que fazem grande diferen&ccedil;a.</p></div></div>
-      <div class="process-step"><div class="step-num">4</div><div><h3>Decora&ccedil;&atilde;o Estrat&eacute;gica</h3><p>Luz, neutralidade, acolhimento. Em listagens premium, trazemos um decorador.</p></div></div>
-      <div class="process-step"><div class="step-num">5</div><div><h3>Certificado Energ&eacute;tico</h3><p>Obrigat&oacute;rio em qualquer venda. Coordenamos a inspe&ccedil;&atilde;o certificada.</p></div></div>
+      <div class="f-card with-image">
+        <div class="f-img" style="background-image:url('https://www.aldeiarealty.com/images/homes/modern-villa.jpg')"></div>
+        <div class="f-audience" style="font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600">Para compradores e propriet&aacute;rios</div>
+        <h3>Calculadora <em>Fiscal</em></h3>
+        <p>IMT (transmiss&atilde;o), Imposto do Selo e IMI anual estimados para qualquer im&oacute;vel da Costa de Prata.</p>
+        <a class="btn btn-primary" href="tax-calculator.html" style="margin-top:18px;align-self:flex-start;padding:11px 22px;font-size:9.5px">Calcular Impostos</a>
       </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="section-header" style="text-align:center;margin-left:auto;margin-right:auto;max-width:760px">
-      <div class="kicker">A nossa promessa</div>
-      <h2>A Garantia <em>Partilha 50/50</em>.</h2>
-      <p class="sub" style="margin-left:auto;margin-right:auto">Quando se vende uma casa, algumas abordagens focam-se em manter a listagem estritamente dentro da rede interna de uma ag&ecirc;ncia. Embora seja uma pr&aacute;tica comum, acreditamos numa abordagem totalmente aberta.</p>
-    </div>
-    <div class="grid-2" style="max-width:880px;margin:0 auto">
-      <div class="partilha-card-old">
-        <h3 style="font-family:var(--display);font-weight:700;font-size:20px;color:var(--black);margin-bottom:6px">A Abordagem Interna</h3>
-        <ul class="compare-list">
-        <li class="neutral">Limita a exposi&ccedil;&atilde;o do seu im&oacute;vel aos compradores de uma s&oacute; ag&ecirc;ncia</li>
-        <li class="neutral">Depende de um conjunto mais reduzido de potenciais ofertas</li>
-        </ul>
-      </div>
-      <div class="partilha-card-new">
-        <h3 style="font-family:var(--display);font-weight:700;font-size:20px;color:var(--teal);margin-bottom:6px">A Nossa Abordagem Colaborativa</h3>
-        <ul class="compare-list">
-        <li class="good"><strong>100% Exposi&ccedil;&atilde;o ao Mercado:</strong> Garantimos partilha 50/50 da comiss&atilde;o com qualquer agente licenciado que traga um comprador</li>
-        <li class="good"><strong>M&aacute;xima Concorr&ecirc;ncia:</strong> O seu im&oacute;vel &eacute; promovido a toda a comunidade imobili&aacute;ria, n&atilde;o apenas &agrave; nossa rede interna</li>
-        <li class="good"><strong>Foco no Vendedor:</strong> Vendas mais r&aacute;pidas e melhores resultados ao maximizar a visibilidade do seu im&oacute;vel</li>
-        </ul>
+      <div class="f-card with-image">
+        <div class="f-img" style="background-image:url('https://www.aldeiarealty.com/images/sell/sellers-happy.jpg')"></div>
+        <div class="f-audience" style="font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600">Para vendedores</div>
+        <h3>Receita L&iacute;quida de <em>Venda</em></h3>
+        <p>Quanto recebe efetivamente ao vender? Inclui mais-valias (com isen&ccedil;&otilde;es de resid&ecirc;ncia pr&oacute;pria e RNH), comiss&atilde;o, escritura, e custos municipais.</p>
+        <a class="btn btn-primary" href="seller-calculator.html" style="margin-top:18px;align-self:flex-start;padding:11px 22px;font-size:9.5px">Calcular Receita L&iacute;quida</a>
       </div>
     </div>
-    <p style="text-align:center;font-size:16px;color:var(--black);max-width:720px;margin:36px auto 0;line-height:1.6;font-style:italic">Ao garantir que todos os agentes em Portugal t&ecirc;m incentivo financeiro para mostrar a sua casa, abrimos as portas a todos os compradores no mercado.</p>
-  </div>
-</section>
-<section class="section dove">
-  <div class="container">
-    <div class="section-header" style="text-align:center;margin-left:auto;margin-right:auto">
-      <div class="kicker">Do listado ao vendido</div>
-      <h2>O <em>processo completo</em>, passo a passo.</h2>
-    </div>
-    <div class="grid-2">
-      <div>
-      <div class="process-step"><div class="step-num">1</div><div><h3>Consulta Inicial</h3><p>Conhecemo-nos para discutir os seus objetivos, prazo e expectativas. Visitamos a sua casa e come&ccedil;amos a desenhar a estrat&eacute;gia.</p></div></div>
-      <div class="process-step"><div class="step-num">2</div><div><h3>An&aacute;lise de Mercado e Pre&ccedil;o</h3><p>Investigamos vendas recentes e listagens actuais para determinar o pre&ccedil;o &oacute;ptimo de listagem.</p></div></div>
-      <div class="process-step"><div class="step-num">3</div><div><h3>Prepara&ccedil;&atilde;o da Casa</h3><p>Orienta&ccedil;&atilde;o sobre reparac&otilde;es, desarrumar e decora&ccedil;&atilde;o para destacar o melhor da casa.</p></div></div>
-      <div class="process-step"><div class="step-num">4</div><div><h3>Fotografia Profissional</h3><p>Fotografia de alta qualidade, v&iacute;deo e filmagem a&eacute;rea para apresentar a casa na melhor luz.</p></div></div>
-      <div class="process-step"><div class="step-num">5</div><div><h3>Listagem ao Vivo</h3><p>A casa &eacute; lan&ccedil;ada em portais principais, redes sociais, e na nossa rede de compradores qualificados.</p></div></div>
-      </div>
-      <div>
-      <div class="process-step"><div class="step-num">6</div><div><h3>Visitas e Open Houses</h3><p>Coordenamos visitas privadas e eventos de open house, apresentando a casa com profissionalismo.</p></div></div>
-      <div class="process-step"><div class="step-num">7</div><div><h3>Receber Ofertas</h3><p>Quando chegam ofertas, revemos cada uma juntos &mdash; pre&ccedil;o, condi&ccedil;&otilde;es, qualifica&ccedil;&otilde;es do comprador.</p></div></div>
-      <div class="process-step"><div class="step-num">8</div><div><h3>Negocia&ccedil;&atilde;o</h3><p>Negociamos em seu nome para garantir o melhor pre&ccedil;o e condi&ccedil;&otilde;es poss&iacute;veis.</p></div></div>
-      <div class="process-step"><div class="step-num">9</div><div><h3>Em Contrato</h3><p>Uma vez aceite, gerimos todos os prazos, inspe&ccedil;&otilde;es, e comunica&ccedil;&otilde;es para uma transa&ccedil;&atilde;o sem fric&ccedil;&atilde;o.</p></div></div>
-      <div class="process-step"><div class="step-num">10</div><div><h3>Dia da Escritura</h3><p>Acompanhamo-lo &agrave; escritura, garantindo que todos os documentos est&atilde;o em ordem. Entrega das chaves e celebra&ccedil;&atilde;o.</p></div></div>
-      </div>
-    </div>
-    <div style="margin-top:48px"><div class="sell-image" style="background-image:url('../images/sell/sellers-happy.jpg');aspect-ratio:21/9"></div></div>
   </div>
 </section>
 <section class="cta-section">
   <div class="container">
-    <div class="kicker">Avalia&ccedil;&atilde;o gratuita</div>
-    <h2>Descubra <em>quanto vale</em> o seu im&oacute;vel.</h2>
-    <p>Avalia&ccedil;&atilde;o honesta e ancorada no mercado, de um consultor que o guia pelos n&uacute;meros.</p>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="contact.html">Fale com um Consultor</a>
-      <a class="btn btn-secondary" href="our-story.html">Conhe&ccedil;a a Nossa Hist&oacute;ria</a>
-    </div>
+    <div class="kicker">Quer ajuda personalizada?</div>
+    <h2>Fale com um <em>consultor</em>.</h2>
+    <p>As calculadoras s&atilde;o um ponto de partida. Para um plano espec&iacute;fico ao seu caso, marque uma conversa &mdash; sem compromisso.</p>
+    <div class="btn-row"><a class="btn btn-primary" href="contact.html">Marcar Consulta</a><a class="btn btn-secondary" href="our-team.html">Conhecer a Equipa</a></div>
   </div>
 </section>
 

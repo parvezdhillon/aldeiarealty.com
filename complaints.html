@@ -1,168 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dispute Resolution &mdash; Aldeia Realty</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-height:1.6}
-    .container{max-width:64rem;margin:0 auto;padding:0 1.5rem}
-    .font-domine{font-family:'Domine',serif}
-    .nav{position:fixed;top:0;left:0;right:0;z-index:50;height:52px;background:#fff;box-shadow:0 1px 4px rgba(28,10,4,0.08)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
-    .nav-links{display:flex;gap:1.5rem}.nav-inner>a:first-child{flex-shrink:0}.nav-inner img{height:28px;width:auto;object-fit:contain}@media(max-width:768px){.nav-inner img{height:22px}.nav-links{display:none}}
-    .nav-links a{font-weight:600;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(28,10,4,.6);text-decoration:none;transition:color .2s}
-    .nav-links a:hover{color:#296662}
-    .btn{display:inline-block;padding:10px 20px;border-radius:4px;font-weight:600;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:'Work Sans',sans-serif;white-space:nowrap}
-    .btn-primary{background:#296662;color:#fff}.btn-primary:hover{background:#1e4d4a}
-    .page-hero{padding-top:64px;padding-bottom:12px;background:#296662}
-    .page-hero h1{font-size:1.5rem;color:#fff;margin-bottom:4px}
-    .page-hero p{color:rgba(255,255,255,.8);font-size:.8125rem}
-    .label-text{font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#296662}
-    .section-pad{padding:64px 0}
-    .section-pad h2{font-family:'Domine',serif;font-size:1.25rem;color:#1c0a04;margin:2rem 0 .75rem}
-    .section-pad h3{font-family:'Domine',serif;font-size:1.1rem;color:#1c0a04;margin:1.5rem 0 .5rem}
-    .section-pad p{font-size:.9375rem;color:rgba(28,10,4,.75);margin-bottom:.75rem}
-    .section-pad ul{margin-left:1.5rem;margin-bottom:1rem;font-size:.9375rem;color:rgba(28,10,4,.75)}
-    .section-pad li{margin-bottom:.4rem}
-    .section-pad a{color:#296662;text-decoration:underline}
-    .section-pad strong{color:#1c0a04}
-    .footer{padding:40px 0 24px;background:#296662}
-    .footer p{color:rgba(255,255,255,.6)}
-    .text-white-60{color:rgba(255,255,255,.6)}
-    .text-gold{color:#efd48f}
-    .text-center{text-align:center}
-    .bg-white{background:#fff}
-    .bg-parchment{background:#f4ecdc}
-    .bg-dove{background:#e4e7e6}
-    .rounded-lg{border-radius:8px}
-    .p-5{padding:1.25rem}
-    .p-6{padding:1.5rem}
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-    .reveal.visible{opacity:1;transform:none}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
-    .nav-inner>a:first-child{flex-shrink:0}.nav-inner img{height:28px;width:auto;object-fit:contain}@media(max-width:768px){.nav-inner img{height:22px}.grid-2{grid-template-columns:1fr}}
-    .mt-4{margin-top:1rem}
-    .mb-1{margin-bottom:.25rem}
-    .mb-3{margin-bottom:.75rem}
-    .mb-4{margin-bottom:1rem}
-    .mb-8{margin-bottom:2rem}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dispute Resolution &mdash; Aldeia Realty</title>
+<meta name="description" content="Aldeia Realty's complaints and dispute resolution procedure, including the Livro de Reclamações." />
+<meta property="og:title" content="Dispute Resolution &mdash; Aldeia Realty" />
+<meta property="og:description" content="Aldeia Realty's complaints and dispute resolution procedure, including the Livro de Reclamações." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aldeia Realty" />
+<meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/x-icon" href="logos/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="logos/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="logos/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --teal:#296662;--teal-dark:#1f4f4c;--black:#1c0a04;--gold:#efd48f;--dove:#e4e7e6;
+  --parchment:#f4ecdc;--white:#ffffff;--coral:#c64f2f;
+  --muted:rgba(28,10,4,0.55);--border:rgba(41,102,98,0.18);
+  --border-s:rgba(41,102,98,0.10);
+  --display:'Domine',Georgia,serif;
+  --body:'Work Sans',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--parchment);color:var(--black);font-family:var(--body);font-weight:400;line-height:1.6;overflow-x:hidden}
+
+/* NAV - teal with gold accent */
+.site-nav{background:var(--teal);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold);box-shadow:0 2px 20px rgba(28,10,4,0.18)}
+.site-nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:66px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.site-nav-logo img{height:30px;width:auto;display:block}
+.site-nav-links{display:flex;gap:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;align-items:center;flex:1;justify-content:center}
+.site-nav-links a{color:rgba(244,236,220,0.62);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+.site-nav-links a:hover,.site-nav-links a.active{color:var(--gold)}
+.nav-more-wrap{position:relative}
+.nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.62);padding:0;transition:color 0.2s}
+.nav-more-btn:hover{color:var(--gold)}
+.nav-dropdown{position:absolute;top:calc(100% + 14px);right:0;background:var(--black);border:1px solid rgba(239,212,143,0.18);border-radius:3px;padding:8px 0;min-width:170px;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.30);z-index:200}
+.nav-dropdown.open{display:block}
+.nav-dropdown a{display:block;padding:11px 18px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.65);text-decoration:none;transition:color 0.2s,background 0.2s}
+.nav-dropdown a:hover{color:var(--gold);background:rgba(41,102,98,0.20)}
+.site-nav-actions{display:flex;align-items:center;gap:14px}
+.site-nav-lang{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:rgba(244,236,220,0.50);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.site-nav-lang:hover{color:var(--gold)}
+.site-nav-cta{background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;white-space:nowrap;transition:opacity 0.2s}
+.site-nav-cta:hover{opacity:0.85}
+
+/* CONTAINER */
+.container{max-width:1200px;margin:0 auto;padding:0 56px}
+
+/* KICKER - DEFAULT TEAL (for cream backgrounds). Gold only on dark backgrounds. */
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;font-weight:500}
+/* Gold kicker variants - explicit class for dark contexts where needed */
+.kicker-gold{color:var(--gold)}
+
+/* PAGE HERO (teal background - gold kicker OK here) */
+.page-hero{background:var(--teal);padding:80px 0 70px;border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
+.page-hero .kicker{color:var(--gold);opacity:0.85}
+.page-hero h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.02em;color:var(--parchment);margin-bottom:20px}
+.page-hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.page-hero .sub{font-family:var(--body);font-size:17px;color:rgba(244,236,220,0.78);max-width:580px;line-height:1.6;font-style:italic}
+.page-hero.with-image{position:relative}
+.page-hero.with-image::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.22;z-index:0}
+.page-hero.with-image .container{position:relative;z-index:1}
+
+/* SECTION (generic) */
+.section{padding:80px 0;background:var(--parchment)}
+.section.dove{background:var(--dove)}
+.section.parchment{background:var(--parchment)}
+.section.white{background:var(--white)}
+.section-header{margin-bottom:48px;max-width:820px}
+.section-header h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.07;letter-spacing:-0.02em;margin-top:10px;color:var(--black)}
+.section-header h2 em{font-style:italic;color:var(--teal);font-weight:400}
+.section-header .sub{font-family:var(--body);font-style:italic;font-size:16px;color:var(--muted);margin-top:14px;max-width:620px;line-height:1.55}
+
+/* PROSE */
+.prose{font-size:15.5px;line-height:1.72;color:var(--black);max-width:760px;margin:0 auto}
+.prose p{margin-bottom:16px}
+.prose p:last-child{margin-bottom:0}
+.prose strong{font-weight:600;color:var(--teal)}
+.prose ul{margin:14px 0 18px 22px}
+.prose ul li{margin-bottom:8px}
+.prose h3{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.2;letter-spacing:-0.01em;margin:30px 0 12px;color:var(--black)}
+.prose h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.prose a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.prose a:hover{color:var(--coral)}
+
+/* CALLOUTS - teal accent border, text in dark on dove/white */
+.callout{margin:24px 0;padding:22px 26px;background:var(--dove);border-left:3px solid var(--teal);border-radius:0 3px 3px 0}
+.callout .callout-label{font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600}
+.callout .callout-text{font-size:15px;line-height:1.62;color:var(--black)}
+.callout.teal{background:rgba(41,102,98,0.07);border-left-color:var(--teal)}
+.callout.gold{background:rgba(239,212,143,0.22);border-left-color:var(--teal)}
+.callout.coral{background:rgba(198,79,47,0.08);border-left-color:var(--coral)}
+.callout.coral .callout-label{color:var(--coral)}
+
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+
+/* FEATURE CARD */
+.f-card{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:30px 28px;transition:box-shadow 0.25s,transform 0.25s;display:flex;flex-direction:column}
+.f-card:hover{box-shadow:0 8px 28px rgba(28,10,4,0.08);transform:translateY(-2px)}
+.f-card .f-icon{width:46px;height:46px;border-radius:50%;background:rgba(41,102,98,0.10);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.f-card .f-icon svg{stroke:var(--teal)}
+.f-card h3{font-family:var(--display);font-weight:700;font-size:20px;line-height:1.18;color:var(--black);margin-bottom:10px}
+.f-card h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.f-card p{font-size:14.5px;line-height:1.6;color:rgba(28,10,4,0.74);flex:1}
+.f-card .f-link{margin-top:14px;display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);text-decoration:none;font-weight:500}
+.f-card .f-link:hover{color:var(--coral)}
+.f-card.with-image .f-img{aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:2px;margin:-30px -28px 22px;border-bottom:3px solid var(--teal)}
+
+/* IMAGE STRIPS */
+.image-strip{padding:0}
+.image-strip-grid{display:grid;gap:0}
+.image-strip-grid img{display:block;width:100%;height:220px;object-fit:cover}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:background 0.2s,color 0.2s,opacity 0.2s,border-color 0.2s;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:var(--teal);color:var(--parchment);border-color:var(--teal)}
+.btn-primary:hover{opacity:0.88}
+.btn-secondary{background:transparent;color:var(--teal);border-color:var(--teal)}
+.btn-secondary:hover{background:var(--teal);color:var(--parchment)}
+.btn-gold{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.btn-gold:hover{opacity:0.88}
+.btn-on-dark{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.btn-on-dark:hover{opacity:0.88}
+.btn-outline-light{background:transparent;color:var(--parchment);border-color:var(--parchment)}
+.btn-outline-light:hover{background:var(--parchment);color:var(--teal)}
+
+/* CTA SECTION - teal background, gold accents */
+.cta-section{padding:80px 0;background:var(--teal);text-align:center;color:var(--parchment);position:relative}
+.cta-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
+.cta-section .kicker{color:var(--gold);opacity:0.88}
+.cta-section h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.07;letter-spacing:-0.02em;margin-top:10px;margin-bottom:18px;color:var(--parchment)}
+.cta-section h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.cta-section p{font-style:italic;font-size:17px;color:rgba(244,236,220,0.80);max-width:560px;margin:0 auto 30px;line-height:1.56}
+.cta-section .btn-row{justify-content:center}
+.cta-section .btn-primary{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.cta-section .btn-secondary{color:var(--parchment);border-color:var(--parchment);background:transparent}
+.cta-section .btn-secondary:hover{background:var(--parchment);color:var(--teal)}
+
+/* FOOTER - TEAL-DOMINANT with small black strip at very bottom */
+.site-footer{background:var(--teal);color:var(--parchment);padding:56px 0 0;position:relative;border-top:3px solid var(--gold)}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 56px 44px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+.footer-logo img{height:28px;width:auto;margin-bottom:16px;display:block}
+.footer-tagline{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:0.92}
+.footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.72);max-width:280px}
+.footer-col-title{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500;opacity:0.92}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:9px}
+.footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.72);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-contact{font-size:13.5px;color:rgba(244,236,220,0.72);margin-bottom:9px;line-height:1.55}
+.footer-contact a{color:inherit;text-decoration:none}
+.footer-contact a:hover{color:var(--gold)}
+
+/* Small black strip at very bottom - just for license/legal/copyright */
+.footer-bottom{background:var(--black);color:rgba(244,236,220,0.55)}
+.footer-bottom-inner{max-width:1200px;margin:0 auto;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:48px}
+.footer-license{font-family:var(--mono);font-size:8.5px;letter-spacing:0.10em;color:rgba(244,236,220,0.50);line-height:1.5}
+.footer-legal{display:flex;gap:18px}
+.footer-legal a{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:rgba(244,236,220,0.45);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.footer-legal a:hover{color:var(--gold)}
+
+/* WHATSAPP FLOAT */
+.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.30);z-index:250;text-decoration:none;transition:transform 0.2s}
+.whatsapp-float:hover{transform:scale(1.1);color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .container{padding:0 28px}
+  .site-nav-links{display:none}
+  .site-nav-inner{padding:0 20px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;padding:0 28px 36px;gap:32px}
+  .footer-bottom-inner{padding:12px 28px;flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .footer-inner{grid-template-columns:1fr}
+  .page-hero{padding:54px 0 44px}
+}
+
+
+
+/* === POLISH PASS === */
+/* Bird-bullet lists - use AR icon as bullet marker */
+.prose ul, ul.bird-list { list-style: none; padding-left: 0; margin-left: 0 }
+.prose ul li, ul.bird-list li { padding-left: 30px; position: relative; margin-bottom: 10px }
+.prose ul li::before, ul.bird-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 18px;
+  height: 18px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+}
+/* Compare list: neutral bullets use bird, good keeps checkmark */
+.compare-list li.neutral { padding-left: 30px }
+.compare-list li.neutral::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+  opacity: 0.45;
+  top: 0.45em;
+}
+/* Nav logo +33% (30 -> 40px) */
+.site-nav-logo img { height: 40px !important }
+/* Footer logo +28% (28 -> 36px) */
+.footer-logo img { height: 36px !important }
+/* Stronger area-card overlay + text-shadow */
+.area-card::before {
+  background: linear-gradient(180deg, rgba(28,10,4,0.18) 0%, rgba(28,10,4,0.45) 45%, rgba(28,10,4,0.92) 100%) !important;
+}
+.area-card .area-content { padding: 26px 22px !important }
+.area-card h3 {
+  font-size: 23px !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  margin-bottom: 6px !important;
+}
+.area-card p {
+  font-size: 13.5px !important;
+  color: rgba(255,255,255,0.94) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.50);
+}
+</style>
 </head>
 <body>
 
-<!-- IMPIC DISCLAIMER TOP -->
-<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;position:fixed;top:0;left:0;right:0;z-index:200;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
-<!-- Nav Spacer for Top Banner -->
-<div style="height:36px;"></div>
-<nav class="nav" style="top:36px">
-  <div class="container nav-inner">
-    <a href="index.html"><img src="logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty"  /></a>
-    <div class="nav-links">
-      <a href="properties.html">Buy</a><a href="sell.html">Sell</a><a href="about.html">About</a><a href="careers.html">Careers</a><a href="resources.html">Resources</a><a href="faq.html">FAQ</a><a href="partner.html">Partner</a><a href="calculator.html">Tools</a><a href="contact.html">Contact</a>
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <div class="site-nav-logo">
+      <a href="index.html"><img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></a>
     </div>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <a href="pt/complaints.html" style="font-weight:600;font-size:0.7rem;letter-spacing:0.04em;text-transform:uppercase;color:#296662;border:1px solid #296662;padding:4px 8px;border-radius:4px;">PT</a>
-      <a href="contact.html" class="btn btn-primary" style="display:block;">Get A Free Valuation</a>
+    <div class="site-nav-links">
+      <a href="index.html">Home</a>
+      <a href="properties.html">Buy</a>
+      <a href="sell.html">Sell</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="our-team.html">Our Team</a>
+      <a href="tools.html">Tools</a>
+      <div class="nav-more-wrap">
+        <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">More &#9662;</button>
+        <div class="nav-dropdown" id="moreDropdown" role="menu">
+          <a href="careers.html">Careers</a>
+          <a href="resources.html">Resources</a>
+          <a href="faq.html">FAQ</a>
+          <a href="partner.html">Partner</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-nav-actions">
+      <a class="site-nav-lang" href="pt/complaints.html">PT</a>
+      <a class="site-nav-cta" href="contact.html">Get A Free Valuation</a>
     </div>
   </div>
 </nav>
 
-<section class="page-hero">
-  <div class="container" style="padding-top:64px;padding-bottom:12px;">
-    <p class="label-text text-gold mb-1">LEGAL</p>
-    <h1 class="font-domine">Dispute Resolution &amp; Complaints</h1>
-  </div>
-</section>
-
-<section class="section-pad bg-white">
-  <div class="container reveal">
-    <p class="text-brand-60 text-sm mb-4">In accordance with Portuguese Law No. 144/2015, of September 8</p>
-
-    <h2>1. Introduction</h2>
-    <p>In accordance with and in compliance with the provisions of <strong>Law No. 144/2015, of September 8</strong>, <strong>Aldeia Realty - Real Estate, LDA</strong>, trading as Aldeia Realty (NIPC 517693032), provides the necessary information so that the consumer client can exercise their right to file a complaint with an official, third-party, and impartial entity that will help resolve the dispute in question.</p>
-    <p>Alternative dispute resolution ("ADR") is the possibility that all consumers have at their disposal to resort to official entities that help them in the resolution or guidance of any conflict, before initiating litigation proceedings in the Courts.</p>
-
-    <h2>2. What is Alternative Dispute Resolution?</h2>
-    <p>As a rule, the ADR procedure can be described as follows:</p>
-    <ul>
-      <li>The consumer client asks an impartial third party to intervene as an intermediary between themselves and the supplier or service provider who is the subject of their complaint.</li>
-      <li>The intermediary may suggest a solution to their complaint, impose a solution on both parties, or bring the parties together to find a solution.</li>
-    </ul>
-    <p>Alternative dispute resolution may take the form of "mediation", "conciliation", or "arbitration". Alternative dispute resolution is generally less expensive, less formal, and faster than going to court.</p>
-
-    <h2>3. Official Complaint Channels</h2>
-    <p>Therefore, in the event of a dispute, the consumer client can resort to the following official entities:</p>
-
-    <div class="bg-parchment rounded-lg p-5 mb-4">
-      <h3 class="font-domine text-base text-brand mb-2">Livro de Reclamações (Complaints Book)</h3>
-      <p>In Portugal, all service providers are legally required to provide access to the <strong>Livro de Reclamações</strong> (Complaints Book). You can file your complaint online through the official portal:</p>
-      <p style="margin-top:0.5rem;"><a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener" style="font-weight:600;">https://www.livroreclamacoes.pt/Inicio/</a></p>
-    </div>
-
-    <div class="bg-parchment rounded-lg p-5 mb-4">
-      <h3 class="font-domine text-base text-brand mb-2">Centro de Arbitragem de Conflitos de Consumo de Lisboa</h3>
-      <p>For alternative dispute resolution, you may contact:</p>
-      <p style="margin-top:0.5rem;"><strong>Centro de Arbitragem de Conflitos de Consumo do Distrito de Lisboa</strong><br />
-      Rua dos Douradores, 101, 2º andar<br />
-      1100-415 Lisboa, Portugal<br />
-      Email: <a href="mailto:geral@cacc-lisboa.pt">geral@cacc-lisboa.pt</a><br />
-      Website: <a href="https://www.centroarbitragemlisboa.pt/" target="_blank" rel="noopener">www.centroarbitragemlisboa.pt</a></p>
-    </div>
-
-    <div class="bg-parchment rounded-lg p-5 mb-4">
-      <h3 class="font-domine text-base text-brand mb-2">Centro Nacional de Informação e Arbitragem de Conflitos de Consumo (CNIACC)</h3>
-      <p>Rua D. Afonso Henriques, 1, 4700-030 Braga, Portugal<br />
-      Email: <a href="mailto:cniacc@cniacc.pt">cniacc@cniacc.pt</a><br />
-      Website: <a href="https://www.cniacc.pt/" target="_blank" rel="noopener">www.cniacc.pt</a></p>
-    </div>
-
-    <div class="bg-parchment rounded-lg p-5 mb-4">
-      <h3 class="font-domine text-base text-brand mb-2">European Online Dispute Resolution (ODR)</h3>
-      <p>If you are resident in the EU, you can also use the European Commission's Online Dispute Resolution platform:</p>
-      <p style="margin-top:0.5rem;"><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener" style="font-weight:600;">https://ec.europa.eu/consumers/odr/</a></p>
-    </div>
-
-    <h2>4. Internal Complaints Handling</h2>
-    <p>Before resorting to external entities, we encourage you to contact us directly so that we can attempt to resolve any issue internally. We are committed to handling all complaints promptly and fairly.</p>
-    <p>To file an internal complaint, please contact:</p>
-    <div class="bg-parchment rounded-lg p-5 mb-4">
-      <p class="text-brand-70"><strong>Aldeia Realty - Real Estate, LDA</strong> (trading as Aldeia Realty)<br />
-      Rua Dr. Angelo Ferrari, no. 7, R/C Dto.<br />
-      2500-113 Caldas da Rainha, Portugal<br />
-      Email: <a href="mailto:angela@aldeiarealty.com">angela@aldeiarealty.com</a><br />
-      Phone: +351 912 771 309</p>
-    </div>
-    <p>We will acknowledge receipt of your complaint within 5 business days and provide a substantive response within 15 business days. If the matter is complex and requires more time, we will inform you of the extended timeline.</p>
-
-    <h2>5. Applicable Law</h2>
-    <p>These dispute resolution procedures are governed by Portuguese law, specifically Law No. 144/2015, of September 8, which transposes Directive 2013/11/EU on alternative dispute resolution for consumer disputes. Where international clients are involved, the provisions of EU Regulation No. 524/2013 on online dispute resolution for consumer disputes also apply.</p>
-
-    <h2>6. Contact Information</h2>
-    <p>For any questions regarding this Dispute Resolution Policy, please contact us using the details above.</p>
-  </div>
-</section>
-
-
-<!-- IMPIC DISCLAIMER -->
-<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
-<footer class="footer">
+<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('images/hero/hero-coastline.jpg');background-size:cover;background-position:center">
   <div class="container">
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;">
-      <img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" height="22" />
-      <p style="color:#efd48f;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">MODERN HERITAGE &middot; MODERN BUSINESS</p>
+    <div class="kicker">Dispute Resolution</div>
+    <h1>How we handle <em>complaints</em>.</h1>
+    <p class="sub">We take every complaint seriously. Here is exactly how to raise one — and what we commit to in response.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="prose">
+      <h3>How to file a complaint</h3>
+      <p>Write to <strong>info@aldeiarealty.com</strong> with the subject line "Complaint". Include the date and circumstances, the person you dealt with, and the outcome you would like.</p>
+      <h3>Our commitment</h3>
+      <p>We acknowledge every complaint within 24 hours. We provide a substantive response within 14 days. If a complaint requires investigation, we keep you informed of progress in writing every 7 days.</p>
+      <h3>If we cannot resolve it together</h3>
+      <p>Portuguese law gives you several alternative paths:</p>
+      <ul>
+        <li><strong>Livro de Reclama&ccedil;&otilde;es (Electronic Complaints Book):</strong> <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">livroreclamacoes.pt</a></li>
+        <li><strong>CIMPAS</strong> — Centro de Informa&ccedil;&atilde;o, Media&ccedil;&atilde;o e Arbitragem de Seguros, for property-insurance-related disputes</li>
+        <li><strong>CNIACC</strong> — National Center for Consumer Conflict Information and Arbitration</li>
+      </ul>
+      <h3>Regulatory body</h3>
+      <p>Aldeia Realty operates under license number <strong>12456-GAMI / 2026 T</strong>, issued under Law 15/2013 governing real estate mediation activity. The regulator is IMPIC, I.P. (Instituto dos Mercados P&uacute;blicos, do Imobili&aacute;rio e da Constru&ccedil;&atilde;o).</p>
     </div>
-    <p class="text-center text-white-60 text-sm mt-4">&copy; 2026 Aldeia Realty - Real Estate, LDA (Aldeia Realty). All rights reserved.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></div>
+      <div class="footer-tagline">Modern Heritage &middot; Modern Business</div>
+      <p class="footer-desc">A boutique real estate agency guiding you home on Portugal's Silver Coast with trust, expertise, and modern service.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <ul>
+        <li><a href="properties.html">Buy</a></li>
+        <li><a href="sell.html">Sell</a></li>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <ul>
+        <li><a href="sell.html">Seller Guide</a></li>
+        <li><a href="resources.html">Market Insights</a></li>
+        <li><a href="tools.html">Calculators</a></li>
+        <li><a href="nhr-guide.html">NHR Guide</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact"><a href="https://wa.me/351912771309">+351 912 771 309 (WhatsApp)</a></div>
+      <div class="footer-contact"><a href="mailto:info@aldeiarealty.com">info@aldeiarealty.com</a></div>
+      <div class="footer-contact">Rua Dr. &Acirc;ngelo Ferrari, n.&ordm; 7, R/C Dt.&ordm;<br>2500-113 Caldas da Rainha, Portugal</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-license">&copy; 2026 Aldeia Realty &middot; Real Estate Mediation Activity &middot; Law 15/2013 &middot; License No. 12456-GAMI / 2026 T, of 2026/05/25</div>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="complaints.html">Dispute Resolution</a>
+        <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclama&ccedil;&otilde;es</a>
+      </div>
+    </div>
   </div>
 </footer>
 
+<a href="https://wa.me/351912771309" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.reveal').forEach(el => { el.classList.add('visible'); });
+function toggleMore(){
+  var dd=document.getElementById('moreDropdown');
+  var btn=document.getElementById('moreBtn');
+  if(!dd) return;
+  var open=dd.classList.toggle('open');
+  if(btn) btn.setAttribute('aria-expanded',open);
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-more-wrap')){
+    var dd=document.getElementById('moreDropdown');
+    if(dd){dd.classList.remove('open');}
+    var btn=document.getElementById('moreBtn');
+    if(btn){btn.setAttribute('aria-expanded','false');}
+  }
 });
 </script>
 </body>

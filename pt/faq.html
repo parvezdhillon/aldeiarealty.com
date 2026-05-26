@@ -1,307 +1,399 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>FAQ &mdash; Aldeia Realty</title>
+<meta name="description" content="Respostas a perguntas comuns sobre comprar, vender, e relocar para a Costa de Prata de Portugal." />
+<meta property="og:title" content="FAQ &mdash; Aldeia Realty" />
+<meta property="og:description" content="Respostas a perguntas comuns sobre comprar, vender, e relocar para a Costa de Prata de Portugal." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aldeia Realty" />
+<meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/x-icon" href="../logos/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../logos/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../logos/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;line-height:1.6}
-.container{max-width:800px;margin:0 auto;padding:0 24px}
-.font-domine{font-family:'Domine',serif}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;background:#fff;box-shadow:0 1px 4px rgba(28,10,4,0.08)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
-.nav-links{display:flex;align-items:center;gap:20px}
-.nav-links a{font-weight:600;font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;color:rgba(28,10,4,0.6);text-decoration:none}
-.nav-links a:hover,.nav-links a.active{color:#296662}
-.nav-inner>a:first-child{flex-shrink:0}
-.nav-inner img{height:28px;width:auto;object-fit:contain}
-.btn{display:inline-block;padding:10px 24px;border-radius:4px;font-weight:600;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;font-family:'Work Sans',sans-serif;text-align:center}
-.btn-primary{background:#296662;color:#fff}.btn-primary:hover{background:#1e4d4a}
-.btn-white{background:#fff;color:#296662}.btn-white:hover{background:#f4ecdc}
-.page-hero{padding-top:64px;padding-bottom:16px;background:#296662}
-.page-hero h1{font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff}
-.page-hero p{color:rgba(255,255,255,0.75);font-size:0.875rem}
-.section-pad{padding:64px 0}
-.label-text{font-weight:600;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#296662;margin-bottom:12px;display:block}
-.accordion-btn{width:100%;text-align:left;padding:20px 0;background:none;border:none;border-bottom:1px solid #e4e7e6;font-family:'Work Sans',sans-serif;font-weight:600;font-size:1.05rem;color:#1c0a04;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.accordion-btn::after{content:'+';font-size:1.25rem;color:#296662;transition:transform 0.3s}
-.accordion-btn.active::after{content:'\2212'}
-.accordion-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease;padding:0}
-.accordion-content.active{max-height:500px;padding:16px 0}
-.accordion-content p{font-size:0.9375rem;color:rgba(28,10,4,0.75);margin-bottom:0.75rem}
-.accordion-content a{color:#296662;text-decoration:underline}
-.accordion-content ul{margin-left:20px;margin-bottom:0.75rem;color:rgba(28,10,4,0.75);font-size:0.9375rem}
-.accordion-content ul li{margin-bottom:6px}
-.max-w-3{max-width:800px;margin:0 auto}
-.text-center{text-align:center}
-.mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-3{margin-bottom:12px}.mb-4{margin-bottom:16px}.mb-6{margin-bottom:24px}.mb-8{margin-bottom:32px}
-.mt-6{margin-top:24px}.mt-8{margin-top:48px}
-.bg-white{background:#fff}.bg-parchment{background:#f4ecdc}.bg-teal{background:#296662}
-.text-white{color:#fff}.text-teal{color:#296662}.text-gold{color:#efd48f}.text-brand-70{color:rgba(28,10,4,0.7)}
-.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:250;text-decoration:none}
+
+:root{
+  --teal:#296662;--teal-dark:#1f4f4c;--black:#1c0a04;--gold:#efd48f;--dove:#e4e7e6;
+  --parchment:#f4ecdc;--white:#ffffff;--coral:#c64f2f;
+  --muted:rgba(28,10,4,0.55);--border:rgba(41,102,98,0.18);
+  --border-s:rgba(41,102,98,0.10);
+  --display:'Domine',Georgia,serif;
+  --body:'Work Sans',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--parchment);color:var(--black);font-family:var(--body);font-weight:400;line-height:1.6;overflow-x:hidden}
+
+/* NAV - teal with gold accent */
+.site-nav{background:var(--teal);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold);box-shadow:0 2px 20px rgba(28,10,4,0.18)}
+.site-nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:66px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.site-nav-logo img{height:30px;width:auto;display:block}
+.site-nav-links{display:flex;gap:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;align-items:center;flex:1;justify-content:center}
+.site-nav-links a{color:rgba(244,236,220,0.62);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+.site-nav-links a:hover,.site-nav-links a.active{color:var(--gold)}
+.nav-more-wrap{position:relative}
+.nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.62);padding:0;transition:color 0.2s}
+.nav-more-btn:hover{color:var(--gold)}
+.nav-dropdown{position:absolute;top:calc(100% + 14px);right:0;background:var(--black);border:1px solid rgba(239,212,143,0.18);border-radius:3px;padding:8px 0;min-width:170px;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.30);z-index:200}
+.nav-dropdown.open{display:block}
+.nav-dropdown a{display:block;padding:11px 18px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.65);text-decoration:none;transition:color 0.2s,background 0.2s}
+.nav-dropdown a:hover{color:var(--gold);background:rgba(41,102,98,0.20)}
+.site-nav-actions{display:flex;align-items:center;gap:14px}
+.site-nav-lang{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:rgba(244,236,220,0.50);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.site-nav-lang:hover{color:var(--gold)}
+.site-nav-cta{background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;white-space:nowrap;transition:opacity 0.2s}
+.site-nav-cta:hover{opacity:0.85}
+
+/* CONTAINER */
+.container{max-width:1200px;margin:0 auto;padding:0 56px}
+
+/* KICKER - DEFAULT TEAL (for cream backgrounds). Gold only on dark backgrounds. */
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;font-weight:500}
+/* Gold kicker variants - explicit class for dark contexts where needed */
+.kicker-gold{color:var(--gold)}
+
+/* PAGE HERO (teal background - gold kicker OK here) */
+.page-hero{background:var(--teal);padding:80px 0 70px;border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
+.page-hero .kicker{color:var(--gold);opacity:0.85}
+.page-hero h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.02em;color:var(--parchment);margin-bottom:20px}
+.page-hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.page-hero .sub{font-family:var(--body);font-size:17px;color:rgba(244,236,220,0.78);max-width:580px;line-height:1.6;font-style:italic}
+.page-hero.with-image{position:relative}
+.page-hero.with-image::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.22;z-index:0}
+.page-hero.with-image .container{position:relative;z-index:1}
+
+/* SECTION (generic) */
+.section{padding:80px 0;background:var(--parchment)}
+.section.dove{background:var(--dove)}
+.section.parchment{background:var(--parchment)}
+.section.white{background:var(--white)}
+.section-header{margin-bottom:48px;max-width:820px}
+.section-header h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.07;letter-spacing:-0.02em;margin-top:10px;color:var(--black)}
+.section-header h2 em{font-style:italic;color:var(--teal);font-weight:400}
+.section-header .sub{font-family:var(--body);font-style:italic;font-size:16px;color:var(--muted);margin-top:14px;max-width:620px;line-height:1.55}
+
+/* PROSE */
+.prose{font-size:15.5px;line-height:1.72;color:var(--black);max-width:760px}
+.prose p{margin-bottom:16px}
+.prose p:last-child{margin-bottom:0}
+.prose strong{font-weight:600;color:var(--teal)}
+.prose ul{margin:14px 0 18px 22px}
+.prose ul li{margin-bottom:8px}
+.prose h3{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.2;letter-spacing:-0.01em;margin:30px 0 12px;color:var(--black)}
+.prose h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.prose a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.prose a:hover{color:var(--coral)}
+
+/* CALLOUTS - teal accent border, text in dark on dove/white */
+.callout{margin:24px 0;padding:22px 26px;background:var(--dove);border-left:3px solid var(--teal);border-radius:0 3px 3px 0}
+.callout .callout-label{font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600}
+.callout .callout-text{font-size:15px;line-height:1.62;color:var(--black)}
+.callout.teal{background:rgba(41,102,98,0.07);border-left-color:var(--teal)}
+.callout.gold{background:rgba(239,212,143,0.22);border-left-color:var(--teal)}
+.callout.coral{background:rgba(198,79,47,0.08);border-left-color:var(--coral)}
+.callout.coral .callout-label{color:var(--coral)}
+
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+
+/* FEATURE CARD */
+.f-card{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:30px 28px;transition:box-shadow 0.25s,transform 0.25s;display:flex;flex-direction:column}
+.f-card:hover{box-shadow:0 8px 28px rgba(28,10,4,0.08);transform:translateY(-2px)}
+.f-card .f-icon{width:46px;height:46px;border-radius:50%;background:rgba(41,102,98,0.10);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.f-card .f-icon svg{stroke:var(--teal)}
+.f-card h3{font-family:var(--display);font-weight:700;font-size:20px;line-height:1.18;color:var(--black);margin-bottom:10px}
+.f-card h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.f-card p{font-size:14.5px;line-height:1.6;color:rgba(28,10,4,0.74);flex:1}
+.f-card .f-link{margin-top:14px;display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);text-decoration:none;font-weight:500}
+.f-card .f-link:hover{color:var(--coral)}
+.f-card.with-image .f-img{aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:2px;margin:-30px -28px 22px;border-bottom:3px solid var(--teal)}
+
+/* IMAGE STRIPS */
+.image-strip{padding:0}
+.image-strip-grid{display:grid;gap:0}
+.image-strip-grid img{display:block;width:100%;height:220px;object-fit:cover}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:background 0.2s,color 0.2s,opacity 0.2s,border-color 0.2s;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:var(--teal);color:var(--parchment);border-color:var(--teal)}
+.btn-primary:hover{opacity:0.88}
+.btn-secondary{background:transparent;color:var(--teal);border-color:var(--teal)}
+.btn-secondary:hover{background:var(--teal);color:var(--parchment)}
+.btn-gold{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.btn-gold:hover{opacity:0.88}
+.btn-on-dark{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.btn-on-dark:hover{opacity:0.88}
+.btn-outline-light{background:transparent;color:var(--parchment);border-color:var(--parchment)}
+.btn-outline-light:hover{background:var(--parchment);color:var(--teal)}
+
+/* CTA SECTION - teal background, gold accents */
+.cta-section{padding:80px 0;background:var(--teal);text-align:center;color:var(--parchment);position:relative}
+.cta-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
+.cta-section .kicker{color:var(--gold);opacity:0.88}
+.cta-section h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.07;letter-spacing:-0.02em;margin-top:10px;margin-bottom:18px;color:var(--parchment)}
+.cta-section h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.cta-section p{font-style:italic;font-size:17px;color:rgba(244,236,220,0.80);max-width:560px;margin:0 auto 30px;line-height:1.56}
+.cta-section .btn-row{justify-content:center}
+.cta-section .btn-primary{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.cta-section .btn-secondary{color:var(--parchment);border-color:var(--parchment);background:transparent}
+.cta-section .btn-secondary:hover{background:var(--parchment);color:var(--teal)}
+
+/* FOOTER - TEAL-DOMINANT with small black strip at very bottom */
+.site-footer{background:var(--teal);color:var(--parchment);padding:56px 0 0;position:relative;border-top:3px solid var(--gold)}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 56px 44px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+.footer-logo img{height:28px;width:auto;margin-bottom:16px;display:block}
+.footer-tagline{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:0.92}
+.footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.72);max-width:280px}
+.footer-col-title{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500;opacity:0.92}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:9px}
+.footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.72);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-contact{font-size:13.5px;color:rgba(244,236,220,0.72);margin-bottom:9px;line-height:1.55}
+.footer-contact a{color:inherit;text-decoration:none}
+.footer-contact a:hover{color:var(--gold)}
+
+/* Small black strip at very bottom - just for license/legal/copyright */
+.footer-bottom{background:var(--black);color:rgba(244,236,220,0.55)}
+.footer-bottom-inner{max-width:1200px;margin:0 auto;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:48px}
+.footer-license{font-family:var(--mono);font-size:8.5px;letter-spacing:0.10em;color:rgba(244,236,220,0.50);line-height:1.5}
+.footer-legal{display:flex;gap:18px}
+.footer-legal a{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:rgba(244,236,220,0.45);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.footer-legal a:hover{color:var(--gold)}
+
+/* WHATSAPP FLOAT */
+.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.30);z-index:250;text-decoration:none;transition:transform 0.2s}
 .whatsapp-float:hover{transform:scale(1.1);color:#fff}
-.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#296662;color:#fff;padding:16px 24px;z-index:300;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;transform:translateY(100%);transition:transform 0.4s}
-.cookie-banner.show{transform:translateY(0)}
-.cookie-banner p{font-size:0.8125rem;color:rgba(255,255,255,0.8);margin:0}
-.footer{padding:40px 0 24px;background:#296662}
-.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:12px}
-.footer-links a{color:rgba(255,255,255,0.5);font-size:0.75rem;text-decoration:none}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s,transform 0.6s}
-.reveal.visible{opacity:1;transform:none}
-@media(max-width:768px){.nav-inner img{height:22px}.nav-links{display:none}}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .container{padding:0 28px}
+  .site-nav-links{display:none}
+  .site-nav-inner{padding:0 20px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;padding:0 28px 36px;gap:32px}
+  .footer-bottom-inner{padding:12px 28px;flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .footer-inner{grid-template-columns:1fr}
+  .page-hero{padding:54px 0 44px}
+}
+
+
+
+/* === POLISH PASS === */
+/* Bird-bullet lists - use AR icon as bullet marker */
+.prose ul, ul.bird-list { list-style: none; padding-left: 0; margin-left: 0 }
+.prose ul li, ul.bird-list li { padding-left: 30px; position: relative; margin-bottom: 10px }
+.prose ul li::before, ul.bird-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 18px;
+  height: 18px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+}
+/* Compare list: neutral bullets use bird, good keeps checkmark */
+.compare-list li.neutral { padding-left: 30px }
+.compare-list li.neutral::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+  opacity: 0.45;
+  top: 0.45em;
+}
+/* Nav logo +33% (30 -> 40px) */
+.site-nav-logo img { height: 40px !important }
+/* Footer logo +28% (28 -> 36px) */
+.footer-logo img { height: 36px !important }
+/* Stronger area-card overlay + text-shadow */
+.area-card::before {
+  background: linear-gradient(180deg, rgba(28,10,4,0.18) 0%, rgba(28,10,4,0.45) 45%, rgba(28,10,4,0.92) 100%) !important;
+}
+.area-card .area-content { padding: 26px 22px !important }
+.area-card h3 {
+  font-size: 23px !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  margin-bottom: 6px !important;
+}
+.area-card p {
+  font-size: 13.5px !important;
+  color: rgba(255,255,255,0.94) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.50);
+}
 </style>
 </head>
 <body>
 
-<!-- IMPIC DISCLAIMER TOP -->
-<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;position:fixed;top:0;left:0;right:0;z-index:200;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
-<!-- Nav Spacer for Top Banner -->
-<div style="height:36px;"></div>
-<nav class="nav" style="top:36px">
-<div class="container nav-inner">
-<a href="index.html"><img src="../logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty" ></a>
-<div class="nav-links">
-<a href="properties.html">Comprar</a><a href="sell.html">Vender</a><a href="about.html">Sobre</a><a href="careers.html">Carreiras</a><a href="resources.html">Recursos</a><a href="faq.html" class="active">FAQ</a><a href="partner.html">Parceiro</a><a href="calculator.html">Ferramentas</a><a href="contact.html">Contacto</a>
-</div>
-<div style="display:flex;align-items:center;gap:12px;">
-<a href="../faq.html" style="font-weight:600;font-size:0.7rem;letter-spacing:0.04em;text-transform:uppercase;color:#296662;border:1px solid #296662;padding:4px 8px;border-radius:4px;">EN</a>
-<a href="contact.html" class="btn btn-primary">Contacto</a>
-</div>
-</div>
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <div class="site-nav-logo">
+      <a href="index.html"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></a>
+    </div>
+    <div class="site-nav-links">
+      <a href="index.html">In&iacute;cio</a>
+      <a href="properties.html">Comprar</a>
+      <a href="sell.html">Vender</a>
+      <a href="our-story.html">A Nossa Hist&oacute;ria</a>
+      <a href="our-team.html">A Nossa Equipa</a>
+      <a href="tools.html">Ferramentas</a>
+      <div class="nav-more-wrap">
+        <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">Mais &#9662;</button>
+        <div class="nav-dropdown" id="moreDropdown" role="menu">
+          <a href="careers.html">Carreiras</a>
+          <a href="resources.html">Recursos</a>
+          <a href="faq.html" class="active">FAQ</a>
+          <a href="partner.html">Parceiro</a>
+          <a href="contact.html">Contacto</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-nav-actions">
+      <a class="site-nav-lang" href="../faq.html">EN</a>
+      <a class="site-nav-cta" href="contact.html">Avalia&ccedil;&atilde;o Gr&aacute;tis</a>
+    </div>
+  </div>
 </nav>
 
-<section class="page-hero">
-<div class="container" style="padding-top:64px;padding-bottom:16px;">
-<p class="label-text text-gold" style="margin-bottom:4px;">FAQ</p>
-<h1 class="font-domine">Perguntas Frequentes</h1>
-<p>Tudo o que precisa de saber sobre comprar, vender e viver na Costa de Prata.</p>
-</div>
+<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('../images/hero/hero-faq.jpg');background-size:cover;background-position:center">
+  <div class="container">
+    <div class="kicker">Perguntas Frequentes</div>
+    <h1>Respostas honestas a <em>perguntas comuns</em>.</h1>
+    <p class="sub">Se n&atilde;o encontrar o que procura aqui, a nossa equipa est&aacute; a uma mensagem de dist&acirc;ncia.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-header"><div class="kicker">Base de conhecimento</div><h2>Perguntas <em>comuns</em>.</h2></div>
+    <div style="max-width:820px">
+      <div style="border-bottom:1px solid var(--border);padding:24px 0">
+        <h3 style="font-family:var(--display);font-weight:700;font-size:19px;line-height:1.3;color:var(--black);margin-bottom:10px">Preciso de ser residente em Portugal para comprar um im&oacute;vel?</h3>
+        <p style="font-size:15px;line-height:1.65;color:rgba(28,10,4,0.78)">N&atilde;o. Compradores estrangeiros podem adquirir im&oacute;veis em Portugal independentemente da resid&ecirc;ncia. Vai precisar de um n&uacute;mero de identifica&ccedil;&atilde;o fiscal (NIF), que ajudamos a obter.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--border);padding:24px 0">
+        <h3 style="font-family:var(--display);font-weight:700;font-size:19px;line-height:1.3;color:var(--black);margin-bottom:10px">Que impostos se aplicam na compra de um im&oacute;vel?</h3>
+        <p style="font-size:15px;line-height:1.65;color:rgba(28,10,4,0.78)">Dois impostos principais: IMT (imposto de transmiss&atilde;o, escalonado pelo valor do im&oacute;vel) e Imposto do Selo (0,8% fixo). Use a nossa Calculadora de Capital para estimar ambos.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--border);padding:24px 0">
+        <h3 style="font-family:var(--display);font-weight:700;font-size:19px;line-height:1.3;color:var(--black);margin-bottom:10px">Posso obter um cr&eacute;dito habita&ccedil;&atilde;o como n&atilde;o-residente?</h3>
+        <p style="font-size:15px;line-height:1.65;color:rgba(28,10,4,0.78)">Sim. Os bancos portugueses concedem cr&eacute;dito a n&atilde;o-residentes, tipicamente at&eacute; 70-80% LTV. As taxas variam; podemos pa&ccedil;ar-lhe brokers de l&iacute;ngua inglesa.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--border);padding:24px 0">
+        <h3 style="font-family:var(--display);font-weight:700;font-size:19px;line-height:1.3;color:var(--black);margin-bottom:10px">O que &eacute; o regime fiscal NHR?</h3>
+        <p style="font-size:15px;line-height:1.65;color:rgba(28,10,4,0.78)">Residente N&atilde;o Habitual — programa fiscal portugu&ecirc;s para novos residentes, com tratamento favor&aacute;vel para rendimentos estrangeiros durante dez anos. O programa original fechou para novos candidatos em janeiro de 2024, mas o regime sucessor IFICI oferece benef&iacute;cios semelhantes a profissionais qualificados. Ver o nosso Guia NHR.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--border);padding:24px 0">
+        <h3 style="font-family:var(--display);font-weight:700;font-size:19px;line-height:1.3;color:var(--black);margin-bottom:10px">Como funciona o sistema de Partilha?</h3>
+        <p style="font-size:15px;line-height:1.65;color:rgba(28,10,4,0.78)">Partilha &eacute; colabora&ccedil;&atilde;o: quando a nossa listagem encontra um comprador atrav&eacute;s de outra ag&ecirc;ncia, dividimos a comiss&atilde;o 50/50. Isto significa mais agentes a trabalhar para vender o seu im&oacute;vel, n&atilde;o menos.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--border);padding:24px 0">
+        <h3 style="font-family:var(--display);font-weight:700;font-size:19px;line-height:1.3;color:var(--black);margin-bottom:10px">Quanto tempo leva uma compra de im&oacute;vel?</h3>
+        <p style="font-size:15px;line-height:1.65;color:rgba(28,10,4,0.78)">Cronograma t&iacute;pico: 30-60 dias da oferta &agrave; escritura. Compradores em dinheiro s&atilde;o mais r&aacute;pidos; aprova&ccedil;&otilde;es de cr&eacute;dito adicionam 2-4 semanas.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--border);padding:24px 0">
+        <h3 style="font-family:var(--display);font-weight:700;font-size:19px;line-height:1.3;color:var(--black);margin-bottom:10px">Trabalham apenas com compradores internacionais?</h3>
+        <p style="font-size:15px;line-height:1.65;color:rgba(28,10,4,0.78)">N&atilde;o. Servimos residentes portugueses, expatriados e compradores internacionais igualmente. O nosso valor &eacute; o mesmo independentemente da origem.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--border);padding:24px 0">
+        <h3 style="font-family:var(--display);font-weight:700;font-size:19px;line-height:1.3;color:var(--black);margin-bottom:10px">E quanto a despesas correntes?</h3>
+        <p style="font-size:15px;line-height:1.65;color:rgba(28,10,4,0.78)">Informamos sobre IMI (imposto anual de im&oacute;vel), despesas de condom&iacute;nio, utilidades e seguros durante o processo de compra. Sem surpresas ap&oacute;s a aquisi&ccedil;&atilde;o.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta-section">
+  <div class="container">
+    <div class="kicker">Ainda com d&uacute;vidas?</div>
+    <h2>Estamos a <em>uma mensagem</em> de dist&acirc;ncia.</h2>
+    <p>Se tem uma pergunta que n&atilde;o cobrimos, envie-a. Responderemos com honestidade.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="contact.html">Pergunte-nos</a>
+      
+    </div>
+  </div>
 </section>
 
-<section class="section-pad bg-white">
-<div class="container max-w-3">
-
-<p class="label-text reveal">COMPRAR</p>
-<h2 class="font-domine mb-6 reveal" style="font-size:1.5rem;">Comprar Im&oacute;vel em Portugal</h2>
-
-<div class="reveal">
-<button class="accordion-btn">Preciso de uma conta banc&aacute;ria em Portugal para comprar im&oacute;vel?</button>
-<div class="accordion-content">
-<p>Sim, precisar&aacute; de uma conta banc&aacute;ria portuguesa para completar a compra do im&oacute;vel. A conta &eacute; utilizada para o dep&oacute;sito (sinal), pagamento final e d&eacute;bitos diretos de servi&ccedil;os e impostos. A maioria dos bancos portugueses oferece servi&ccedil;os em ingl&ecirc;s e pode abrir contas para n&atilde;o residentes. Normalmente precisar&aacute; do passaporte, NIF e comprovativo de morada. Podemos apresent&aacute;-lo a gestores de banco de confian&ccedil;a.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">O que &eacute; o NIF e como obtenho um?</button>
-<div class="accordion-content">
-<p>O NIF (N&uacute;mero de Identifica&ccedil;&atilde;o Fiscal) &eacute; o seu n&uacute;mero de identifica&ccedil;&atilde;o fiscal portugu&ecirc;s. &Eacute; necess&aacute;rio para quase tudo: abrir conta banc&aacute;ria, comprar im&oacute;vel, assinar contratos e ativar servi&ccedil;os. Pode obter o NIF em qualquer servi&ccedil;o de Finan&ccedil;as locais ou atrav&eacute;s de um advogado ou representante fiscal. Para n&atilde;o residentes, precisar&aacute; de um representante fiscal (podemos recomendar). O processo demora algumas horas e custa cerca de &euro;10.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Quanto tempo demora o processo de compra?</button>
-<div class="accordion-content">
-<p>Desde a aceita&ccedil;&atilde;o da oferta at&eacute; &agrave; escritura final, o processo demora tipicamente 2&ndash;4 meses. Isto inclui due diligence (2&ndash;4 semanas), assinatura do contrato promessa (CPCV) com dep&oacute;sito de 10%, e agendamento da escritura final no not&aacute;rio. Compras a cash podem ser mais r&aacute;pidas (6&ndash;8 semanas), enquanto compras com cr&eacute;dito hipotec&aacute;rio podem demorar mais (3&ndash;5 meses).</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Preciso de advogado?</button>
-<div class="accordion-content">
-<p>Embora n&atilde;o seja legalmente obrigat&oacute;rio, recomendamos vivamente contratar um advogado independente para conduzir due diligence em seu nome. Um advogado verifica a titularidade do im&oacute;vel, d&iacute;vidas pendentes, licen&ccedil;as de constru&ccedil;&atilde;o e documenta&ccedil;&atilde;o. Trabalhamos com v&aacute;rios advogados de confian&ccedil;a na Costa de Prata. Honor&aacute;rios geralmente entre &euro;800 e &euro;1.500 mais IVA.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Posso obter cr&eacute;dito hipotec&aacute;rio como estrangeiro?</button>
-<div class="accordion-content">
-<p>Sim, os bancos portugueses oferecem hipotecas a compradores estrangeiros n&atilde;o residentes, normalmente financiando at&eacute; 65&ndash;70% do valor do im&oacute;vel (comparado com 80&ndash;90% para residentes). Precisar&aacute; de comprovativo de rendimentos, declara&ccedil;&otilde;es de IRS, extratos banc&aacute;rios e verifica&ccedil;&atilde;o de cr&eacute;dito. As taxas de juro em Portugal s&atilde;o geralmente mais baixas que nos EUA ou Reino Unido. Trabalhamos com mediadores hipotec&aacute;rios especializados em compradores estrangeiros.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Quais s&atilde;o os custos adicionais na compra?</button>
-<div class="accordion-content">
-<p>Al&eacute;m do pre&ccedil;o de compra, os compradores devem prever: <strong>IMT</strong> (imposto de transmiss&atilde;o, 0&ndash;7,5% consoante valor e tipo), <strong>Imposto de Selo</strong> (0,8% fixo), <strong>Emolumentos e registos</strong> (aprox. &euro;500&ndash;&euro;1.000), <strong>Honor&aacute;rios de advogado</strong> (&euro;800&ndash;&euro;1.500), e <strong>Comiss&atilde;o de intermedi&aacute;rio</strong> (normalmente paga pelo vendedor em Portugal). Utilize a nossa <a href="calculator.html">Calculadora Fiscal</a> para um c&aacute;lculo preciso.</p>
-</div>
-</div>
-
-<div style="margin-top:48px;">
-<p class="label-text reveal">NHR &amp; FISCALIDADE</p>
-<h2 class="font-domine mb-6 reveal" style="font-size:1.5rem;">NHR &amp; Benef&iacute;cios Fiscais</h2>
-
-<div class="reveal">
-<button class="accordion-btn">O que &eacute; o regime NHR e ainda est&aacute; dispon&iacute;vel?</button>
-<div class="accordion-content">
-<p>O regime de Residente N&atilde;o Habitual (NHR) foi um programa fiscal portugu&ecirc;s que oferecia benef&iacute;cios significativos durante 10 anos, incluindo uma taxa fixa de 20% sobre rendimentos qualificados em Portugal e isen&ccedil;&atilde;o na maioria dos rendimentos de fonte estrangeira. <strong>Atualiza&ccedil;&atilde;o importante:</strong> o regime NHR original encerrou para novos candidatos em 1 de janeiro de 2024. No entanto, v&aacute;rias categorias de pessoas ainda podem beneficiar:</p>
-<ul>
-<li>Quem j&aacute; det&eacute;m estatuto NHR continua a usufruir dos benef&iacute;cios durante os 10 anos completos</li>
-<li>Indiv&iacute;duos que se tornaram residentes fiscais em 2023 e submeteram candidatura at&eacute; 31 de mar&ccedil;o de 2024</li>
-<li>Certos profissionais que se deslocam para Portugal ao abrigo de contratos de trabalho espec&iacute;ficos</li>
-<li>N&oacute;madas digitais e trabalhadores remotos que se registaram antes do prazo</li>
-</ul>
-<p>O governo portugu&ecirc;s introduziu o regime <strong>IFICI</strong> (Incentivo Fiscal para o Investimento, a Cria&ccedil;&atilde;o e a Inova&ccedil;&atilde;o) como substituto parcial, oferecendo taxa reduzida de 20% para atividades de alto valor. Recomendamos consultar um advisor fiscal para as regras mais recentes aplic&aacute;veis &agrave; sua situa&ccedil;&atilde;o. <a href="nhr-guide.html">Leio nosso Guia NHR completo &rarr;</a></p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">O NHR acabou em 2024. Quais s&atilde;o as minhas op&ccedil;&otilde;es agora?</button>
-<div class="accordion-content">
-<p>Embora o regime NHR original n&atilde;o esteja mais aberto a novos candidatos, Portugal ainda oferece estruturas fiscais atractivas:</p>
-<ul>
-<li><strong>Regime IFICI:</strong> Um novo incentivo que oferece taxa fixa de 20% sobre rendimentos de trabalho dependente e independente de atividades de alto valor, incluindo muitas fun&ccedil;&otilde;es profissionais, tecnol&oacute;gicas e executivas</li>
-<li><strong>Resid&ecirc;ncia fiscal portuguesa padr&atilde;o:</strong> As taxas progressivas portuguesas (14,5%&ndash;48%) podem ainda ser favor&aacute;veis comparativamente a muitos pa&iacute;ses, especialmente com a extensa rede de conven&ccedil;&otilde;es de dupla tributa&ccedil;&atilde;o de Portugal</li>
-<li><strong>Detentores de Golden Visa:</strong> Quem obteve resid&ecirc;ncia por Golden Visa antes das altera&ccedil;&otilde;es de 2023 pode ainda ter acesso ao NHR dependendo do calend&aacute;rio</li>
-</ul>
-<p>Rendimentos prediais em Portugal s&atilde;o tributados &agrave; taxa fixa de 28% independentemente do regime aplic&aacute;vel. Podemos conect&aacute;-lo a advisors fiscais que falam ingl&ecirc;s. <a href="contact.html">Contacte-nos para uma recomenda&ccedil;&atilde;o &rarr;</a></p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Que impostos pago ao comprar im&oacute;vel?</button>
-<div class="accordion-content">
-<p>Os compradores pagam dois impostos principais: <strong>IMT</strong> (Imposto Municipal sobre Transmiss&otilde;es Onerosas de Im&oacute;veis) &mdash; um imposto progressivo de 0% a 7,5% consoante o valor, localiza&ccedil;&atilde;o e prop&oacute;sito (habita&ccedil;&atilde;o pr&oacute;pria vs. secund&aacute;ria); e <strong>Imposto de Selo</strong> &mdash; 0,8% fixo do valor do im&oacute;vel. Para habita&ccedil;&atilde;o pr&oacute;pria permanente, existem descontos significativos para im&oacute;veis at&eacute; &euro;101.917 (continente). Utilize a nossa <a href="calculator.html">Calculadora Fiscal</a>.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Como &eacute; tributado o rendimento de arrendamento?</button>
-<div class="accordion-content">
-<p>Rendimentos prediais em Portugal s&atilde;o tributados &agrave; taxa fixa de 28%, independentemente de estar abrangido pelo NHR, IFICI ou regime padr&atilde;o. Pode deduzir certas despesas (manuten&ccedil;&atilde;o, taxas de gest&atilde;o, seguro, IMI) para reduzir o valor tribut&aacute;vel. Alternativamente, pode optar por incluir o rendimento predial no seu IRS geral se isso resultar numa tributa&ccedil;&atilde;o mais baixa. Recomendamos falar com um contabilista para determinar a abordagem ideal.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">O que &eacute; o IMI e quanto custa?</button>
-<div class="accordion-content">
-<p>O IMI (Imposto Municipal sobre Im&oacute;veis) &eacute; o imposto anual sobre imóvel em Portugal, pago &agrave; c&acirc;mara municipal. As taxas variam por munic&iacute;pio e tipo de im&oacute;vel, tipicamente entre 0,3% e 0,8% do Valor Patrimonial Tribut&aacute;rio (VPT). Na Costa de Prata, a maioria dos munic&iacute;pios cobra entre 0,3% e 0,5%. O VPT &eacute; geralmente significativamente inferior ao valor de mercado, pelo que o imposto efectivo &eacute; normalmente bastante modesto.</p>
-</div>
-</div>
-</div>
-
-<div style="margin-top:48px;">
-<p class="label-text reveal">VENDER</p>
-<h2 class="font-domine mb-6 reveal" style="font-size:1.5rem;">Vender o Seu Im&oacute;vel</h2>
-
-<div class="reveal">
-<button class="accordion-btn">Quanto vale o meu im&oacute;vel?</button>
-<div class="accordion-content">
-<p>A avalia&ccedil;&atilde;o depende de v&aacute;rios fatores: localiza&ccedil;&atilde;o, estado, tamanho, vendas compar&aacute;veis recentes e procura atual. Oferecemos avalia&ccedil;&otilde;es gratuitas e sem compromisso baseadas numa an&aacute;lise de mercado abrangente. <a href="contact.html">Contacte-nos</a> para agendar a sua avalia&ccedil;&atilde;o &mdash; tipicamente demora 30&ndash;45 minutos no im&oacute;vel.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Quanto tempo demora a vender?</button>
-<div class="accordion-content">
-<p>Na Costa de Prata, im&oacute;veis bem precificados em bom estado tipicamente vendem em 3&ndash;6 meses. Fatores que afetam: estrat&eacute;gia de pre&ccedil;o, estado do im&oacute;vel, exposi&ccedil;&atilde;o de marketing e condi&ccedil;&otilde;es de mercado. A nossa Garantia Partilha 50/50 assegura que o seu im&oacute;vel &eacute; mostrado a 100% do mercado atrav&eacute;s de todas as ag&ecirc;ncias licenciadas, reduzindo significativamente o tempo de venda.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">O que &eacute; a Garantia Partilha 50/50?</button>
-<div class="accordion-content">
-<p>Ao contr&aacute;rio de muitas ag&ecirc;ncias tradicionais que recusam partilhar comiss&otilde;es, garantimos por escrito dividir a nossa comiss&atilde;o 50/50 com qualquer ag&ecirc;ncia licenciada que traga um comprador qualificado. Isto assegura m&aacute;xima exposi&ccedil;&atilde;o a todos os compradores potenciais, resultando em mais visitas, mais propostas e uma venda mais r&aacute;pida ao melhor pre&ccedil;o. <a href="partner.html">Saiba mais &rarr;</a></p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Que impostos pago ao vender?</button>
-<div class="accordion-content">
-<p>Os vendedores podem estar sujeitos a <strong>Imposto sobre Mais-Valias</strong> (28% taxa fixa sobre o ganho). No entanto, v&aacute;rias isen&ccedil;&otilde;es existem: se o im&oacute;vel foi a sua habita&ccedil;&atilde;o pr&oacute;pria e reinvestir os proveitos noutra habita&ccedil;&atilde;o pr&oacute;pria em Portugal ou UE dentro de 36 meses; se tem mais de 65 anos e o im&oacute;vel foi habita&ccedil;&atilde;o pr&oacute;pria; ou se det&eacute;m o im&oacute;vel h&aacute; muito tempo. Vendedores n&atilde;o residentes de pa&iacute;ses com conven&ccedil;&atilde;o tamb&eacute;m podem beneficiar de taxas reduzidas. Recomendamos consultar um advisor fiscal.</p>
-</div>
-</div>
-</div>
-
-<div style="margin-top:48px;">
-<p class="label-text reveal">VIVER EM PORTUGAL</p>
-<h2 class="font-domine mb-6 reveal" style="font-size:1.5rem;">Vida na Costa de Prata</h2>
-
-<div class="reveal">
-<button class="accordion-btn">Qual &eacute; o custo de vida comparado com os EUA ou Reino Unido?</button>
-<div class="accordion-content">
-<p>A Costa de Prata &eacute; significativamente mais acess&iacute;vel. Em m&eacute;dia: supermercado 30&ndash;40% menos, restaurantes 40&ndash;50% mais baratos, servi&ccedil;os 20&ndash;30% menos, e sa&uacute;de 60&ndash;70% mais barata. Im&oacute;veis custam 40&ndash;60% menos que &aacute;reas costeiras compar&aacute;veis nos EUA ou UK. Um estilo de vida confort&aacute;vel para um casal tipicamente custa &euro;2.000&ndash;&euro;2.500 por m&ecirc;s incluindo renda ou hipoteca, servi&ccedil;os, supermercado e restaurantes.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Como &eacute; o clima?</button>
-<div class="accordion-content">
-<p>A Costa de Prata desfruta de um clima mediterr&acirc;nico ameno com mais de 300 dias de sol por ano. Ver&otilde;es s&atilde;o quentes e secos (25&ndash;32&deg;C), enquanto invernos s&atilde;o amenos e h&uacute;midos (8&ndash;15&deg;C). A brisa atl&acirc;ntica mant&eacute;m os ver&otilde;es confort&aacute;veis, e a regi&atilde;o raramente experiencia temperaturas extremas. &Eacute; um clima ideal para vida ao ar livre durante todo o ano.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Existem escolas internacionais na regi&atilde;o?</button>
-<div class="accordion-content">
-<p>Sim, v&aacute;rias escolas internacionais servem a Costa de Prata, incluindo a International School of Leiria (30 min), King's College em Lisboa (1h), e v&aacute;rias escolas bilingues em Caldas da Rainha e &Oacute;bidos. Muitas oferecem curr&iacute;culos IB e brit&acirc;nico com ensino em ingl&ecirc;s. Educa&ccedil;&atilde;o ao n&iacute;vel universit&aacute;rio est&aacute; dispon&iacute;vel na Universidade de Coimbra (45 min) e no Polit&eacute;cnico de Leiria.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Como &eacute; o sistema de sa&uacute;de?</button>
-<div class="accordion-content">
-<p>Portugal tem um sistema de sa&uacute;de p&uacute;blico de alta qualidade (SNS) que &eacute; gratuito ou de baixo custo para residentes. Muitos residentes internacionais tamb&eacute;m optam por seguro de sa&uacute;de privado para acesso mais r&aacute;pido a especialistas, com planos abrangentes a partir de cerca de &euro;50&ndash;&euro;100 por m&ecirc;s. A Costa de Prata tem excelentes hospitais p&uacute;blicos e privados em Caldas da Rainha, Leiria e Lisboa (1h de dist&acirc;ncia). O sistema de sa&uacute;de portugu&ecirc;s &eacute; consistentemente classificado entre os melhores do mundo.</p>
-</div>
-</div>
-
-<div class="reveal">
-<button class="accordion-btn">Preciso de aprender portugu&ecirc;s?</button>
-<div class="accordion-content">
-<p>Embora seja poss&iacute;vel viver em ingl&ecirc;s em &aacute;reas tur&iacute;sticas e na comunidade internacional, aprender portugu&ecirc;s enriquecer&aacute; significativamente a sua experi&ecirc;ncia. Muitos residentes portugueses mais velhos n&atilde;o falam ingl&ecirc;s, e intera&ccedil;&otilde;es di&aacute;rias (lojas, profissionais, marca&ccedil;&otilde;es oficiais) s&atilde;o muito mais f&aacute;ceis com portugu&ecirc;s b&aacute;sico. A boa not&iacute;cia: os portugueses s&atilde;o pacientes e encorajadores com quem aprende, e h&aacute; excelentes escolas de l&iacute;nguas e professores particulares na Costa de Prata.</p>
-</div>
-</div>
-</div>
-
-</div>
-</section>
-
-<section style="padding:48px 0;background:#c64f2f;">
-<div class="container text-center reveal">
-<h2 class="font-domine text-white" style="font-size:1.5rem;margin-bottom:12px;">Ainda Tem D&uacute;vidas?</h2>
-<p style="color:rgba(255,255,255,0.8);margin-bottom:20px;">Estamos aqui para ajudar. Entre em contacto e responderemos em 24 horas.</p>
-<a href="contact.html" class="btn btn-white">Contacte-nos</a>
-</div>
-</section>
-
-
-<!-- IMPIC DISCLAIMER -->
-<div style="background:#296662;color:#fff;text-align:center;padding:10px 16px;font-size:0.8125rem;font-family:Work Sans,sans-serif;"><span style="font-weight:600;">Licen&ccedil;a IMPIC Pendente</span> | IMPIC License Pending &ndash; <span style="color:#efd48f;">Brevemente / Opening Soon</span></div>
-<footer class="footer">
-<div class="container">
-<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;">
-<img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" height="22" alt="Aldeia Realty">
-<p style="color:#efd48f;font-weight:600;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin:0;">MODERN HERITAGE &middot; MODERN BUSINESS</p>
-</div>
-<div class="footer-links">
-<a href="privacy-policy.html">Pol&iacute;tica de Privacidade</a>
-<span style="color:rgba(255,255,255,0.2);">|</span>
-<a href="complaints.html">Resolu&ccedil;&atilde;o de Lit&iacute;gios</a>
-<span style="color:rgba(255,255,255,0.2);">|</span>
-<a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclama&ccedil;&otilde;es</a>
-</div>
-<p style="text-align:center;color:rgba(255,255,255,0.5);font-size:0.75rem;margin-top:12px;margin-bottom:0;">&copy; 2026 Aldeia Realty - Real Estate, LDA. Todos os direitos reservados.</p>
-</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></div>
+      <div class="footer-tagline">Modern Heritage &middot; Modern Business</div>
+      <p class="footer-desc">Uma ag&ecirc;ncia imobili&aacute;ria boutique que o guia para casa na Costa de Prata de Portugal com confian&ccedil;a, experi&ecirc;ncia e servi&ccedil;o moderno.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navega&ccedil;&atilde;o</div>
+      <ul>
+        <li><a href="properties.html">Comprar</a></li>
+        <li><a href="sell.html">Vender</a></li>
+        <li><a href="our-story.html">A Nossa Hist&oacute;ria</a></li>
+        <li><a href="our-team.html">A Nossa Equipa</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <ul>
+        <li><a href="sell.html">Guia do Vendedor</a></li>
+        <li><a href="resources.html">Perspetivas de Mercado</a></li>
+        <li><a href="tools.html">Calculadoras</a></li>
+        <li><a href="nhr-guide.html">Guia NHR</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contacto</div>
+      <div class="footer-contact"><a href="https://wa.me/351912771309">+351 912 771 309 (WhatsApp)</a></div>
+      <div class="footer-contact"><a href="mailto:info@aldeiarealty.com">info@aldeiarealty.com</a></div>
+      <div class="footer-contact">Rua Dr. &Acirc;ngelo Ferrari, n.&ordm; 7, R/C Dt.&ordm;<br>2500-113 Caldas da Rainha, Portugal</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-license">&copy; 2026 Aldeia Realty &middot; Atividade de Mediacao Imobiliaria &middot; Lei 15/2013 &middot; Guia n.&ordm; 12456-GAMI / 2026 T, de 2026/05/25</div>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Pol&iacute;tica de Privacidade</a>
+        <a href="complaints.html">Resolu&ccedil;&atilde;o de Lit&iacute;gios</a>
+        <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclama&ccedil;&otilde;es</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <a href="https://wa.me/351912771309" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<div class="cookie-banner" id="cookieBanner">
-<p>Utilizamos cookies para melhorar a sua experi&ecirc;ncia. Ao continuar, concorda com a nossa <a href="privacy-policy.html" style="color:#efd48f;">Pol&iacute;tica de Privacidade</a>.</p>
-<button class="btn btn-primary" id="cookieAccept" style="padding:6px 16px;">Aceitar</button>
-<button class="btn btn-outline-white" id="cookieDecline" style="padding:6px 16px;color:#fff;border-color:rgba(255,255,255,0.4);">Recusar</button>
-</div>
-
 <script>
-document.addEventListener('DOMContentLoaded',function(){
-var els=document.querySelectorAll('.reveal');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});els.forEach(function(el){obs.observe(el)});
-var b=document.getElementById('cookieBanner');if(b&&!localStorage.getItem('cookies')){setTimeout(function(){b.classList.add('show')},1000)}document.getElementById('cookieAccept').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','1')});document.getElementById('cookieDecline').addEventListener('click',function(){b.classList.remove('show');localStorage.setItem('cookies','0')});
-document.querySelectorAll('.accordion-btn').forEach(function(btn){btn.addEventListener('click',function(){var c=this.nextElementSibling;var a=c.classList.contains('active');document.querySelectorAll('.accordion-content').forEach(function(x){x.classList.remove('active');x.style.maxHeight='0';x.style.padding='0'});document.querySelectorAll('.accordion-btn').forEach(function(x){x.classList.remove('active')});if(!a){c.classList.add('active');c.style.maxHeight=c.scrollHeight+'px';c.style.padding='16px 0';this.classList.add('active')}})});
+function toggleMore(){
+  var dd=document.getElementById('moreDropdown');
+  var btn=document.getElementById('moreBtn');
+  if(!dd) return;
+  var open=dd.classList.toggle('open');
+  if(btn) btn.setAttribute('aria-expanded',open);
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-more-wrap')){
+    var dd=document.getElementById('moreDropdown');
+    if(dd){dd.classList.remove('open');}
+    var btn=document.getElementById('moreBtn');
+    if(btn){btn.setAttribute('aria-expanded','false');}
+  }
 });
 </script>
 </body>

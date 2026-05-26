@@ -311,3 +311,12 @@ ul { list-style: none; }
   background: #ffffff;
   box-shadow: 0 1px 4px rgba(28,10,4,0.05);
 }
+
+/* Nav "Mais" dropdown */
+.nav-more-wrap{position:relative}
+.nav-more-btn{background:none;border:none;font-weight:600;font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;color:rgba(28,10,4,0.6);cursor:pointer;font-family:'Work Sans',sans-serif;padding:0}
+.nav-more-btn:hover{color:#296662}
+.nav-dropdown{display:none;position:absolute;top:100%;right:0;background:#fff;border-radius:4px;box-shadow:0 4px 16px rgba(28,10,4,0.12);min-width:160px;padding:8px 0;z-index:200}
+.nav-dropdown.open{display:block}
+.nav-dropdown a{display:block;padding:8px 16px;font-weight:600;font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;color:rgba(28,10,4,0.6);text-decoration:none}
+.nav-dropdown a:hover{color:#296662;background:rgba(41,102,98,0.05)}

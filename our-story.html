@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Story &mdash; Aldeia Realty</title>
+<meta name="description" content="We didn't study relocation — we lived it. How the founders of Aldeia Realty moved a family of five from North Carolina to the Silver Coast." />
+<meta property="og:title" content="Our Story &mdash; Aldeia Realty" />
+<meta property="og:description" content="We didn't study relocation — we lived it. How the founders of Aldeia Realty moved a family of five from North Carolina to the Silver Coast." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aldeia Realty" />
+<meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/x-icon" href="logos/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="logos/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="logos/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --teal:#296662; --black:#1c0a04; --gold:#efd48f; --dove:#e4e7e6;
+    --parchment:#f4ecdc; --white:#ffffff; --coral:#c64f2f;
+    --muted:rgba(28,10,4,0.50); --border:rgba(41,102,98,0.15);
+    --border-s:rgba(41,102,98,0.08);
+    --display:'Domine',Georgia,serif;
+    --body:'Work Sans',-apple-system,sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--parchment);color:var(--black);font-family:var(--body);font-weight:400;line-height:1.6;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;opacity:0.18;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.04 0 0 0 0 0.01 0 0 0 0.10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* NAV */
+  .site-nav{background:var(--teal);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold);box-shadow:0 2px 20px rgba(28,10,4,0.18)}
+  .site-nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:66px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+  .site-nav-logo img{height:28px;width:auto;display:block}
+  .site-nav-links{display:flex;gap:20px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;align-items:center;flex:1;justify-content:center}
+  .site-nav-links a{color:rgba(244,236,220,0.55);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+  .site-nav-links a:hover,.site-nav-links a.active{color:var(--gold)}
+  .nav-more-wrap{position:relative}
+  .nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,236,220,0.55);padding:0;transition:color 0.2s}
+  .nav-more-btn:hover{color:var(--gold)}
+  .nav-dropdown{position:absolute;top:calc(100% + 14px);right:0;background:var(--black);border:1px solid rgba(239,212,143,0.18);border-radius:3px;padding:8px 0;min-width:160px;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.30);z-index:200}
+  .nav-dropdown.open{display:block}
+  .nav-dropdown a{display:block;padding:10px 18px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,236,220,0.60);text-decoration:none;transition:color 0.2s,background 0.2s}
+  .nav-dropdown a:hover{color:var(--gold);background:rgba(41,102,98,0.20)}
+  .site-nav-actions{display:flex;align-items:center;gap:14px}
+  .site-nav-lang{font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;color:rgba(244,236,220,0.40);text-decoration:none;text-transform:uppercase}
+  .site-nav-cta{background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;padding:8px 16px;border-radius:2px;white-space:nowrap;transition:opacity 0.2s}
+  .site-nav-cta:hover{opacity:0.85}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;position:relative;background-image:linear-gradient(160deg,rgba(41,102,98,0.75) 0%,rgba(28,10,4,0.60) 55%,rgba(239,212,143,0.10) 100%),url('https://www.aldeiarealty.com/images/hero/hero-main.jpg?v=2');background-size:cover;background-position:center;background-attachment:fixed;overflow:hidden}
+  .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:160px;background:linear-gradient(to top,var(--parchment),transparent);pointer-events:none}
+  .hero-content{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1200px;margin:0 auto;padding:80px 56px 60px;width:100%;position:relative;z-index:2}
+  .kicker{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;font-weight:500}
+  .hero-content .kicker,.lessons .kicker,.page-hero .kicker{color:var(--gold)}
+  .hero-content .kicker{opacity:0.90}
+  h1.hero-title{font-family:var(--display);font-weight:700;font-size:clamp(42px,6vw,78px);line-height:0.98;letter-spacing:-0.02em;margin-bottom:26px;max-width:860px;color:var(--parchment)}
+  h1.hero-title em{font-style:italic;color:var(--gold);font-weight:400}
+  .hero-deck{font-family:var(--body);font-style:italic;font-weight:300;font-size:19px;color:rgba(244,236,220,0.80);line-height:1.58;max-width:660px;margin-bottom:44px}
+  .hero-stats{display:flex;gap:0;flex-wrap:wrap;padding-top:32px;border-top:1px solid rgba(244,236,220,0.18)}
+  .hero-stat{padding:16px 36px 16px 0;margin-right:36px;border-right:1px solid rgba(244,236,220,0.14)}
+  .hero-stat:last-child{border-right:none}
+  .hero-stat::before{content:'';display:block;width:20px;height:2px;background:var(--gold);margin-bottom:10px;opacity:0.8}
+  .hero-stat .num{font-family:var(--display);font-weight:700;font-size:34px;line-height:1;letter-spacing:-0.02em;color:var(--parchment);font-style:italic}
+  .hero-stat .label{font-family:var(--mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.48);margin-top:8px}
+
+  /* PROLOGUE */
+  .prologue{padding:80px 0;border-bottom:1px solid var(--border);background:var(--dove);position:relative}
+  .prologue::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(to bottom,var(--teal),rgba(41,102,98,0.4))}
+  .prologue-grid{display:grid;grid-template-columns:1fr 1.55fr;gap:72px;align-items:start}
+  .prologue h2{font-family:var(--display);font-weight:700;font-size:34px;line-height:1.08;letter-spacing:-0.02em;color:var(--black);margin-top:14px}
+  .prologue h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .prologue p{font-size:15.5px;line-height:1.72;margin-bottom:16px;color:var(--black)}
+  .prologue p:last-child{margin-bottom:0}
+  .prologue p strong{font-weight:600;color:var(--teal)}
+
+  /* CONTAINER */
+  .container{max-width:1200px;margin:0 auto;padding:0 56px}
+
+  /* TIMELINE */
+  .timeline-section{padding:88px 0;background:var(--parchment)}
+  .timeline-header{margin-bottom:60px}
+  .timeline-header h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;max-width:760px;color:var(--black);margin-top:12px}
+  .timeline-header h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .timeline{position:relative;padding-left:56px}
+  .timeline::before{content:'';position:absolute;left:16px;top:12px;bottom:12px;width:1px;background:linear-gradient(to bottom,var(--teal) 0%,var(--dove) 10%,var(--dove) 90%,var(--gold) 100%)}
+  .chapter{position:relative;margin-bottom:60px}
+  .chapter:last-child{margin-bottom:0}
+  .chapter::before{content:'';position:absolute;left:-47px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--parchment);border:2px solid var(--dove);z-index:1}
+  .chapter.milestone::before{background:var(--teal);border-color:var(--teal);box-shadow:0 0 0 5px rgba(41,102,98,0.14);width:16px;height:16px;left:-48px}
+  .chapter-date{font-family:var(--mono);font-size:10px;letter-spacing:0.20em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:500}
+  .chapter-title{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.12;letter-spacing:-0.01em;margin-bottom:16px;max-width:660px;color:var(--black)}
+  .chapter-title em{font-style:italic;color:var(--teal);font-weight:400}
+  .chapter-body{font-size:15.5px;line-height:1.72;color:var(--black);max-width:660px}
+  .chapter-body p{margin-bottom:14px}
+  .chapter-body p:last-child{margin-bottom:0}
+  .chapter-body strong{font-weight:600;color:var(--teal)}
+  .detail-card{margin-top:22px;padding:20px 24px;background:var(--dove);border-left:3px solid var(--gold);border-radius:0 3px 3px 0;max-width:660px}
+  .detail-card .detail-label{font-family:var(--mono);font-size:8.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .detail-card .detail-text{font-family:var(--body);font-style:italic;font-size:15.5px;line-height:1.52;color:rgba(28,10,4,0.70)}
+  .chapter-facts{display:flex;flex-wrap:wrap;margin-top:22px;max-width:660px;background:var(--dove);border:1px solid var(--border-s);border-radius:3px;overflow:hidden;margin-bottom:4px}
+  .chapter-fact{padding:16px 24px;border-right:1px solid var(--border-s);flex:1;min-width:100px}
+  .chapter-fact:last-child{border-right:none}
+  .chapter-fact::before{content:'';display:block;width:20px;height:2px;background:var(--gold);margin-bottom:10px}
+  .chapter-fact .fact-num{font-family:var(--display);font-weight:700;font-size:22px;line-height:1;color:var(--teal);font-style:italic}
+  .chapter-fact .fact-label{font-family:var(--mono);font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+  .pull{margin:24px 0;padding:0 0 0 22px;border-left:2px solid var(--teal);font-family:var(--body);font-style:italic;font-weight:400;font-size:19px;line-height:1.42;color:rgba(28,10,4,0.65);max-width:560px}
+  .chapter-image{margin:22px 0;max-width:660px;height:240px;border-radius:3px;overflow:hidden;position:relative;background-color:var(--dove);background-size:cover;background-position:center}
+  .chapter-image.tall{height:320px}
+  .image-caption{position:absolute;bottom:12px;left:14px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--parchment);background:rgba(28,10,4,0.65);padding:5px 10px;border-radius:2px;backdrop-filter:blur(8px)}
+  .image-placeholder{margin:22px 0;max-width:660px;height:200px;border-radius:3px;border:1px dashed rgba(41,102,98,0.25);background:repeating-linear-gradient(45deg,rgba(41,102,98,0.03),rgba(41,102,98,0.03) 8px,rgba(228,231,230,0.5) 8px,rgba(228,231,230,0.5) 16px);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;text-align:center;padding:0 32px}
+  .image-placeholder .ph-label{font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted)}
+  .image-placeholder .ph-desc{font-family:var(--body);font-style:italic;font-size:14px;color:rgba(28,10,4,0.55);max-width:380px;line-height:1.44}
+
+  /* LESSONS */
+  .lessons{padding:88px 0 72px;background:var(--black);color:var(--parchment);position:relative}
+  .lessons::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--teal),var(--gold))}
+  .lessons .kicker{color:rgba(239,212,143,0.75)}
+  .lessons h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;color:var(--parchment);margin-top:12px;margin-bottom:52px;max-width:700px}
+  .lessons h2 em{font-style:italic;color:var(--gold);font-weight:400}
+  .lessons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(244,236,220,0.06);border:1px solid rgba(244,236,220,0.06);border-radius:3px;overflow:hidden}
+  .lesson{padding:28px 26px;background:rgba(28,10,4,0.60);border-right:1px solid rgba(244,236,220,0.06);border-bottom:1px solid rgba(244,236,220,0.06)}
+  .lesson-num{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:500}
+  .lesson-title{font-family:var(--display);font-weight:700;font-size:17px;line-height:1.28;letter-spacing:-0.01em;color:var(--parchment);margin-bottom:10px}
+  .lesson-body{font-size:13.5px;line-height:1.62;color:rgba(244,236,220,0.55)}
+
+  /* CTA */
+  .cta{padding:88px 0;background:var(--parchment);text-align:center;border-bottom:1px solid var(--border)}
+  .cta h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,46px);line-height:1.05;letter-spacing:-0.02em;margin-top:12px;margin-bottom:18px;color:var(--black)}
+  .cta h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .cta p{font-style:italic;font-size:17px;color:rgba(28,10,4,0.58);max-width:540px;margin:0 auto 34px;line-height:1.56}
+  .cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:background 0.2s,color 0.2s,opacity 0.2s}
+  .btn-primary{background:var(--teal);color:var(--parchment);border:1px solid var(--teal)}
+  .btn-primary:hover{opacity:0.85}
+  .btn-secondary{background:transparent;color:var(--teal);border:1px solid var(--teal)}
+  .btn-secondary:hover{background:var(--teal);color:var(--parchment)}
+
+  /* TESTIMONIALS */
+  .testimonials-section{padding:88px 0;background:var(--dove);position:relative;border-bottom:1px solid var(--border)}
+  .testimonials-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--teal),var(--gold))}
+  .section-header{margin-bottom:52px}
+  .section-header h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin-top:12px;color:var(--black)}
+  .section-header h2 em{font-style:italic;color:var(--teal);font-weight:400}
+  .section-header .sub{font-family:var(--body);font-style:italic;font-size:16px;color:var(--muted);margin-top:14px;max-width:540px;line-height:1.55}
+  .t-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .t-card{background:var(--parchment);border:1px solid var(--border);border-radius:3px;padding:28px 28px 22px;position:relative;transition:box-shadow 0.25s}
+  .t-card:hover{box-shadow:0 8px 32px rgba(28,10,4,0.08)}
+  .t-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold)}
+  .t-stars{display:flex;gap:3px;margin-bottom:14px}
+  .t-stars span{color:var(--gold);font-size:13px}
+  .t-teaser{font-family:var(--body);font-style:italic;font-size:16.5px;line-height:1.62;color:var(--black);margin-bottom:4px}
+  .t-full{font-family:var(--body);font-style:italic;font-size:16.5px;line-height:1.62;color:var(--black);display:none;margin-bottom:4px}
+  .t-card.expanded .t-teaser{display:none}
+  .t-card.expanded .t-full{display:block}
+  .t-read-more{background:none;border:none;padding:0;cursor:pointer;font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-top:12px;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+  .t-read-more:hover{color:var(--teal)}
+  .t-read-more .arrow{transition:transform 0.25s;display:inline-block}
+  .t-card.expanded .t-read-more .arrow{transform:rotate(180deg)}
+  .t-byline{margin-top:18px;padding-top:14px;border-top:1px solid var(--border-s);display:flex;align-items:center;justify-content:space-between}
+  .t-name{font-family:var(--body);font-weight:600;font-size:13px;color:var(--black)}
+  .t-meta{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+  .t-badge{font-family:var(--mono);font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);background:rgba(41,102,98,0.09);padding:4px 10px;border-radius:2px;border:1px solid rgba(41,102,98,0.15)}
+
+  /* FOOTER */
+  .site-footer{background:var(--teal);color:var(--parchment);padding:56px 0 0;position:relative;border-top:3px solid var(--gold)}
+  
+  .footer-inner{max-width:1200px;margin:0 auto;padding:0 56px 48px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
+  .footer-logo img{height:24px;width:auto;margin-bottom:14px;display:block}
+  .footer-tagline{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:0.92}
+  .footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.72);max-width:280px}
+  .footer-col-title{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500;opacity:0.92}
+  .footer-col ul{list-style:none}
+  .footer-col ul li{margin-bottom:8px}
+  .footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.72);text-decoration:none;transition:color 0.2s}
+  .footer-col ul li a:hover{color:var(--gold)}
+  .footer-contact{font-size:13.5px;color:rgba(244,236,220,0.72);margin-bottom:9px;line-height:1.55}
+  .footer-bottom{background:var(--black);margin-top:36px}.footer-bottom-inner{max-width:1200px;margin:0 auto;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;min-height:48px}
+  .footer-license{font-family:var(--mono);font-size:8.5px;letter-spacing:0.10em;color:rgba(244,236,220,0.50);line-height:1.5}
+  .footer-legal{display:flex;gap:18px}
+  .footer-legal a{font-family:var(--mono);font-size:9px;letter-spacing:0.10em;color:rgba(244,236,220,0.28);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+  .footer-legal a:hover{color:var(--gold)}
+
+  /* WHATSAPP */
+  .whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:250;text-decoration:none}
+  .whatsapp-float:hover{transform:scale(1.1);color:#fff}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .container{padding:0 28px}
+    .hero-content{padding:60px 28px 40px}
+    .prologue-grid{grid-template-columns:1fr;gap:32px}
+    .timeline{padding-left:32px}
+    .chapter::before{left:-24px}
+    .chapter.milestone::before{left:-25px}
+    .lessons-grid{grid-template-columns:repeat(2,1fr)}
+    .t-grid{grid-template-columns:1fr}
+    .footer-inner{grid-template-columns:1fr 1fr;padding:0 28px 40px}
+    .footer-bottom{padding:20px 28px}
+    .site-nav-links{display:none}
+  }
+  @media(max-width:600px){
+    .hero-stats{flex-direction:column;gap:8px}
+    .hero-stat{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid rgba(244,236,220,0.10)}
+    .lessons-grid{grid-template-columns:1fr}
+    .footer-inner{grid-template-columns:1fr}
+    .chapter-facts{flex-direction:column}
+    .chapter-fact{border-right:none;border-bottom:1px solid var(--border-s)}
+  }
+
+
+/* === POLISH PASS === */
+/* Bird-bullet lists - use AR icon as bullet marker */
+.prose ul, ul.bird-list { list-style: none; padding-left: 0; margin-left: 0 }
+.prose ul li, ul.bird-list li { padding-left: 30px; position: relative; margin-bottom: 10px }
+.prose ul li::before, ul.bird-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 18px;
+  height: 18px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+}
+/* Compare list: neutral bullets use bird, good keeps checkmark */
+.compare-list li.neutral { padding-left: 30px }
+.compare-list li.neutral::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url('https://www.aldeiarealty.com/logos/AR-Logo-Icon-FullColour.png') no-repeat center;
+  background-size: contain;
+  opacity: 0.45;
+  top: 0.45em;
+}
+/* Nav logo +33% (30 -> 40px) */
+.site-nav-logo img { height: 40px !important }
+/* Footer logo +28% (28 -> 36px) */
+.footer-logo img { height: 36px !important }
+/* Stronger area-card overlay + text-shadow */
+.area-card::before {
+  background: linear-gradient(180deg, rgba(28,10,4,0.18) 0%, rgba(28,10,4,0.45) 45%, rgba(28,10,4,0.92) 100%) !important;
+}
+.area-card .area-content { padding: 26px 22px !important }
+.area-card h3 {
+  font-size: 23px !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  margin-bottom: 6px !important;
+}
+.area-card p {
+  font-size: 13.5px !important;
+  color: rgba(255,255,255,0.94) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.50);
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <div class="site-nav-logo">
+      <a href="index.html"><img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></a>
+    </div>
+    <div class="site-nav-links">
+      <a href="index.html">Home</a>
+      <a href="properties.html">Buy</a>
+      <a href="sell.html">Sell</a>
+      <a href="our-story.html" class="active">Our Story</a>
+      <a href="our-team.html">Our Team</a>
+      <a href="tools.html">Tools</a>
+      <div class="nav-more-wrap">
+        <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">More &#9662;</button>
+        <div class="nav-dropdown" id="moreDropdown" role="menu">
+          <a href="careers.html">Careers</a>
+          <a href="resources.html">Resources</a>
+          <a href="faq.html">FAQ</a>
+          <a href="partner.html">Partner</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-nav-actions">
+      <a class="site-nav-lang" href="pt/our-story.html">PT</a>
+      <a class="site-nav-cta" href="contact.html">Get A Free Valuation</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="kicker">The Dhillon Family &middot; Silver Coast, Portugal</div>
+    <h1 class="hero-title">The Path That<br>Chose <em>Us</em>.</h1>
+    <p class="hero-deck">What it really takes to relocate a family of five from the United States to Portugal — told by the people who lived every step.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">5</div><div class="label">Family members</div></div>
+      <div class="hero-stat"><div class="num">2</div><div class="label">Years of preparation</div></div>
+      <div class="hero-stat"><div class="num">Dec 31</div><div class="label">Arrival date</div></div>
+      <div class="hero-stat"><div class="num">2026</div><div class="label">Aldeia Realty launches</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="prologue">
+  <div class="container">
+    <div class="prologue-grid">
+      <div>
+        <div class="kicker">Prologue</div>
+        <h2>Some moves are <em>calculated</em>. Ours was summoned.</h2>
+      </div>
+      <div>
+        <p>What follows is an honest account of what it really costs — in time, money, paperwork and courage — to uproot a family of five from a comfortable life in North Carolina and plant it in a Portuguese town in the inland heart of the Silver Coast.</p>
+        <p>We share this story because we wish someone had shared it with us. Not to brag about the decision — there are still days when Portugal surprises us so much we wonder if it was real. We share it because <strong>if you are considering Portugal, you deserve to know that your real estate agent has walked the same road</strong>. With three children in the back seat.</p>
+        <p>Aldeia Realty was not born from a business plan. It was born from an experience — an experience that turned us into clients of our own services before we opened our doors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline-section">
+  <div class="container">
+    <div class="timeline-header">
+      <div class="kicker">The Full Journey</div>
+      <h2>What it <em>really takes</em> to relocate a family from the US to Portugal.</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="chapter milestone">
+        <div class="chapter-date">Spring 2022 &middot; The Reconnaissance Trip</div>
+        <h3 class="chapter-title">Choosing where to <em>land</em>.</h3>
+        <div class="chapter-body">
+          <p>Online research has its limits. To know whether a place is right for the family, you have to walk its streets, sit in its cafes, and stand in the school courtyards. <strong>Angela and her sister-in-law came to Portugal on purpose — to meet the Silver Coast in person</strong> — visiting Caldas da Rainha, &Oacute;bidos, Peniche, Nazar&eacute; and Leiria.</p>
+          <div class="chapter-image" style="background-image:url('https://www.aldeiarealty.com/images/locations/loc-caldas.jpg')"><div class="image-caption">Caldas da Rainha &middot; The Reconnaissance Visit</div></div>
+          <p>The decision became clear quickly. A bilingual school in Caldas da Rainha — one that worked for all three children — and the surrounding community felt like the right fit. Caldas itself, an authentic Portuguese town rather than a tourist destination, felt like a place where a real life could be built.</p>
+          <div class="detail-card"><div class="detail-label">What we learned</div><div class="detail-text">"You don't choose a Portuguese town from a spreadsheet. Come. Walk to the bakery. Sit at the market. The right place announces itself."</div></div>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">Summer&ndash;Fall 2022 &middot; The Income Question</div>
+        <h3 class="chapter-title">Solve the <em>biggest obstacle</em> first: loss of income.</h3>
+        <div class="chapter-body">
+          <p>The hardest financial question was not the cost of the house — it was the cost of the transition. The day we arrived in Portugal, <strong>Angela's real estate income in North Carolina would be zero</strong> until she could rebuild a career in the Portuguese market.</p>
+          <p>The answer was deliberate planning, not improvisation. Both the replacement of the primary income and the career pivot were structured at least a year before the move — not solved after arrival.</p>
+          <p class="pull">"The move costs more in transition than in cruising speed. Plan the gap, not the destination."</p>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">Summer 2022 &ndash; End of 2023 &middot; The Paperwork Years</div>
+        <h3 class="chapter-title">Eighteen months of <em>methodical, quiet preparation</em>.</h3>
+        <div class="chapter-body">
+          <p>This is the part no Instagram post shows. We spent most of 2022 and 2023 in preparation mode — paperwork, decisions, and the administrative grind with not a single glamorous photo.</p>
+          <p>School admissions were our highest-anxiety concern. <strong>We secured our children's places in May 2023</strong> — more than six months before setting foot in Portugal as residents. We held the spots through the rest of the year and structured the entire move around the academic calendar.</p>
+          <p>We also hired <strong>a trusted Lisbon-based immigration firm</strong> to coordinate the transcontinental logistics: visa applications, NIF registration, Portuguese bank accounts, lease coordination, document review, apostilles. The fee felt high at first; in hindsight, it was the highest-return investment of the entire move.</p>
+          <div class="chapter-facts">
+            <div class="chapter-fact"><div class="fact-num">May 2023</div><div class="fact-label">School places secured</div></div>
+            <div class="chapter-fact"><div class="fact-num">6+ months</div><div class="fact-label">Holding spots before arrival</div></div>
+            <div class="chapter-fact"><div class="fact-num">1</div><div class="fact-label">Lisbon immigration firm</div></div>
+          </div>
+          <div class="detail-card"><div class="detail-label">Hard-won advice</div><div class="detail-text">"Lock in school places before you book the flights. Everything else can be resolved after arrival — but a closed admission list does not reopen."</div></div>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">Summer&ndash;Fall 2023 &middot; The Great Simplification</div>
+        <h3 class="chapter-title">From a 5-bedroom house to <em>a 20-foot container</em>.</h3>
+        <div class="chapter-body">
+          <p>Every object we owned had to pass through one of three doors: <strong>take, sell, or leave behind</strong>. We had a 5-bedroom, 4-bath house in North Carolina, full of a decade's accumulation. The 20-foot container we shipped to Portugal could hold a fraction.</p>
+          <div class="chapter-image" style="background-image:url('images/container-relocation.jpg');aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:3px;margin:20px 0"></div>
+          <p>One thing we got wrong: <strong>we shipped most of the furniture across the Atlantic</strong>. What we discovered on unpacking is that <strong>Portuguese homes have different proportions, different ceiling heights, different electrical standards, and a different relationship with scale</strong>.</p>
+          <p>The lesson: <strong>furniture rarely survives the Atlantic math</strong>. Ship what is irreplaceable — books, art, the children's significant keepsakes, the kitchen tools you actually use — and buy furniture once you arrive.</p>
+          <p class="pull">"You will ship more than you need, less than you wanted, and end up replacing almost everything anyway."</p>
+        </div>
+      </div>
+
+      <div class="chapter milestone">
+        <div class="chapter-date">December 31, 2023 &middot; The Arrival</div>
+        <h3 class="chapter-title">Why the arrival date <em>was not coincidence</em>.</h3>
+        <div class="chapter-body">
+          <p>We arrived in Portugal on <strong>December 31, 2023</strong>. The date was chosen with intent.</p>
+          <p>Portugal's <strong>Non-Habitual Resident (NHR)</strong> tax regime was scheduled to close at the end of 2023. The difference between arriving on December 31 versus January 1 could mean a decade of different tax treatment. So we flew on New Year's Eve, with three jet-lagged children, into a country that already felt like home before we unpacked the suitcases.</p>
+          <p>A few days later, on <strong>January 4, 2024, our children walked into their new Portuguese classrooms</strong> — into desks that had been waiting for them since May.</p>
+          <div class="chapter-image" style="background-image:url('https://www.aldeiarealty.com/images/banner/classic-1.jpg')"><div class="image-caption">Home &middot; Caldas da Rainha</div></div>
+          <div class="detail-card"><div class="detail-label">Strategic perspective</div><div class="detail-text">"Portuguese tax law is not a footnote to your move — it can be the move itself. The date you arrive matters as much as the destination."</div></div>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">January&ndash;August 2024 &middot; The Storm</div>
+        <h3 class="chapter-title">The first months: <em>everything is new</em>.</h3>
+        <div class="chapter-body">
+          <p>Arrival is not the destination — it is the start of a new sprint. In the first months we navigated: <strong>utilities, residence registration, Portuguese car registration, lease agreements, Portuguese tutoring for the kids, and learning the rhythms of an authentic Portuguese town</strong>.</p>
+          <p>This is where lived experience replaces planning. <strong>You learn that the supermarket closes Sunday afternoons. That the Caldas post office has its own dialect of patience. That the contractor's "next week" is real, but elastic.</strong></p>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-date">September 2024 &ndash; April 2025 &middot; Buying and Renovating</div>
+        <h3 class="chapter-title">We became our <em>own first clients</em>.</h3>
+        <div class="chapter-body">
+          <p>In September 2024, we bought our first Portuguese home. And then we launched into a <strong>renovation that took roughly seven months</strong> from start to move-in.</p>
+          <div class="chapter-image" style="background-image:url('images/renovation-progress.jpg');aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:3px;margin:20px 0"></div>
+          <p>Working with Portuguese contractors, navigating VAT treatment on construction work, understanding which permits required Câmara Municipal approval — we did all of it. And moved in in April 2025.</p>
+          <p><strong>We don't estimate renovation costs from a spreadsheet — we estimate them from a job we lived through.</strong></p>
+          <div class="chapter-facts">
+            <div class="chapter-fact"><div class="fact-num">7 months</div><div class="fact-label">Start of work to move-in</div></div>
+            <div class="chapter-fact"><div class="fact-num">1st</div><div class="fact-label">Portuguese home owned</div></div>
+            <div class="chapter-fact"><div class="fact-num">Apr 2025</div><div class="fact-label">Moved in</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter milestone">
+        <div class="chapter-date">2026 &middot; Today</div>
+        <h3 class="chapter-title">Children speaking fluent Portuguese, and a <em>new adventure</em>.</h3>
+        <div class="chapter-body">
+          <p>It has been almost three years since our arrival. The children are growing in extraordinary ways — they speak fluent Portuguese, are fully integrated into the school community, with friendships that cross the same streets they walk to school every morning.</p>
+          <p>And so we launched into a new adventure: <strong>building Aldeia Realty</strong>. An agency designed for the people we once were — families on the edge of their own cross-border relocation, asking the same questions we asked, and deserving better answers than the ones we received.</p>
+          <p>We did not write this story to impress. We wrote it because <strong>if you are reading this and considering Portugal, you deserve to know that your real estate consultant has walked the road you are about to walk</strong>. Every step. With three children in the back seat.</p>
+          <div class="chapter-image tall" style="background-image:url('https://www.aldeiarealty.com/images/banner/seaside-1.jpg')"><div class="image-caption">Silver Coast &middot; 2026</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="lessons">
+  <div class="container">
+    <div class="kicker">What our journey means for yours</div>
+    <h2>Six things we <em>wish someone had told us</em> in 2022.</h2>
+    <div class="lessons-grid">
+      <div class="lesson"><div class="lesson-num">01</div><div class="lesson-title">Plan the transition phase, not the destination.</div><div class="lesson-body">The hardest cost of relocation is the income gap during the move. Solve that before everything else.</div></div>
+      <div class="lesson"><div class="lesson-num">02</div><div class="lesson-title">Schools first. Always schools first.</div><div class="lesson-body">If you have children, the school list is the decision that constrains everything else — not the house. Apply 12 to 18 months in advance.</div></div>
+      <div class="lesson"><div class="lesson-num">03</div><div class="lesson-title">The arrival date is a strategic choice.</div><div class="lesson-body">Portuguese tax law, the NHR regime, and visa rules can depend on the moment you cross the border.</div></div>
+      <div class="lesson"><div class="lesson-num">04</div><div class="lesson-title">Hire the immigration firm. It's worth it.</div><div class="lesson-body">Transcontinental paperwork is its own discipline. The fees save weeks of errors you cannot afford to make.</div></div>
+      <div class="lesson"><div class="lesson-num">05</div><div class="lesson-title">Ship less furniture than you think.</div><div class="lesson-body">Portuguese proportions and electrical standards are different. Take what is irreplaceable; buy furniture here.</div></div>
+      <div class="lesson"><div class="lesson-num">06</div><div class="lesson-title">The first year is a sprint, not a settling-in.</div><div class="lesson-body">Utilities, car, residency, tutoring, banking. Expect another six months of work, not a vacation.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <div class="kicker">Your Journey Begins Here</div>
+    <h2>If you are considering Portugal, <em>let's talk</em>.</h2>
+    <p>No pressure, no sales pitch. Just a conversation with people who have done it — and who would have given anything for that call in 2022.</p>
+    <div class="cta-buttons">
+      <a class="btn btn-primary" href="contact.html">Book a Relocation Consultation</a>
+      <a class="btn btn-secondary" href="calculator.html">Try the Capital Simulator</a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Proven Track Record &middot; What Our Clients Say</div>
+      <h2>Testimonials from <em>years of serving</em> buyers and sellers.</h2>
+      <p class="sub">From first-time homebuyers to complex international relocations — in their own words.</p>
+    </div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"Angela was truly instrumental in finding and purchasing our dream home. From the very beginning she was friendly, knowledgeable, and really listened to what our family needed&hellip;"</div>
+        <div class="t-full">"Angela was truly instrumental in finding and purchasing our dream home. From the very beginning she was friendly, knowledgeable, and really listened to what our family needed. She made the entire buying process smooth and stress-free. Every concern I had was handled with patience and genuine expertise."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Read more <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Lisa Wharton</div><div class="t-meta">Silver Coast &middot; Buyer</div></div>
+          <div class="t-badge">5.0 Stars</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"As a first-time homebuyer, I had so many questions and moments of doubt. Angela answered every single one without ever making me feel like a burden&hellip;"</div>
+        <div class="t-full">"As a first-time homebuyer, I had so many questions and moments of doubt. Angela answered every single one without ever making me feel like a burden. She guided me through every step and helped me find a house I could truly make my own."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Read more <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">First-Time Homebuyer</div><div class="t-meta">Bought in 2021</div></div>
+          <div class="t-badge">Verified</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"Selling a house is stressful. A good consultant has to calm jittery nerves and maintain cheerful optimism. Patrick took great care of us&hellip;"</div>
+        <div class="t-full">"Selling a house is stressful. A good consultant has to calm jittery nerves and maintain cheerful optimism. Patrick took great care of us throughout the entire process. Our house sold quickly and very close to our asking price."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Read more <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Sarah Pauling Midgett</div><div class="t-meta">Sold in Greenville, NC</div></div>
+          <div class="t-badge">Seller</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="t-teaser">"Working with Fernanda was such a pleasure! Not only did she match us with the perfect home, she handled the entire process with patience, honesty, kindness, and professionalism&hellip;"</div>
+        <div class="t-full">"Working with Fernanda was such a pleasure! Not only did she match us with the perfect home, she handled the entire process with patience, honesty, kindness, and professionalism."</div>
+        <button class="t-read-more" onclick="toggleT(this)">Read more <span class="arrow">&darr;</span></button>
+        <div class="t-byline">
+          <div><div class="t-name">Heather &amp; Afonso</div><div class="t-meta">Found their home on the Silver Coast</div></div>
+          <div class="t-badge">Buyer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></div>
+      <div class="footer-tagline">Modern Heritage &middot; Modern Business</div>
+      <p class="footer-desc">A boutique real estate agency guiding you home on Portugal's Silver Coast with trust, expertise, and modern service.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <ul>
+        <li><a href="properties.html">Buy</a></li>
+        <li><a href="sell.html">Sell</a></li>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <ul>
+        <li><a href="sell.html">Seller Guide</a></li>
+        <li><a href="resources.html">Market Insights</a></li>
+        <li><a href="calculator.html">Capital Calculator</a></li>
+        <li><a href="nhr-guide.html">NHR Guide</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact"><a href="https://wa.me/351912771309">+351 912 771 309 (WhatsApp)</a></div>
+      <div class="footer-contact"><a href="mailto:info@aldeiarealty.com">info@aldeiarealty.com</a></div>
+      <div class="footer-contact">Rua Dr. &Acirc;ngelo Ferrari, n.&ordm; 7, R/C Dt.&ordm;<br>2500-113 Caldas da Rainha, Portugal</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-license">&copy; 2026 Aldeia Realty &middot; Real Estate Mediation Activity &middot; Law 15/2013 &middot; License No. 12456-GAMI / 2026 T, of 2026/05/25</div>
+    <div class="footer-legal">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="complaints.html">Dispute Resolution</a>
+      <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclama&ccedil;&otilde;es</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/351912771309" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+function toggleMore() {
+  var dd = document.getElementById('moreDropdown');
+  var btn = document.getElementById('moreBtn');
+  if(!dd) return;
+  var open = dd.classList.toggle('open');
+  if(btn) btn.setAttribute('aria-expanded', open);
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more-wrap')) {
+    var dd = document.getElementById('moreDropdown');
+    if(dd) dd.classList.remove('open');
+    var btn = document.getElementById('moreBtn');
+    if(btn) btn.setAttribute('aria-expanded', 'false');
+  }
+});
+function toggleT(btn) {
+  var card = btn.closest('.t-card');
+  var expanding = !card.classList.contains('expanded');
+  card.classList.toggle('expanded');
+  btn.firstChild.textContent = expanding ? 'Read less ' : 'Read more ';
+}
+</script>
+</body>
+</html>

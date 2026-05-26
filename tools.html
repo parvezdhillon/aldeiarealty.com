@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Obrigado &mdash; Aldeia Realty</title>
-<meta name="description" content="Obrigado pelo contacto. Responderemos brevemente." />
-<meta property="og:title" content="Obrigado &mdash; Aldeia Realty" />
-<meta property="og:description" content="Obrigado pelo contacto. Responderemos brevemente." />
+<title>Tools &mdash; Aldeia Realty</title>
+<meta name="description" content="Three calculators for Silver Coast real estate: capital, taxes, seller net proceeds. Free, instant, downloadable." />
+<meta property="og:title" content="Tools &mdash; Aldeia Realty" />
+<meta property="og:description" content="Three calculators for Silver Coast real estate: capital, taxes, seller net proceeds. Free, instant, downloadable." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Aldeia Realty" />
 <meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" type="image/x-icon" href="../logos/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="../logos/favicon-32x32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="../logos/apple-touch-icon.png">
+<link rel="icon" type="image/x-icon" href="logos/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="logos/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="logos/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -191,6 +191,9 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 }
 
 
+.f-card.with-image{display:flex;flex-direction:column}
+.f-card .f-img{aspect-ratio:16/10;background-size:cover;background-position:center;border-radius:2px;margin:-30px -28px 22px;border-bottom:3px solid var(--teal)}
+
 
 /* === POLISH PASS === */
 /* Bird-bullet lists - use AR icon as bullet marker */
@@ -244,81 +247,105 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 <nav class="site-nav">
   <div class="site-nav-inner">
     <div class="site-nav-logo">
-      <a href="index.html"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></a>
+      <a href="index.html"><img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></a>
     </div>
     <div class="site-nav-links">
-      <a href="index.html">In&iacute;cio</a>
-      <a href="properties.html">Comprar</a>
-      <a href="sell.html">Vender</a>
-      <a href="our-story.html">A Nossa Hist&oacute;ria</a>
-      <a href="our-team.html">A Nossa Equipa</a>
-      <a href="tools.html">Ferramentas</a>
+      <a href="index.html">Home</a>
+      <a href="properties.html">Buy</a>
+      <a href="sell.html">Sell</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="our-team.html">Our Team</a>
+      <a href="tools.html" class="active">Tools</a>
       <div class="nav-more-wrap">
-        <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">Mais &#9662;</button>
+        <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">More &#9662;</button>
         <div class="nav-dropdown" id="moreDropdown" role="menu">
-          <a href="careers.html">Carreiras</a>
-          <a href="resources.html">Recursos</a>
+          <a href="careers.html">Careers</a>
+          <a href="resources.html">Resources</a>
           <a href="faq.html">FAQ</a>
-          <a href="partner.html">Parceiro</a>
-          <a href="contact.html">Contacto</a>
+          <a href="partner.html">Partner</a>
+          <a href="contact.html">Contact</a>
         </div>
       </div>
     </div>
     <div class="site-nav-actions">
-      <a class="site-nav-lang" href="../success.html">EN</a>
-      <a class="site-nav-cta" href="contact.html">Avalia&ccedil;&atilde;o Gr&aacute;tis</a>
+      <a class="site-nav-lang" href="pt/tools.html">PT</a>
+      <a class="site-nav-cta" href="contact.html">Get A Free Valuation</a>
     </div>
   </div>
 </nav>
 
-<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('../images/hero/hero-about.jpg');background-size:cover;background-position:center">
+<section class="page-hero with-image" style="background-image:linear-gradient(135deg,rgba(41,102,98,0.86) 0%,rgba(28,10,4,0.72) 100%),url('images/homes/classic-manor.jpg');background-size:cover;background-position:center">
   <div class="container">
-    <div class="kicker">Mensagem recebida</div>
-    <h1>Obrigado. <em>Contactaremos brevemente</em>.</h1>
-    <p class="sub">Respondemos a cada pedido pessoalmente — normalmente em um dia &uacute;til. Entretanto, explore o site.</p>
+    <div class="kicker">Tools for your journey</div>
+    <h1>Calculators that <em>answer</em>.</h1>
+    <p class="sub">Three tools for the most common questions: what does it cost to buy, what do you owe in taxes, what do you net when you sell.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="grid-3">
+      <div class="f-card with-image">
+        <div class="f-img" style="background-image:url('https://www.aldeiarealty.com/images/sell/us-home-sale.jpg')"></div>
+        <div class="f-audience" style="font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600">For international buyers</div>
+        <h3>Capital <em>Simulator</em></h3>
+        <p>Convert your home sale equity into euro purchasing power. Calculates IMT, Stamp Duty, and any mortgage requirement.</p>
+        <a class="btn btn-primary" href="calculator.html" style="margin-top:18px;align-self:flex-start;padding:11px 22px;font-size:9.5px">Open Simulator</a>
+      </div>
+      <div class="f-card with-image">
+        <div class="f-img" style="background-image:url('https://www.aldeiarealty.com/images/homes/modern-villa.jpg')"></div>
+        <div class="f-audience" style="font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600">For buyers and owners</div>
+        <h3>Tax <em>Calculator</em></h3>
+        <p>IMT (transfer tax), Stamp Duty, and estimated annual IMI for any Silver Coast property.</p>
+        <a class="btn btn-primary" href="tax-calculator.html" style="margin-top:18px;align-self:flex-start;padding:11px 22px;font-size:9.5px">Calculate Taxes</a>
+      </div>
+      <div class="f-card with-image">
+        <div class="f-img" style="background-image:url('https://www.aldeiarealty.com/images/sell/sellers-happy.jpg')"></div>
+        <div class="f-audience" style="font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:600">For sellers</div>
+        <h3>Seller <em>Net Proceeds</em></h3>
+        <p>What do you actually walk away with? Includes capital gains (with primary-residence and NHR exemptions), commission, notary, and municipal costs.</p>
+        <a class="btn btn-primary" href="seller-calculator.html" style="margin-top:18px;align-self:flex-start;padding:11px 22px;font-size:9.5px">Calculate Net Proceeds</a>
+      </div>
+    </div>
   </div>
 </section>
 <section class="cta-section">
   <div class="container">
-    <div class="kicker">Enquanto espera</div>
-    <h2>D&ecirc; uma <em>volta pelo site</em>.</h2>
-    <p></p>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="our-story.html">Conhe&ccedil;a a Nossa Hist&oacute;ria</a>
-      <a class="btn btn-secondary" href="properties.html">Ver Im&oacute;veis</a>
-    </div>
+    <div class="kicker">Want personalized help?</div>
+    <h2>Talk to a <em>consultant</em>.</h2>
+    <p>The calculators are a starting point. For a plan tailored to your case, book a no-obligation conversation.</p>
+    <div class="btn-row"><a class="btn btn-primary" href="contact.html">Book a Consultation</a><a class="btn btn-secondary" href="our-team.html">Meet the Team</a></div>
   </div>
 </section>
 
 <footer class="site-footer">
   <div class="footer-inner">
     <div>
-      <div class="footer-logo"><img src="../logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></div>
+      <div class="footer-logo"><img src="logos/AR-Logo-Horizontal-InverseColour@2x.png" alt="Aldeia Realty" /></div>
       <div class="footer-tagline">Modern Heritage &middot; Modern Business</div>
-      <p class="footer-desc">Uma ag&ecirc;ncia imobili&aacute;ria boutique que o guia para casa na Costa de Prata de Portugal com confian&ccedil;a, experi&ecirc;ncia e servi&ccedil;o moderno.</p>
+      <p class="footer-desc">A boutique real estate agency guiding you home on Portugal's Silver Coast with trust, expertise, and modern service.</p>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Navega&ccedil;&atilde;o</div>
+      <div class="footer-col-title">Navigation</div>
       <ul>
-        <li><a href="properties.html">Comprar</a></li>
-        <li><a href="sell.html">Vender</a></li>
-        <li><a href="our-story.html">A Nossa Hist&oacute;ria</a></li>
-        <li><a href="our-team.html">A Nossa Equipa</a></li>
-        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="properties.html">Buy</a></li>
+        <li><a href="sell.html">Sell</a></li>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Recursos</div>
+      <div class="footer-col-title">Resources</div>
       <ul>
-        <li><a href="sell.html">Guia do Vendedor</a></li>
-        <li><a href="resources.html">Perspetivas de Mercado</a></li>
-        <li><a href="tools.html">Calculadoras</a></li>
-        <li><a href="nhr-guide.html">Guia NHR</a></li>
+        <li><a href="sell.html">Seller Guide</a></li>
+        <li><a href="resources.html">Market Insights</a></li>
+        <li><a href="tools.html">Calculators</a></li>
+        <li><a href="nhr-guide.html">NHR Guide</a></li>
         <li><a href="faq.html">FAQ</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Contacto</div>
+      <div class="footer-col-title">Contact</div>
       <div class="footer-contact"><a href="https://wa.me/351912771309">+351 912 771 309 (WhatsApp)</a></div>
       <div class="footer-contact"><a href="mailto:info@aldeiarealty.com">info@aldeiarealty.com</a></div>
       <div class="footer-contact">Rua Dr. &Acirc;ngelo Ferrari, n.&ordm; 7, R/C Dt.&ordm;<br>2500-113 Caldas da Rainha, Portugal</div>
@@ -326,10 +353,10 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
   </div>
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
-      <div class="footer-license">&copy; 2026 Aldeia Realty &middot; Atividade de Mediacao Imobiliaria &middot; Lei 15/2013 &middot; Guia n.&ordm; 12456-GAMI / 2026 T, de 2026/05/25</div>
+      <div class="footer-license">&copy; 2026 Aldeia Realty &middot; Real Estate Mediation Activity &middot; Law 15/2013 &middot; License No. 12456-GAMI / 2026 T, of 2026/05/25</div>
       <div class="footer-legal">
-        <a href="privacy-policy.html">Pol&iacute;tica de Privacidade</a>
-        <a href="complaints.html">Resolu&ccedil;&atilde;o de Lit&iacute;gios</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="complaints.html">Dispute Resolution</a>
         <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclama&ccedil;&otilde;es</a>
       </div>
     </div>
