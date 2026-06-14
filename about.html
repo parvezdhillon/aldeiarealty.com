@@ -7,6 +7,45 @@
 <link rel="canonical" href="our-story.html">
 <meta name="robots" content="noindex">
 <style>body{font-family:'Work Sans',sans-serif;background:#f4ecdc;color:#1c0a04;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:20px;text-align:center}a{color:#296662;font-weight:600;text-decoration:underline}</style>
+<!-- Google Analytics 4 (Consent Mode v2 - gated by cookie banner) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQZQC1ML66"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // Default to DENIED until user grants consent via cookie banner
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': 500
+  });
+  gtag('config', 'G-PQZQC1ML66', { 'anonymize_ip': true });
+  // If consent was already granted in a previous visit, apply it now
+  (function(){
+    var c = window.aldeiaConsent;
+    if (!c) return;
+    var update = {};
+    if (c.analytics) update.analytics_storage = 'granted';
+    if (c.marketing) {
+      update.ad_storage = 'granted';
+      update.ad_user_data = 'granted';
+      update.ad_personalization = 'granted';
+    }
+    if (Object.keys(update).length) gtag('consent', 'update', update);
+  })();
+  // Listen for live consent changes from the banner
+  window.addEventListener('aldeia:consent-updated', function(e){
+    var c = (e && e.detail) || window.aldeiaConsent || {};
+    gtag('consent', 'update', {
+      'analytics_storage': c.analytics ? 'granted' : 'denied',
+      'ad_storage': c.marketing ? 'granted' : 'denied',
+      'ad_user_data': c.marketing ? 'granted' : 'denied',
+      'ad_personalization': c.marketing ? 'granted' : 'denied'
+    });
+  });
+</script>
 </head>
 <body>
 <div>
