@@ -22,7 +22,7 @@
 :root{
   --teal:#296662;--teal-dark:#1f4f4c;--black:#1c0a04;--gold:#efd48f;--dove:#e4e7e6;
   --parchment:#f4ecdc;--white:#ffffff;--coral:#c64f2f;
-  --muted:rgba(28,10,4,0.55);--border:rgba(41,102,98,0.18);
+  --muted:rgba(28,10,4,0.65);--border:rgba(41,102,98,0.18);
   --border-s:rgba(41,102,98,0.10);
   --display:'Domine',Georgia,serif;
   --body:'Work Sans',-apple-system,sans-serif;
@@ -37,17 +37,17 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .site-nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:66px;display:flex;justify-content:space-between;align-items:center;gap:24px}
 .site-nav-logo img{height:30px;width:auto;display:block}
 .site-nav-links{display:flex;gap:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;align-items:center;flex:1;justify-content:center}
-.site-nav-links a{color:rgba(244,236,220,0.62);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+.site-nav-links a{color:rgba(244,236,220,0.80);text-decoration:none;transition:color 0.2s;white-space:nowrap}
 .site-nav-links a:hover,.site-nav-links a.active{color:var(--gold)}
 .nav-more-wrap{position:relative}
-.nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.62);padding:0;transition:color 0.2s}
+.nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.80);padding:0;transition:color 0.2s}
 .nav-more-btn:hover{color:var(--gold)}
 .nav-dropdown{position:absolute;top:calc(100% + 14px);right:0;background:var(--black);border:1px solid rgba(239,212,143,0.18);border-radius:3px;padding:8px 0;min-width:170px;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.30);z-index:200}
 .nav-dropdown.open{display:block}
 .nav-dropdown a{display:block;padding:11px 18px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.65);text-decoration:none;transition:color 0.2s,background 0.2s}
 .nav-dropdown a:hover{color:var(--gold);background:rgba(41,102,98,0.20)}
 .site-nav-actions{display:flex;align-items:center;gap:14px}
-.site-nav-lang{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:rgba(244,236,220,0.50);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.site-nav-lang{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:rgba(244,236,220,0.78);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
 .site-nav-lang:hover{color:var(--gold)}
 .site-nav-cta{background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;white-space:nowrap;transition:opacity 0.2s}
 .site-nav-cta:hover{opacity:0.85}
@@ -154,18 +154,18 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .footer-inner{max-width:1200px;margin:0 auto;padding:0 56px 44px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
 .footer-logo img{height:28px;width:auto;margin-bottom:16px;display:block}
 .footer-tagline{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:0.92}
-.footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.72);max-width:280px}
+.footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.88);max-width:280px}
 .footer-col-title{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500;opacity:0.92}
 .footer-col ul{list-style:none}
 .footer-col ul li{margin-bottom:9px}
-.footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.72);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.88);text-decoration:none;transition:color 0.2s}
 .footer-col ul li a:hover{color:var(--gold)}
-.footer-contact{font-size:13.5px;color:rgba(244,236,220,0.72);margin-bottom:9px;line-height:1.55}
+.footer-contact{font-size:13.5px;color:rgba(244,236,220,0.88);margin-bottom:9px;line-height:1.55}
 .footer-contact a{color:inherit;text-decoration:none}
 .footer-contact a:hover{color:var(--gold)}
 
 /* Small black strip at very bottom - just for license/legal/copyright */
-.footer-bottom{background:var(--black);color:rgba(244,236,220,0.55)}
+.footer-bottom{background:var(--black);color:rgba(244,236,220,0.78)}
 .footer-bottom-inner{max-width:1200px;margin:0 auto;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:48px}
 .footer-license{font-family:var(--mono);font-size:8.5px;letter-spacing:0.10em;color:rgba(244,236,220,0.50);line-height:1.5}
 .footer-legal{display:flex;gap:18px}
@@ -223,8 +223,8 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .text-teal{color:var(--teal)}
 .text-coral{color:var(--coral)}
 .text-brand{color:var(--black)}
-.text-brand-50{color:rgba(28,10,4,0.5)}
-.text-brand-60{color:rgba(28,10,4,0.6)}
+.text-brand-50{color:rgba(28,10,4,0.62)}
+.text-brand-60{color:rgba(28,10,4,0.68)}
 .text-brand-70{color:rgba(28,10,4,0.7)}
 .text-brand-80{color:rgba(28,10,4,0.8)}
 .text-white{color:var(--parchment)}
@@ -601,11 +601,11 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
         </div>
         <div class="flex gap-3 items-end mb-3 calc-row">
           <div class="flex-1"><label class="block font-semibold text-brand-70 text-sm mb-1">Target Purchase Price</label><input type="number" id="purchasePrice" value="350000" step="1000" class="calc-input" /></div>
-          <span class="calc-select" style="width:80px;display:flex;align-items:center;background:#f7fafc;">EUR</span>
+          <span class="calc-select" style="width:80px;display:flex;align-items:center;background:#e4e7e6;">EUR</span>
         </div>
         <div class="flex gap-3 items-end mb-3 calc-row">
           <div class="flex-1"><label class="block font-semibold text-brand-70 text-sm mb-1">Planned Downpayment</label><input type="number" id="downpaymentAmount" value="70000" step="1000" class="calc-input" /></div>
-          <span class="calc-select" style="width:80px;display:flex;align-items:center;background:#f7fafc;">EUR</span>
+          <span class="calc-select" style="width:80px;display:flex;align-items:center;background:#e4e7e6;">EUR</span>
         </div>
 
         <p class="text-teal font-bold text-sm uppercase tracking-wider mb-3 border-b pb-2 mt-6">3. Mortgage Financing</p>
@@ -625,7 +625,7 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
             <option value="25" selected>25 years</option>
             <option value="30">30 years</option>
           </select></div>
-          <div><label class="block font-semibold text-brand-70 text-sm mb-1">Interest Rate Applied</label><input type="text" id="appliedRate" value="3.65%" readonly class="calc-input" style="background:#f7fafc;color:#296662;font-weight:600;" /></div>
+          <div><label class="block font-semibold text-brand-70 text-sm mb-1">Interest Rate Applied</label><input type="text" id="appliedRate" value="3.65%" readonly class="calc-input" style="background:#e4e7e6;color:#296662;font-weight:600;" /></div>
         </div>
         <p id="rateHint" class="text-brand-50 text-xs mb-4">Mixed rate = 2.65% + 1.0% spread = 3.65% total interest</p>
 
@@ -635,11 +635,11 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
         </label>
 
         <button onclick="runExpatCalc()" class="btn btn-primary" style="width:100%;">Run Full Analysis</button>
-        <p class="mini-disclaimer" style="font-size:11.5px;font-style:italic;color:rgba(28,10,4,0.55);text-align:center;margin:14px auto 0;max-width:540px;line-height:1.5">Estimativa indicativa. N&atilde;o constitui aconselhamento jur&iacute;dico, fiscal ou financeiro.</p>
+        <p class="mini-disclaimer" style="font-size:11.5px;font-style:italic;color:rgba(28,10,4,0.65);text-align:center;margin:14px auto 0;max-width:540px;line-height:1.5">Estimativa indicativa. N&atilde;o constitui aconselhamento jur&iacute;dico, fiscal ou financeiro.</p>
 
         <!-- RESULTS -->
         <div id="calc-results" style="display:none;margin-top:24px;">
-          <div style="background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;padding:24px;">
+          <div style="background:#ffffff;border-radius:3px;border:1px solid rgba(41,102,98,0.18);padding:24px;">
             <h4 class="font-domine text-lg text-brand mb-4">Your Capital Profile</h4>
             <div class="space-y-2">
               <div class="flex justify-between"><span class="text-brand-70">Total Cash Pool:</span><span id="resCashPool" class="text-teal font-bold">&euro;0</span></div>
@@ -653,8 +653,8 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
               <div class="flex justify-between text-brand-70 text-sm"><span>Total Interest Over Term:</span><span id="resTotalInterest">&euro;0</span></div>
               <div class="flex justify-between text-lg font-bold pt-2 border-t border-dove"><span>Remaining Liquid Cash:</span><span id="resLiquid" class="text-green-600">&euro;0</span></div>
             </div>
-            <div id="warningOffice" style="display:none;margin-top:12px;background:#fffaf0;border-left:3px solid #dd6b20;padding:12px;font-size:13px;color:#7b341e;border-radius:0 6px 6px 0;"><strong>Mixed-Use Note:</strong> Home office deductions may complicate your Capital Gains exemption. Consult your Contabilista.</div>
-            <div id="shortfallWarning" style="display:none;margin-top:12px;background:#fef2f2;border-left:3px solid #c64f2f;padding:12px;font-size:13px;color:#a33d22;border-radius:0 6px 6px 0;"><strong>Shortfall:</strong> Exceeds available capital by <span id="shortfallAmt"></span>. Consider reducing downpayment or target price.</div>
+            <div id="warningOffice" style="display:none;margin-top:12px;background:#e4e7e6;border-left:3px solid #c64f2f;padding:12px;font-size:13px;color:#1c0a04;border-radius:0 3px 3px 0;"><strong>Mixed-Use Note:</strong> Home office deductions may complicate your Capital Gains exemption. Consult your Contabilista.</div>
+            <div id="shortfallWarning" style="display:none;margin-top:12px;background:#e4e7e6;border-left:3px solid #c64f2f;padding:12px;font-size:13px;color:#1c0a04;border-radius:0 3px 3px 0;"><strong>Shortfall:</strong> Exceeds available capital by <span id="shortfallAmt"></span>. Consider reducing downpayment or target price.</div>
           </div>
         </div>
       </div>
@@ -973,7 +973,7 @@ function runLocalCalc() {
       else pct = ((price - 106346) / (660982 - 106346)) * 100;
       if (barEl) {
         barEl.style.width = pct + '%';
-        barEl.style.background = pct > 80 ? '#c64f2f' : pct > 50 ? '#efd48f' : '#16a34a';
+        barEl.style.background = pct > 80 ? '#c64f2f' : pct > 50 ? '#efd48f' : '#296662';
       }
       if (posEl) posEl.textContent = pct < 10 ? 'Full discount' : pct > 90 ? 'No discount' : 'Your property';
     } else {
@@ -1099,7 +1099,7 @@ function toggleMobileMenu(){
   var CSS='.ar-lead{background:#e4e7e6;border:1px solid rgba(41,102,98,0.18);border-radius:6px;padding:24px;margin-top:20px}'
     +'.ar-lead-h{font-family:Domine,Georgia,serif;font-weight:700;font-size:18px;color:#1c0a04;margin:0 0 6px}'
     +'.ar-lead-h em{font-style:italic;color:#296662;font-weight:400}'
-    +'.ar-lead-p{font-size:13.5px;color:rgba(28,10,4,0.55);margin:0 0 16px}'
+    +'.ar-lead-p{font-size:13.5px;color:rgba(28,10,4,0.65);margin:0 0 16px}'
     +'.ar-lead-form{display:flex;gap:12px;flex-wrap:wrap;align-items:center}'
     +'.ar-lead-input{flex:1;min-width:200px;padding:11px 14px;border:1px solid rgba(41,102,98,0.18);border-radius:4px;font-family:"Work Sans",sans-serif;font-size:15px;color:#1c0a04;background:#fff}'
     +'.ar-lead-input:focus{outline:none;border-color:#296662;box-shadow:0 0 0 3px rgba(41,102,98,0.10)}'

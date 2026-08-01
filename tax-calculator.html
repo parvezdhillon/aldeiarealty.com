@@ -22,7 +22,7 @@
 :root{
   --teal:#296662;--teal-dark:#1f4f4c;--black:#1c0a04;--gold:#efd48f;--dove:#e4e7e6;
   --parchment:#f4ecdc;--white:#ffffff;--coral:#c64f2f;
-  --muted:rgba(28,10,4,0.55);--border:rgba(41,102,98,0.18);
+  --muted:rgba(28,10,4,0.65);--border:rgba(41,102,98,0.18);
   --border-s:rgba(41,102,98,0.10);
   --display:'Domine',Georgia,serif;
   --body:'Work Sans',-apple-system,sans-serif;
@@ -37,17 +37,17 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .site-nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:66px;display:flex;justify-content:space-between;align-items:center;gap:24px}
 .site-nav-logo img{height:30px;width:auto;display:block}
 .site-nav-links{display:flex;gap:22px;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;align-items:center;flex:1;justify-content:center}
-.site-nav-links a{color:rgba(244,236,220,0.62);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+.site-nav-links a{color:rgba(244,236,220,0.80);text-decoration:none;transition:color 0.2s;white-space:nowrap}
 .site-nav-links a:hover,.site-nav-links a.active{color:var(--gold)}
 .nav-more-wrap{position:relative}
-.nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.62);padding:0;transition:color 0.2s}
+.nav-more-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.80);padding:0;transition:color 0.2s}
 .nav-more-btn:hover{color:var(--gold)}
 .nav-dropdown{position:absolute;top:calc(100% + 14px);right:0;background:var(--black);border:1px solid rgba(239,212,143,0.18);border-radius:3px;padding:8px 0;min-width:170px;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.30);z-index:200}
 .nav-dropdown.open{display:block}
 .nav-dropdown a{display:block;padding:11px 18px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(244,236,220,0.65);text-decoration:none;transition:color 0.2s,background 0.2s}
 .nav-dropdown a:hover{color:var(--gold);background:rgba(41,102,98,0.20)}
 .site-nav-actions{display:flex;align-items:center;gap:14px}
-.site-nav-lang{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:rgba(244,236,220,0.50);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
+.site-nav-lang{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:rgba(244,236,220,0.78);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
 .site-nav-lang:hover{color:var(--gold)}
 .site-nav-cta{background:var(--gold);color:var(--black);font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;padding:9px 18px;border-radius:2px;white-space:nowrap;transition:opacity 0.2s}
 .site-nav-cta:hover{opacity:0.85}
@@ -154,18 +154,18 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .footer-inner{max-width:1200px;margin:0 auto;padding:0 56px 44px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px}
 .footer-logo img{height:28px;width:auto;margin-bottom:16px;display:block}
 .footer-tagline{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:0.92}
-.footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.72);max-width:280px}
+.footer-desc{font-size:13.5px;line-height:1.65;color:rgba(244,236,220,0.88);max-width:280px}
 .footer-col-title{font-family:var(--mono);font-size:9.5px;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500;opacity:0.92}
 .footer-col ul{list-style:none}
 .footer-col ul li{margin-bottom:9px}
-.footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.72);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a{font-size:13.5px;color:rgba(244,236,220,0.88);text-decoration:none;transition:color 0.2s}
 .footer-col ul li a:hover{color:var(--gold)}
-.footer-contact{font-size:13.5px;color:rgba(244,236,220,0.72);margin-bottom:9px;line-height:1.55}
+.footer-contact{font-size:13.5px;color:rgba(244,236,220,0.88);margin-bottom:9px;line-height:1.55}
 .footer-contact a{color:inherit;text-decoration:none}
 .footer-contact a:hover{color:var(--gold)}
 
 /* Small black strip at very bottom - just for license/legal/copyright */
-.footer-bottom{background:var(--black);color:rgba(244,236,220,0.55)}
+.footer-bottom{background:var(--black);color:rgba(244,236,220,0.78)}
 .footer-bottom-inner{max-width:1200px;margin:0 auto;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:48px}
 .footer-license{font-family:var(--mono);font-size:8.5px;letter-spacing:0.10em;color:rgba(244,236,220,0.50);line-height:1.5}
 .footer-legal{display:flex;gap:18px}
@@ -223,8 +223,8 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .text-teal{color:var(--teal)}
 .text-coral{color:var(--coral)}
 .text-brand{color:var(--black)}
-.text-brand-50{color:rgba(28,10,4,0.5)}
-.text-brand-60{color:rgba(28,10,4,0.6)}
+.text-brand-50{color:rgba(28,10,4,0.62)}
+.text-brand-60{color:rgba(28,10,4,0.68)}
 .text-brand-70{color:rgba(28,10,4,0.7)}
 .text-brand-80{color:rgba(28,10,4,0.8)}
 .text-white{color:var(--parchment)}
@@ -582,7 +582,7 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
           <div><label class="block font-semibold text-brand-70 text-sm mb-1">Property Purpose</label><select id="localPurpose" class="calc-select"><option value="primary">Primary Residence</option><option value="secondary">Secondary / Investment</option><option value="buildingland">Building plot / urban land</option><option value="rustic">Rustic / agricultural land</option></select></div>
         </div>
         <button onclick="runLocalCalc()" class="btn btn-primary" style="width:100%;">Calculate My Taxes</button>
-        <p class="mini-disclaimer" style="font-size:11.5px;font-style:italic;color:rgba(28,10,4,0.55);text-align:center;margin:14px auto 0;max-width:540px;line-height:1.5">Indicative estimate. Not legal, tax, or financial advice.</p>
+        <p class="mini-disclaimer" style="font-size:11.5px;font-style:italic;color:rgba(28,10,4,0.65);text-align:center;margin:14px auto 0;max-width:540px;line-height:1.5">Indicative estimate. Not legal, tax, or financial advice.</p>
 
         <div id="local-results" style="display:none;margin-top:24px;">
           <div style="background:#f4ecdc;border-radius:8px;border:1px solid #e4e7e6;padding:24px;">
@@ -597,12 +597,12 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
             </div>
 
             <!-- IMT Discount Phasing Visual -->
-            <div id="discountPhase" style="display:none;margin-top:20px;padding:16px;background:#fff;border-radius:8px;border:1px solid #e4e7e6;">
+            <div id="discountPhase" style="display:none;margin-top:20px;padding:16px;background:#fff;border-radius:3px;border:1px solid rgba(41,102,98,0.18);">
               <h5 class="font-domine text-base text-brand mb-3">Primary Residence IMT Discount Phasing</h5>
               <p class="text-brand-60 text-sm mb-3">Your discount savings at this price: <strong class="text-green-600" id="phaseSavings">&euro;0</strong></p>
               <div class="space-y-2">
                 <div class="flex justify-between text-sm"><span class="text-brand-60">Up to &euro;101,917</span><span class="text-green-600 font-semibold">100% exempt (IMT = &euro;0)</span></div>
-                <div style="height:4px;background:#e4e7e6;border-radius:2px;overflow:hidden;"><div id="phaseBar" style="height:100%;background:#16a34a;border-radius:2px;width:0%;transition:width 0.5s;"></div></div>
+                <div style="height:4px;background:#e4e7e6;border-radius:2px;overflow:hidden;"><div id="phaseBar" style="height:100%;background:#296662;border-radius:2px;width:0%;transition:width 0.5s;"></div></div>
                 <div class="flex justify-between text-xs text-brand-50"><span>Full discount</span><span id="phasePosition">Your property</span><span>No discount</span></div>
               </div>
               <p class="text-brand-50 text-xs mt-3">Discount phases out progressively between &euro;101,917 and &euro;633,453 on mainland Portugal.</p>
@@ -942,7 +942,7 @@ function runLocalCalc() {
       else pct = ((price - 106346) / (660982 - 106346)) * 100;
       if (barEl) {
         barEl.style.width = pct + '%';
-        barEl.style.background = pct > 80 ? '#c64f2f' : pct > 50 ? '#efd48f' : '#16a34a';
+        barEl.style.background = pct > 80 ? '#c64f2f' : pct > 50 ? '#efd48f' : '#296662';
       }
       if (posEl) posEl.textContent = pct < 10 ? 'Full discount' : pct > 90 ? 'No discount' : 'Your property';
     } else {
@@ -1073,7 +1073,7 @@ function toggleMobileMenu(){
   var CSS='.ar-lead{background:#e4e7e6;border:1px solid rgba(41,102,98,0.18);border-radius:6px;padding:24px;margin-top:20px}'
     +'.ar-lead-h{font-family:Domine,Georgia,serif;font-weight:700;font-size:18px;color:#1c0a04;margin:0 0 6px}'
     +'.ar-lead-h em{font-style:italic;color:#296662;font-weight:400}'
-    +'.ar-lead-p{font-size:13.5px;color:rgba(28,10,4,0.55);margin:0 0 16px}'
+    +'.ar-lead-p{font-size:13.5px;color:rgba(28,10,4,0.65);margin:0 0 16px}'
     +'.ar-lead-form{display:flex;gap:12px;flex-wrap:wrap;align-items:center}'
     +'.ar-lead-input{flex:1;min-width:200px;padding:11px 14px;border:1px solid rgba(41,102,98,0.18);border-radius:4px;font-family:"Work Sans",sans-serif;font-size:15px;color:#1c0a04;background:#fff}'
     +'.ar-lead-input:focus{outline:none;border-color:#296662;box-shadow:0 0 0 3px rgba(41,102,98,0.10)}'
