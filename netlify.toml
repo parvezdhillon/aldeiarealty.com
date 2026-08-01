@@ -1,0 +1,12 @@
+# Netlify configuration — Aldeia Realty
+# Static site + serverless functions (Inmovilla listings integration).
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Cache the listings function response at the CDN edge for 30 minutes.
+[[headers]]
+  for = "/.netlify/functions/listings"
+  [headers.values]
+    Cache-Control = "public, s-maxage=1800, stale-while-revalidate=3600"

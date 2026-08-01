@@ -476,7 +476,11 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 <section class="section">
   <div class="container">
     <div class="section-header"><div class="kicker">Sample listings &middot; Coming soon</div><h2>The kind of homes <em>we will list</em>.</h2></div>
-    <div class="grid-3">
+    <div id="live-listings" style="display:none">
+      <div class="section-header"><div class="kicker">Live listings</div><h2></h2><p class="sub">Available now on the Silver Coast.</p></div>
+      <div class="grid-3" id="live-grid"></div>
+    </div>
+    <div class="grid-3" id="sample-listings">
       <div class="prop-card">
         <div class="prop-img" style="background-image:url('images/properties/prop-villa-rolica.jpg')"><div class="prop-badge">COMING SOON</div></div>
         <div class="prop-body">
@@ -729,5 +733,25 @@ function toggleMobileMenu(){
 })();
 </script>
 
+<script>
+(function(){
+  fetch('/.netlify/functions/listings?lang=en').then(function(r){return r.json();}).then(function(d){
+    var L=(d&&d.listings)||[]; if(!L.length) return;
+    var grid=document.getElementById('live-grid'); var live=document.getElementById('live-listings');
+    var sample=document.getElementById('sample-listings'); if(!grid||!live) return;
+    grid.innerHTML=L.map(function(p){
+      var img=p.image?('background-image:url(\''+String(p.image).replace(/'/g,'')+'\')'):'background:linear-gradient(135deg,#296662,rgba(41,102,98,0.55))';
+      var badge=p.operation==='rent'?'For Rent':'For Sale';
+      var meta=[p.location,p.priceLabel].filter(Boolean).join(' \u00b7 ');
+      var det=[p.bedrooms?p.bedrooms+' T':'',p.area?p.area+' m\u00b2':''].filter(Boolean).join(' \u00b7 ');
+      return '<div class="prop-card"><div class="prop-img" style="'+img+'"><div class="prop-badge">'+badge+'</div></div>'+
+        '<div class="prop-body"><div class="prop-loc">'+esc(meta)+'</div><h3>'+esc(p.title)+'</h3>'+
+        '<p>'+esc(p.description||det)+'</p><a class="prop-link" href="contact.html?ref='+encodeURIComponent(p.ref)+'">Register Interest \u2192</a></div></div>';
+    }).join('');
+    live.style.display='block'; if(sample) sample.style.display='none';
+  }).catch(function(){});
+  function esc(s){var d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML;}
+})();
+</script>
 </body>
 </html>
