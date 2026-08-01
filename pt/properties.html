@@ -473,6 +473,43 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
     <p class="sub">Estamos a construir parcerias com ag&ecirc;ncias locais. Listagens de exemplo d&atilde;o uma ideia do que vem a&iacute; &mdash; registe o seu interesse para ser o primeiro a saber.</p>
   </div>
 </section>
+<style>.ar-finder{background:#fff;border:1px solid rgba(41,102,98,0.18);border-radius:3px;padding:26px;margin:-34px auto 40px;max-width:1088px;position:relative;z-index:5;box-shadow:0 8px 28px rgba(28,10,4,0.10)}.ar-finder .fk{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#296662;font-weight:600;margin-bottom:12px}.ar-frow{display:grid;grid-template-columns:repeat(5,1fr) auto;gap:12px;align-items:end}.ar-ff label{display:block;font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(28,10,4,0.65);margin-bottom:5px}.ar-ff select,.ar-ff input{width:100%;padding:10px 12px;border:1px solid rgba(41,102,98,0.18);border-radius:3px;font-family:"Work Sans",sans-serif;font-size:14px;color:#1c0a04;background:#fff}.ar-fbtn{padding:11px 24px;background:#296662;color:#f4ecdc;border:none;border-radius:3px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;cursor:pointer;white-space:nowrap}.ar-fbtn:hover{background:#1f4f4c}.ar-fres{margin-top:12px;font-size:13px;color:rgba(28,10,4,0.65);font-style:italic;min-height:16px}.ar-cc{background:#296662;border-radius:3px;border-top:3px solid #efd48f;padding:30px;margin:28px auto 0;max-width:1088px;color:#f4ecdc}.ar-cc h3{font-family:Domine,serif;font-weight:700;font-size:22px;margin:0 0 8px;color:#f4ecdc}.ar-cc p{font-size:14.5px;color:rgba(244,236,220,0.88);max-width:640px;margin:0 0 18px;line-height:1.6}.ar-cgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.ar-cgrid input,.ar-cgrid textarea{width:100%;padding:11px 13px;border:none;border-radius:3px;font-family:"Work Sans",sans-serif;font-size:14px;color:#1c0a04;background:#fff}.ar-cgrid .full{grid-column:1/-1}.ar-cmsg{margin-top:10px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#efd48f;font-weight:600;min-height:14px}@media(max-width:900px){.ar-frow{grid-template-columns:1fr 1fr}.ar-cgrid{grid-template-columns:1fr}}</style>
+<div class="container">
+<div class="ar-finder"><div class="fk">Encontre o seu imóvel</div>
+<div class="ar-frow">
+<div class="ar-ff"><label>Comprar/Arrendar</label><select id="f-op"><option value="">Qualquer</option><option value="sale">Comprar</option><option value="rent">Arrendar</option></select></div>
+<div class="ar-ff"><label>Região</label><select id="f-loc"><option value="">Qualquer</option><option>Caldas da Rainha</option><option>Óbidos</option><option>Peniche</option><option>Nazaré</option><option>Leiria</option><option>Outra Costa de Prata</option></select></div>
+<div class="ar-ff"><label>Orçamento até (€)</label><input type="number" id="f-max" min="0" step="10000" placeholder="500000"/></div>
+<div class="ar-ff"><label>Quartos (mín.)</label><select id="f-beds"><option value="">Qualquer</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+<div></div>
+<button class="ar-fbtn" onclick="finderSearch()">Pesquisar</button>
+</div>
+<div class="ar-fres" id="f-res"></div>
+</div>
+<div class="ar-cc" id="concierge">
+<h3>Não encontrou? Nós encontramos.</h3><p>Diga-nos o que procura e um consultor Aldeia pesquisa todo o mercado — incluindo o Idealista — e envia-lhe uma seleção personalizada em 24 horas.</p>
+<form onsubmit="return conciergeSend(event)"><div class="ar-cgrid">
+<input id="c-name" placeholder="Nome" required/><input id="c-email" type="email" placeholder="Email" required/><input id="c-phone" type="tel" placeholder="Telefone (opcional)"/>
+<textarea id="c-msg" class="full" rows="2" placeholder="Mais alguma coisa que devamos saber?"></textarea>
+<button type="submit" class="ar-fbtn full">Enviar o meu pedido</button>
+</div></form><div class="ar-cmsg" id="c-res"></div>
+</div>
+</div>
+<script>
+var __fData=null;
+fetch('/.netlify/functions/listings?lang=pt').then(function(r){return r.json();}).then(function(d){__fData=(d&&d.listings)||[];}).catch(function(){__fData=[];});
+function fCrit(){return{op:document.getElementById('f-op').value,loc:document.getElementById('f-loc').value,max:parseFloat(document.getElementById('f-max').value)||0,beds:parseInt(document.getElementById('f-beds').value)||0};}
+function finderSearch(){var c=fCrit();var res=document.getElementById('f-res');var data=__fData||[];
+var hits=data.filter(function(p){return(!c.op||p.operation===c.op)&&(!c.loc||String(p.location).toLowerCase().indexOf(c.loc.split(' ')[0].toLowerCase())>=0)&&(!c.max||(p.price&&p.price<=c.max))&&(!c.beds||(p.bedrooms&&p.bedrooms>=c.beds));});
+if(hits.length){res.textContent='{n} imóvel(is) correspondente(s) abaixo'.replace('{n}',hits.length);
+var grid=document.getElementById('live-grid'),live=document.getElementById('live-listings'),sample=document.getElementById('sample-listings');
+if(grid&&live){grid.innerHTML=hits.map(function(p){var img=p.image?('background-image:url(\''+String(p.image).replace(/'/g,'')+'\')'):'background:linear-gradient(135deg,#296662,rgba(41,102,98,0.55))';return '<div class="prop-card"><div class="prop-img" style="'+img+'"><div class="prop-badge">'+(p.operation==='rent'?'RENT':'SALE')+'</div></div><div class="prop-body"><div class="prop-loc">'+p.location+' \u00b7 '+p.priceLabel+'</div><h3>'+p.title+'</h3><p>'+(p.description||'')+'</p></div></div>';}).join('');live.style.display='block';if(sample)sample.style.display='none';}
+}else{res.textContent='Sem imóveis nossos correspondentes — deixe-nos pesquisar todo o mercado por si.';document.getElementById('concierge').scrollIntoView({behavior:'smooth',block:'center'});}}
+function conciergeSend(e){e.preventDefault();var c=fCrit();var msg=document.getElementById('c-res');msg.textContent='...';
+var fd=new FormData();fd.append('name',document.getElementById('c-name').value);fd.append('email',document.getElementById('c-email').value);fd.append('phone',document.getElementById('c-phone').value);
+fd.append('_subject','Property Finder - buyer brief');fd.append('criteria',JSON.stringify(c));fd.append('message',document.getElementById('c-msg').value);
+fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).then(function(r){msg.textContent=r.ok?'Recebido — a sua seleção personalizada chega em 24 horas.':'Não foi possível enviar. Escreva para info@aldeiarealty.com.';}).catch(function(){msg.textContent='Não foi possível enviar. Escreva para info@aldeiarealty.com.';});return false;}
+</script>
 <section class="section">
   <div class="container">
     <div class="section-header"><div class="kicker">Listagens de exemplo &middot; Em breve</div><h2>O tipo de im&oacute;veis que <em>vamos listar</em>.</h2></div>
