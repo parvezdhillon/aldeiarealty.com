@@ -923,6 +923,13 @@ function runExpatCalc() {
     const shortAmt = document.getElementById('shortfallAmt');
     if (shortAmt) shortAmt.textContent = fmtEUR(Math.abs(remainingLiquid));
   }
+  window.__lastCalc = { title:'Relocation & Purchase Analysis', subtitle:'Buyer affordability', slug:'relocation-analysis',
+    rows:[ ['Total cash available', fmtEUR(totalCashPool)], ['Down payment', fmtEUR(downpayment)],
+      ['Purchase taxes (IMT + Stamp)', fmtEUR(totalTaxes)], ['- IMT', fmtEUR(imt)], ['- Stamp duty (0.8%)', fmtEUR(stampDuty)],
+      ['New mortgage', fmtEUR(newMortgage)], ['Interest rate', ((annualRate)*100).toFixed(2)+'%'],
+      ['Loan term', termYears+' years'], ['Monthly payment', fmtEUR(monthlyPayment)], ['Total interest over term', fmtEUR(totalInterest)] ],
+    highlight:['Remaining liquid cash', fmtEUR(remainingLiquid)], notes:['Target purchase price: '+fmtEUR(purchasePrice)] };
+  ensureLeadForm('calc-results');
   document.getElementById('calc-results').style.display = 'block';
 }
 
@@ -1084,5 +1091,69 @@ function toggleMobileMenu(){
 })();
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+  var CSS='.ar-lead{background:#e4e7e6;border:1px solid rgba(41,102,98,0.18);border-radius:6px;padding:24px;margin-top:20px}'
+    +'.ar-lead-h{font-family:Domine,Georgia,serif;font-weight:700;font-size:18px;color:#1c0a04;margin:0 0 6px}'
+    +'.ar-lead-h em{font-style:italic;color:#296662;font-weight:400}'
+    +'.ar-lead-p{font-size:13.5px;color:rgba(28,10,4,0.55);margin:0 0 16px}'
+    +'.ar-lead-form{display:flex;gap:12px;flex-wrap:wrap;align-items:center}'
+    +'.ar-lead-input{flex:1;min-width:200px;padding:11px 14px;border:1px solid rgba(41,102,98,0.18);border-radius:4px;font-family:"Work Sans",sans-serif;font-size:15px;color:#1c0a04;background:#fff}'
+    +'.ar-lead-input:focus{outline:none;border-color:#296662;box-shadow:0 0 0 3px rgba(41,102,98,0.10)}'
+    +'.ar-lead-btn{padding:12px 26px;background:#296662;color:#f4ecdc;border:none;border-radius:4px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;cursor:pointer;white-space:nowrap}'
+    +'.ar-lead-btn:hover{background:#1f4f4c}'
+    +'.ar-lead-msg{margin-top:12px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#296662;font-weight:600;min-height:14px}';
+  window.ensureLeadForm=function(id){
+    if(!document.getElementById('ar-lead-style')){var st=document.createElement('style');st.id='ar-lead-style';st.textContent=CSS;document.head.appendChild(st);}
+    if(document.getElementById('ar-lead-box'))return;
+    var c=document.getElementById(id);if(!c)return;
+    var d=document.createElement('div');d.id='ar-lead-box';d.className='ar-lead';
+    d.innerHTML='<h4 class="ar-lead-h">Get your branded <em>1-page analysis</em></h4>'
+      +'<p class="ar-lead-p">Enter your details - your PDF downloads instantly and an Aldeia advisor will follow up.</p>'
+      +'<form onsubmit="return submitLead(event)" novalidate class="ar-lead-form">'
+      +'<input type="email" id="lead-email" placeholder="you@example.com" required class="ar-lead-input" />'
+      +'<input type="tel" id="lead-phone" placeholder="+351 phone (optional)" class="ar-lead-input" />'
+      +'<button type="submit" class="ar-lead-btn">Email me my analysis</button>'
+      +'</form><p id="lead-msg" class="ar-lead-msg"></p>';
+    c.appendChild(d);
+  };
+  window.buildLeadPdf=function(d){
+    if(typeof window.jspdf==='undefined')return null;
+    var jsPDF=window.jspdf.jsPDF;var doc=new jsPDF();
+    doc.setFillColor(41,102,98);doc.rect(0,0,210,30,'F');
+    doc.setTextColor(244,236,220);doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text('Aldeia Realty',14,14);
+    doc.setFontSize(10);doc.setFont('helvetica','normal');doc.text(d.subtitle||'',14,22);
+    doc.setTextColor(28,10,4);var y=46;
+    doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text(d.title||'Your analysis',14,y);y+=10;
+    doc.setFont('helvetica','normal');doc.setFontSize(10);
+    (d.rows||[]).forEach(function(r){doc.text(String(r[0]),14,y);doc.text(String(r[1]),196,y,{align:'right'});y+=7;});
+    y+=3;
+    if(d.highlight){doc.setFillColor(239,212,143);doc.rect(14,y-5,182,14,'F');doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text(String(d.highlight[0])+': '+String(d.highlight[1]),18,y+4);y+=20;}
+    doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(120,120,120);
+    (d.notes||[]).forEach(function(n){if(n){doc.text(String(n).replace(/&/g,'and'),14,y,{maxWidth:182});y+=5;}});
+    y+=2;doc.text('Indicative estimate. Not legal, tax or financial advice. Consult a licensed professional.',14,y);y+=5;
+    doc.text('Aldeia Realty - Real Estate, Lda. | NIPC 519410440 | AMI 27493 | Caldas da Rainha, Portugal',14,y);
+    return doc;
+  };
+  window.submitLead=function(ev){
+    if(ev)ev.preventDefault();
+    var msg=document.getElementById('lead-msg');
+    var email=(document.getElementById('lead-email')||{}).value||'';
+    var phone=(document.getElementById('lead-phone')||{}).value||'';
+    if(!email||email.indexOf('@')<0){if(msg)msg.textContent='Please enter a valid email.';return false;}
+    if(!window.__lastCalc){if(msg)msg.textContent='Please run the calculation first.';return false;}
+    var d=window.__lastCalc;var doc=window.buildLeadPdf(d);if(doc)doc.save('aldeia-'+(d.slug||'analysis')+'.pdf');
+    if(msg)msg.textContent='Sending...';
+    var summary=(d.rows||[]).map(function(r){return r[0]+': '+r[1];}).join(' | ')+(d.highlight?' | '+d.highlight[0]+': '+d.highlight[1]:'');
+    var form=new FormData();form.append('email',email);form.append('phone',phone);
+    form.append('_subject','New calculator lead - '+(d.title||'Analysis'));form.append('calculator',d.title||'');form.append('analysis',summary);
+    fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:form,headers:{'Accept':'application/json'}})
+      .then(function(r){if(msg)msg.textContent=r.ok?'Done - your PDF downloaded, and an Aldeia advisor will be in touch shortly.':'Your PDF downloaded. We could not send your details automatically - please call or email us.';if(r.ok){var e=document.getElementById('lead-email');if(e)e.value='';var p=document.getElementById('lead-phone');if(p)p.value='';}})
+      .catch(function(){if(msg)msg.textContent='Your PDF downloaded. We could not send your details automatically - please call or email us.';});
+    return false;
+  };
+})();
+</script>
 </body>
 </html>

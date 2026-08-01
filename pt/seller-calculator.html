@@ -525,6 +525,13 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 <div class="calc-row single">
 <div class="calc-field"><label>Munic&iacute;pio</label><select id="municipality"><option value="caldas">Caldas da Rainha</option><option value="obidos">&Oacute;bidos</option><option value="alcobaca">Alcoba&ccedil;a</option><option value="nazare">Nazar&eacute;</option><option value="peniche">Peniche</option><option value="other">Outro Costa de Prata</option></select></div>
 </div>
+<div class="calc-row single">
+<div class="calc-field"><label>A sua residência fiscal</label><select id="residency" onchange="updateResidencyUI()"><option value="resident">Residente fiscal em Portugal</option><option value="nonresident">Não residente</option></select></div>
+</div>
+<div class="calc-row single" id="incomeRow">
+<div class="calc-field"><label>Rendimento coletável anual (€)</label><input type="number" id="annualIncome" value="40000" min="0" step="1000" /><div class="hint">Define a sua taxa marginal de IRS 2026 sobre a metade tributável da mais-valia.</div></div>
+</div>
+<div class="calc-toggle" id="flatRateToggle"><input type="checkbox" id="useFlatRate" /><label for="useFlatRate">Não sei o meu rendimento — usar estimativa fixa de 35%</label></div>
 <div class="calc-toggle"><input type="checkbox" id="primaryResidence" checked /><label for="primaryResidence">Resid&ecirc;ncia pr&oacute;pria permanente (detida > 24 meses)</label></div>
 <div class="calc-toggle"><input type="checkbox" id="reinvest" /><label for="reinvest">Pretendo reinvestir em im&oacute;vel UE/EEE em 36 meses</label></div>
 <div class="calc-disclaimer">Estimativa indicativa. N&atilde;o constitui aconselhamento jur&iacute;dico, fiscal ou financeiro.</div>
@@ -538,15 +545,15 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 <details class="methodology"><summary>Metodologia e fontes</summary><p>Mais-valias: regras IRS 2026 — 50% isen&ccedil;&atilde;o para resid&ecirc;ncia pr&oacute;pria detida >24 meses. Isen&ccedil;&atilde;o adicional de 50% com reinvestimento em im&oacute;vel UE/EEE em 36 meses. RNH: taxa fixa 10% sobre mais-valias portuguesas. Comiss&atilde;o: padr&atilde;o da Costa de Prata (negoci&aacute;vel). Custos municipais: tabelas C&acirc;mara Caldas 2026 (aprox.). Escritura: aproxima&ccedil;&atilde;o por valor do im&oacute;vel. Certificado energ&eacute;tico: custo fixo obrigat&oacute;rio.</p></details>
 </div>
 <div class="pdf-bar">
-<h4>Receba este resumo em <em>PDF</em></h4>
-<p>Enviamos um PDF para o seu email. Pode tamb&eacute;m descarregar diretamente.</p>
-<form onsubmit="emailPdf(event)" novalidate>
+<h4>Receba a sua <em>análise de 1 página</em></h4>
+<p>Insira os seus dados - o PDF é descarregado de imediato e um consultor Aldeia entrará em contacto.</p>
+<form onsubmit="return submitLead(event)" novalidate>
 <div class="pdf-actions">
-<div class="calc-field"><label>Email</label><input type="email" id="pdf-email" placeholder="you@example.com" required /></div>
-<button type="submit" class="btn btn-primary">Enviar por Email</button>
-<button type="button" class="btn btn-secondary" onclick="downloadPdf()">Descarregar PDF</button>
+<div class="calc-field"><label>Email</label><input type="email" id="lead-email" placeholder="o.seu@email.com" required /></div>
+<div class="calc-field"><label>Telefone</label><input type="tel" id="lead-phone" placeholder="+351 ..." /></div>
+<button type="submit" class="btn btn-primary">Enviar a minha análise</button>
 </div></form>
-<p id="pdf-msg" class="pdf-msg"></p>
+<p id="lead-msg" class="pdf-msg"></p>
 </div></div></div></div></section>
 <section class="cta-section"><div class="container"><div class="kicker">Quer uma avalia&ccedil;&atilde;o real?</div><h2>Marque uma <em>avalia&ccedil;&atilde;o gratuita</em>.</h2><p>Recebemos a estimativa do simulador como ponto de partida. Para um pre&ccedil;o de mercado real, marque uma visita.</p><div class="btn-row"><a class="btn btn-primary" href="contact.html">Avalia&ccedil;&atilde;o Grat&iacute;s</a><a class="btn btn-secondary" href="sell.html">Como Funciona</a></div></div></section>
 
@@ -654,6 +661,18 @@ document.addEventListener('click',function(e){
     return INFLATION_COEFS[year] || 1.00;
   }
 
+  // Escalões IRS 2026 (continente) - Lei 73-A/2025, CIRS Art. 68. Taxas marginais progressivas.
+  const IRS_BRACKETS = [
+    {limit:8342, rate:0.125}, {limit:12587, rate:0.157}, {limit:17838, rate:0.212},
+    {limit:23089, rate:0.241}, {limit:29397, rate:0.311}, {limit:43090, rate:0.349},
+    {limit:46566, rate:0.431}, {limit:86634, rate:0.446}, {limit:Infinity, rate:0.48}
+  ];
+  function irsTax(income){
+    let tax=0, prev=0;
+    for(const b of IRS_BRACKETS){ if(income<=prev) break; tax += (Math.min(income,b.limit)-prev)*b.rate; prev=b.limit; }
+    return tax;
+  }
+
   let last = null;
 
   function runCalc(e){
@@ -666,6 +685,9 @@ document.addEventListener('click',function(e){
     const commissionPct = +document.getElementById('commission').value || 5;
     const primaryRes = document.getElementById('primaryResidence').checked;
     const reinvest = document.getElementById('reinvest').checked;
+    const residency = document.getElementById('residency') ? document.getElementById('residency').value : 'resident';
+    const annualIncome = parseFloat((document.getElementById('annualIncome')||{}).value) || 0;
+    const useFlatRate = document.getElementById('useFlatRate') ? document.getElementById('useFlatRate').checked : false;
 
     if(salePrice <= 0) return;
 
@@ -687,32 +709,50 @@ document.addEventListener('click',function(e){
     const gain = salePrice - adjustedBasis;
 
     if (gain > 0) {
-      const rate = 0.28; // Portuguese resident flat rate on capital gains (CIRS Art. 72)
-      if (primaryRes && yearsHeld >= 2) {
-        let taxable = gain * 0.5; // 50% exemption for primary residence held >24 months
-        if (reinvest) {
-          taxable = taxable * 0.5; // approximation: additional 50% if full reinvestment in EU/EEA primary residence within 36 months
-          cgNote = '50% primary residence exemption + ~50% reinvestment exemption (full reinvestment assumed)';
-        } else {
-          cgNote = '50% primary residence exemption (held >24 months)';
-        }
-        capGains = taxable * rate;
-        cgNote += ' | 28% flat rate on taxable portion';
-        if (inflationCoef > 1.0) {
-          cgNote += ' | Cost basis inflation-adjusted by ' + inflationCoef.toFixed(2) + 'x (CIRS Art. 50)';
-        }
+      if (residency === 'nonresident') {
+        capGains = gain * 0.28;
+        cgNote = 'Não residente: taxa fixa de 28% sobre a mais-valia total (CIRS Art. 72). Pode optar pelo regime de residente (50% + IRS) se for inferior.';
       } else {
-        capGains = gain * rate;
-        cgNote = primaryRes ? 'Held <24 months - no exemption' : 'Not primary residence - full gain taxable';
-        cgNote += ' | 28% flat rate';
+        let taxable = gain * 0.5;
+        cgNote = 'Residente: 50% da mais-valia tributável às taxas de IRS';
+        if (primaryRes && reinvest) {
+          taxable = 0;
+          cgNote = 'Residência própria de residente, reinvestimento total - mais-valia isenta (reinvestimento total assumido)';
+        }
+        if (taxable > 0) {
+          if (useFlatRate || annualIncome <= 0) {
+            capGains = taxable * 0.35;
+            cgNote += ' | estimativa fixa de 35% sobre a metade tributável';
+          } else {
+            capGains = Math.max(0, irsTax(annualIncome + taxable) - irsTax(annualIncome));
+            cgNote += ' | taxa marginal de IRS 2026 (~' + Math.round((capGains/taxable)*100) + '% sobre a metade tributável)';
+          }
+        }
+      }
+      if (inflationCoef > 1.0) {
+        cgNote += ' | base atualizada pela inflação x' + inflationCoef.toFixed(2) + ' (CIRS Art. 50)';
       }
     } else {
-      cgNote = 'No capital gain - sale price below inflation-adjusted cost basis';
+      cgNote = 'Sem mais-valia - preço de venda abaixo do custo ajustado pela inflação';
     }
 
     const net = salePrice - mortgage - commissionTotal - capGains - notary - energy;
 
     last = {salePrice, mortgage, commissionBase, commissionIVA, commissionTotal, commissionPct, capGains, cgNote, notary, energy, net, inflationCoef, adjustedBasis};
+    window.__lastCalc = {
+      title: 'Receita Líquida de Venda', subtitle: 'Receita Líquida de Venda', slug: 'receita-liquida-venda',
+      rows: [
+        ['Preço de venda', fmt(salePrice)],
+        ['Amortização do crédito', '-' + fmt(mortgage)],
+        ['Comissão (' + commissionPct + '%, s/ IVA)', '-' + fmt(commissionBase)],
+        ['IVA sobre comissão (23%)', '-' + fmt(commissionIVA)],
+        ['Imposto sobre mais-valias', '-' + fmt(capGains)],
+        ['Escritura e notário', '-' + fmt(notary)],
+        ['Certificado energético', '-' + fmt(energy)]
+      ],
+      highlight: ['Recebe', fmt(net)],
+      notes: [cgNote, (inflationCoef > 1.0 ? 'Custo ajustado pela inflação x' + inflationCoef.toFixed(2) + ' (CIRS Art. 50)' : '')].filter(Boolean)
+    };
 
     const items = [
       {label:'Mortgage payoff', sub:'Outstanding balance', amt: mortgage, zero: mortgage<=0},
@@ -733,73 +773,60 @@ document.addEventListener('click',function(e){
     document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
   }
 
-  function buildPdf(){
-    if(!last) return null;
+  function buildLeadPdf(d){
     if(typeof window.jspdf === 'undefined') return null;
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const { jsPDF } = window.jspdf; const doc = new jsPDF();
     doc.setFillColor(41,102,98); doc.rect(0,0,210,30,'F');
-    doc.setTextColor(244,236,220); doc.setFontSize(18); doc.setFont('helvetica','bold');
-    doc.text('Aldeia Realty', 14, 14);
-    doc.setFontSize(10); doc.setFont('helvetica','normal');
-    doc.text('Seller Net Proceeds', 14, 22);
-    doc.setTextColor(28,10,4);
-    let y = 46;
-    doc.setFontSize(11); doc.setFont('helvetica','bold');
-    doc.text("BREAKDOWN", 14, y); y+=8;
+    doc.setTextColor(244,236,220); doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.text('Aldeia Realty', 14, 14);
+    doc.setFontSize(10); doc.setFont('helvetica','normal'); doc.text(d.subtitle || '', 14, 22);
+    doc.setTextColor(28,10,4); let y = 46;
+    doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.text(d.title || 'Análise', 14, y); y += 10;
     doc.setFont('helvetica','normal'); doc.setFontSize(10);
-    doc.text("Sale price: EUR " + Math.round(last.salePrice).toLocaleString(), 14, y); y+=6;
-    doc.text("Mortgage payoff: -EUR " + Math.round(last.mortgage).toLocaleString(), 14, y); y+=6;
-    doc.text("Commission (" + last.commissionPct + "%, ex-IVA): -EUR " + Math.round(last.commissionBase).toLocaleString(), 14, y); y+=6;
-    doc.text("IVA on commission (23%): -EUR " + Math.round(last.commissionIVA).toLocaleString(), 14, y); y+=6;
-    doc.text("Capital gains tax: -EUR " + Math.round(last.capGains).toLocaleString(), 14, y); y+=6;
-    doc.text("Legal & notary: -EUR " + Math.round(last.notary).toLocaleString(), 14, y); y+=6;
-    doc.text("Energy certificate: -EUR " + Math.round(last.energy).toLocaleString(), 14, y); y+=10;
-    doc.setFont('helvetica','bold'); doc.setFontSize(13);
-    doc.setFillColor(239,212,143); doc.rect(14, y-5, 182, 14, 'F');
-    doc.text("YOU WALK AWAY WITH: EUR " + Math.round(last.net).toLocaleString(), 18, y+4); y+=20;
-    doc.setFontSize(9); doc.setFont('helvetica','normal');
-    if (last.inflationCoef > 1.0) {
-      doc.text("Inflation-adjusted cost basis: EUR " + Math.round(last.adjustedBasis).toLocaleString() + " (coef " + last.inflationCoef.toFixed(2) + "x per CIRS Art. 50)", 14, y); y+=6;
-    }
-    doc.text("Capital gains note: " + (last.cgNote||'').replace(/&/g,'and'), 14, y, {maxWidth: 182}); y+=14;
-    doc.setFontSize(8); doc.setTextColor(120,120,120);
-    doc.text("Educational estimate. Not financial or tax advice. Consult a licensed accountant.", 14, y); y+=5;
-    doc.text("Aldeia Realty - Real Estate, Lda. | NIPC 519410440 | AMI 27493 | Caldas da Rainha", 14, y);
+    (d.rows||[]).forEach(function(r){ doc.text(String(r[0]), 14, y); doc.text(String(r[1]), 196, y, {align:'right'}); y += 7; });
+    y += 3;
+    if(d.highlight){ doc.setFillColor(239,212,143); doc.rect(14, y-5, 182, 14, 'F'); doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.text(String(d.highlight[0]) + ': ' + String(d.highlight[1]), 18, y+4); y += 20; }
+    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(120,120,120);
+    (d.notes||[]).forEach(function(n){ if(n){ doc.text(String(n).replace(/&/g,'e'), 14, y, {maxWidth:182}); y += 5; } });
+    y += 2;
+    doc.text('Estimativa indicativa. Não constitui aconselhamento jurídico, fiscal ou financeiro. Consulte um profissional.', 14, y); y += 5;
+    doc.text('Aldeia Realty - Real Estate, Lda. | NIPC 519410440 | AMI 27493 | Caldas da Rainha, Portugal', 14, y);
     return doc;
   }
 
-  function downloadPdf(){
-    const doc = buildPdf();
-    if(!doc){ document.getElementById('pdf-msg').textContent = 'PDF library not loaded.'; return; }
-    doc.save("aldeia-seller-net-proceeds.pdf");
+  function submitLead(ev){
+    if(ev) ev.preventDefault();
+    const msg = document.getElementById('lead-msg');
+    const email = (document.getElementById('lead-email')||{}).value || '';
+    const phone = (document.getElementById('lead-phone')||{}).value || '';
+    if(!email || email.indexOf('@') < 0){ if(msg) msg.textContent = 'Introduza um email válido.'; return false; }
+    if(!window.__lastCalc){ if(msg) msg.textContent = 'Calcule primeiro.'; return false; }
+    const d = window.__lastCalc; const doc = buildLeadPdf(d); if(doc) doc.save('aldeia-' + (d.slug || 'analise') + '.pdf');
+    if(msg) msg.textContent = 'A enviar...';
+    const summary = (d.rows||[]).map(function(r){ return r[0]+': '+r[1]; }).join(' | ') + (d.highlight ? ' | '+d.highlight[0]+': '+d.highlight[1] : '');
+    const form = new FormData(); form.append('email', email); form.append('phone', phone);
+    form.append('_subject', 'Novo lead de calculadora - ' + (d.title||'Análise')); form.append('calculator', d.title || ''); form.append('analysis', summary);
+    fetch('https://formspree.io/f/xkoenyzb', {method:'POST', body:form, headers:{'Accept':'application/json'}})
+      .then(function(r){ if(msg) msg.textContent = r.ok ? 'Feito - o PDF foi descarregado e um consultor Aldeia entrará em contacto em breve.' : 'O PDF foi descarregado. Não foi possível enviar os seus dados - contacte-nos.'; if(r.ok){ var e=document.getElementById('lead-email'); if(e)e.value=''; var p=document.getElementById('lead-phone'); if(p)p.value=''; } })
+      .catch(function(){ if(msg) msg.textContent = 'O PDF foi descarregado. Não foi possível enviar os seus dados - contacte-nos.'; });
+    return false;
   }
 
-  async function emailPdf(e){
-    e.preventDefault();
-    const em = document.getElementById('pdf-email').value;
-    if(!em || !em.includes('@')){ document.getElementById('pdf-msg').textContent = 'Adicione um email v&aacute;lido.'; return; }
-    if(!last){ document.getElementById('pdf-msg').textContent = 'Run the calculation first.'; return; }
-    const msgEl = document.getElementById('pdf-msg');
-    msgEl.textContent = 'A enviar...';
-    const form = new FormData();
-    form.append('email', em);
-    form.append('_subject', 'Seller Net Proceeds - Aldeia');
-    form.append('summary', 'Sale: EUR ' + Math.round(last.salePrice).toLocaleString()
-              + ' | Mortgage: EUR ' + Math.round(last.mortgage).toLocaleString()
-              + ' | Commission+IVA: EUR ' + Math.round(last.commissionTotal).toLocaleString()
-              + ' | CapGains: EUR ' + Math.round(last.capGains).toLocaleString()
-              + ' | Net: EUR ' + Math.round(last.net).toLocaleString());
-    try{
-      const r = await fetch('https://formspree.io/f/xkoenyzb', {method:'POST',body:form,headers:{'Accept':'application/json'}});
-      if(r.ok){ msgEl.textContent = 'PDF enviado para o seu email.'; document.getElementById('pdf-email').value=''; }
-      else { msgEl.textContent = 'Falha no envio. Use o bot&atilde;o de descarregar.'; }
-    } catch(err){ msgEl.textContent = 'Falha no envio. Use o bot&atilde;o de descarregar.'; }
+  function updateResidencyUI(){
+    const r = document.getElementById('residency'); if(!r) return;
+    const isRes = r.value === 'resident';
+    const inc = document.getElementById('incomeRow');
+    const flat = document.getElementById('flatRateToggle');
+    const pri = document.getElementById('primaryResidence'); const priRow = pri ? pri.closest('.calc-toggle') : null;
+    const rei = document.getElementById('reinvest'); const reiRow = rei ? rei.closest('.calc-toggle') : null;
+    if(inc) inc.style.display = isRes ? '' : 'none';
+    if(flat) flat.style.display = isRes ? '' : 'none';
+    if(priRow) priRow.style.display = isRes ? '' : 'none';
+    if(reiRow) reiRow.style.display = isRes ? '' : 'none';
   }
-
+  window.updateResidencyUI = updateResidencyUI;
+  updateResidencyUI();
   window.runCalc = runCalc;
-  window.downloadPdf = downloadPdf;
-  window.emailPdf = emailPdf;
+  window.submitLead = submitLead;
 })();
 </script>
 <script>
