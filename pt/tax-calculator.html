@@ -579,7 +579,7 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
         </div>
         <div class="grid-2 gap-3 mb-4">
           <div><label class="block font-semibold text-brand-70 text-sm mb-1">Region</label><select id="localLocation" class="calc-select"><option value="mainland">Mainland Portugal</option><option value="islands">Azores / Madeira</option></select></div>
-          <div><label class="block font-semibold text-brand-70 text-sm mb-1">Property Purpose</label><select id="localPurpose" class="calc-select"><option value="primary">Primary Residence</option><option value="secondary">Secondary / Investment</option></select></div>
+          <div><label class="block font-semibold text-brand-70 text-sm mb-1">Property Purpose</label><select id="localPurpose" class="calc-select"><option value="primary">Habitação própria permanente</option><option value="secondary">Secundária / Investimento</option><option value="buildingland">Terreno para construção / urbano</option><option value="rustic">Terreno rústico / agrícola</option></select></div>
         </div>
         <button onclick="runLocalCalc()" class="btn btn-primary" style="width:100%;">Calculate My Taxes</button>
         <p class="mini-disclaimer" style="font-size:11.5px;font-style:italic;color:rgba(28,10,4,0.55);text-align:center;margin:14px auto 0;max-width:540px;line-height:1.5">Estimativa indicativa. N&atilde;o constitui aconselhamento jur&iacute;dico, fiscal ou financeiro.</p>
@@ -785,6 +785,8 @@ function toEUR(amount, currency, rate) {
 function calcIMT(price, location, purpose) {
   // 2026 IMT brackets — Oficio Circulado 40129/2026 (in force 1 Jan 2026). Review annually.
   // Mainland (continente); islands (Madeira/Acores) = mainland thresholds & deductions x1.25.
+  if (purpose === 'rustic') return price * 0.05;        // rustic/agricultural land - flat 5%
+  if (purpose === 'buildingland') return price * 0.065; // building plot / other urban land - flat 6.5%
   let imt = 0;
   if (location === 'mainland' && purpose === 'primary') {
     if (price <= 106346) imt = 0;
@@ -908,8 +910,9 @@ function runLocalCalc() {
   const ptPurpose = document.getElementById('localPurpose').value;
 
   const imt = calcIMT(price, ptLoc, ptPurpose);
-  const imtNoDiscount = calcIMT(price, ptLoc, 'secondary');
-  const discount = Math.max(0, imtNoDiscount - imt);
+  const isLand = (ptPurpose === 'rustic' || ptPurpose === 'buildingland');
+  const imtNoDiscount = isLand ? imt : calcIMT(price, ptLoc, 'secondary');
+  const discount = isLand ? 0 : Math.max(0, imtNoDiscount - imt);
   const stampDuty = price * 0.008;
   const totalTaxes = imt + stampDuty;
   const effectiveRate = price > 0 ? (totalTaxes/price)*100 : 0;

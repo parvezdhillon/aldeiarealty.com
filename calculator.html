@@ -597,7 +597,7 @@ h4.font-domine{font-family:var(--display);font-weight:700;color:var(--black);fon
         <p class="text-teal font-bold text-sm uppercase tracking-wider mb-3 border-b pb-2 mt-6">2. The Purchase (Portugal Target)</p>
         <div class="grid-2 gap-3 mb-3">
           <div><label class="block font-semibold text-brand-70 text-sm mb-1">Region</label><select id="ptLocation" class="calc-select"><option value="mainland">Mainland Portugal</option><option value="islands">Azores / Madeira</option></select></div>
-          <div><label class="block font-semibold text-brand-70 text-sm mb-1">Property Purpose</label><select id="ptPurpose" class="calc-select"><option value="primary">Primary Residence</option><option value="secondary">Secondary / Investment</option></select></div>
+          <div><label class="block font-semibold text-brand-70 text-sm mb-1">Property Purpose</label><select id="ptPurpose" class="calc-select"><option value="primary">Primary Residence</option><option value="secondary">Secondary / Investment</option><option value="buildingland">Building plot / urban land</option><option value="rustic">Rustic / agricultural land</option></select></div>
         </div>
         <div class="flex gap-3 items-end mb-3 calc-row">
           <div class="flex-1"><label class="block font-semibold text-brand-70 text-sm mb-1">Target Purchase Price</label><input type="number" id="purchasePrice" value="350000" step="1000" class="calc-input" /></div>
@@ -810,6 +810,8 @@ function toEUR(amount, currency, rate) {
 function calcIMT(price, location, purpose) {
   // 2026 IMT brackets — Oficio Circulado 40129/2026 (in force 1 Jan 2026). Review annually.
   // Mainland (continente); islands (Madeira/Acores) = mainland thresholds & deductions x1.25.
+  if (purpose === 'rustic') return price * 0.05;        // rustic/agricultural land - flat 5%
+  if (purpose === 'buildingland') return price * 0.065; // building plot / other urban land - flat 6.5%
   let imt = 0;
   if (location === 'mainland' && purpose === 'primary') {
     if (price <= 106346) imt = 0;
