@@ -1,0 +1,18 @@
+{
+  "generated": "2026-08-07T11:59:32.075Z",
+  "listings": [
+    {
+      "ref": "AD1",
+      "operation": "sale",
+      "price": 270000,
+      "priceLabel": "270.000 €",
+      "title": "T-4 Apartment in center of Caldas Da Rainha, Santo Onofre",
+      "description": "Spacious T4 apartment offering 4 bedrooms and 2 full bathrooms, within walking distance of the city center. The apartment features a bright, functional kitchen with ample storage, ",
+      "location": "Caldas da Rainha",
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "image": "https://fotos15.apinmo.com/14306/29869007/7-1.jpg",
+      "url": "property-ad1.html"
+    }
+  ]
+}

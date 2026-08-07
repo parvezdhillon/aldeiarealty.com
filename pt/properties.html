@@ -497,7 +497,7 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 </div>
 <script>
 var __fData=null;
-fetch('/.netlify/functions/listings?lang=pt').then(function(r){return r.json();}).then(function(d){__fData=(d&&d.listings)||[];}).catch(function(){__fData=[];});
+fetch('../data/listings-pt.json').then(function(r){return r.json();}).then(function(d){__fData=(d&&d.listings)||[];}).catch(function(){__fData=[];});
 function fCrit(){return{op:document.getElementById('f-op').value,loc:document.getElementById('f-loc').value,max:parseFloat(document.getElementById('f-max').value)||0,beds:parseInt(document.getElementById('f-beds').value)||0};}
 function finderSearch(){var c=fCrit();var res=document.getElementById('f-res');var data=__fData||[];
 var hits=data.filter(function(p){return(!c.op||p.operation===c.op)&&(!c.loc||String(p.location).toLowerCase().indexOf(c.loc.split(' ')[0].toLowerCase())>=0)&&(!c.max||(p.price&&p.price<=c.max))&&(!c.beds||(p.bedrooms&&p.bedrooms>=c.beds));});
@@ -510,6 +510,26 @@ var fd=new FormData();fd.append('name',document.getElementById('c-name').value);
 fd.append('_subject','Property Finder - buyer brief');fd.append('criteria',JSON.stringify(c));fd.append('message',document.getElementById('c-msg').value);
 fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).then(function(r){msg.textContent=r.ok?'Recebido — a sua seleção personalizada chega em 24 horas.':'Não foi possível enviar. Escreva para info@aldeiarealty.com.';}).catch(function(){msg.textContent='Não foi possível enviar. Escreva para info@aldeiarealty.com.';});return false;}
 </script>
+<!-- AR:LISTINGS:START (auto-generated - do not edit between markers) -->
+<section class="section white">
+  <div class="container">
+    <div class="section-header"><div class="kicker">Dispon&iacute;vel agora</div><h2>Os nossos <em>im&oacute;veis atuais</em>.</h2><p class="sub">Angariados e representados pela Aldeia Realty. Atualizado diariamente a partir do nosso sistema.</p></div>
+    <div class="grid-3">
+      <div class="prop-card">
+        <a href="imovel-ad1.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%">
+        <div class="prop-img" style="background-image:url('https://fotos15.apinmo.com/14306/29869007/7-1.jpg')"><div class="prop-badge">VENDA</div></div>
+        <div class="prop-body">
+          <div class="prop-loc">Caldas da Rainha &middot; 270.000 €</div>
+          <h3>Apartamento T3+1 · Rua Manuel Mafra 33, · Caldas da Rainha</h3>
+          <p>T4 · 2 WC · 123 m² · Energ. C · Exclusivo Aldeia</p>
+          <span class="prop-link">Ver Im&oacute;vel &rarr;</span>
+        </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- AR:LISTINGS:END -->
 <section class="section">
   <div class="container">
     <div class="section-header"><div class="kicker">Listagens de exemplo &middot; Em breve</div><h2>O tipo de im&oacute;veis que <em>vamos listar</em>.</h2></div>
@@ -770,25 +790,5 @@ function toggleMobileMenu(){
 })();
 </script>
 
-<script>
-(function(){
-  fetch('/.netlify/functions/listings?lang=pt').then(function(r){return r.json();}).then(function(d){
-    var L=(d&&d.listings)||[]; if(!L.length) return;
-    var grid=document.getElementById('live-grid'); var live=document.getElementById('live-listings');
-    var sample=document.getElementById('sample-listings'); if(!grid||!live) return;
-    grid.innerHTML=L.map(function(p){
-      var img=p.image?('background-image:url(\''+String(p.image).replace(/'/g,'')+'\')'):'background:linear-gradient(135deg,#296662,rgba(41,102,98,0.55))';
-      var badge=p.operation==='rent'?'Arrendamento':'Venda';
-      var meta=[p.location,p.priceLabel].filter(Boolean).join(' \u00b7 ');
-      var det=[p.bedrooms?p.bedrooms+' T':'',p.area?p.area+' m\u00b2':''].filter(Boolean).join(' \u00b7 ');
-      return '<div class="prop-card"><div class="prop-img" style="'+img+'"><div class="prop-badge">'+badge+'</div></div>'+
-        '<div class="prop-body"><div class="prop-loc">'+esc(meta)+'</div><h3>'+esc(p.title)+'</h3>'+
-        '<p>'+esc(p.description||det)+'</p><a class="prop-link" href="contact.html?ref='+encodeURIComponent(p.ref)+'">Tenho Interesse \u2192</a></div></div>';
-    }).join('');
-    live.style.display='block'; if(sample) sample.style.display='none';
-  }).catch(function(){});
-  function esc(s){var d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML;}
-})();
-</script>
 </body>
 </html>
