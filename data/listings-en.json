@@ -1,10 +1,12 @@
 {
-  "generated": "2026-08-07T11:59:32.075Z",
+  "generated": "2026-08-30T12:55:52.218Z",
   "listings": [
     {
       "ref": "AD1",
       "operation": "sale",
       "price": 270000,
+      "priceSale": 270000,
+      "priceRent": null,
       "priceLabel": "270.000 €",
       "title": "T-4 Apartment in center of Caldas Da Rainha, Santo Onofre",
       "description": "Spacious T4 apartment offering 4 bedrooms and 2 full bathrooms, within walking distance of the city center. The apartment features a bright, functional kitchen with ample storage, ",
@@ -13,6 +15,21 @@
       "bathrooms": 2,
       "image": "https://fotos15.apinmo.com/14306/29869007/7-1.jpg",
       "url": "property-ad1.html"
+    },
+    {
+      "ref": "AR20260828",
+      "operation": "both",
+      "price": 853000,
+      "priceSale": 853000,
+      "priceRent": 2950,
+      "priceLabel": "853.000 € or 2950 € / month",
+      "title": "T4 detached villa with private salted water pool — Nadadouro, Caldas da Rainha",
+      "description": "Built in 2011 across three floors, the house opens onto a 60 m² living and dining room with full-height glazing and an open staircase, flowing straight out to the terrace, lawn and",
+      "location": "Caldas da Rainha",
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "image": "https://fotos15.apinmo.com/14306/30044766/20-1.jpg",
+      "url": "property-ar20260828.html"
     }
   ]
 }

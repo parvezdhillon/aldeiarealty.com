@@ -500,7 +500,7 @@ var __fData=null;
 fetch('data/listings-en.json').then(function(r){return r.json();}).then(function(d){__fData=(d&&d.listings)||[];}).catch(function(){__fData=[];});
 function fCrit(){return{op:document.getElementById('f-op').value,loc:document.getElementById('f-loc').value,max:parseFloat(document.getElementById('f-max').value)||0,beds:parseInt(document.getElementById('f-beds').value)||0};}
 function finderSearch(){var c=fCrit();var res=document.getElementById('f-res');var data=__fData||[];
-var hits=data.filter(function(p){return(!c.op||p.operation===c.op)&&(!c.loc||String(p.location).toLowerCase().indexOf(c.loc.split(' ')[0].toLowerCase())>=0)&&(!c.max||(p.price&&p.price<=c.max))&&(!c.beds||(p.bedrooms&&p.bedrooms>=c.beds));});
+var hits=data.filter(function(p){return(!c.op||p.operation===c.op||p.operation==='both')&&(!c.loc||String(p.location).toLowerCase().indexOf(c.loc.split(' ')[0].toLowerCase())>=0)&&(!c.max||(p.price&&p.price<=c.max))&&(!c.beds||(p.bedrooms&&p.bedrooms>=c.beds));});
 if(hits.length){res.textContent='{n} matching listing(s) below'.replace('{n}',hits.length);
 var grid=document.getElementById('live-grid'),live=document.getElementById('live-listings'),sample=document.getElementById('sample-listings');
 if(grid&&live){grid.innerHTML=hits.map(function(p){var img=p.image?('background-image:url(\''+String(p.image).replace(/'/g,'')+'\')'):'background:linear-gradient(135deg,#296662,rgba(41,102,98,0.55))';return '<div class="prop-card"><div class="prop-img" style="'+img+'"><div class="prop-badge">'+(p.operation==='rent'?'RENT':'SALE')+'</div></div><div class="prop-body"><div class="prop-loc">'+p.location+' \u00b7 '+p.priceLabel+'</div><h3>'+p.title+'</h3><p>'+(p.description||'')+'</p></div></div>';}).join('');live.style.display='block';if(sample)sample.style.display='none';}
@@ -522,6 +522,17 @@ fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept'
           <div class="prop-loc">Caldas da Rainha &middot; 270.000 €</div>
           <h3>T-4 Apartment in center of Caldas Da Rainha, Santo Onofre</h3>
           <p>T4 · 2 bath · 123 m² · Energy C · Exclusive listing</p>
+          <span class="prop-link">View Property &rarr;</span>
+        </div>
+        </a>
+      </div>
+      <div class="prop-card">
+        <a href="property-ar20260828.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%">
+        <div class="prop-img" style="background-image:url('https://fotos15.apinmo.com/14306/30044766/20-1.jpg')"><div class="prop-badge">FOR SALE OR RENT</div></div>
+        <div class="prop-body">
+          <div class="prop-loc">Caldas da Rainha &middot; 853.000 € or 2950 € / month</div>
+          <h3>T4 detached villa with private salted water pool — Nadadouro, Caldas da Rainha</h3>
+          <p>T4 · 3 bath · 455 m² · Energy B · Exclusive listing</p>
           <span class="prop-link">View Property &rarr;</span>
         </div>
         </a>

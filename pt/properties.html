@@ -500,7 +500,7 @@ var __fData=null;
 fetch('../data/listings-pt.json').then(function(r){return r.json();}).then(function(d){__fData=(d&&d.listings)||[];}).catch(function(){__fData=[];});
 function fCrit(){return{op:document.getElementById('f-op').value,loc:document.getElementById('f-loc').value,max:parseFloat(document.getElementById('f-max').value)||0,beds:parseInt(document.getElementById('f-beds').value)||0};}
 function finderSearch(){var c=fCrit();var res=document.getElementById('f-res');var data=__fData||[];
-var hits=data.filter(function(p){return(!c.op||p.operation===c.op)&&(!c.loc||String(p.location).toLowerCase().indexOf(c.loc.split(' ')[0].toLowerCase())>=0)&&(!c.max||(p.price&&p.price<=c.max))&&(!c.beds||(p.bedrooms&&p.bedrooms>=c.beds));});
+var hits=data.filter(function(p){return(!c.op||p.operation===c.op||p.operation==='both')&&(!c.loc||String(p.location).toLowerCase().indexOf(c.loc.split(' ')[0].toLowerCase())>=0)&&(!c.max||(p.price&&p.price<=c.max))&&(!c.beds||(p.bedrooms&&p.bedrooms>=c.beds));});
 if(hits.length){res.textContent='{n} imóvel(is) correspondente(s) abaixo'.replace('{n}',hits.length);
 var grid=document.getElementById('live-grid'),live=document.getElementById('live-listings'),sample=document.getElementById('sample-listings');
 if(grid&&live){grid.innerHTML=hits.map(function(p){var img=p.image?('background-image:url(\''+String(p.image).replace(/'/g,'')+'\')'):'background:linear-gradient(135deg,#296662,rgba(41,102,98,0.55))';return '<div class="prop-card"><div class="prop-img" style="'+img+'"><div class="prop-badge">'+(p.operation==='rent'?'RENT':'SALE')+'</div></div><div class="prop-body"><div class="prop-loc">'+p.location+' \u00b7 '+p.priceLabel+'</div><h3>'+p.title+'</h3><p>'+(p.description||'')+'</p></div></div>';}).join('');live.style.display='block';if(sample)sample.style.display='none';}
@@ -520,8 +520,19 @@ fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept'
         <div class="prop-img" style="background-image:url('https://fotos15.apinmo.com/14306/29869007/7-1.jpg')"><div class="prop-badge">VENDA</div></div>
         <div class="prop-body">
           <div class="prop-loc">Caldas da Rainha &middot; 270.000 €</div>
-          <h3>Apartamento T3+1 · Rua Manuel Mafra 33, · Caldas da Rainha</h3>
+          <h3>Apartamento T3+1 · Rua Manuel Mafra 33,  · Caldas da Rainha</h3>
           <p>T4 · 2 WC · 123 m² · Energ. C · Exclusivo Aldeia</p>
+          <span class="prop-link">Ver Im&oacute;vel &rarr;</span>
+        </div>
+        </a>
+      </div>
+      <div class="prop-card">
+        <a href="imovel-ar20260828.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%">
+        <div class="prop-img" style="background-image:url('https://fotos15.apinmo.com/14306/30044766/20-1.jpg')"><div class="prop-badge">VENDA OU ARRENDAMENTO</div></div>
+        <div class="prop-body">
+          <div class="prop-loc">Caldas da Rainha &middot; 853.000 € ou 2950 € / mês</div>
+          <h3>Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha</h3>
+          <p>T4 · 3 WC · 455 m² · Energ. B · Exclusivo Aldeia</p>
           <span class="prop-link">Ver Im&oacute;vel &rarr;</span>
         </div>
         </a>

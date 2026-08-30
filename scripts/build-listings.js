@@ -64,7 +64,11 @@ function euro(n) {
 function parseProperty(b) {
   const priceSale = parseInt(field(b, 'precioinmo') || '0', 10);
   const priceRent = parseInt(field(b, 'precioalq') || '0', 10);
-  const isRent = priceRent > 0 && priceSale === 0;
+  // A property can be offered for sale AND rent simultaneously —
+  // Inmovilla sets accion to "Vender o Alquilar" and populates both price fields.
+  const hasSale = priceSale > 0;
+  const hasRent = priceRent > 0;
+  const operation = (hasSale && hasRent) ? 'both' : hasRent ? 'rent' : 'sale';
   const bedrooms = (parseInt(field(b, 'habdobles') || '0', 10) + parseInt(field(b, 'habitaciones') || '0', 10)) || null;
   const photos = [];
   for (let i = 1; i <= parseInt(field(b, 'numfotos') || '0', 10); i++) {
@@ -75,10 +79,18 @@ function parseProperty(b) {
     id: field(b, 'id'),
     ref: field(b, 'ref'),
     slug: field(b, 'ref').toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-    operation: isRent ? 'rent' : 'sale',
-    price: isRent ? priceRent : priceSale,
-    priceLabelEN: isRent ? euro(priceRent) + ' / month' : euro(priceSale),
-    priceLabelPT: isRent ? euro(priceRent) + ' / mês' : euro(priceSale),
+    operation,
+    priceSale: hasSale ? priceSale : null,
+    priceRent: hasRent ? priceRent : null,
+    // `price` stays the headline figure the finder sorts and filters on:
+    // the sale price when there is one, otherwise the rent.
+    price: hasSale ? priceSale : priceRent,
+    priceLabelEN: operation === 'both'
+      ? euro(priceSale) + ' or ' + euro(priceRent) + ' / month'
+      : operation === 'rent' ? euro(priceRent) + ' / month' : euro(priceSale),
+    priceLabelPT: operation === 'both'
+      ? euro(priceSale) + ' ou ' + euro(priceRent) + ' / mês'
+      : operation === 'rent' ? euro(priceRent) + ' / mês' : euro(priceSale),
     type: field(b, 'tipo_ofer'),
     city: field(b, 'ciudad'),
     zone: field(b, 'zona'),
@@ -108,10 +120,17 @@ function parseProperty(b) {
   };
 }
 
+// ---------- badge text (sale / rent / both) ----------
+function badgeText(p, en) {
+  if (p.operation === 'both') return en ? 'FOR SALE OR RENT' : 'VENDA OU ARRENDAMENTO';
+  if (p.operation === 'rent') return en ? 'FOR RENT' : 'ARRENDAR';
+  return en ? 'FOR SALE' : 'VENDA';
+}
+
 // ---------- card HTML (matches existing .prop-card design) ----------
 function cardHtml(p, lang) {
   const en = lang === 'en';
-  const badge = p.operation === 'rent' ? (en ? 'FOR RENT' : 'ARRENDAR') : (en ? 'FOR SALE' : 'VENDA');
+  const badge = badgeText(p, en);
   const title = en ? p.titleEN : p.titlePT;
   const priceLabel = en ? p.priceLabelEN : p.priceLabelPT;
   const detailHref = en ? ('property-' + p.slug + '.html') : ('imovel-' + p.slug + '.html');
@@ -165,7 +184,7 @@ function detailHtml(p, lang) {
   const title = en ? p.titleEN : p.titlePT;
   const paras = en ? p.descEN : p.descPT;
   const priceLabel = en ? p.priceLabelEN : p.priceLabelPT;
-  const badge = p.operation === 'rent' ? (en ? 'FOR RENT' : 'ARRENDAR') : (en ? 'FOR SALE' : 'VENDA');
+  const badge = badgeText(p, en);
   const t = en ? {
     back: '&larr; All properties', facts: 'Property Facts', desc: 'About this property',
     beds: 'Bedrooms', baths: 'Bathrooms', built: 'Built area', useful: 'Useful area',
@@ -205,7 +224,7 @@ function detailHtml(p, lang) {
 .pd-thumbs{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-height:560px;overflow-y:auto;padding-right:4px}
 .pd-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px;margin-top:28px}
 .pd-head h1{font-family:Domine,serif;font-weight:700;font-size:clamp(24px,3.4vw,36px);line-height:1.12;color:#1c0a04;max-width:700px}
-.pd-price{font-family:Domine,serif;font-weight:700;font-size:clamp(22px,3vw,32px);color:#296662;white-space:nowrap}
+.pd-price{font-family:Domine,serif;font-weight:700;font-size:clamp(22px,3vw,32px);color:#296662;white-space:normal}
 .pd-loc{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#296662;font-weight:600;margin-top:6px}
 .pd-cols{display:grid;grid-template-columns:2fr 1fr;gap:36px;margin:34px 0 60px}
 .pd-desc h2,.pd-facts h2{font-family:Domine,serif;font-weight:700;font-size:20px;color:#1c0a04;margin-bottom:14px}
@@ -300,6 +319,7 @@ function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
     const en = lang === 'en';
     const json = props.map(p => ({
       ref: p.ref, operation: p.operation, price: p.price,
+      priceSale: p.priceSale, priceRent: p.priceRent,
       priceLabel: en ? p.priceLabelEN : p.priceLabelPT,
       title: en ? p.titleEN : p.titlePT,
       description: ((en ? p.descEN : p.descPT)[1] || (en ? p.descEN : p.descPT)[0] || '').slice(0, 180),
