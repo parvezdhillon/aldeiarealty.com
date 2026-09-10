@@ -31,7 +31,23 @@
 .pd-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
 .pd-nav a{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#296662;text-decoration:none;font-weight:600}
 .pd-badge{display:inline-block;background:#efd48f;color:#1c0a04;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;padding:5px 11px;border-radius:2px;margin-bottom:10px}
-@media(max-width:820px){.pd-gallery,.pd-cols{grid-template-columns:1fr}.pd-thumbs{grid-template-columns:repeat(4,1fr);max-height:none}}
+.pd-main{position:relative}
+.pd-main img{cursor:zoom-in}
+.pd-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;padding:0;border:0;border-radius:50%;background:rgba(28,10,4,0.55);color:#f4ecdc;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.pd-arrow:hover{background:#296662}
+.pd-arrow.prev{left:12px}
+.pd-arrow.next{right:12px}
+.pd-count{position:absolute;right:12px;bottom:12px;background:rgba(28,10,4,0.6);color:#f4ecdc;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.12em;padding:5px 10px;border-radius:2px;pointer-events:none}
+.pd-thumb{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15);transition:border-color .15s,opacity .15s}
+.pd-thumb:hover{opacity:0.85}
+.pd-thumb.is-active{border:2px solid #efd48f}
+.pd-lb{position:fixed;inset:0;background:rgba(12,6,3,0.94);display:none;align-items:center;justify-content:center;z-index:9999}
+.pd-lb.open{display:flex}
+.pd-lb img{max-width:92vw;max-height:86vh;object-fit:contain;border-radius:3px}
+.pd-lb .pd-arrow{width:52px;height:52px;font-size:23px;background:rgba(244,236,220,0.14)}
+.pd-lb-close{position:absolute;top:16px;right:22px;background:none;border:0;color:#f4ecdc;font-size:34px;line-height:1;cursor:pointer}
+.pd-lb-count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#f4ecdc;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.16em}
+@media(max-width:820px){.pd-gallery,.pd-cols{grid-template-columns:1fr}.pd-thumbs{grid-template-columns:repeat(4,1fr);max-height:340px}.pd-arrow{width:38px;height:38px;font-size:16px}}
 </style>
 </head>
 <body style="background:#fbf8f3">
@@ -41,32 +57,45 @@
     <div><a href="properties.html">&larr; All properties</a> &nbsp;&nbsp; <a href="pt/imovel-ad1.html">PT</a></div>
   </div>
   <div class="pd-gallery">
-    <div class="pd-main"><img id="mainPhoto" src="https://fotos15.apinmo.com/14306/29869007/7-1.jpg" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre"></div>
-    <div class="pd-thumbs">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-1.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 1" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-2.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 2" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-3.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 3" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-4.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 4" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-5.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 5" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-6.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 6" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-7.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 7" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-8.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 8" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-9.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 9" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-10.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 10" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-11.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 11" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-12.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 12" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-13.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 13" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-14.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 14" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-15.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 15" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-16.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 16" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-17.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 17" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-18.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 18" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-19.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 19" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-20.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 20" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-21.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 21" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-22.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 22" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-23.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 23" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
-        <img src="https://fotos15.apinmo.com/14306/29869007/7-24.jpg" loading="lazy" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre — 24" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">
+    <div class="pd-main">
+      <img id="mainPhoto" src="https://fotos15.apinmo.com/14306/29869007/7-1.jpg" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre">
+      <button type="button" class="pd-arrow prev" id="pdPrev" aria-label="&#8592;">&#10094;</button>
+      <button type="button" class="pd-arrow next" id="pdNext" aria-label="&#8594;">&#10095;</button>
+      <div class="pd-count"><span id="pdIdx">1</span> / 32 Photos</div>
+    </div>
+    <div class="pd-thumbs" id="pdThumbs">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-1.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 1" data-i="0" class="pd-thumb is-active">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-2.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 2" data-i="1" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-3.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 3" data-i="2" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-4.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 4" data-i="3" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-5.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 5" data-i="4" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-6.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 6" data-i="5" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-7.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 7" data-i="6" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-8.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 8" data-i="7" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-9.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 9" data-i="8" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-10.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 10" data-i="9" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-11.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 11" data-i="10" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-12.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 12" data-i="11" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-13.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 13" data-i="12" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-14.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 14" data-i="13" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-15.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 15" data-i="14" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-16.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 16" data-i="15" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-17.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 17" data-i="16" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-18.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 18" data-i="17" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-19.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 19" data-i="18" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-20.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 20" data-i="19" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-21.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 21" data-i="20" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-22.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 22" data-i="21" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-23.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 23" data-i="22" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-24.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 24" data-i="23" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-25.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 25" data-i="24" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-26.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 26" data-i="25" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-27.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 27" data-i="26" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-28.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 28" data-i="27" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-29.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 29" data-i="28" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-30.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 30" data-i="29" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-31.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 31" data-i="30" class="pd-thumb">
+        <img src="https://fotos15.apinmo.com/14306/29869007/7-32.jpg" loading="lazy" decoding="async" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre 32" data-i="31" class="pd-thumb">
     </div>
   </div>
   <div class="pd-head">
@@ -98,5 +127,78 @@
     </div>
   </div>
 </div>
+<div class="pd-lb" id="pdLb" role="dialog" aria-modal="true">
+  <button type="button" class="pd-lb-close" id="pdLbClose" aria-label="Close">&times;</button>
+  <button type="button" class="pd-arrow prev" id="pdLbPrev" aria-label="&#8592;">&#10094;</button>
+  <img id="pdLbImg" src="" alt="T-4 Apartment in center of Caldas Da Rainha, Santo Onofre">
+  <button type="button" class="pd-arrow next" id="pdLbNext" aria-label="&#8594;">&#10095;</button>
+  <div class="pd-lb-count"><span id="pdLbIdx">1</span> / 32</div>
+</div>
+<script>
+(function(){
+  var PHOTOS = ["https://fotos15.apinmo.com/14306/29869007/7-1.jpg","https://fotos15.apinmo.com/14306/29869007/7-2.jpg","https://fotos15.apinmo.com/14306/29869007/7-3.jpg","https://fotos15.apinmo.com/14306/29869007/7-4.jpg","https://fotos15.apinmo.com/14306/29869007/7-5.jpg","https://fotos15.apinmo.com/14306/29869007/7-6.jpg","https://fotos15.apinmo.com/14306/29869007/7-7.jpg","https://fotos15.apinmo.com/14306/29869007/7-8.jpg","https://fotos15.apinmo.com/14306/29869007/7-9.jpg","https://fotos15.apinmo.com/14306/29869007/7-10.jpg","https://fotos15.apinmo.com/14306/29869007/7-11.jpg","https://fotos15.apinmo.com/14306/29869007/7-12.jpg","https://fotos15.apinmo.com/14306/29869007/7-13.jpg","https://fotos15.apinmo.com/14306/29869007/7-14.jpg","https://fotos15.apinmo.com/14306/29869007/7-15.jpg","https://fotos15.apinmo.com/14306/29869007/7-16.jpg","https://fotos15.apinmo.com/14306/29869007/7-17.jpg","https://fotos15.apinmo.com/14306/29869007/7-18.jpg","https://fotos15.apinmo.com/14306/29869007/7-19.jpg","https://fotos15.apinmo.com/14306/29869007/7-20.jpg","https://fotos15.apinmo.com/14306/29869007/7-21.jpg","https://fotos15.apinmo.com/14306/29869007/7-22.jpg","https://fotos15.apinmo.com/14306/29869007/7-23.jpg","https://fotos15.apinmo.com/14306/29869007/7-24.jpg","https://fotos15.apinmo.com/14306/29869007/7-25.jpg","https://fotos15.apinmo.com/14306/29869007/7-26.jpg","https://fotos15.apinmo.com/14306/29869007/7-27.jpg","https://fotos15.apinmo.com/14306/29869007/7-28.jpg","https://fotos15.apinmo.com/14306/29869007/7-29.jpg","https://fotos15.apinmo.com/14306/29869007/7-30.jpg","https://fotos15.apinmo.com/14306/29869007/7-31.jpg","https://fotos15.apinmo.com/14306/29869007/7-32.jpg"];
+  var main = document.getElementById('mainPhoto');
+  if (!PHOTOS.length || !main) return;
+  var i = 0;
+  var idxEl = document.getElementById('pdIdx');
+  var lb = document.getElementById('pdLb');
+  var lbImg = document.getElementById('pdLbImg');
+  var lbIdx = document.getElementById('pdLbIdx');
+  var thumbs = Array.prototype.slice.call(document.querySelectorAll('.pd-thumb'));
+
+  function show(n, scroll){
+    i = (n + PHOTOS.length) % PHOTOS.length;
+    main.src = PHOTOS[i];
+    if (idxEl) idxEl.textContent = i + 1;
+    if (lbIdx) lbIdx.textContent = i + 1;
+    if (lb.classList.contains('open')) lbImg.src = PHOTOS[i];
+    for (var k = 0; k < thumbs.length; k++) {
+      if (k === i) { thumbs[k].classList.add('is-active'); } else { thumbs[k].classList.remove('is-active'); }
+    }
+    if (scroll && thumbs[i] && thumbs[i].scrollIntoView) {
+      thumbs[i].scrollIntoView({ block: 'nearest' });
+    }
+  }
+  function step(d){ show(i + d, true); }
+  function openLb(){ lbImg.src = PHOTOS[i]; lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+  document.getElementById('pdPrev').addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
+  document.getElementById('pdNext').addEventListener('click', function(e){ e.stopPropagation(); step(1); });
+  document.getElementById('pdLbPrev').addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
+  document.getElementById('pdLbNext').addEventListener('click', function(e){ e.stopPropagation(); step(1); });
+  document.getElementById('pdLbClose').addEventListener('click', closeLb);
+  main.addEventListener('click', openLb);
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+
+  for (var j = 0; j < thumbs.length; j++) {
+    (function(el){
+      el.addEventListener('click', function(){ show(parseInt(el.getAttribute('data-i'), 10), false); });
+    })(thumbs[j]);
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft') { step(-1); }
+    else if (e.key === 'ArrowRight') { step(1); }
+    else if (e.key === 'Escape' && lb.classList.contains('open')) { closeLb(); }
+  });
+
+  var x0 = null;
+  function tStart(e){ x0 = e.changedTouches[0].clientX; }
+  function tEnd(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    x0 = null;
+  }
+  var swipers = [main, lb];
+  for (var s = 0; s < swipers.length; s++) {
+    swipers[s].addEventListener('touchstart', tStart, { passive: true });
+    swipers[s].addEventListener('touchend', tEnd, { passive: true });
+  }
+
+  show(0, false);
+})();
+</script>
 </body>
 </html>

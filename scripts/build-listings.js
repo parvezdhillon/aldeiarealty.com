@@ -205,9 +205,10 @@ function detailHtml(p, lang) {
     [t.floor, p.floor || null], [t.year, p.yearBuilt || null], [t.cond, condDisplay || null],
     [t.park, p.parking ? t.yes : null], [t.energy, p.energyLetter ? p.energyLetter + (p.energyCert ? ' (' + p.energyCert + ')' : '') : null],
   ].filter(r => r[1] !== null && r[1] !== '' && r[1] !== undefined);
-  const thumbs = p.photos.slice(0, 24).map((u, i) =>
-    `<img src="${u}" loading="lazy" alt="${esc(title)} — ${i + 1}" onclick="document.getElementById('mainPhoto').src=this.src" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15)">`
+  const thumbs = p.photos.map((u, i) =>
+    `<img src="${u}" loading="lazy" decoding="async" alt="${esc(title)} ${i + 1}" data-i="${i}" class="pd-thumb${i === 0 ? ' is-active' : ''}">`
   ).join('\n        ');
+  const photosJson = JSON.stringify(p.photos);
   return `<!DOCTYPE html>
 <html lang="${en ? 'en' : 'pt'}">
 <head>
@@ -241,7 +242,23 @@ function detailHtml(p, lang) {
 .pd-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
 .pd-nav a{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#296662;text-decoration:none;font-weight:600}
 .pd-badge{display:inline-block;background:#efd48f;color:#1c0a04;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;padding:5px 11px;border-radius:2px;margin-bottom:10px}
-@media(max-width:820px){.pd-gallery,.pd-cols{grid-template-columns:1fr}.pd-thumbs{grid-template-columns:repeat(4,1fr);max-height:none}}
+.pd-main{position:relative}
+.pd-main img{cursor:zoom-in}
+.pd-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;padding:0;border:0;border-radius:50%;background:rgba(28,10,4,0.55);color:#f4ecdc;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.pd-arrow:hover{background:#296662}
+.pd-arrow.prev{left:12px}
+.pd-arrow.next{right:12px}
+.pd-count{position:absolute;right:12px;bottom:12px;background:rgba(28,10,4,0.6);color:#f4ecdc;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.12em;padding:5px 10px;border-radius:2px;pointer-events:none}
+.pd-thumb{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;cursor:pointer;border:1px solid rgba(41,102,98,0.15);transition:border-color .15s,opacity .15s}
+.pd-thumb:hover{opacity:0.85}
+.pd-thumb.is-active{border:2px solid #efd48f}
+.pd-lb{position:fixed;inset:0;background:rgba(12,6,3,0.94);display:none;align-items:center;justify-content:center;z-index:9999}
+.pd-lb.open{display:flex}
+.pd-lb img{max-width:92vw;max-height:86vh;object-fit:contain;border-radius:3px}
+.pd-lb .pd-arrow{width:52px;height:52px;font-size:23px;background:rgba(244,236,220,0.14)}
+.pd-lb-close{position:absolute;top:16px;right:22px;background:none;border:0;color:#f4ecdc;font-size:34px;line-height:1;cursor:pointer}
+.pd-lb-count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#f4ecdc;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.16em}
+@media(max-width:820px){.pd-gallery,.pd-cols{grid-template-columns:1fr}.pd-thumbs{grid-template-columns:repeat(4,1fr);max-height:340px}.pd-arrow{width:38px;height:38px;font-size:16px}}
 </style>
 </head>
 <body style="background:#fbf8f3">
@@ -251,8 +268,13 @@ function detailHtml(p, lang) {
     <div><a href="${backHref}">${t.back}</a> &nbsp;&nbsp; <a href="${otherLangHref}">${en ? 'PT' : 'EN'}</a></div>
   </div>
   <div class="pd-gallery">
-    <div class="pd-main"><img id="mainPhoto" src="${p.photos[0] || ''}" alt="${esc(title)}"></div>
-    <div class="pd-thumbs">
+    <div class="pd-main">
+      <img id="mainPhoto" src="${p.photos[0] || ''}" alt="${esc(title)}">
+      <button type="button" class="pd-arrow prev" id="pdPrev" aria-label="&#8592;">&#10094;</button>
+      <button type="button" class="pd-arrow next" id="pdNext" aria-label="&#8594;">&#10095;</button>
+      <div class="pd-count"><span id="pdIdx">1</span> / ${p.photos.length} ${t.photos}</div>
+    </div>
+    <div class="pd-thumbs" id="pdThumbs">
         ${thumbs}
     </div>
   </div>
@@ -282,6 +304,79 @@ function detailHtml(p, lang) {
     </div>
   </div>
 </div>
+<div class="pd-lb" id="pdLb" role="dialog" aria-modal="true">
+  <button type="button" class="pd-lb-close" id="pdLbClose" aria-label="Close">&times;</button>
+  <button type="button" class="pd-arrow prev" id="pdLbPrev" aria-label="&#8592;">&#10094;</button>
+  <img id="pdLbImg" src="" alt="${esc(title)}">
+  <button type="button" class="pd-arrow next" id="pdLbNext" aria-label="&#8594;">&#10095;</button>
+  <div class="pd-lb-count"><span id="pdLbIdx">1</span> / ${p.photos.length}</div>
+</div>
+<script>
+(function(){
+  var PHOTOS = ${photosJson};
+  var main = document.getElementById('mainPhoto');
+  if (!PHOTOS.length || !main) return;
+  var i = 0;
+  var idxEl = document.getElementById('pdIdx');
+  var lb = document.getElementById('pdLb');
+  var lbImg = document.getElementById('pdLbImg');
+  var lbIdx = document.getElementById('pdLbIdx');
+  var thumbs = Array.prototype.slice.call(document.querySelectorAll('.pd-thumb'));
+
+  function show(n, scroll){
+    i = (n + PHOTOS.length) % PHOTOS.length;
+    main.src = PHOTOS[i];
+    if (idxEl) idxEl.textContent = i + 1;
+    if (lbIdx) lbIdx.textContent = i + 1;
+    if (lb.classList.contains('open')) lbImg.src = PHOTOS[i];
+    for (var k = 0; k < thumbs.length; k++) {
+      if (k === i) { thumbs[k].classList.add('is-active'); } else { thumbs[k].classList.remove('is-active'); }
+    }
+    if (scroll && thumbs[i] && thumbs[i].scrollIntoView) {
+      thumbs[i].scrollIntoView({ block: 'nearest' });
+    }
+  }
+  function step(d){ show(i + d, true); }
+  function openLb(){ lbImg.src = PHOTOS[i]; lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+  document.getElementById('pdPrev').addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
+  document.getElementById('pdNext').addEventListener('click', function(e){ e.stopPropagation(); step(1); });
+  document.getElementById('pdLbPrev').addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
+  document.getElementById('pdLbNext').addEventListener('click', function(e){ e.stopPropagation(); step(1); });
+  document.getElementById('pdLbClose').addEventListener('click', closeLb);
+  main.addEventListener('click', openLb);
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+
+  for (var j = 0; j < thumbs.length; j++) {
+    (function(el){
+      el.addEventListener('click', function(){ show(parseInt(el.getAttribute('data-i'), 10), false); });
+    })(thumbs[j]);
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft') { step(-1); }
+    else if (e.key === 'ArrowRight') { step(1); }
+    else if (e.key === 'Escape' && lb.classList.contains('open')) { closeLb(); }
+  });
+
+  var x0 = null;
+  function tStart(e){ x0 = e.changedTouches[0].clientX; }
+  function tEnd(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    x0 = null;
+  }
+  var swipers = [main, lb];
+  for (var s = 0; s < swipers.length; s++) {
+    swipers[s].addEventListener('touchstart', tStart, { passive: true });
+    swipers[s].addEventListener('touchend', tEnd, { passive: true });
+  }
+
+  show(0, false);
+})();
+</script>
 </body>
 </html>`;
 }
