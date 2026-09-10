@@ -272,7 +272,7 @@ function detailHtml(p, lang) {
       <img id="mainPhoto" src="${p.photos[0] || ''}" alt="${esc(title)}">
       <button type="button" class="pd-arrow prev" id="pdPrev" aria-label="&#8592;">&#10094;</button>
       <button type="button" class="pd-arrow next" id="pdNext" aria-label="&#8594;">&#10095;</button>
-      <div class="pd-count"><span id="pdIdx">1</span> / ${p.photos.length} ${t.photos}</div>
+      <div class="pd-count"><span id="pdIdx">1</span> / <span class="pdTotal">${p.photos.length}</span> ${t.photos}</div>
     </div>
     <div class="pd-thumbs" id="pdThumbs">
         ${thumbs}
@@ -309,19 +309,44 @@ function detailHtml(p, lang) {
   <button type="button" class="pd-arrow prev" id="pdLbPrev" aria-label="&#8592;">&#10094;</button>
   <img id="pdLbImg" src="" alt="${esc(title)}">
   <button type="button" class="pd-arrow next" id="pdLbNext" aria-label="&#8594;">&#10095;</button>
-  <div class="pd-lb-count"><span id="pdLbIdx">1</span> / ${p.photos.length}</div>
+  <div class="pd-lb-count"><span id="pdLbIdx">1</span> / <span class="pdTotal">${p.photos.length}</span></div>
 </div>
 <script>
 (function(){
-  var PHOTOS = ${photosJson};
   var main = document.getElementById('mainPhoto');
-  if (!PHOTOS.length || !main) return;
+  if (!main) return;
   var i = 0;
   var idxEl = document.getElementById('pdIdx');
   var lb = document.getElementById('pdLb');
   var lbImg = document.getElementById('pdLbImg');
   var lbIdx = document.getElementById('pdLbIdx');
-  var thumbs = Array.prototype.slice.call(document.querySelectorAll('.pd-thumb'));
+  var totals = Array.prototype.slice.call(document.querySelectorAll('.pdTotal'));
+  var thumbs = [];
+  var PHOTOS = [];
+
+  // The gallery is driven by the thumbnails that actually load. If the CDN has
+  // lost a photo since the last build, its thumb is removed and the count and
+  // arrows adjust, instead of leaving a broken-image tile at the end of the rail.
+  function sync(){
+    thumbs = Array.prototype.slice.call(document.querySelectorAll('.pd-thumb'));
+    PHOTOS = thumbs.map(function(t){ return t.getAttribute('src'); });
+    for (var z = 0; z < totals.length; z++) totals[z].textContent = PHOTOS.length;
+  }
+  sync();
+  if (!PHOTOS.length) return;
+
+  for (var q = 0; q < thumbs.length; q++) {
+    (function(el){
+      el.addEventListener('error', function(){
+        var was = PHOTOS[i];
+        if (el.parentNode) el.parentNode.removeChild(el);
+        sync();
+        if (!PHOTOS.length) return;
+        var at = PHOTOS.indexOf(was);
+        show(at === -1 ? Math.min(i, PHOTOS.length - 1) : at, false);
+      });
+    })(thumbs[q]);
+  }
 
   function show(n, scroll){
     i = (n + PHOTOS.length) % PHOTOS.length;
@@ -348,9 +373,14 @@ function detailHtml(p, lang) {
   main.addEventListener('click', openLb);
   lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
 
+  // Index by live position, not the build-time data-i, so clicks stay correct
+  // after a dead thumbnail has been pruned.
   for (var j = 0; j < thumbs.length; j++) {
     (function(el){
-      el.addEventListener('click', function(){ show(parseInt(el.getAttribute('data-i'), 10), false); });
+      el.addEventListener('click', function(){
+        var at = thumbs.indexOf(el);
+        if (at !== -1) show(at, false);
+      });
     })(thumbs[j]);
   }
 
@@ -401,12 +431,55 @@ function injectSection(filePath, html) {
 }
 function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
+// ---------- drop dead photo URLs ----------
+// Inmovilla's feed keeps referencing photos that have been deleted from the CDN
+// (e.g. AR20260828 declared numfotos=79 with slots 76-79 returning 404), which
+// rendered as broken-image thumbnails at the end of the gallery. Verify each URL
+// and drop only the definitively-gone ones — a timeout or a 5xx keeps the photo,
+// so a flaky build never silently strips a good gallery.
+async function dropDeadPhotos(props) {
+  const CONC = 12;
+  const jobs = [];
+  for (const p of props) for (const url of p.photos) jobs.push({ p, url });
+  const dead = new Set();
+  let n = 0;
+  async function worker() {
+    while (n < jobs.length) {
+      const job = jobs[n++];
+      try {
+        const ctl = new AbortController();
+        const timer = setTimeout(() => ctl.abort(), 15000);
+        let res = await fetch(job.url, { method: 'HEAD', signal: ctl.signal });
+        clearTimeout(timer);
+        if (res.status === 404 || res.status === 410) dead.add(job.url);
+      } catch (e) {
+        // network hiccup — keep the photo
+      }
+    }
+  }
+  await Promise.all(Array.from({ length: CONC }, worker));
+  if (dead.size) {
+    for (const p of props) {
+      const before = p.photos.length;
+      p.photos = p.photos.filter(u => !dead.has(u));
+      if (p.photos.length !== before) {
+        console.log('  ' + p.ref + ': dropped ' + (before - p.photos.length) + ' dead photo URL(s), ' + p.photos.length + ' remain');
+      }
+    }
+  } else {
+    console.log('  all photo URLs resolved');
+  }
+}
+
 // ---------- main ----------
 (async () => {
   const xml = await getFeedXml();
   const props = blocks(xml, 'propiedad').map(parseProperty)
     .filter(p => p.id && (p.price > 0));
   console.log('Listings in feed:', props.length, props.map(p => p.ref).join(', '));
+
+  console.log('Verifying photo URLs...');
+  await dropDeadPhotos(props);
 
   // 1. JSON for the Property Finder
   fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });

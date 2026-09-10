@@ -61,7 +61,7 @@
       <img id="mainPhoto" src="https://fotos15.apinmo.com/14306/29869007/7-1.jpg" alt="Apartamento T3+1 · Rua Manuel Mafra 33,  · Caldas da Rainha">
       <button type="button" class="pd-arrow prev" id="pdPrev" aria-label="&#8592;">&#10094;</button>
       <button type="button" class="pd-arrow next" id="pdNext" aria-label="&#8594;">&#10095;</button>
-      <div class="pd-count"><span id="pdIdx">1</span> / 32 Fotografias</div>
+      <div class="pd-count"><span id="pdIdx">1</span> / <span class="pdTotal">32</span> Fotografias</div>
     </div>
     <div class="pd-thumbs" id="pdThumbs">
         <img src="https://fotos15.apinmo.com/14306/29869007/7-1.jpg" loading="lazy" decoding="async" alt="Apartamento T3+1 · Rua Manuel Mafra 33,  · Caldas da Rainha 1" data-i="0" class="pd-thumb is-active">
@@ -132,19 +132,44 @@
   <button type="button" class="pd-arrow prev" id="pdLbPrev" aria-label="&#8592;">&#10094;</button>
   <img id="pdLbImg" src="" alt="Apartamento T3+1 · Rua Manuel Mafra 33,  · Caldas da Rainha">
   <button type="button" class="pd-arrow next" id="pdLbNext" aria-label="&#8594;">&#10095;</button>
-  <div class="pd-lb-count"><span id="pdLbIdx">1</span> / 32</div>
+  <div class="pd-lb-count"><span id="pdLbIdx">1</span> / <span class="pdTotal">32</span></div>
 </div>
 <script>
 (function(){
-  var PHOTOS = ["https://fotos15.apinmo.com/14306/29869007/7-1.jpg","https://fotos15.apinmo.com/14306/29869007/7-2.jpg","https://fotos15.apinmo.com/14306/29869007/7-3.jpg","https://fotos15.apinmo.com/14306/29869007/7-4.jpg","https://fotos15.apinmo.com/14306/29869007/7-5.jpg","https://fotos15.apinmo.com/14306/29869007/7-6.jpg","https://fotos15.apinmo.com/14306/29869007/7-7.jpg","https://fotos15.apinmo.com/14306/29869007/7-8.jpg","https://fotos15.apinmo.com/14306/29869007/7-9.jpg","https://fotos15.apinmo.com/14306/29869007/7-10.jpg","https://fotos15.apinmo.com/14306/29869007/7-11.jpg","https://fotos15.apinmo.com/14306/29869007/7-12.jpg","https://fotos15.apinmo.com/14306/29869007/7-13.jpg","https://fotos15.apinmo.com/14306/29869007/7-14.jpg","https://fotos15.apinmo.com/14306/29869007/7-15.jpg","https://fotos15.apinmo.com/14306/29869007/7-16.jpg","https://fotos15.apinmo.com/14306/29869007/7-17.jpg","https://fotos15.apinmo.com/14306/29869007/7-18.jpg","https://fotos15.apinmo.com/14306/29869007/7-19.jpg","https://fotos15.apinmo.com/14306/29869007/7-20.jpg","https://fotos15.apinmo.com/14306/29869007/7-21.jpg","https://fotos15.apinmo.com/14306/29869007/7-22.jpg","https://fotos15.apinmo.com/14306/29869007/7-23.jpg","https://fotos15.apinmo.com/14306/29869007/7-24.jpg","https://fotos15.apinmo.com/14306/29869007/7-25.jpg","https://fotos15.apinmo.com/14306/29869007/7-26.jpg","https://fotos15.apinmo.com/14306/29869007/7-27.jpg","https://fotos15.apinmo.com/14306/29869007/7-28.jpg","https://fotos15.apinmo.com/14306/29869007/7-29.jpg","https://fotos15.apinmo.com/14306/29869007/7-30.jpg","https://fotos15.apinmo.com/14306/29869007/7-31.jpg","https://fotos15.apinmo.com/14306/29869007/7-32.jpg"];
   var main = document.getElementById('mainPhoto');
-  if (!PHOTOS.length || !main) return;
+  if (!main) return;
   var i = 0;
   var idxEl = document.getElementById('pdIdx');
   var lb = document.getElementById('pdLb');
   var lbImg = document.getElementById('pdLbImg');
   var lbIdx = document.getElementById('pdLbIdx');
-  var thumbs = Array.prototype.slice.call(document.querySelectorAll('.pd-thumb'));
+  var totals = Array.prototype.slice.call(document.querySelectorAll('.pdTotal'));
+  var thumbs = [];
+  var PHOTOS = [];
+
+  // The gallery is driven by the thumbnails that actually load. If the CDN has
+  // lost a photo since the last build, its thumb is removed and the count and
+  // arrows adjust, instead of leaving a broken-image tile at the end of the rail.
+  function sync(){
+    thumbs = Array.prototype.slice.call(document.querySelectorAll('.pd-thumb'));
+    PHOTOS = thumbs.map(function(t){ return t.getAttribute('src'); });
+    for (var z = 0; z < totals.length; z++) totals[z].textContent = PHOTOS.length;
+  }
+  sync();
+  if (!PHOTOS.length) return;
+
+  for (var q = 0; q < thumbs.length; q++) {
+    (function(el){
+      el.addEventListener('error', function(){
+        var was = PHOTOS[i];
+        if (el.parentNode) el.parentNode.removeChild(el);
+        sync();
+        if (!PHOTOS.length) return;
+        var at = PHOTOS.indexOf(was);
+        show(at === -1 ? Math.min(i, PHOTOS.length - 1) : at, false);
+      });
+    })(thumbs[q]);
+  }
 
   function show(n, scroll){
     i = (n + PHOTOS.length) % PHOTOS.length;
@@ -171,9 +196,14 @@
   main.addEventListener('click', openLb);
   lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
 
+  // Index by live position, not the build-time data-i, so clicks stay correct
+  // after a dead thumbnail has been pruned.
   for (var j = 0; j < thumbs.length; j++) {
     (function(el){
-      el.addEventListener('click', function(){ show(parseInt(el.getAttribute('data-i'), 10), false); });
+      el.addEventListener('click', function(){
+        var at = thumbs.indexOf(el);
+        if (at !== -1) show(at, false);
+      });
     })(thumbs[j]);
   }
 

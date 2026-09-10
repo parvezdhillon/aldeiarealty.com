@@ -61,7 +61,7 @@
       <img id="mainPhoto" src="https://fotos15.apinmo.com/14306/30044766/20-1.jpg" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha">
       <button type="button" class="pd-arrow prev" id="pdPrev" aria-label="&#8592;">&#10094;</button>
       <button type="button" class="pd-arrow next" id="pdNext" aria-label="&#8594;">&#10095;</button>
-      <div class="pd-count"><span id="pdIdx">1</span> / 75 Fotografias</div>
+      <div class="pd-count"><span id="pdIdx">1</span> / <span class="pdTotal">71</span> Fotografias</div>
     </div>
     <div class="pd-thumbs" id="pdThumbs">
         <img src="https://fotos15.apinmo.com/14306/30044766/20-1.jpg" loading="lazy" decoding="async" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha 1" data-i="0" class="pd-thumb is-active">
@@ -135,10 +135,6 @@
         <img src="https://fotos15.apinmo.com/14306/30044766/20-73.jpg" loading="lazy" decoding="async" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha 69" data-i="68" class="pd-thumb">
         <img src="https://fotos15.apinmo.com/14306/30044766/20-74.jpg" loading="lazy" decoding="async" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha 70" data-i="69" class="pd-thumb">
         <img src="https://fotos15.apinmo.com/14306/30044766/20-75.jpg" loading="lazy" decoding="async" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha 71" data-i="70" class="pd-thumb">
-        <img src="https://fotos15.apinmo.com/14306/30044766/20-76.jpg" loading="lazy" decoding="async" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha 72" data-i="71" class="pd-thumb">
-        <img src="https://fotos15.apinmo.com/14306/30044766/20-77.jpg" loading="lazy" decoding="async" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha 73" data-i="72" class="pd-thumb">
-        <img src="https://fotos15.apinmo.com/14306/30044766/20-78.jpg" loading="lazy" decoding="async" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha 74" data-i="73" class="pd-thumb">
-        <img src="https://fotos15.apinmo.com/14306/30044766/20-79.jpg" loading="lazy" decoding="async" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha 75" data-i="74" class="pd-thumb">
     </div>
   </div>
   <div class="pd-head">
@@ -177,19 +173,44 @@
   <button type="button" class="pd-arrow prev" id="pdLbPrev" aria-label="&#8592;">&#10094;</button>
   <img id="pdLbImg" src="" alt="Moradia T4 isolada com piscina privativa — Nadadouro, Caldas da Rainha">
   <button type="button" class="pd-arrow next" id="pdLbNext" aria-label="&#8594;">&#10095;</button>
-  <div class="pd-lb-count"><span id="pdLbIdx">1</span> / 75</div>
+  <div class="pd-lb-count"><span id="pdLbIdx">1</span> / <span class="pdTotal">71</span></div>
 </div>
 <script>
 (function(){
-  var PHOTOS = ["https://fotos15.apinmo.com/14306/30044766/20-1.jpg","https://fotos15.apinmo.com/14306/30044766/20-2.jpg","https://fotos15.apinmo.com/14306/30044766/20-3.jpg","https://fotos15.apinmo.com/14306/30044766/20-4.jpg","https://fotos15.apinmo.com/14306/30044766/20-5.jpg","https://fotos15.apinmo.com/14306/30044766/20-6.jpg","https://fotos15.apinmo.com/14306/30044766/20-7.jpg","https://fotos15.apinmo.com/14306/30044766/20-8.jpg","https://fotos15.apinmo.com/14306/30044766/20-9.jpg","https://fotos15.apinmo.com/14306/30044766/20-10.jpg","https://fotos15.apinmo.com/14306/30044766/20-11.jpg","https://fotos15.apinmo.com/14306/30044766/20-12.jpg","https://fotos15.apinmo.com/14306/30044766/20-13.jpg","https://fotos15.apinmo.com/14306/30044766/20-14.jpg","https://fotos15.apinmo.com/14306/30044766/20-15.jpg","https://fotos15.apinmo.com/14306/30044766/20-16.jpg","https://fotos15.apinmo.com/14306/30044766/20-17.jpg","https://fotos15.apinmo.com/14306/30044766/20-18.jpg","https://fotos15.apinmo.com/14306/30044766/20-19.jpg","https://fotos15.apinmo.com/14306/30044766/20-20.jpg","https://fotos15.apinmo.com/14306/30044766/20-21.jpg","https://fotos15.apinmo.com/14306/30044766/20-22.jpg","https://fotos15.apinmo.com/14306/30044766/20-23.jpg","https://fotos15.apinmo.com/14306/30044766/20-24.jpg","https://fotos15.apinmo.com/14306/30044766/20-25.jpg","https://fotos15.apinmo.com/14306/30044766/20-26.jpg","https://fotos15.apinmo.com/14306/30044766/20-27.jpg","https://fotos15.apinmo.com/14306/30044766/20-28.jpg","https://fotos15.apinmo.com/14306/30044766/20-29.jpg","https://fotos15.apinmo.com/14306/30044766/20-30.jpg","https://fotos15.apinmo.com/14306/30044766/20-31.jpg","https://fotos15.apinmo.com/14306/30044766/20-32.jpg","https://fotos15.apinmo.com/14306/30044766/20-33.jpg","https://fotos15.apinmo.com/14306/30044766/20-34.jpg","https://fotos15.apinmo.com/14306/30044766/20-35.jpg","https://fotos15.apinmo.com/14306/30044766/20-36.jpg","https://fotos15.apinmo.com/14306/30044766/20-37.jpg","https://fotos15.apinmo.com/14306/30044766/20-38.jpg","https://fotos15.apinmo.com/14306/30044766/20-39.jpg","https://fotos15.apinmo.com/14306/30044766/20-40.jpg","https://fotos15.apinmo.com/14306/30044766/20-41.jpg","https://fotos15.apinmo.com/14306/30044766/20-42.jpg","https://fotos15.apinmo.com/14306/30044766/20-43.jpg","https://fotos15.apinmo.com/14306/30044766/20-44.jpg","https://fotos15.apinmo.com/14306/30044766/20-45.jpg","https://fotos15.apinmo.com/14306/30044766/20-46.jpg","https://fotos15.apinmo.com/14306/30044766/20-47.jpg","https://fotos15.apinmo.com/14306/30044766/20-48.jpg","https://fotos15.apinmo.com/14306/30044766/20-49.jpg","https://fotos15.apinmo.com/14306/30044766/20-50.jpg","https://fotos15.apinmo.com/14306/30044766/20-51.jpg","https://fotos15.apinmo.com/14306/30044766/20-52.jpg","https://fotos15.apinmo.com/14306/30044766/20-53.jpg","https://fotos15.apinmo.com/14306/30044766/20-54.jpg","https://fotos15.apinmo.com/14306/30044766/20-55.jpg","https://fotos15.apinmo.com/14306/30044766/20-56.jpg","https://fotos15.apinmo.com/14306/30044766/20-57.jpg","https://fotos15.apinmo.com/14306/30044766/20-58.jpg","https://fotos15.apinmo.com/14306/30044766/20-59.jpg","https://fotos15.apinmo.com/14306/30044766/20-60.jpg","https://fotos15.apinmo.com/14306/30044766/20-61.jpg","https://fotos15.apinmo.com/14306/30044766/20-62.jpg","https://fotos15.apinmo.com/14306/30044766/20-63.jpg","https://fotos15.apinmo.com/14306/30044766/20-64.jpg","https://fotos15.apinmo.com/14306/30044766/20-65.jpg","https://fotos15.apinmo.com/14306/30044766/20-66.jpg","https://fotos15.apinmo.com/14306/30044766/20-67.jpg","https://fotos15.apinmo.com/14306/30044766/20-72.jpg","https://fotos15.apinmo.com/14306/30044766/20-73.jpg","https://fotos15.apinmo.com/14306/30044766/20-74.jpg","https://fotos15.apinmo.com/14306/30044766/20-75.jpg","https://fotos15.apinmo.com/14306/30044766/20-76.jpg","https://fotos15.apinmo.com/14306/30044766/20-77.jpg","https://fotos15.apinmo.com/14306/30044766/20-78.jpg","https://fotos15.apinmo.com/14306/30044766/20-79.jpg"];
   var main = document.getElementById('mainPhoto');
-  if (!PHOTOS.length || !main) return;
+  if (!main) return;
   var i = 0;
   var idxEl = document.getElementById('pdIdx');
   var lb = document.getElementById('pdLb');
   var lbImg = document.getElementById('pdLbImg');
   var lbIdx = document.getElementById('pdLbIdx');
-  var thumbs = Array.prototype.slice.call(document.querySelectorAll('.pd-thumb'));
+  var totals = Array.prototype.slice.call(document.querySelectorAll('.pdTotal'));
+  var thumbs = [];
+  var PHOTOS = [];
+
+  // The gallery is driven by the thumbnails that actually load. If the CDN has
+  // lost a photo since the last build, its thumb is removed and the count and
+  // arrows adjust, instead of leaving a broken-image tile at the end of the rail.
+  function sync(){
+    thumbs = Array.prototype.slice.call(document.querySelectorAll('.pd-thumb'));
+    PHOTOS = thumbs.map(function(t){ return t.getAttribute('src'); });
+    for (var z = 0; z < totals.length; z++) totals[z].textContent = PHOTOS.length;
+  }
+  sync();
+  if (!PHOTOS.length) return;
+
+  for (var q = 0; q < thumbs.length; q++) {
+    (function(el){
+      el.addEventListener('error', function(){
+        var was = PHOTOS[i];
+        if (el.parentNode) el.parentNode.removeChild(el);
+        sync();
+        if (!PHOTOS.length) return;
+        var at = PHOTOS.indexOf(was);
+        show(at === -1 ? Math.min(i, PHOTOS.length - 1) : at, false);
+      });
+    })(thumbs[q]);
+  }
 
   function show(n, scroll){
     i = (n + PHOTOS.length) % PHOTOS.length;
@@ -216,9 +237,14 @@
   main.addEventListener('click', openLb);
   lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
 
+  // Index by live position, not the build-time data-i, so clicks stay correct
+  // after a dead thumbnail has been pruned.
   for (var j = 0; j < thumbs.length; j++) {
     (function(el){
-      el.addEventListener('click', function(){ show(parseInt(el.getAttribute('data-i'), 10), false); });
+      el.addEventListener('click', function(){
+        var at = thumbs.indexOf(el);
+        if (at !== -1) show(at, false);
+      });
     })(thumbs[j]);
   }
 
