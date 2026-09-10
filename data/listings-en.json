@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-30T12:55:52.218Z",
+  "generated": "2026-09-10T05:34:22.124Z",
   "listings": [
     {
       "ref": "AD1",
@@ -30,6 +30,21 @@
       "bathrooms": 3,
       "image": "https://fotos15.apinmo.com/14306/30044766/20-1.jpg",
       "url": "property-ar20260828.html"
+    },
+    {
+      "ref": "AR100926",
+      "operation": "sale",
+      "price": 635000,
+      "priceSale": 635000,
+      "priceRent": null,
+      "priceLabel": "635.000 €",
+      "title": "T3+1 villa with pool, guest annexe and fruit trees in Salir de Matos",
+      "description": "​Ten minutes from Caldas da Rainha, where the only thing in front of you is farmland and an orchard. This detached two-level villa sits in the hamlet of Trabalhias on 1,388 m² of l",
+      "location": "Caldas da Rainha",
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "image": "https://fotos15.apinmo.com/14306/30157549/10-1.jpg",
+      "url": "property-ar100926.html"
     }
   ]
 }
