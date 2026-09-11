@@ -1,0 +1,415 @@
+ALDEIA REALTY — SEO / RECONCILIATION CHANGE SET
+Generated 2026-09-10 16:32 UTC · review in GitHub Desktop, then commit
+================================================================================
+
+### 1. The head insert — IDENTICAL on all 36 static pages (example: sell.html)
+
+--- /mnt/user-data/uploads/aldeiarealty.com/sell.html	2026-09-10 16:24:41.770879157 +0000
++++ sell.html	2026-09-10 16:27:35.740034780 +0000
+@@ -9,8 +9,15 @@
+ <meta property="og:description" content="Premium marketing, collaborative Partilha, 50+ international portals. Sell your Silver Coast property with confidence." />
+ <meta property="og:type" content="website" />
+ <meta property="og:site_name" content="Aldeia Realty" />
+-<meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
++<meta property="og:image" content="https://www.aldeiarealty.com/images/AldeiaRealty-Social-Preview.jpg" />
+ <meta name="twitter:card" content="summary_large_image" />
++<link rel="canonical" href="https://www.aldeiarealty.com/sell.html" />
++<link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/sell.html" />
++<link rel="alternate" hreflang="pt-PT" href="https://www.aldeiarealty.com/pt/sell.html" />
++<link rel="alternate" hreflang="x-default" href="https://www.aldeiarealty.com/sell.html" />
++<meta property="og:url" content="https://www.aldeiarealty.com/sell.html" />
++<meta property="og:locale" content="en_GB" />
++<meta property="og:locale:alternate" content="pt_PT" />
+ <link rel="icon" type="image/x-icon" href="logos/favicon.ico">
+ <link rel="icon" type="image/png" sizes="32x32" href="logos/favicon-32x32.png">
+ <link rel="apple-touch-icon" sizes="180x180" href="logos/apple-touch-icon.png">
+
+### 2. PT parity — pt/our-story.html + pt/our-team.html had NO favicon and NO OG tags at all
+
+--- /mnt/user-data/uploads/aldeiarealty.com/pt/our-team.html	2026-09-10 16:25:07.738879601 +0000
++++ pt/our-team.html	2026-09-10 16:27:52.431612911 +0000
+@@ -5,6 +5,22 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>A Nossa Equipa — Aldeia Realty</title>
+ <meta name="description" content="Conheça a equipa da Aldeia Realty — especialistas em relocação, consultores licenciados e conhecedores da Costa de Prata ao seu serviço." />
++<meta property="og:title" content="A Nossa Equipa — Aldeia Realty" />
++<meta property="og:description" content="Conheça a equipa da Aldeia Realty — especialistas em relocação, consultores licenciados e conhecedores da Costa de Prata ao seu serviço." />
++<meta property="og:type" content="website" />
++<meta property="og:site_name" content="Aldeia Realty" />
++<meta property="og:image" content="https://www.aldeiarealty.com/images/AldeiaRealty-Social-Preview.jpg" />
++<meta name="twitter:card" content="summary_large_image" />
++<link rel="canonical" href="https://www.aldeiarealty.com/pt/our-team.html" />
++<link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/our-team.html" />
++<link rel="alternate" hreflang="pt-PT" href="https://www.aldeiarealty.com/pt/our-team.html" />
++<link rel="alternate" hreflang="x-default" href="https://www.aldeiarealty.com/our-team.html" />
++<meta property="og:url" content="https://www.aldeiarealty.com/pt/our-team.html" />
++<meta property="og:locale" content="pt_PT" />
++<meta property="og:locale:alternate" content="en_GB" />
++<link rel="icon" type="image/x-icon" href="../logos/favicon.ico">
++<link rel="icon" type="image/png" sizes="32x32" href="../logos/favicon-32x32.png">
++<link rel="apple-touch-icon" sizes="180x180" href="../logos/apple-touch-icon.png">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+### 3. RealEstateAgent JSON-LD (index + contact, EN + PT)
+
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "RealEstateAgent",
++  "@id": "https://www.aldeiarealty.com/#organization",
++  "name": "Aldeia Realty",
++  "legalName": "Aldeia Realty - Real Estate, Lda.",
++  "url": "https://www.aldeiarealty.com/",
++  "logo": {
++    "@type": "ImageObject",
++    "url": "https://www.aldeiarealty.com/logos/AR-Logo-Horizontal-FullColour@2x.png"
++  },
++  "image": "https://www.aldeiarealty.com/images/AldeiaRealty-Social-Preview.jpg",
++  "email": "info@aldeiarealty.com",
++  "telephone": "+351912771309",
++  "address": {
++    "@type": "PostalAddress",
++    "streetAddress": "Rua Dr. Ângelo Ferrari, n.º 7, R/C Dt.º",
++    "addressLocality": "Caldas da Rainha",
++    "postalCode": "2500-113",
++    "addressRegion": "Leiria",
++    "addressCountry": "PT"
++  },
++  "vatID": "PT519410440",
++  "identifier": [
++    {
++      "@type": "PropertyValue",
++      "name": "AMI",
++      "value": "27493"
++    },
++    {
++      "@type": "PropertyValue",
++      "name": "NIPC",
++      "value": "519410440"
++    }
++  ],
++  "knowsLanguage": [
++    "en",
++    "pt"
++  ],
++  "areaServed": [
++    {
++      "@type": "Place",
++      "name": "Caldas da Rainha"
++    },
++    {
++      "@type": "Place",
++      "name": "Óbidos"
++    },
++    {
++      "@type": "Place",
++      "name": "Peniche"
++    },
++    {
++      "@type": "Place",
++      "name": "Nazaré"
++    },
++    {
++      "@type": "Place",
++      "name": "Leiria"
++    },
++    {
++      "@type": "Place",
++      "name": "Foz do Arelho"
++    },
++    {
++      "@type": "Place",
++      "name": "Silver Coast, Portugal"
++    }
++  ],
++  "sameAs": [
++    "https://www.instagram.com/aldeiarealty/",
++    "https://www.facebook.com/share/17yLgpitNh/",
++    "https://share.google/gbTJUs35o6mbW1ZyQ"
++  ],
++  "priceRange": "€€€",
++  "description": "Boutique real estate agency on Portugal's Silver Coast, specialising in relocation and property purchase for international buyers. AMI 27493.",
++  "inLanguage": "en"
++}
++</script>
+
+### 4. Homepage reconciliation — index.html (sample cards OUT, live listings IN)
+
+--- /mnt/user-data/uploads/aldeiarealty.com/index.html	2026-09-10 16:10:53.740335411 +0000
++++ index.html	2026-09-10 16:30:44.918885369 +0000
+@@ -9,8 +9,15 @@
+-<meta property="og:image" content="https://aldeiarealty.com/images/AladeiaRealty-Social-Preview.jpg" />
++<meta property="og:image" content="https://www.aldeiarealty.com/images/AldeiaRealty-Social-Preview.jpg" />
++<link rel="canonical" href="https://www.aldeiarealty.com/index.html" />
++<link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/index.html" />
++<link rel="alternate" hreflang="pt-PT" href="https://www.aldeiarealty.com/pt/index.html" />
++<link rel="alternate" hreflang="x-default" href="https://www.aldeiarealty.com/index.html" />
++<meta property="og:url" content="https://www.aldeiarealty.com/index.html" />
++<meta property="og:locale" content="en_GB" />
++<meta property="og:locale:alternate" content="pt_PT" />
+@@ -461,6 +468,86 @@
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "RealEstateAgent",
++  "@id": "https://www.aldeiarealty.com/#organization",
++  "name": "Aldeia Realty",
++  "legalName": "Aldeia Realty - Real Estate, Lda.",
++  "url": "https://www.aldeiarealty.com/",
++  "logo": {
++    "@type": "ImageObject",
++    "url": "https://www.aldeiarealty.com/logos/AR-Logo-Horizontal-FullColour@2x.png"
++  },
++  "image": "https://www.aldeiarealty.com/images/AldeiaRealty-Social-Preview.jpg",
++  "email": "info@aldeiarealty.com",
++  "telephone": "+351912771309",
++  "address": {
++    "@type": "PostalAddress",
++    "streetAddress": "Rua Dr. Ângelo Ferrari, n.º 7, R/C Dt.º",
++    "addressLocality": "Caldas da Rainha",
++    "postalCode": "2500-113",
++    "addressRegion": "Leiria",
++    "addressCountry": "PT"
++  },
++  "vatID": "PT519410440",
++  "identifier": [
++    {
++      "@type": "PropertyValue",
++      "name": "AMI",
++      "value": "27493"
++    },
++    {
++      "@type": "PropertyValue",
++      "name": "NIPC",
++      "value": "519410440"
++    }
++  ],
++  "knowsLanguage": [
++    "en",
++    "pt"
++  ],
++  "areaServed": [
++    {
++      "@type": "Place",
++      "name": "Caldas da Rainha"
++    },
++    {
++      "@type": "Place",
++      "name": "Óbidos"
++    },
++    {
++      "@type": "Place",
++      "name": "Peniche"
++    },
++    {
++      "@type": "Place",
++      "name": "Nazaré"
++    },
++    {
++      "@type": "Place",
++      "name": "Leiria"
++    },
++    {
++      "@type": "Place",
++      "name": "Foz do Arelho"
++    },
++    {
++      "@type": "Place",
++      "name": "Silver Coast, Portugal"
++    }
++  ],
++  "sameAs": [
++    "https://www.instagram.com/aldeiarealty/",
++    "https://www.facebook.com/share/17yLgpitNh/",
++    "https://share.google/gbTJUs35o6mbW1ZyQ"
++  ],
++  "priceRange": "€€€",
++  "description": "Boutique real estate agency on Portugal's Silver Coast, specialising in relocation and property purchase for international buyers. AMI 27493.",
++  "inLanguage": "en"
++}
++</script>
+@@ -560,40 +647,43 @@
++<!-- AR:HOME-LISTINGS:START (auto-generated - do not edit between markers) -->
+
+### 5. netlify.toml — security headers
+
+--- /mnt/user-data/uploads/aldeiarealty.com/netlify.toml	2026-09-10 16:10:53.686864991 +0000
++++ netlify.toml	2026-09-10 16:30:02.158884638 +0000
+@@ -5,6 +5,23 @@
+   publish = "."
+   functions = "netlify/functions"
+ 
++# Security headers — applied to every response.
++[[headers]]
++  for = "/*"
++  [headers.values]
++    # Stop browsers second-guessing a file's declared type (MIME sniffing).
++    X-Content-Type-Options = "nosniff"
++    # Only aldeiarealty.com may frame our pages — blocks clickjacking.
++    X-Frame-Options = "SAMEORIGIN"
++    # Send the full URL to ourselves, origin only to other sites, nothing over http.
++    Referrer-Policy = "strict-origin-when-cross-origin"
++    # We ask for none of these, so deny them up front.
++    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
++    # Uncomment to tell browsers to only ever reach this domain over https for a
++    # year. Netlify already forces https; this makes it non-negotiable client-side.
++    # Reversing it takes up to a year to propagate, so switch it on deliberately.
++    # Strict-Transport-Security = "max-age=31536000; includeSubDomains"
++
+ # Cache the listings function response at the CDN edge for 30 minutes.
+ [[headers]]
+   for = "/.netlify/functions/listings"
+
+### 6. .github/workflows/listings.yml — daily bot must also commit index + sitemap now
+
+--- /mnt/user-data/uploads/aldeiarealty.com/.github/workflows/listings.yml	2026-09-10 16:31:04.266885700 +0000
++++ .github/workflows/listings.yml	2026-09-10 16:31:17.734885930 +0000
+@@ -37,11 +37,17 @@
+           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+ 
+           # Only listing-generated paths — never sweep unrelated edits into this commit.
++          # index.html / pt/index.html carry the AR:HOME-LISTINGS block and
++          # sitemap.xml the AR:SITEMAP-LISTINGS block, both rewritten by the
++          # build script — without them here the homepage and sitemap go stale.
+           git add -A -- \
+             data/listings-en.json \
+             data/listings-pt.json \
+             properties.html \
+             pt/properties.html \
++            index.html \
++            pt/index.html \
++            sitemap.xml \
+             'property-*.html' \
+             'pt/imovel-*.html'
+ 
+
+### 7. sitemap.xml — 6 listing URLs added inside new markers
+
+--- /mnt/user-data/uploads/aldeiarealty.com/sitemap.xml	2026-09-10 16:24:43.742879191 +0000
++++ sitemap.xml	2026-09-10 16:30:44.918885369 +0000
+@@ -325,4 +325,60 @@
+     <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.aldeiarealty.com/pt/success.html" />
+     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aldeiarealty.com/success.html" />
+   </url>
++  <!-- AR:SITEMAP-LISTINGS:START (auto-generated - do not edit between markers) -->
++  <url>
++    <loc>https://www.aldeiarealty.com/property-ad1.html</loc>
++    <lastmod>2026-09-10</lastmod>
++    <changefreq>daily</changefreq>
++    <priority>0.8</priority>
++    <xhtml:link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/property-ad1.html" />
++    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.aldeiarealty.com/pt/imovel-ad1.html" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aldeiarealty.com/property-ad1.html" />
++  </url>
++  <url>
++    <loc>https://www.aldeiarealty.com/pt/imovel-ad1.html</loc>
++    <lastmod>2026-09-10</lastmod>
++    <changefreq>daily</changefreq>
++    <priority>0.8</priority>
++    <xhtml:link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/property-ad1.html" />
++    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.aldeiarealty.com/pt/imovel-ad1.html" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aldeiarealty.com/property-ad1.html" />
++  </url>
++  <url>
++    <loc>https://www.aldeiarealty.com/property-ar20260828.html</loc>
++    <lastmod>2026-09-10</lastmod>
++    <changefreq>daily</changefreq>
++    <priority>0.8</priority>
+
+### 8. test-form.html — noindex
+
+--- /mnt/user-data/uploads/aldeiarealty.com/test-form.html	2026-09-10 16:31:23.058886021 +0000
++++ test-form.html	2026-09-10 16:31:27.730886101 +0000
+@@ -3,6 +3,7 @@
+ <head>
+   <meta charset="UTF-8" />
+   <title>Formspree Test</title>
++  <meta name="robots" content="noindex, nofollow" />
+ </head>
+ <body style="font-family:sans-serif;max-width:400px;margin:50px auto;padding:20px;">
+ <!-- IMPIC DISCLAIMER TOP -->
+
+### 9. Generated property page head (example property-ar100926.html)
+
+--- /mnt/user-data/uploads/aldeiarealty.com/property-ar100926.html	2026-09-10 16:24:40.762879140 +0000
++++ property-ar100926.html	2026-09-10 16:30:44.914885369 +0000
+@@ -4,6 +4,22 @@
++<link rel="canonical" href="https://www.aldeiarealty.com/property-ar100926.html" />
++<link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/property-ar100926.html" />
++<link rel="alternate" hreflang="pt-PT" href="https://www.aldeiarealty.com/pt/imovel-ar100926.html" />
++<link rel="alternate" hreflang="x-default" href="https://www.aldeiarealty.com/property-ar100926.html" />
++<meta property="og:type" content="website" />
++<meta property="og:site_name" content="Aldeia Realty" />
++<meta property="og:title" content="T3+1 villa with pool, guest annexe and fruit trees in Salir de Matos" />
++<meta property="og:description" content="​Detached villa with pool, guest annex, and established garden — Salir de Matos, Caldas da Rainha" />
++<meta property="og:url" content="https://www.aldeiarealty.com/property-ar100926.html" />
++<meta property="og:image" content="https://fotos15.apinmo.com/14306/30157549/10-1.jpg" />
++<meta property="og:locale" content="en_GB" />
++<meta property="og:locale:alternate" content="pt_PT" />
++<meta name="twitter:card" content="summary_large_image" />
++<link rel="icon" type="image/x-icon" href="logos/favicon.ico">
++<link rel="icon" type="image/png" sizes="32x32" href="logos/favicon-32x32.png">
++<link rel="apple-touch-icon" sizes="180x180" href="logos/apple-touch-icon.png">
+@@ -49,6 +65,79 @@
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "RealEstateListing",
++  "@id": "https://www.aldeiarealty.com/property-ar100926.html#listing",
++  "url": "https://www.aldeiarealty.com/property-ar100926.html",
++  "name": "T3+1 villa with pool, guest annexe and fruit trees in Salir de Matos",
++  "description": "​Detached villa with pool, guest annex, and established garden — Salir de Matos, Caldas da Rainha",
++  "inLanguage": "en",
++  "identifier": "AR100926",
++  "image": [
++    "https://fotos15.apinmo.com/14306/30157549/10-1.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-2.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-3.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-4.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-5.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-6.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-7.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-8.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-9.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-10.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-11.jpg",
++    "https://fotos15.apinmo.com/14306/30157549/10-12.jpg"
++  ],
++  "provider": {
++    "@id": "https://www.aldeiarealty.com/#organization"
++  },
++  "about": {
++    "@type": "SingleFamilyResidence",
++    "name": "T3+1 villa with pool, guest annexe and fruit trees in Salir de Matos",
++    "address": {
++      "@type": "PostalAddress",
++      "addressLocality": "Caldas da Rainha",
++      "addressRegion": "Leiria",
++      "addressCountry": "PT"
++    },
++    "numberOfBedrooms": 4,
++    "numberOfBathroomsTotal": 2,
++    "floorSize": {
++      "@type": "QuantitativeValue",
++      "value": 440,
++      "unitCode": "MTK"
++    },
++    "lotSize": {
++      "@type": "QuantitativeValue",
++      "value": 1388,
++      "unitCode": "MTK"
++    },
++    "yearBuilt": 1999,
++    "amenityFeature": [
++      {
++        "@type": "LocationFeatureSpecification",
++        "name": "Swimming pool",
++        "value": true
++      },
++      {
++        "@type": "LocationFeatureSpecification",
++        "name": "Parking",
++        "value": true
++      }

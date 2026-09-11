@@ -5,6 +5,23 @@
   publish = "."
   functions = "netlify/functions"
 
+# Security headers — applied to every response.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Stop browsers second-guessing a file's declared type (MIME sniffing).
+    X-Content-Type-Options = "nosniff"
+    # Only aldeiarealty.com may frame our pages — blocks clickjacking.
+    X-Frame-Options = "SAMEORIGIN"
+    # Send the full URL to ourselves, origin only to other sites, nothing over http.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # We ask for none of these, so deny them up front.
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    # Uncomment to tell browsers to only ever reach this domain over https for a
+    # year. Netlify already forces https; this makes it non-negotiable client-side.
+    # Reversing it takes up to a year to propagate, so switch it on deliberately.
+    # Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
 # Cache the listings function response at the CDN edge for 30 minutes.
 [[headers]]
   for = "/.netlify/functions/listings"

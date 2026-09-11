@@ -172,6 +172,146 @@ ${props.map(p => cardHtml(p, lang)).join('\n')}
 </section>`;
 }
 
+// ---------- SEO head: canonical, hreflang, Open Graph, JSON-LD ----------
+const SITE = 'https://www.aldeiarealty.com';
+const ORG_ID = SITE + '/#organization';
+
+// Map an Inmovilla tipo_ofer onto the closest schema.org accommodation type.
+function schemaTypeFor(p) {
+  const t = String(p.type || '').toLowerCase();
+  if (t.includes('apartamento') || t.includes('piso') || t.includes('flat')) return 'Apartment';
+  if (t.includes('terreno') || t.includes('parcela')) return 'Place';
+  return 'SingleFamilyResidence';
+}
+
+function seoHead(p, lang) {
+  const en = lang === 'en';
+  const enPath = 'property-' + p.slug + '.html';
+  const ptPath = 'pt/imovel-' + p.slug + '.html';
+  const selfPath = en ? enPath : ptPath;
+  const title = en ? p.titleEN : p.titlePT;
+  const desc = esc(((en ? p.descEN : p.descPT)[0] || title)).slice(0, 200);
+  const img = p.photos[0] || (SITE + '/images/AldeiaRealty-Social-Preview.jpg');
+  return `<link rel="canonical" href="${SITE}/${selfPath}" />
+<link rel="alternate" hreflang="en" href="${SITE}/${enPath}" />
+<link rel="alternate" hreflang="pt-PT" href="${SITE}/${ptPath}" />
+<link rel="alternate" hreflang="x-default" href="${SITE}/${enPath}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aldeia Realty" />
+<meta property="og:title" content="${esc(title)}" />
+<meta property="og:description" content="${desc}" />
+<meta property="og:url" content="${SITE}/${selfPath}" />
+<meta property="og:image" content="${img}" />
+<meta property="og:locale" content="${en ? 'en_GB' : 'pt_PT'}" />
+<meta property="og:locale:alternate" content="${en ? 'pt_PT' : 'en_GB'}" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/x-icon" href="${en ? '' : '../'}logos/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="${en ? '' : '../'}logos/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="${en ? '' : '../'}logos/apple-touch-icon.png">
+`;
+}
+
+function listingLd(p, lang) {
+  const en = lang === 'en';
+  const selfPath = en ? ('property-' + p.slug + '.html') : ('pt/imovel-' + p.slug + '.html');
+  const title = en ? p.titleEN : p.titlePT;
+  const paras = en ? p.descEN : p.descPT;
+
+  const about = {
+    '@type': schemaTypeFor(p),
+    name: title,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: p.city || 'Caldas da Rainha',
+      addressRegion: p.province || 'Leiria',
+      addressCountry: 'PT',
+    },
+  };
+  if (p.zone) about.address.addressLocality = p.city || p.zone;
+  if (p.bedrooms) about.numberOfBedrooms = p.bedrooms;
+  if (p.bathrooms) about.numberOfBathroomsTotal = p.bathrooms;
+  if (p.areaBuilt) about.floorSize = { '@type': 'QuantitativeValue', value: Math.round(p.areaBuilt), unitCode: 'MTK' };
+  if (p.plot) about.lotSize = { '@type': 'QuantitativeValue', value: Math.round(p.plot), unitCode: 'MTK' };
+  if (p.yearBuilt && /^\d{4}$/.test(String(p.yearBuilt))) about.yearBuilt = Number(p.yearBuilt);
+  const amenities = [];
+  if (p.poolPrivate || p.poolShared) amenities.push('Swimming pool');
+  if (p.parking) amenities.push('Parking');
+  if (p.elevator) amenities.push('Lift');
+  if (amenities.length) {
+    about.amenityFeature = amenities.map(n => ({ '@type': 'LocationFeatureSpecification', name: n, value: true }));
+  }
+
+  // A property can be for sale AND for rent — emit an Offer for each.
+  const offers = [];
+  if (p.priceSale) {
+    offers.push({
+      '@type': 'Offer', price: p.priceSale, priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      businessFunction: 'http://purl.org/goodrelations/v1#Sell',
+      url: SITE + '/' + selfPath,
+    });
+  }
+  if (p.priceRent) {
+    offers.push({
+      '@type': 'Offer', price: p.priceRent, priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      businessFunction: 'http://purl.org/goodrelations/v1#LeaseOut',
+      unitCode: 'MON',
+      url: SITE + '/' + selfPath,
+    });
+  }
+
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateListing',
+    '@id': SITE + '/' + selfPath + '#listing',
+    url: SITE + '/' + selfPath,
+    name: title,
+    description: (paras[0] || title).slice(0, 500),
+    inLanguage: en ? 'en' : 'pt-PT',
+    identifier: p.ref,
+    image: p.photos.slice(0, 12),
+    provider: { '@id': ORG_ID },
+    about,
+  };
+  if (offers.length) ld.offers = offers.length === 1 ? offers[0] : offers;
+  if (p.updated) {
+    const m = String(p.updated).match(/(\d{4})-(\d{2})-(\d{2})/);
+    if (m) ld.datePosted = m[0];
+  }
+  return '<script type="application/ld+json">\n'
+    + JSON.stringify(ld, null, 2) + '\n</script>\n';
+}
+
+// ---------- homepage section ----------
+// Same cards as the properties page, but homepage copy, the dove background the
+// old "Coming soon / sample listings" block used, a max of three cards, and a
+// "browse all" button underneath.
+function homeSectionHtml(props, lang) {
+  const en = lang === 'en';
+  if (!props.length) return ''; // empty feed → section disappears
+  const shown = props.slice(0, 3);
+  const kicker = en ? 'Available now' : 'Dispon&iacute;vel agora';
+  const h2 = en
+    ? 'Homes we are <em>listing right now</em>.'
+    : 'Im&oacute;veis que estamos a <em>angariar agora</em>.';
+  const sub = en
+    ? 'Listed and represented by Aldeia Realty. Updated daily from our property system.'
+    : 'Angariados e representados pela Aldeia Realty. Atualizado diariamente a partir do nosso sistema.';
+  const more = en ? 'Browse All Properties &rarr;' : 'Ver Todos os Im&oacute;veis &rarr;';
+  return `<section class="section dove">
+  <div class="container">
+    <div class="section-header"><div class="kicker">${kicker}</div><h2>${h2}</h2><p class="sub">${sub}</p></div>
+    <div class="grid-3">
+${shown.map(p => cardHtml(p, lang)).join('\n')}
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a class="btn btn-secondary" href="properties.html">${more}</a>
+    </div>
+  </div>
+</section>`;
+}
+
 // ---------- detail page ----------
 function detailHtml(p, lang) {
   const en = lang === 'en';
@@ -215,7 +355,7 @@ function detailHtml(p, lang) {
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)} — Aldeia Realty</title>
 <meta name="description" content="${esc(paras[0] || title).slice(0, 155)}">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+${seoHead(p, lang)}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${cssPath}">
 <style>
@@ -260,7 +400,7 @@ function detailHtml(p, lang) {
 .pd-lb-count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#f4ecdc;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.16em}
 @media(max-width:820px){.pd-gallery,.pd-cols{grid-template-columns:1fr}.pd-thumbs{grid-template-columns:repeat(4,1fr);max-height:340px}.pd-arrow{width:38px;height:38px;font-size:16px}}
 </style>
-</head>
+${listingLd(p, lang)}</head>
 <body style="background:#fbf8f3">
 <div class="pd-wrap">
   <div class="pd-nav">
@@ -414,11 +554,15 @@ function detailHtml(p, lang) {
 // ---------- inject cards into properties pages via markers ----------
 const START = '<!-- AR:LISTINGS:START (auto-generated - do not edit between markers) -->';
 const END = '<!-- AR:LISTINGS:END -->';
-function injectSection(filePath, html) {
+const HOME_START = '<!-- AR:HOME-LISTINGS:START (auto-generated - do not edit between markers) -->';
+const HOME_END = '<!-- AR:HOME-LISTINGS:END -->';
+function injectSection(filePath, html, startMarker, endMarker) {
+  const s = startMarker || START;
+  const e = endMarker || END;
   let src = fs.readFileSync(filePath, 'utf8');
-  const block = START + '\n' + html + '\n' + END;
-  if (src.includes(START) && src.includes(END)) {
-    src = src.replace(new RegExp(escapeRe(START) + '[\\s\\S]*?' + escapeRe(END)), block);
+  const block = s + '\n' + html + '\n' + e;
+  if (src.includes(s) && src.includes(e)) {
+    src = src.replace(new RegExp(escapeRe(s) + '[\\s\\S]*?' + escapeRe(e)), block);
   } else {
     // First run: insert just before the sample-listings section
     const anchor = '<section class="section">';
@@ -430,6 +574,43 @@ function injectSection(filePath, html) {
   console.log('Updated', path.relative(ROOT, filePath));
 }
 function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+// ---------- sitemap: keep the listing URLs in step with the feed ----------
+const SITEMAP_START = '  <!-- AR:SITEMAP-LISTINGS:START (auto-generated - do not edit between markers) -->';
+const SITEMAP_END = '  <!-- AR:SITEMAP-LISTINGS:END -->';
+function updateSitemap(props) {
+  const file = path.join(ROOT, 'sitemap.xml');
+  let src = fs.readFileSync(file, 'utf8');
+  if (!src.includes('AR:SITEMAP-LISTINGS:START')) {
+    console.warn('Skipped sitemap.xml — AR:SITEMAP-LISTINGS markers not found.');
+    return;
+  }
+  const today = new Date().toISOString().slice(0, 10);
+  const entries = [];
+  for (const p of props) {
+    const en = SITE + '/property-' + p.slug + '.html';
+    const pt = SITE + '/pt/imovel-' + p.slug + '.html';
+    const alts = `    <xhtml:link rel="alternate" hreflang="en" href="${en}" />
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="${pt}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${en}" />`;
+    for (const loc of [en, pt]) {
+      entries.push(`  <url>
+    <loc>${loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+${alts}
+  </url>`);
+    }
+  }
+  const block = SITEMAP_START + '\n' + entries.join('\n') + '\n' + SITEMAP_END;
+  src = src.replace(
+    new RegExp(escapeRe(SITEMAP_START) + '[\\s\\S]*?' + escapeRe(SITEMAP_END)),
+    block
+  );
+  fs.writeFileSync(file, src);
+  console.log('Updated sitemap.xml');
+}
 
 // ---------- drop dead photo URLs ----------
 // Inmovilla's feed keeps referencing photos that have been deleted from the CDN
@@ -509,6 +690,22 @@ async function dropDeadPhotos(props) {
   // 3. Cards injected into the properties pages
   injectSection(path.join(ROOT, 'properties.html'), sectionHtml(props, 'en'));
   injectSection(path.join(ROOT, 'pt', 'properties.html'), sectionHtml(props, 'pt'));
+
+  // 4. Homepage: the same live listings, max three, replacing the old
+  //    "Coming soon / sample listings" block. Markers only — never guess a
+  //    position on the homepage.
+  for (const [file, lang] of [['index.html', 'en'], [path.join('pt', 'index.html'), 'pt']]) {
+    const full = path.join(ROOT, file);
+    const src = fs.readFileSync(full, 'utf8');
+    if (src.includes(HOME_START) && src.includes(HOME_END)) {
+      injectSection(full, homeSectionHtml(props, lang), HOME_START, HOME_END);
+    } else {
+      console.warn('Skipped ' + file + ' — AR:HOME-LISTINGS markers not found.');
+    }
+  }
+
+  // 5. Sitemap entries for the listing pages
+  updateSitemap(props);
 
   console.log('Done.');
 })().catch(e => { console.error(e); process.exit(1); });
