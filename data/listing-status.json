@@ -1,0 +1,28 @@
+{
+  "_README": [
+    "THIS FILE IS EDITED BY HAND. The build script never writes it.",
+    "",
+    "The Inmovilla feed only carries ACTIVE listings. When a property leaves the",
+    "feed the script cannot tell whether it sold, rented, or was just unticked",
+    "for a data fix — so it parks it and waits for you to say which.",
+    "",
+    "Until a ref appears here, its page stays up but says only 'no longer being",
+    "advertised' and is noindexed. It is never shown as sold.",
+    "",
+    "To publish one, add an entry keyed by the CRM ref:",
+    "",
+    "    \"AD1\": { \"status\": \"sold\", \"date\": \"2026-11-02\" }",
+    "",
+    "status must be one of:",
+    "  sold      -> SOLD / VENDIDO badge, last asking price, shown in the",
+    "               'Recently sold & rented' grid on the properties page",
+    "  rented    -> RENTED / ARRENDADO badge, same treatment",
+    "  withdrawn -> removed from the site and dropped from the archive entirely",
+    "",
+    "date is YYYY-MM-DD and only orders the grid (newest first). It is not shown.",
+    "Prices displayed are always the LAST ASKING price, never the agreed price.",
+    "",
+    "The nightly build prints a warning naming any ref waiting on a decision.",
+    "Delete this _README key if it ever gets in the way — nothing reads it."
+  ]
+}

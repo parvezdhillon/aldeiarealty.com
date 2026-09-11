@@ -1,0 +1,61 @@
+name: Build listings from Inmovilla feed
+
+on:
+  schedule:
+    # 06:15 UTC daily — after Inmovilla's nightly feed regenerates.
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-listings
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate listing pages
+        env:
+          INMOVILLA_XML_URL: ${{ secrets.INMOVILLA_XML_URL }}
+        run: node scripts/build-listings.js
+
+      - name: Commit and push if changed
+        run: |
+          set -euo pipefail
+          git config user.name  "aldeia-listings-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Only listing-generated paths — never sweep unrelated edits into this commit.
+          # index.html / pt/index.html carry the AR:HOME-LISTINGS block and
+          # sitemap.xml the AR:SITEMAP-LISTINGS block, both rewritten by the
+          # build script — without them here the homepage and sitemap go stale.
+          git add -A -- \
+            data/listings-en.json \
+            data/listings-pt.json \
+            properties.html \
+            pt/properties.html \
+            index.html \
+            pt/index.html \
+            sitemap.xml \
+            'property-*.html' \
+            'pt/imovel-*.html'
+
+          if git diff --cached --quiet; then
+            echo "No listing changes — nothing to commit."
+            exit 0
+          fi
+
+          REFS=$(node -e "try{console.log(require('./data/listings-en.json').listings.map(l=>l.ref).join(', '))}catch(e){console.log('unknown')}")
+          git commit -m "chore(listings): sync from Inmovilla feed ($REFS)"
+          git push

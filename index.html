@@ -198,7 +198,6 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
   .page-hero{padding:54px 0 44px}
 }
 
-
 .hero-main{position:relative;min-height:78vh;display:flex;flex-direction:column;background-size:cover;background-position:center}
 .hero-main .container{flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:80px;padding-bottom:60px;color:var(--parchment)}
 .hero-main .kicker{color:var(--gold);opacity:0.92;margin-bottom:14px}
@@ -217,16 +216,6 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .area-card h3{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.15;color:var(--parchment);margin-bottom:6px}
 .area-card p{font-size:13.5px;color:rgba(244,236,220,0.82);line-height:1.5}
 
-.home-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-.home-strip .home-tile{position:relative;aspect-ratio:1;overflow:hidden}
-.home-strip img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
-.home-strip .home-tile:hover img{transform:scale(1.05)}
-.home-strip .home-label{position:absolute;left:14px;bottom:14px;font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--parchment);padding:5px 10px;background:rgba(28,10,4,0.65);border-radius:2px;z-index:2}
-@media(max-width:700px){.home-strip{grid-template-columns:repeat(2,1fr)}}
-
-.banner-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:4px}
-.banner-strip img{width:100%;height:240px;object-fit:cover;display:block}
-@media(max-width:700px){.banner-strip{grid-template-columns:repeat(2,1fr)}}
 
 .prop-card{background:var(--white);border:1px solid var(--border);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.25s,transform 0.25s}
 .prop-card:hover{box-shadow:0 8px 28px rgba(28,10,4,0.10);transform:translateY(-2px)}
@@ -249,7 +238,6 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
 .reloc-steps{margin:24px 0 28px;list-style:none;padding:0}
 .reloc-steps li{display:flex;gap:14px;margin-bottom:14px;font-size:14.5px;color:var(--black);line-height:1.55}
 .reloc-steps li .step-n{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--teal);color:var(--parchment);font-family:var(--mono);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center}
-
 
 /* === POLISH PASS === */
 /* Bird-bullet lists - use AR icon as bullet marker */
@@ -627,26 +615,7 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
   </div>
 </section>
 <style>@media(max-width:900px){.grid-3[style*="repeat(5"]{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:600px){.grid-3[style*="repeat(5"]{grid-template-columns:1fr!important}}</style>
-<section class="section">
-  <div class="container">
-    <div class="section-header" style="text-align:center;margin-left:auto;margin-right:auto">
-      <div class="kicker">Portuguese Homes</div>
-      <h2>From classic to <em>contemporary</em>.</h2>
-    </div>
-  </div>
-  <div class="home-strip">
-    <div class="home-tile"><img src="images/homes/stone-cottage.jpg" alt="Stone cottage" /><div class="home-label">Stone</div></div>
-    <div class="home-tile"><img src="images/homes/townhouse.jpg" alt="Townhouse" /><div class="home-label">Townhouse</div></div>
-    <div class="home-tile"><img src="images/homes/modern-villa.jpg" alt="Modern villa" /><div class="home-label">Modern</div></div>
-    <div class="home-tile"><img src="images/homes/coastal-cottage.jpg" alt="Coastal cottage" /><div class="home-label">Coastal</div></div>
-  </div>
-  <div class="banner-strip">
-    <img src='images/banner/farmhouse-1.jpg' alt='Portuguese home' />
-    <img src='images/banner/luxury-1.jpg' alt='Portuguese home' />
-    <img src='images/banner/classic-1.jpg' alt='Portuguese home' />
-    <img src='images/banner/seaside-1.jpg' alt='Portuguese home' />
-  </div>
-</section>
+
 <!-- AR:HOME-LISTINGS:START (auto-generated - do not edit between markers) -->
 <section class="section dove">
   <div class="container">

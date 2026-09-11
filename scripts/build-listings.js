@@ -128,11 +128,12 @@ function badgeText(p, en) {
 }
 
 // ---------- card HTML (matches existing .prop-card design) ----------
-function cardHtml(p, lang) {
+function cardHtml(p, lang, state) {
   const en = lang === 'en';
-  const badge = badgeText(p, en);
+  const archived = state === 'sold' || state === 'rented';
+  const badge = stateBadge(state, en) || badgeText(p, en);
   const title = en ? p.titleEN : p.titlePT;
-  const priceLabel = en ? p.priceLabelEN : p.priceLabelPT;
+  const priceLabel = archived ? askingLabel(p, en) : (en ? p.priceLabelEN : p.priceLabelPT);
   const detailHref = en ? ('property-' + p.slug + '.html') : ('imovel-' + p.slug + '.html');
   const facts = [
     p.bedrooms ? 'T' + p.bedrooms : null,
@@ -140,8 +141,10 @@ function cardHtml(p, lang) {
     p.areaBuilt ? (Math.round(p.areaBuilt) + ' m²') : null,
     p.energyLetter ? ((en ? 'Energy ' : 'Energ. ') + p.energyLetter) : null,
   ].filter(Boolean).join(' · ');
-  const linkText = en ? 'View Property &rarr;' : 'Ver Im&oacute;vel &rarr;';
-  return `      <div class="prop-card">
+  const linkText = archived
+    ? (en ? 'View Details &rarr;' : 'Ver Detalhes &rarr;')
+    : (en ? 'View Property &rarr;' : 'Ver Im&oacute;vel &rarr;');
+  return `      <div class="prop-card${archived ? ' is-archived' : ''}">
         <a href="${detailHref}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%">
         <div class="prop-img" style="background-image:url('${p.photos[0] || ''}')"><div class="prop-badge">${badge}</div></div>
         <div class="prop-body">
@@ -172,6 +175,134 @@ ${props.map(p => cardHtml(p, lang)).join('\n')}
 </section>`;
 }
 
+// ================================================================
+//  ARCHIVE — keeping sold / rented listings on the site
+// ================================================================
+// The Inmovilla feed only carries ACTIVE web-flagged properties. When a
+// property sells, rents, or is simply unticked in the CRM, it just vanishes
+// from the XML. The feed never says WHY.
+//
+// So we never guess. Two files do the work:
+//
+//   data/listings-archive.json  — written by THIS SCRIPT. A full snapshot of
+//       every listing the moment it was last seen in the feed, so its page can
+//       still be rendered after it is gone.
+//
+//   data/listing-status.json    — written by a HUMAN (Parv). Maps a ref to what
+//       actually happened:  "sold" | "rented" | "withdrawn".
+//       Anything not named here stays "pending" and is NOT published as sold.
+//
+// Render states:
+//   live      in the feed → normal listing
+//   pending   gone from the feed, no human status yet → detail page stays up
+//             (so inbound portal links don't break) but says only that it is no
+//             longer advertised, carries noindex, and appears in no grid
+//   sold      badge SOLD / VENDIDO, last asking price, shown in the archive grid
+//   rented    badge RENTED / ARRENDADO, same treatment
+//   withdrawn removed from the site entirely
+const ARCHIVE_FILE = path.join(ROOT, 'data', 'listings-archive.json');
+const STATUS_FILE = path.join(ROOT, 'data', 'listing-status.json');
+const PUBLIC_STATES = ['sold', 'rented'];
+
+function readJson(file, fallback) {
+  try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
+  catch (e) { return fallback; }
+}
+
+// Fold the human status file over the archive and return what to render.
+function syncArchive(props) {
+  const archive = readJson(ARCHIVE_FILE, { generated: null, listings: {} });
+  const overrides = readJson(STATUS_FILE, {});
+  const today = new Date().toISOString().slice(0, 10);
+  const liveRefs = new Set(props.map(p => p.ref));
+
+  // Refresh the snapshot of everything currently live.
+  for (const p of props) {
+    archive.listings[p.ref] = {
+      ...(archive.listings[p.ref] || {}),
+      snapshot: p,
+      lastSeen: today,
+      firstSeen: (archive.listings[p.ref] || {}).firstSeen || today,
+    };
+  }
+
+  const departed = [];
+  const publish = [];
+  for (const [ref, rec] of Object.entries(archive.listings)) {
+    if (liveRefs.has(ref)) { rec.state = 'live'; continue; }
+
+    const o = overrides[ref] || {};
+    const state = PUBLIC_STATES.includes(o.status) ? o.status
+      : o.status === 'withdrawn' ? 'withdrawn'
+        : 'pending';
+    rec.state = state;
+    rec.statusDate = o.date || rec.statusDate || null;
+
+    if (state === 'pending') departed.push(ref);
+    if (PUBLIC_STATES.includes(state)) publish.push({ ...rec.snapshot, _state: state, _statusDate: rec.statusDate });
+  }
+
+  // Drop withdrawn listings from the archive altogether.
+  for (const [ref, rec] of Object.entries(archive.listings)) {
+    if (rec.state === 'withdrawn') delete archive.listings[ref];
+  }
+
+  archive.generated = new Date().toISOString();
+  fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });
+  fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(archive, null, 2));
+
+  if (departed.length) {
+    console.warn('');
+    console.warn('  ⚠  NOT IN THE FEED AND NOT YET CLASSIFIED: ' + departed.join(', '));
+    console.warn('     Their pages now say "no longer advertised" and are noindexed.');
+    console.warn('     To publish one as sold or rented, add it to data/listing-status.json:');
+    console.warn('       { "' + departed[0] + '": { "status": "sold", "date": "' + today + '" } }');
+    console.warn('     Valid status values: sold | rented | withdrawn');
+    console.warn('');
+  }
+  // Newest first, by whatever date we have.
+  publish.sort((a, b) => String(b._statusDate || '').localeCompare(String(a._statusDate || '')));
+  return { publish, pending: departed, archive };
+}
+
+function stateBadge(state, en) {
+  if (state === 'sold') return en ? 'SOLD' : 'VENDIDO';
+  if (state === 'rented') return en ? 'RENTED' : 'ARRENDADO';
+  return null;
+}
+
+// Parv's decision (2026-09-11): archived listings show the LAST ASKING price,
+// never an achieved sale price.
+function askingLabel(p, en) {
+  const label = en ? p.priceLabelEN : p.priceLabelPT;
+  return (en ? 'Last asking price: ' : 'Último preço pedido: ') + label;
+}
+
+const ARCHIVE_CSS = `<style>
+.prop-card.is-archived .prop-img{filter:saturate(0.55) brightness(0.92)}
+.prop-card.is-archived .prop-img .prop-badge{background:#1c0a04;color:#f4ecdc}
+.prop-card.is-archived .prop-loc{color:rgba(28,10,4,0.55)}
+</style>`;
+
+function archiveSectionHtml(items, lang) {
+  const en = lang === 'en';
+  if (!items.length) return '';
+  const kicker = en ? 'Track record' : 'Histórico';
+  const h2 = en ? 'Recently <em>sold &amp; rented</em>.' : 'Recentemente <em>vendidos e arrendados</em>.';
+  const sub = en
+    ? 'Properties Aldeia Realty has placed. Prices shown are the last asking price, not the agreed price.'
+    : 'Imóveis colocados pela Aldeia Realty. Os valores indicados são o último preço pedido, não o preço acordado.';
+  return `${ARCHIVE_CSS}
+<section class="section parchment">
+  <div class="container">
+    <div class="section-header"><div class="kicker">${kicker}</div><h2>${h2}</h2><p class="sub">${sub}</p></div>
+    <div class="grid-3">
+${items.map(p => cardHtml(p, lang, p._state)).join('\n')}
+    </div>
+  </div>
+</section>`;
+}
+
 // ---------- SEO head: canonical, hreflang, Open Graph, JSON-LD ----------
 const SITE = 'https://www.aldeiarealty.com';
 const ORG_ID = SITE + '/#organization';
@@ -184,15 +315,19 @@ function schemaTypeFor(p) {
   return 'SingleFamilyResidence';
 }
 
-function seoHead(p, lang) {
+function seoHead(p, lang, state) {
   const en = lang === 'en';
+  // A pending page is honest but not useful to searchers — keep it reachable
+  // for inbound portal links, keep it out of the index.
+  const robots = state === 'pending'
+    ? '<meta name="robots" content="noindex, follow" />\n' : '';
   const enPath = 'property-' + p.slug + '.html';
   const ptPath = 'pt/imovel-' + p.slug + '.html';
   const selfPath = en ? enPath : ptPath;
   const title = en ? p.titleEN : p.titlePT;
   const desc = esc(((en ? p.descEN : p.descPT)[0] || title)).slice(0, 200);
   const img = p.photos[0] || (SITE + '/images/AldeiaRealty-Social-Preview.jpg');
-  return `<link rel="canonical" href="${SITE}/${selfPath}" />
+  return `${robots}<link rel="canonical" href="${SITE}/${selfPath}" />
 <link rel="alternate" hreflang="en" href="${SITE}/${enPath}" />
 <link rel="alternate" hreflang="pt-PT" href="${SITE}/${ptPath}" />
 <link rel="alternate" hreflang="x-default" href="${SITE}/${enPath}" />
@@ -211,8 +346,12 @@ function seoHead(p, lang) {
 `;
 }
 
-function listingLd(p, lang) {
+function listingLd(p, lang, state) {
   const en = lang === 'en';
+  const archived = state === 'sold' || state === 'rented';
+  const availability = state === 'sold' ? 'https://schema.org/SoldOut'
+    : state === 'rented' || state === 'pending' ? 'https://schema.org/OutOfStock'
+    : 'https://schema.org/InStock';
   const selfPath = en ? ('property-' + p.slug + '.html') : ('pt/imovel-' + p.slug + '.html');
   const title = en ? p.titleEN : p.titlePT;
   const paras = en ? p.descEN : p.descPT;
@@ -246,7 +385,7 @@ function listingLd(p, lang) {
   if (p.priceSale) {
     offers.push({
       '@type': 'Offer', price: p.priceSale, priceCurrency: 'EUR',
-      availability: 'https://schema.org/InStock',
+      availability,
       businessFunction: 'http://purl.org/goodrelations/v1#Sell',
       url: SITE + '/' + selfPath,
     });
@@ -254,7 +393,7 @@ function listingLd(p, lang) {
   if (p.priceRent) {
     offers.push({
       '@type': 'Offer', price: p.priceRent, priceCurrency: 'EUR',
-      availability: 'https://schema.org/InStock',
+      availability,
       businessFunction: 'http://purl.org/goodrelations/v1#LeaseOut',
       unitCode: 'MON',
       url: SITE + '/' + selfPath,
@@ -313,7 +452,11 @@ ${shown.map(p => cardHtml(p, lang)).join('\n')}
 }
 
 // ---------- detail page ----------
-function detailHtml(p, lang) {
+// state: 'live' (default) | 'pending' | 'sold' | 'rented'
+function detailHtml(p, lang, state) {
+  state = state || 'live';
+  const archived = state === 'sold' || state === 'rented';
+  const pending = state === 'pending';
   const en = lang === 'en';
   const cssPath = en ? 'css/style.css' : '../css/style.css';
   const backHref = en ? 'properties.html' : 'properties.html';
@@ -323,8 +466,25 @@ function detailHtml(p, lang) {
   const logoPath = en ? 'logos/AR-Logo-Horizontal-FullColour@2x.png' : '../logos/AR-Logo-Horizontal-FullColour@2x.png';
   const title = en ? p.titleEN : p.titlePT;
   const paras = en ? p.descEN : p.descPT;
-  const priceLabel = en ? p.priceLabelEN : p.priceLabelPT;
-  const badge = badgeText(p, en);
+  const priceLabel = archived ? askingLabel(p, en)
+    : pending ? '' : (en ? p.priceLabelEN : p.priceLabelPT);
+  const badge = pending
+    ? (en ? 'NO LONGER ADVERTISED' : 'JÁ NÃO ANUNCIADO')
+    : (stateBadge(state, en) || badgeText(p, en));
+
+  // A listing that has left the feed must not read as available. Swap the
+  // "arrange a viewing" call to action for a "find me something like this" one,
+  // which is the only useful thing a visitor can do on the page now.
+  const archiveNotice = archived
+    ? (en
+      ? `<div class="pd-notice"><strong>${state === 'sold' ? 'This property has been sold.' : 'This property has been rented.'}</strong> It is shown here as part of Aldeia Realty’s track record and is no longer available. The figure shown is the last asking price, not the agreed price.</div>`
+      : `<div class="pd-notice"><strong>${state === 'sold' ? 'Este imóvel foi vendido.' : 'Este imóvel foi arrendado.'}</strong> É apresentado como parte do histórico da Aldeia Realty e já não está disponível. O valor indicado é o último preço pedido, não o preço acordado.</div>`)
+    : pending
+      ? (en
+        ? '<div class="pd-notice"><strong>This property is no longer being advertised.</strong> It may have been sold, rented or withdrawn. Contact us and we will tell you where it stands, or find you something similar.</div>'
+        : '<div class="pd-notice"><strong>Este imóvel já não está a ser anunciado.</strong> Pode ter sido vendido, arrendado ou retirado. Contacte-nos e diremos qual a situação, ou encontraremos algo semelhante.</div>')
+      : '';
+
   const t = en ? {
     back: '&larr; All properties', facts: 'Property Facts', desc: 'About this property',
     beds: 'Bedrooms', baths: 'Bathrooms', built: 'Built area', useful: 'Useful area',
@@ -355,7 +515,7 @@ function detailHtml(p, lang) {
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)} — Aldeia Realty</title>
 <meta name="description" content="${esc(paras[0] || title).slice(0, 155)}">
-${seoHead(p, lang)}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+${seoHead(p, lang, state)}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Work+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${cssPath}">
 <style>
@@ -381,7 +541,10 @@ ${seoHead(p, lang)}<link rel="preconnect" href="https://fonts.googleapis.com"><l
 .pd-cta .b1{background:#efd48f;color:#1c0a04}.pd-cta .b2{border:1px solid rgba(244,236,220,0.6);color:#f4ecdc}
 .pd-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
 .pd-nav a{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#296662;text-decoration:none;font-weight:600}
-.pd-badge{display:inline-block;background:#efd48f;color:#1c0a04;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;padding:5px 11px;border-radius:2px;margin-bottom:10px}
+.pd-badge{display:inline-block;background:${archived || pending ? '#1c0a04;color:#f4ecdc' : '#efd48f;color:#1c0a04'};font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;padding:5px 11px;border-radius:2px;margin-bottom:10px}
+.pd-notice{background:#e4e7e6;border-left:3px solid #296662;border-radius:0 3px 3px 0;padding:16px 20px;margin:20px 0 0;font-size:14.5px;line-height:1.6;color:rgba(28,10,4,0.82)}
+.pd-notice strong{color:#1c0a04}
+${archived || pending ? '.pd-gallery .pd-main img,.pd-thumb{filter:saturate(0.6) brightness(0.94)}.pd-price{font-size:clamp(16px,2vw,21px);color:rgba(28,10,4,0.65)}' : ''}
 .pd-main{position:relative}
 .pd-main img{cursor:zoom-in}
 .pd-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;padding:0;border:0;border-radius:50%;background:rgba(28,10,4,0.55);color:#f4ecdc;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
@@ -400,7 +563,7 @@ ${seoHead(p, lang)}<link rel="preconnect" href="https://fonts.googleapis.com"><l
 .pd-lb-count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#f4ecdc;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.16em}
 @media(max-width:820px){.pd-gallery,.pd-cols{grid-template-columns:1fr}.pd-thumbs{grid-template-columns:repeat(4,1fr);max-height:340px}.pd-arrow{width:38px;height:38px;font-size:16px}}
 </style>
-${listingLd(p, lang)}</head>
+${listingLd(p, lang, state)}</head>
 <body style="background:#fbf8f3">
 <div class="pd-wrap">
   <div class="pd-nav">
@@ -425,6 +588,7 @@ ${listingLd(p, lang)}</head>
     </div>
     <div class="pd-price">${priceLabel}</div>
   </div>
+  ${archiveNotice}
   <div class="pd-cols">
     <div class="pd-desc">
       <h2>${t.desc}</h2>
@@ -436,8 +600,12 @@ ${listingLd(p, lang)}</head>
         <table>${factRows.map(r => '<tr><td>' + r[0] + '</td><td style="text-align:right">' + esc(String(r[1])) + '</td></tr>').join('')}</table>
       </div>
       <div class="pd-cta">
-        <h3>${t.cta}</h3>
-        <p>${t.ctaSub}</p>
+        <h3>${archived || pending ? (en ? 'Looking for something similar?' : 'Procura algo semelhante?') : t.cta}</h3>
+        <p>${archived || pending
+    ? (en
+      ? 'Tell us what you are after and we will send you what is available now — English spoken.'
+      : 'Diga-nos o que procura e enviamos o que está disponível agora.')
+    : t.ctaSub}</p>
         <a class="b1" href="${contactHref}">${t.contact}</a>
         <a class="b2" href="https://wa.me/351913148143" target="_blank" rel="noopener">${t.whatsapp}</a>
       </div>
@@ -556,6 +724,8 @@ const START = '<!-- AR:LISTINGS:START (auto-generated - do not edit between mark
 const END = '<!-- AR:LISTINGS:END -->';
 const HOME_START = '<!-- AR:HOME-LISTINGS:START (auto-generated - do not edit between markers) -->';
 const HOME_END = '<!-- AR:HOME-LISTINGS:END -->';
+const ARCHIVE_START = '<!-- AR:ARCHIVE:START (auto-generated - do not edit between markers) -->';
+const ARCHIVE_END = '<!-- AR:ARCHIVE:END -->';
 function injectSection(filePath, html, startMarker, endMarker) {
   const s = startMarker || START;
   const e = endMarker || END;
@@ -662,6 +832,16 @@ async function dropDeadPhotos(props) {
   console.log('Verifying photo URLs...');
   await dropDeadPhotos(props);
 
+  // Reconcile against the archive BEFORE anything renders, so we know which
+  // refs have left the feed and what Parv has said about them.
+  const { publish: archived, pending } = syncArchive(props);
+  const pendingProps = pending
+    .map(ref => (readJson(ARCHIVE_FILE, { listings: {} }).listings[ref] || {}).snapshot)
+    .filter(Boolean);
+  if (archived.length) {
+    console.log('Archived (published):', archived.map(p => p.ref + '=' + p._state).join(', '));
+  }
+
   // 1. JSON for the Property Finder
   fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });
   for (const lang of ['en', 'pt']) {
@@ -680,11 +860,18 @@ async function dropDeadPhotos(props) {
   }
   console.log('Wrote data/listings-en.json and data/listings-pt.json');
 
-  // 2. Detail pages
-  for (const p of props) {
-    fs.writeFileSync(path.join(ROOT, 'property-' + p.slug + '.html'), detailHtml(p, 'en'));
-    fs.writeFileSync(path.join(ROOT, 'pt', 'imovel-' + p.slug + '.html'), detailHtml(p, 'pt'));
-    console.log('Wrote property-' + p.slug + '.html and pt/imovel-' + p.slug + '.html');
+  // 2. Detail pages — live, then archived (sold/rented), then pending.
+  //    Archived and pending pages are rebuilt from the stored snapshot so the
+  //    URL keeps working after the property leaves the feed.
+  const pages = [
+    ...props.map(p => [p, 'live']),
+    ...archived.map(p => [p, p._state]),
+    ...pendingProps.map(p => [p, 'pending']),
+  ];
+  for (const [p, state] of pages) {
+    fs.writeFileSync(path.join(ROOT, 'property-' + p.slug + '.html'), detailHtml(p, 'en', state));
+    fs.writeFileSync(path.join(ROOT, 'pt', 'imovel-' + p.slug + '.html'), detailHtml(p, 'pt', state));
+    console.log('Wrote property-' + p.slug + '.html and pt/imovel-' + p.slug + '.html [' + state + ']');
   }
 
   // 3. Cards injected into the properties pages
@@ -704,8 +891,20 @@ async function dropDeadPhotos(props) {
     }
   }
 
-  // 5. Sitemap entries for the listing pages
-  updateSitemap(props);
+  // 5. Archive grid ("Recently sold & rented") on the properties pages
+  for (const [file, lang] of [['properties.html', 'en'], [path.join('pt', 'properties.html'), 'pt']]) {
+    const full = path.join(ROOT, file);
+    const src = fs.readFileSync(full, 'utf8');
+    if (src.includes(ARCHIVE_START) && src.includes(ARCHIVE_END)) {
+      injectSection(full, archiveSectionHtml(archived, lang), ARCHIVE_START, ARCHIVE_END);
+    } else {
+      console.warn('Skipped archive grid in ' + file + ' — AR:ARCHIVE markers not found.');
+    }
+  }
+
+  // 6. Sitemap — live listings plus sold/rented (they are indexable track
+  //    record). Pending pages are noindex, so they stay out.
+  updateSitemap([...props, ...archived]);
 
   console.log('Done.');
 })().catch(e => { console.error(e); process.exit(1); });
