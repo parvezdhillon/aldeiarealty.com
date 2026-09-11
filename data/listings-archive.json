@@ -1,92 +1,5 @@
 {
-  "generated": "2026-09-11T12:00:17.840Z",
   "listings": {
-    "AD1": {
-      "snapshot": {
-        "id": "29869007",
-        "ref": "AD1",
-        "slug": "ad1",
-        "operation": "sale",
-        "priceSale": 270000,
-        "priceRent": null,
-        "price": 270000,
-        "priceLabelEN": "270.000 €",
-        "priceLabelPT": "270.000 €",
-        "type": "Apartamento",
-        "city": "Caldas da Rainha",
-        "zone": "Santo Onofre e Serra do Bouro",
-        "province": "Leiria",
-        "bedrooms": 4,
-        "bathrooms": 2,
-        "areaBuilt": 122.8,
-        "areaUseful": 119.5,
-        "plot": null,
-        "floor": "1",
-        "yearBuilt": "1993",
-        "condition": "Para reformar",
-        "parking": true,
-        "poolPrivate": false,
-        "poolShared": false,
-        "elevator": false,
-        "energyLetter": "C",
-        "energyCert": "SCE413029726",
-        "exclusive": true,
-        "agent": "Angela Dhillon",
-        "updated": "2026-08-19 11:38:56",
-        "titleEN": "T-4 Apartment in center of Caldas Da Rainha, Santo Onofre",
-        "descEN": [
-          "Exclusive Listing — Open House Saturday, August 15th from 1500h-1700h",
-          "Spacious T4 apartment offering 4 bedrooms and 2 full bathrooms, within walking distance of the city center. The apartment features a bright, functional kitchen with ample storage, and a versatile living area suited to modern family life. Bedrooms are generously proportioned with large windows that fill the space with natural light throughout the day, complemented by a private balcony ideal for laundry, storage, or simply relaxing outdoors.",
-          "A dedicated parking space is included in the building's enclosed garage — a rare find for a central-location property.",
-          "Perfectly suited for a family seeking proximity to the city center, or for investors looking to grow their portfolio in one of the Silver Coast's fastest-growing markets."
-        ],
-        "titlePT": "Apartamento T3+1 · Rua Manuel Mafra 33,  · Caldas da Rainha",
-        "descPT": [
-          "OPEN HOUSE · Sábado, 15 de Agosto · 15h00 – 17h00",
-          "Apartamento T4 espaçoso, com quatro quartos e duas casas de banho completas, situado a uma distância pedestre do centro da cidade. O apartamento dispõe de uma cozinha funcional e bem iluminada, com bastante capacidade de arrumação, e uma sala de estar versátil, adequada à vida familiar contemporânea. Os quartos são amplos, beneficiando de grandes janelas que preenchem o espaço de luz natural ao longo do dia, complementados por uma marquise/varanda privativa, ideal para lavandaria, arrumação ou simples momentos de descanso.",
-          "O imóvel inclui um lugar de estacionamento na garagem fechada do edifício — uma característica pouco comum para uma localização tão central.",
-          "Perfeitamente adequado a uma família que procure proximidade ao centro da cidade, ou a investidores que pretendam expandir o seu portefólio numa das zonas de maior crescimento da Costa de Prata."
-        ],
-        "photos": [
-          "https://fotos15.apinmo.com/14306/29869007/7-1.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-2.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-3.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-4.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-5.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-6.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-7.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-8.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-9.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-10.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-11.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-12.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-13.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-14.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-15.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-16.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-17.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-18.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-19.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-20.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-21.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-22.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-23.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-24.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-25.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-26.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-27.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-28.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-29.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-30.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-31.jpg",
-          "https://fotos15.apinmo.com/14306/29869007/7-32.jpg"
-        ]
-      },
-      "lastSeen": "2026-09-11",
-      "firstSeen": "2026-09-11",
-      "state": "live",
-      "statusDate": "2026-09-11"
-    },
     "AR20260828": {
       "snapshot": {
         "id": "30044766",
@@ -211,9 +124,51 @@
           "https://fotos15.apinmo.com/14306/30044766/20-75.jpg"
         ]
       },
-      "lastSeen": "2026-09-11",
       "firstSeen": "2026-09-11",
-      "state": "live"
+      "state": "live",
+      "snapshotDate": "2026-09-11",
+      "mirrored": [
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-1.jpg",
+          "file": "images/listings/AR20260828/9b31249f7e3f.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-2.jpg",
+          "file": "images/listings/AR20260828/e308578fdd8f.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-3.jpg",
+          "file": "images/listings/AR20260828/26079eb92f8f.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-4.jpg",
+          "file": "images/listings/AR20260828/fb9f5fe9d2d2.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-5.jpg",
+          "file": "images/listings/AR20260828/79a961d1eec0.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-6.jpg",
+          "file": "images/listings/AR20260828/d026f53f6c50.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-7.jpg",
+          "file": "images/listings/AR20260828/68454840232d.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-8.jpg",
+          "file": "images/listings/AR20260828/33395b0b989f.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-9.jpg",
+          "file": "images/listings/AR20260828/de8db12d66e0.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30044766/20-10.jpg",
+          "file": "images/listings/AR20260828/ac8adf6655d3.jpg"
+        }
+      ]
     },
     "AR100926": {
       "snapshot": {
@@ -340,8 +295,177 @@
           "https://fotos15.apinmo.com/14306/30157549/10-68.jpg"
         ]
       },
-      "lastSeen": "2026-09-11",
       "firstSeen": "2026-09-11",
+      "state": "live",
+      "snapshotDate": "2026-09-11",
+      "mirrored": [
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-1.jpg",
+          "file": "images/listings/AR100926/15dc60c3eae9.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-2.jpg",
+          "file": "images/listings/AR100926/9d980bb95774.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-3.jpg",
+          "file": "images/listings/AR100926/fab44b199e2e.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-4.jpg",
+          "file": "images/listings/AR100926/ad7a994229d5.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-5.jpg",
+          "file": "images/listings/AR100926/a12944b40cd2.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-6.jpg",
+          "file": "images/listings/AR100926/19ba6ff27109.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-7.jpg",
+          "file": "images/listings/AR100926/986f5d998c5a.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-8.jpg",
+          "file": "images/listings/AR100926/cb6b899daede.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-9.jpg",
+          "file": "images/listings/AR100926/8d878b620180.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/30157549/10-10.jpg",
+          "file": "images/listings/AR100926/f9aecdc5d370.jpg"
+        }
+      ]
+    },
+    "AD1": {
+      "snapshot": {
+        "id": "29869007",
+        "ref": "AD1",
+        "slug": "ad1",
+        "operation": "sale",
+        "priceSale": 270000,
+        "priceRent": null,
+        "price": 270000,
+        "priceLabelEN": "270.000 €",
+        "priceLabelPT": "270.000 €",
+        "type": "Apartamento",
+        "city": "Caldas da Rainha",
+        "zone": "Santo Onofre e Serra do Bouro",
+        "province": "Leiria",
+        "bedrooms": 4,
+        "bathrooms": 2,
+        "areaBuilt": 122.8,
+        "areaUseful": 119.5,
+        "plot": null,
+        "floor": "1",
+        "yearBuilt": "1993",
+        "condition": "Para reformar",
+        "parking": true,
+        "poolPrivate": false,
+        "poolShared": false,
+        "elevator": false,
+        "energyLetter": "C",
+        "energyCert": "SCE413029726",
+        "exclusive": true,
+        "agent": "Angela Dhillon",
+        "updated": "2026-08-19 11:38:56",
+        "titleEN": "T-4 Apartment in center of Caldas Da Rainha, Santo Onofre",
+        "descEN": [
+          "Exclusive Listing — Open House Saturday, August 15th from 1500h-1700h",
+          "Spacious T4 apartment offering 4 bedrooms and 2 full bathrooms, within walking distance of the city center. The apartment features a bright, functional kitchen with ample storage, and a versatile living area suited to modern family life. Bedrooms are generously proportioned with large windows that fill the space with natural light throughout the day, complemented by a private balcony ideal for laundry, storage, or simply relaxing outdoors.",
+          "A dedicated parking space is included in the building's enclosed garage — a rare find for a central-location property.",
+          "Perfectly suited for a family seeking proximity to the city center, or for investors looking to grow their portfolio in one of the Silver Coast's fastest-growing markets."
+        ],
+        "titlePT": "Apartamento T3+1 · Rua Manuel Mafra 33,  · Caldas da Rainha",
+        "descPT": [
+          "OPEN HOUSE · Sábado, 15 de Agosto · 15h00 – 17h00",
+          "Apartamento T4 espaçoso, com quatro quartos e duas casas de banho completas, situado a uma distância pedestre do centro da cidade. O apartamento dispõe de uma cozinha funcional e bem iluminada, com bastante capacidade de arrumação, e uma sala de estar versátil, adequada à vida familiar contemporânea. Os quartos são amplos, beneficiando de grandes janelas que preenchem o espaço de luz natural ao longo do dia, complementados por uma marquise/varanda privativa, ideal para lavandaria, arrumação ou simples momentos de descanso.",
+          "O imóvel inclui um lugar de estacionamento na garagem fechada do edifício — uma característica pouco comum para uma localização tão central.",
+          "Perfeitamente adequado a uma família que procure proximidade ao centro da cidade, ou a investidores que pretendam expandir o seu portefólio numa das zonas de maior crescimento da Costa de Prata."
+        ],
+        "photos": [
+          "https://fotos15.apinmo.com/14306/29869007/7-1.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-2.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-3.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-4.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-5.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-6.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-7.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-8.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-9.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-10.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-11.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-12.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-13.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-14.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-15.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-16.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-17.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-18.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-19.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-20.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-21.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-22.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-23.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-24.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-25.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-26.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-27.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-28.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-29.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-30.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-31.jpg",
+          "https://fotos15.apinmo.com/14306/29869007/7-32.jpg"
+        ]
+      },
+      "firstSeen": "2026-09-11",
+      "snapshotDate": "2026-09-11",
+      "mirrored": [
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-1.jpg",
+          "file": "images/listings/AD1/50512cfe8bd7.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-2.jpg",
+          "file": "images/listings/AD1/1423fb69c3c8.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-3.jpg",
+          "file": "images/listings/AD1/c05fcdbee793.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-4.jpg",
+          "file": "images/listings/AD1/2de36fc39030.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-5.jpg",
+          "file": "images/listings/AD1/1615c79ca6df.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-6.jpg",
+          "file": "images/listings/AD1/9db4d3e57bac.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-7.jpg",
+          "file": "images/listings/AD1/10d0ff8dd8f5.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-8.jpg",
+          "file": "images/listings/AD1/74b62964b480.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-9.jpg",
+          "file": "images/listings/AD1/a421d91d6e77.jpg"
+        },
+        {
+          "url": "https://fotos15.apinmo.com/14306/29869007/7-10.jpg",
+          "file": "images/listings/AD1/d4f54b5d1af0.jpg"
+        }
+      ],
       "state": "live"
     }
   }

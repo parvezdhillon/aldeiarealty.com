@@ -18,6 +18,8 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+const { execFileSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -209,21 +211,128 @@ function readJson(file, fallback) {
   catch (e) { return fallback; }
 }
 
+// ---------------- photo mirroring ----------------
+// Archived pages cannot hotlink apinmo.com: once a property leaves the CRM its
+// photos are eventually deleted from that CDN and a sold listing would lose its
+// gallery. So we keep our own copy IN THE REPO, taken while the listing is
+// still live — mirroring only at archive time would be too late.
+//
+// Cost control. Inmovilla serves photos at 1600px / ~230 KB. We keep only the
+// first ARCHIVE_PHOTO_LIMIT of them, downscaled where ImageMagick is available
+// (it is, on GitHub Actions ubuntu runners).
+//
+//   THE ARITHMETIC, because this grows forever:
+//   1400px @ q80  ≈ 180 KB a photo
+//   × 10 photos   ≈ 1.8 MB per listing
+//   × every listing ever published, kept permanently in git.
+//
+//   So ~18 MB per 10 listings. At 1200px/q78 that drops to ~1.3 MB a listing;
+//   at 8 photos, ~1.4 MB. These three numbers are the only lever — turn them
+//   down if the repo gets heavy, up if archived galleries feel thin.
+//   Withdrawn listings have their mirror deleted, so only real history is kept.
+const ARCHIVE_PHOTO_LIMIT = 10;
+const MIRROR_MAX_WIDTH = 1400;
+const MIRROR_QUALITY = 80;
+const MIRROR_ROOT = path.join(ROOT, 'images', 'listings');
+
+let _magick = undefined;
+function magickBin() {
+  if (_magick !== undefined) return _magick;
+  for (const bin of ['magick', 'convert']) {
+    try { execFileSync(bin, ['-version'], { stdio: 'ignore' }); _magick = bin; return _magick; }
+    catch (e) { /* not installed */ }
+  }
+  _magick = null;
+  console.warn('  (ImageMagick not found — mirroring photos at full size)');
+  return _magick;
+}
+
+function photoFileName(url) {
+  const ext = (url.match(/\.(jpe?g|png|webp)(\?|$)/i) || [, 'jpg'])[1].toLowerCase();
+  return crypto.createHash('sha1').update(url).digest('hex').slice(0, 12) + '.' + (ext === 'jpeg' ? 'jpg' : ext);
+}
+
+// Mirror is keyed by URL, not position, so a photo disappearing from the feed
+// never reshuffles the files we already hold.
+async function mirrorPhotos(ref, photos, existing) {
+  const dir = path.join(MIRROR_ROOT, ref);
+  const have = new Map((existing || []).map(e => [e.url, e]));
+  const want = photos.slice(0, ARCHIVE_PHOTO_LIMIT);
+  const out = [];
+  let fetched = 0;
+
+  for (const url of want) {
+    const prev = have.get(url);
+    const file = prev ? prev.file : path.posix.join('images/listings', ref, photoFileName(url));
+    const abs = path.join(ROOT, file);
+    if (fs.existsSync(abs)) { out.push({ url, file }); continue; }
+
+    try {
+      const res = await fetch(url, { headers: { 'User-Agent': 'AldeiaRealty-SiteBuilder/1.0' } });
+      if (!res.ok) { console.warn('    mirror skip ' + res.status + ' ' + url); continue; }
+      const buf = Buffer.from(await res.arrayBuffer());
+      if (!buf.length) continue;
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(abs, buf);
+
+      const bin = magickBin();
+      if (bin) {
+        try {
+          execFileSync(bin, [abs, '-auto-orient', '-resize', MIRROR_MAX_WIDTH + '>',
+            '-quality', String(MIRROR_QUALITY), '-strip', abs], { stdio: 'ignore' });
+        } catch (e) { /* keep the original on any conversion failure */ }
+      }
+      out.push({ url, file });
+      fetched++;
+    } catch (e) {
+      console.warn('    mirror failed ' + url + ' — ' + e.message);
+    }
+  }
+  if (fetched) console.log('  mirrored ' + fetched + ' new photo(s) for ' + ref);
+  return out;
+}
+
+function removeMirror(ref) {
+  const dir = path.join(MIRROR_ROOT, ref);
+  try { fs.rmSync(dir, { recursive: true, force: true }); } catch (e) { /* ignore */ }
+}
+
+// An archived page renders from the mirror; a live one keeps hotlinking the CDN
+// so visitors still get the full gallery.
+function withMirroredPhotos(p, rec, lang) {
+  const files = (rec && rec.mirrored || []).map(m => m.file);
+  if (!files.length) return p;
+  const prefix = lang === 'en' ? '' : '../';
+  return { ...p, photos: files.map(f => prefix + f), photosAbs: files.map(f => SITE + '/' + f) };
+}
+
 // Fold the human status file over the archive and return what to render.
-function syncArchive(props) {
+async function syncArchive(props) {
   const archive = readJson(ARCHIVE_FILE, { generated: null, listings: {} });
   const overrides = readJson(STATUS_FILE, {});
   const today = new Date().toISOString().slice(0, 10);
   const liveRefs = new Set(props.map(p => p.ref));
 
   // Refresh the snapshot of everything currently live.
+  //
+  // snapshotDate only moves when the snapshot CONTENT changes. A plain
+  // "last seen today" stamp would rewrite this file every single night, which
+  // means a commit a day of pure noise — and a guaranteed merge conflict every
+  // time Parv also builds locally. Keeping it content-derived makes the file a
+  // pure function of the feed: unchanged feed, unchanged file, no conflict.
   for (const p of props) {
+    const prev = archive.listings[p.ref] || {};
+    delete prev.lastSeen; // superseded by snapshotDate
+    const changed = JSON.stringify(prev.snapshot) !== JSON.stringify(p);
     archive.listings[p.ref] = {
-      ...(archive.listings[p.ref] || {}),
+      ...prev,
       snapshot: p,
-      lastSeen: today,
-      firstSeen: (archive.listings[p.ref] || {}).firstSeen || today,
+      firstSeen: prev.firstSeen || today,
+      snapshotDate: changed ? today : (prev.snapshotDate || today),
     };
+    // Mirror WHILE THE LISTING IS LIVE — waiting until it disappears is too late.
+    archive.listings[p.ref].mirrored =
+      await mirrorPhotos(p.ref, p.photos, prev.mirrored);
   }
 
   const departed = [];
@@ -239,15 +348,16 @@ function syncArchive(props) {
     rec.statusDate = o.date || rec.statusDate || null;
 
     if (state === 'pending') departed.push(ref);
-    if (PUBLIC_STATES.includes(state)) publish.push({ ...rec.snapshot, _state: state, _statusDate: rec.statusDate });
+    if (PUBLIC_STATES.includes(state)) publish.push({ ...rec.snapshot, _state: state, _statusDate: rec.statusDate, _rec: rec });
   }
 
   // Drop withdrawn listings from the archive altogether.
   for (const [ref, rec] of Object.entries(archive.listings)) {
-    if (rec.state === 'withdrawn') delete archive.listings[ref];
+    if (rec.state === 'withdrawn') { removeMirror(ref); delete archive.listings[ref]; }
   }
 
-  archive.generated = new Date().toISOString();
+  // Same reasoning — no wall-clock stamp at the top of the file.
+  delete archive.generated;
   fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });
   fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(archive, null, 2));
 
@@ -297,7 +407,7 @@ function archiveSectionHtml(items, lang) {
   <div class="container">
     <div class="section-header"><div class="kicker">${kicker}</div><h2>${h2}</h2><p class="sub">${sub}</p></div>
     <div class="grid-3">
-${items.map(p => cardHtml(p, lang, p._state)).join('\n')}
+${items.map(p => cardHtml(withMirroredPhotos(p, p._rec, lang), lang, p._state)).join('\n')}
     </div>
   </div>
 </section>`;
@@ -315,6 +425,12 @@ function schemaTypeFor(p) {
   return 'SingleFamilyResidence';
 }
 
+// A mirrored photo is a repo-relative path; schema and Open Graph need it absolute.
+function absPhoto(u) {
+  if (!u) return u;
+  return /^https?:\/\//.test(u) ? u : SITE + '/' + String(u).replace(/^(\.\.\/)+/, '');
+}
+
 function seoHead(p, lang, state) {
   const en = lang === 'en';
   // A pending page is honest but not useful to searchers — keep it reachable
@@ -326,7 +442,7 @@ function seoHead(p, lang, state) {
   const selfPath = en ? enPath : ptPath;
   const title = en ? p.titleEN : p.titlePT;
   const desc = esc(((en ? p.descEN : p.descPT)[0] || title)).slice(0, 200);
-  const img = p.photos[0] || (SITE + '/images/AldeiaRealty-Social-Preview.jpg');
+  const img = absPhoto(p.photos[0]) || (SITE + '/images/AldeiaRealty-Social-Preview.jpg');
   return `${robots}<link rel="canonical" href="${SITE}/${selfPath}" />
 <link rel="alternate" hreflang="en" href="${SITE}/${enPath}" />
 <link rel="alternate" hreflang="pt-PT" href="${SITE}/${ptPath}" />
@@ -409,7 +525,7 @@ function listingLd(p, lang, state) {
     description: (paras[0] || title).slice(0, 500),
     inLanguage: en ? 'en' : 'pt-PT',
     identifier: p.ref,
-    image: p.photos.slice(0, 12),
+    image: p.photos.slice(0, 12).map(absPhoto),
     provider: { '@id': ORG_ID },
     about,
   };
@@ -834,15 +950,19 @@ async function dropDeadPhotos(props) {
 
   // Reconcile against the archive BEFORE anything renders, so we know which
   // refs have left the feed and what Parv has said about them.
-  const { publish: archived, pending } = syncArchive(props);
+  const { publish: archived, pending, archive } = await syncArchive(props);
   const pendingProps = pending
-    .map(ref => (readJson(ARCHIVE_FILE, { listings: {} }).listings[ref] || {}).snapshot)
+    .map(ref => {
+      const rec = archive.listings[ref];
+      return rec && rec.snapshot ? { ...rec.snapshot, _rec: rec } : null;
+    })
     .filter(Boolean);
   if (archived.length) {
     console.log('Archived (published):', archived.map(p => p.ref + '=' + p._state).join(', '));
   }
 
   // 1. JSON for the Property Finder
+  const feedUpdated = props.map(p => String(p.updated || '')).sort().pop() || '';
   fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });
   for (const lang of ['en', 'pt']) {
     const en = lang === 'en';
@@ -856,7 +976,13 @@ async function dropDeadPhotos(props) {
       image: p.photos[0] || null,
       url: en ? ('property-' + p.slug + '.html') : ('pt/imovel-' + p.slug + '.html'),
     }));
-    fs.writeFileSync(path.join(ROOT, 'data', 'listings-' + lang + '.json'), JSON.stringify({ generated: new Date().toISOString(), listings: json }, null, 2));
+    // feedUpdated is the newest fechaact in the feed, NOT the build time.
+    // A wall-clock stamp here changed on every run and collided with the
+    // nightly bot's copy every time Parv built locally (2026-09-11).
+    fs.writeFileSync(
+      path.join(ROOT, 'data', 'listings-' + lang + '.json'),
+      JSON.stringify({ feedUpdated, listings: json }, null, 2) + '\n'
+    );
   }
   console.log('Wrote data/listings-en.json and data/listings-pt.json');
 
@@ -869,8 +995,12 @@ async function dropDeadPhotos(props) {
     ...pendingProps.map(p => [p, 'pending']),
   ];
   for (const [p, state] of pages) {
-    fs.writeFileSync(path.join(ROOT, 'property-' + p.slug + '.html'), detailHtml(p, 'en', state));
-    fs.writeFileSync(path.join(ROOT, 'pt', 'imovel-' + p.slug + '.html'), detailHtml(p, 'pt', state));
+    // Live pages keep hotlinking the CDN (full gallery, no repo weight).
+    // Everything else renders from our own mirrored copies.
+    const en = state === 'live' ? p : withMirroredPhotos(p, p._rec, 'en');
+    const pt = state === 'live' ? p : withMirroredPhotos(p, p._rec, 'pt');
+    fs.writeFileSync(path.join(ROOT, 'property-' + p.slug + '.html'), detailHtml(en, 'en', state));
+    fs.writeFileSync(path.join(ROOT, 'pt', 'imovel-' + p.slug + '.html'), detailHtml(pt, 'pt', state));
     console.log('Wrote property-' + p.slug + '.html and pt/imovel-' + p.slug + '.html [' + state + ']');
   }
 
