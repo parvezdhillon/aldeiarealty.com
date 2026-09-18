@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>A Nossa Equipa — Aldeia Realty</title>
-<meta name="description" content="Conheça a equipa da Aldeia Realty — especialistas em relocação, consultores licenciados e conhecedores da Costa de Prata ao seu serviço." />
+<meta name="description" content="Conheça a equipa da Aldeia Realty — especialistas em relocação, agentes licenciados e conhecedores da Costa de Prata ao seu serviço." />
 <meta property="og:title" content="A Nossa Equipa — Aldeia Realty" />
-<meta property="og:description" content="Conheça a equipa da Aldeia Realty — especialistas em relocação, consultores licenciados e conhecedores da Costa de Prata ao seu serviço." />
+<meta property="og:description" content="Conheça a equipa da Aldeia Realty — especialistas em relocação, agentes licenciados e conhecedores da Costa de Prata ao seu serviço." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Aldeia Realty" />
 <meta property="og:image" content="https://www.aldeiarealty.com/images/AldeiaRealty-Social-Preview.jpg" />
@@ -75,6 +75,25 @@
   .team-exp ul li{font-size:13.5px;color:var(--black);padding:5px 0;border-bottom:1px solid var(--border-s)}
   .team-exp ul li:last-child{border-bottom:none}
   .team-exp ul li::before{content:'—';color:var(--teal);margin-right:8px;font-family:var(--mono)}
+  /* Team headshot grid (progressive enhancement — JS builds tiles from the cards below) */
+  .team-grid.team-js{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 28px}
+  .team-tile{cursor:pointer;background:none;border:none;padding:0;text-align:left;font:inherit;color:inherit;display:block;width:100%}
+  .team-tile .team-photo{transition:transform .25s ease,box-shadow .25s ease}
+  .team-tile:hover .team-photo,.team-tile:focus-visible .team-photo{transform:translateY(-4px);box-shadow:0 14px 32px rgba(28,10,4,0.16)}
+  .team-tile:focus-visible{outline:none}
+  .team-tile.active .team-photo{outline:3px solid var(--gold);outline-offset:3px}
+  .team-tile-name{font-family:var(--display);font-weight:700;font-size:21px;line-height:1.1;letter-spacing:-0.01em;color:var(--black);margin-top:16px}
+  .team-tile .team-role-badge{margin-top:10px}
+  .team-tile-more{font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+  .team-tile-more::after{content:' \2193';color:var(--teal)}
+  .team-tile.active .team-tile-more::after{content:' \2191'}
+  .team-panel{grid-column:1/-1;position:relative;background:var(--white);border:1px solid var(--border);border-radius:3px;padding:44px 48px;box-shadow:0 24px 60px rgba(28,10,4,0.08);scroll-margin-top:90px;animation:teamPanelIn .3s ease}
+  @keyframes teamPanelIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  .team-panel .team-card{border-bottom:none;padding-bottom:0}
+  .team-panel-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--parchment);color:var(--black);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+  .team-panel-close:hover{background:var(--teal);color:var(--gold);border-color:var(--teal)}
+  @media(max-width:1000px){.team-grid.team-js{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:700px){.team-grid.team-js{grid-template-columns:repeat(2,1fr);gap:24px 16px}.team-tile-name{font-size:17px}.team-panel{padding:28px 20px}.team-panel-close{top:10px;right:10px}}
   .testimonials-section{padding:88px 0;background:var(--dove);position:relative;border-top:1px solid var(--border)}
   .testimonials-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--teal),var(--gold))}
   .section-header{margin-bottom:52px}
@@ -391,7 +410,7 @@
   <div class="container">
     <div class="kicker">As Pessoas por Detrás da Aldeia · Costa de Prata, Portugal</div>
     <h1>Experiência real.<br><em>Relocação real.</em></h1>
-    <p class="sub">Uma equipa de consultores licenciados, especialistas em relocação e conhecedores locais da Costa de Prata — unidos por uma missão: guiá-lo para casa.</p>
+    <p class="sub">Uma equipa de agentes licenciados, especialistas em relocação e conhecedores locais da Costa de Prata — unidos por uma missão: guiá-lo para casa.</p>
   </div>
 </section>
 
@@ -958,5 +977,54 @@ function toggleMobileMenu(){
 })();
 </script>
 
+<script>
+/* Team page: headshot grid with inline expanding bio panel. Bios stay in the HTML; this only rearranges them. */
+(function(){
+  var grid=document.querySelector('.team-grid'); if(!grid) return;
+  var cards=Array.prototype.slice.call(grid.querySelectorAll('.team-card')); if(!cards.length) return;
+  var L={more:'Ler biografia',close:'Fechar'};
+  var store=document.createElement('div'); store.hidden=true;
+  var panel=document.createElement('div'); panel.className='team-panel';
+  var closeBtn=document.createElement('button'); closeBtn.type='button'; closeBtn.className='team-panel-close'; closeBtn.setAttribute('aria-label',L.close); closeBtn.innerHTML='&times;';
+  var tiles=[], current=null;
+  cards.forEach(function(card){
+    var photo=card.querySelector('.team-photo'), name=card.querySelector('h3'), badge=card.querySelector('.team-role-badge');
+    var t=document.createElement('button'); t.type='button'; t.className='team-tile'; t.setAttribute('data-target',card.id); t.setAttribute('aria-expanded','false');
+    t.innerHTML='<div class="team-photo" style="'+(photo?photo.getAttribute('style'):'')+'"></div>'
+      +'<div class="team-tile-name">'+(name?name.textContent:'')+'</div>'
+      +(badge?'<div class="team-role-badge">'+badge.innerHTML+'</div>':'')
+      +'<div class="team-tile-more">'+L.more+'</div>';
+    grid.appendChild(t); tiles.push(t); store.appendChild(card);
+  });
+  grid.appendChild(store); grid.classList.add('team-js');
+  function tileFor(id){ for(var i=0;i<tiles.length;i++){ if(tiles[i].getAttribute('data-target')===id) return tiles[i]; } return null; }
+  function rowEnd(tile){ var top=tile.offsetTop, last=tile; tiles.forEach(function(t){ if(t.offsetTop===top && t.offsetLeft>last.offsetLeft) last=t; }); return last; }
+  function close(){
+    if(!current) return;
+    store.appendChild(document.getElementById(current));
+    if(panel.parentNode) panel.parentNode.removeChild(panel);
+    tiles.forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-expanded','false'); });
+    current=null;
+    if(history.replaceState) history.replaceState(null,'',location.pathname+location.search);
+  }
+  function open(id,scroll){
+    var tile=tileFor(id), card=document.getElementById(id); if(!tile||!card) return;
+    if(current===id){ close(); return; }
+    close();
+    panel.innerHTML=''; panel.style.animation=''; panel.appendChild(closeBtn); panel.appendChild(card);
+    rowEnd(tile).insertAdjacentElement('afterend',panel);
+    tile.classList.add('active'); tile.setAttribute('aria-expanded','true'); current=id;
+    if(history.replaceState) history.replaceState(null,'','#'+id);
+    if(scroll!==false) setTimeout(function(){ panel.scrollIntoView({behavior:'smooth',block:'start'}); },60);
+  }
+  tiles.forEach(function(t){ t.addEventListener('click',function(){ open(t.getAttribute('data-target')); }); });
+  closeBtn.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  window.addEventListener('resize',function(){ if(current){ var end=rowEnd(tileFor(current)); if(end.nextElementSibling!==panel){ panel.style.animation='none'; end.insertAdjacentElement('afterend',panel); } } });
+  function fromHash(){ var h=location.hash.replace('#',''); if(h && tileFor(h)) open(h); }
+  window.addEventListener('hashchange',fromHash);
+  fromHash();
+})();
+</script>
 </body>
 </html>
