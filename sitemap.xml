@@ -381,4 +381,34 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aldeiarealty.com/property-ar100926.html" />
   </url>
   <!-- AR:SITEMAP-LISTINGS:END -->
+  <url>
+    <loc>https://www.aldeiarealty.com/areas/index.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.aldeiarealty.com/areas/caldas-da-rainha.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.aldeiarealty.com/areas/obidos.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.aldeiarealty.com/areas/leiria.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.aldeiarealty.com/areas/nazare.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.aldeiarealty.com/areas/peniche.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
