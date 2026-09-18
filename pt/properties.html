@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/listings-browse.css">
 <style>
 
 :root{
@@ -455,6 +456,7 @@ body{background:var(--parchment);color:var(--black);font-family:var(--body);font
         <button class="nav-more-btn" id="moreBtn" onclick="toggleMore()" aria-haspopup="true" aria-expanded="false">Mais &#9662;</button>
         <div class="nav-dropdown" id="moreDropdown" role="menu">
           <a href="careers.html">Carreiras</a>
+          <a href="areas/index.html">Áreas</a>
           <a href="resources.html">Recursos</a>
           <a href="faq.html">FAQ</a>
           <a href="partner.html">Parceiro</a>
@@ -540,7 +542,8 @@ fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept'
 <section class="section white">
   <div class="container">
     <div class="section-header"><div class="kicker">Dispon&iacute;vel agora</div><h2>Os nossos <em>im&oacute;veis atuais</em>.</h2><p class="sub">Angariados e representados pela Aldeia Realty. Atualizado diariamente a partir do nosso sistema.</p></div>
-    <div class="grid-3">
+    <div id="ar-browse" class="ar-browse" data-lang="pt" data-count="3"></div>
+    <div class="grid-3" id="ar-grid">
       <div class="prop-card">
         <a href="imovel-ad1.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%">
         <div class="prop-img" style="background-image:url('https://fotos15.apinmo.com/14306/29869007/7-1.jpg')"><div class="prop-badge">VENDA</div></div>
@@ -575,6 +578,7 @@ fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept'
         </a>
       </div>
     </div>
+    <div id="ar-empty" class="ar-empty" hidden></div>
   </div>
 </section>
 <!-- AR:LISTINGS:END -->
@@ -776,5 +780,6 @@ function toggleMobileMenu(){
 })();
 </script>
 
+<script src="../js/listings-browse.js" defer></script>
 </body>
 </html>

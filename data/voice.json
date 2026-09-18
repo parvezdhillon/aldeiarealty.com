@@ -1,0 +1,105 @@
+{
+  "_README": [
+    "Aldeia voice lines — the 'fun' layer. Edited by hand (Parv / Angela). The build reads it; nothing here is generated.",
+    "",
+    "B  twoCents   — 'Our two cents' — one first-person line per listing (by CRM ref) and per area (by slug).",
+    "                Shown as a small callout on the detail page / area card. Max ~140 chars. Calm, specific, no hype.",
+    "E  truthTellers — honest flags with a bit of wit, per listing. Shown next to the facts line. Max ~60 chars each.",
+    "C  planner    — the Planner talking back: one line per answer, shown under the next question; plus result-page lines.",
+    "",
+    "Rules: first-person plural, sentence case, one italic word max (wrap it in *asterisks*), no emoji, no exclamation marks.",
+    "A missing key is fine — the page just shows nothing. Lines marked [CHECK] are drafts that need a real fact confirmed."
+  ],
+
+  "twoCents": {
+    "listings": {
+      "AR100926": {
+        "en": "We'd put the espresso machine by the annexe window. Orchard on one side, nothing but fields on the other.",
+        "pt": "Púnhamos a máquina de café à janela do anexo. Pomar de um lado, campo aberto do outro."
+      },
+      "AR20260828": {
+        "en": "Sun on the pool from late morning to sunset — we checked in February, not August.",
+        "pt": "Sol na piscina do fim da manhã ao pôr-do-sol — confirmámos em fevereiro, não em agosto."
+      },
+      "AD1": {
+        "en": "Walk to the market before eight and you'll never buy a supermarket tomato again.",
+        "pt": "Vá ao mercado antes das oito e nunca mais compra tomate de supermercado."
+      }
+    },
+    "areas": {
+      "caldas-da-rainha": {
+        "en": "It's where we chose to live. Hospital in town, beach in ten minutes, and a market that has run every morning for centuries.",
+        "pt": "Foi onde escolhemos viver. Hospital na cidade, praia a dez minutos e um mercado que abre todas as manhãs há séculos."
+      },
+      "obidos": {
+        "en": "Village life inside a postcard — and fifteen minutes to Caldas for everything the postcard lacks.",
+        "pt": "Vida de aldeia dentro de um postal — e a quinze minutos de Caldas para tudo o que falta ao postal."
+      },
+      "peniche": {
+        "en": "Softer prices than Óbidos, a working harbour, and wind you'll learn to plan lunch around.",
+        "pt": "Preços mais suaves do que Óbidos, um porto a funcionar e um vento que aprende a ter em conta à hora de almoço."
+      },
+      "nazare": {
+        "en": "Two towns in one: golden sand in July, sixty-foot Atlantic in January. Choose your season before you choose your street.",
+        "pt": "Duas vilas numa: areia dourada em julho, Atlântico de vinte metros em janeiro. Escolha a estação antes de escolher a rua."
+      },
+      "leiria": {
+        "en": "A real jobs market, a castle over the river, and beaches twenty-five minutes out — at prices the coast forgot.",
+        "pt": "Um mercado de trabalho a sério, um castelo sobre o rio e praias a vinte e cinco minutos — a preços que a costa esqueceu."
+      }
+    }
+  },
+
+  "truthTellers": {
+    "AR100926": [
+      { "en": "Sea view: no. Orchard view: yes.", "pt": "Vista de mar: não. Vista de pomar: sim." },
+      { "en": "You'll want a car. Two, honestly.", "pt": "Vai precisar de carro. De dois, sinceramente." },
+      { "en": "[CHECK] Fibre: available at the road, not yet in the house.", "pt": "[CHECK] Fibra: disponível na rua, ainda não em casa." }
+    ],
+    "AR20260828": [
+      { "en": "Salt-water pool: kinder on skin, still needs a cover.", "pt": "Piscina de água salgada: mais suave na pele, mas precisa de cobertura." },
+      { "en": "Eight houses in the development. You'll know your neighbours.", "pt": "Oito casas no loteamento. Vai conhecer os vizinhos." },
+      { "en": "Three floors. Count the stairs before you count the rooms.", "pt": "Três pisos. Conte as escadas antes de contar as divisões." }
+    ],
+    "AD1": [
+      { "en": "No lift. [CHECK] floor.", "pt": "Sem elevador. [CHECK] andar." },
+      { "en": "Parking is street parking. Fine in February, a hunt in August.", "pt": "Estacionamento na rua. Fácil em fevereiro, uma caça em agosto." },
+      { "en": "Walking distance means walking distance — we timed it.", "pt": "Distância a pé quer dizer mesmo a pé — cronometrámos." }
+    ]
+  },
+
+  "planner": {
+    "who": {
+      "family":   { "en": "Same. Ours were in the back seat for the whole eighteen months of paperwork.", "pt": "Igual. Os nossos foram no banco de trás durante os dezoito meses de papelada." },
+      "couple":   { "en": "Easier than a family, honestly. You'll still argue about the coast.", "pt": "Mais fácil do que com família, sinceramente. Mesmo assim vão discutir por causa da costa." },
+      "solo":     { "en": "Portugal is kind to people arriving alone. So is the market café at seven.", "pt": "Portugal é simpático com quem chega sozinho. O café do mercado às sete também." },
+      "retiring": { "en": "Then the hospital question comes first, and we'll answer it honestly.", "pt": "Então a pergunta do hospital vem primeiro, e vamos respondê-la com franqueza." }
+    },
+    "budget": {
+      "<300":    { "en": "Real homes exist here. Not on the seafront, but real.", "pt": "Há casas a sério neste valor. Não em cima do mar, mas a sério." },
+      "300-500": { "en": "This is where villas with gardens start. Also where we started.", "pt": "É aqui que começam as moradias com jardim. Também foi aqui que começámos." },
+      "500-900": { "en": "Pool, land, and a view of something. Pick two and we'll find the third.", "pt": "Piscina, terreno e vista para alguma coisa. Escolha duas e nós encontramos a terceira." },
+      "900+":    { "en": "At this level the question isn't the house. It's which village.", "pt": "A este nível a questão não é a casa. É qual a aldeia." }
+    },
+    "setting": {
+      "city":    { "en": "Good. Cities here close at ten and open at seven. You'll sleep.", "pt": "Boa. As cidades aqui fecham às dez e abrem às sete. Vai dormir." },
+      "village": { "en": "Learn the word for 'neighbour' first. You'll use it daily.", "pt": "Aprenda primeiro a palavra 'vizinho'. Vai usá-la todos os dias." },
+      "coast":   { "en": "Ask us about February before you fall for July.", "pt": "Pergunte-nos por fevereiro antes de se apaixonar por julho." }
+    },
+    "priority": {
+      "beach":    { "en": "Ten minutes to sand is a real filter here, not a brochure line.", "pt": "Dez minutos até à areia é um filtro real aqui, não uma frase de brochura." },
+      "services": { "en": "The unglamorous answer, and the one we gave ourselves.", "pt": "A resposta sem glamour, e a que demos a nós próprios." },
+      "both":     { "en": "You can. It costs about a village more.", "pt": "Pode. Custa mais ou menos uma aldeia a mais." }
+    },
+    "timeline": {
+      "<6":  { "en": "Ambitious. The visa is the long pole; start it this week.", "pt": "Ambicioso. O visto é o que demora; comece esta semana." },
+      "6-12": { "en": "Our pace exactly. Eighteen months of quiet, then one loud December.", "pt": "Exatamente o nosso ritmo. Dezoito meses de calma, depois um dezembro barulhento." },
+      "12+": { "en": "Time to rent a winter first. We recommend it more than any listing.", "pt": "Tempo para arrendar um inverno primeiro. Recomendamos isso mais do que qualquer imóvel." }
+    },
+    "result": {
+      "sameTown": { "en": "You'd have been our neighbours.", "pt": "Teriam sido nossos vizinhos." },
+      "intro":    { "en": "Written by people who did this, not by a brochure.", "pt": "Escrito por quem passou por isto, não por uma brochura." },
+      "checklist": { "en": "In the order we did it, including the mistakes.", "pt": "Pela ordem em que o fizemos, erros incluídos." }
+    }
+  }
+}

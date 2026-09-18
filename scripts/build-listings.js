@@ -122,6 +122,57 @@ function parseProperty(b) {
   };
 }
 
+// ---------- drive time to the nearest beach (minutes) ----------
+// Feeds the "near beach" filter on the properties page. Zone first, then
+// city; anything unknown gets null and simply never matches that filter.
+// Rough, by car, off-season traffic. Edit freely — the nightly build picks
+// it up.
+const BEACH_MIN_BY_ZONE = {
+  'nadadouro': 5, 'foz do arelho': 2, 'salir do porto': 3, 'sao martinho do porto': 2,
+  'salir de matos': 22, 'santo onofre': 15, 'santo onofre e serra do bouro': 15,
+  'vidais': 20, 'tornada': 12, 'baleal': 2, 'ferrel': 5, 'atouguia da baleia': 8,
+  'usseira': 15, 'vau': 5, 'amoreira': 8, 'gaeiras': 15, 'olho marinho': 12,
+};
+const BEACH_MIN_BY_CITY = {
+  'caldas da rainha': 15, 'obidos': 12, 'peniche': 3, 'nazare': 2, 'leiria': 25,
+  'alcobaca': 15, 'bombarral': 20, 'lourinha': 8, 'marinha grande': 10,
+};
+function fold(s) {
+  return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+}
+function beachMinutes(p) {
+  const z = fold(p.zone), c = fold(p.city);
+  for (const k of Object.keys(BEACH_MIN_BY_ZONE)) if (z && z.indexOf(k) !== -1) return BEACH_MIN_BY_ZONE[k];
+  if (Object.prototype.hasOwnProperty.call(BEACH_MIN_BY_CITY, c)) return BEACH_MIN_BY_CITY[c];
+  return null;
+}
+
+// ---------- voice lines (data/voice.json — the "fun" layer, hand-edited) ----------
+// "Our two cents" per listing/area and honest "truth-teller" flags per listing.
+// Missing file or key → nothing renders. Lines still marked [CHECK] are drafts
+// and are never published.
+let VOICE = {};
+try { VOICE = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'voice.json'), 'utf8')); }
+catch (e) { console.warn('data/voice.json not read (' + e.message + ') — voice lines skipped'); }
+function voiceText(obj, lang) {
+  const raw = obj && obj[lang];
+  if (!raw || raw.indexOf('[CHECK]') !== -1) return '';
+  // *word* → <em>word</em> (one italic word, house style); everything else escaped
+  return esc(raw).replace(/\*([^*]+)\*/g, '<em>$1</em>');
+}
+function twoCentsHtml(p, lang) {
+  const line = voiceText(VOICE.twoCents && VOICE.twoCents.listings && VOICE.twoCents.listings[p.ref], lang);
+  if (!line) return '';
+  const k = lang === 'en' ? 'Our two cents' : 'A nossa opini&atilde;o';
+  return `<aside class="pd-2c"><div class="pd-2c-k">${k}</div><p>${line}</p><div class="pd-2c-by">${lang === 'en' ? '&mdash; Angela &amp; Parv' : '&mdash; Angela e Parv'}</div></aside>`;
+}
+function truthHtml(p, lang) {
+  const lines = ((VOICE.truthTellers && VOICE.truthTellers[p.ref]) || []).map(x => voiceText(x, lang)).filter(Boolean);
+  if (!lines.length) return '';
+  const k = lang === 'en' ? 'Straight talk' : 'Sem rodeios';
+  return `<div class="pd-truth"><h2>${k}</h2><ul>${lines.map(l => '<li>' + l + '</li>').join('')}</ul></div>`;
+}
+
 // ---------- badge text (sale / rent / both) ----------
 function badgeText(p, en) {
   if (p.operation === 'both') return en ? 'FOR SALE OR RENT' : 'VENDA OU ARRENDAMENTO';
@@ -170,9 +221,11 @@ function sectionHtml(props, lang) {
   return `<section class="section white">
   <div class="container">
     <div class="section-header"><div class="kicker">${kicker}</div><h2>${h2}</h2><p class="sub">${sub}</p></div>
-    <div class="grid-3">
+    <div id="ar-browse" class="ar-browse" data-lang="${lang}" data-count="${props.length}"></div>
+    <div class="grid-3" id="ar-grid">
 ${props.map(p => cardHtml(p, lang)).join('\n')}
     </div>
+    <div id="ar-empty" class="ar-empty" hidden></div>
   </div>
 </section>`;
 }
@@ -647,6 +700,18 @@ ${seoHead(p, lang, state)}<link rel="preconnect" href="https://fonts.googleapis.
 .pd-desc h2,.pd-facts h2{font-family:Domine,serif;font-weight:700;font-size:20px;color:#1c0a04;margin-bottom:14px}
 .pd-desc p{font-size:15px;line-height:1.7;color:rgba(28,10,4,0.80);margin-bottom:14px}
 .pd-facts{background:#fff;border:1px solid rgba(41,102,98,0.18);border-radius:3px;padding:24px;height:fit-content}
+.pd-2c{background:#e4e7e6;border-left:3px solid #296662;padding:18px 22px;margin:0 0 22px}
+.pd-2c-k{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:#296662;font-weight:600;margin-bottom:6px}
+.pd-2c p{font-family:Domine,serif;font-size:18px;line-height:1.45;color:#1c0a04;margin:0}
+.pd-2c p em{font-style:italic;color:#296662}
+.pd-2c-by{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,10,4,0.55);margin-top:8px}
+.pd-truth{background:#fff;border:1px solid rgba(41,102,98,0.18);border-radius:3px;padding:20px 24px;margin-top:16px}
+.pd-truth h2{font-family:Domine,serif;font-weight:700;font-size:18px;color:#1c0a04;margin-bottom:10px}
+.pd-truth ul{list-style:none;margin:0;padding:0}
+.pd-truth li{position:relative;padding:6px 0 6px 26px;font-size:14px;line-height:1.5;color:rgba(28,10,4,0.80);border-bottom:1px solid rgba(41,102,98,0.10)}
+.pd-truth li:last-child{border-bottom:0}
+.pd-truth li::before{content:"";position:absolute;left:0;top:9px;width:16px;height:16px;background:url("${en ? '' : '../'}logos/AR-Logo-Icon-Bullet.png") no-repeat center/contain}
+.pd-truth li em{font-style:italic;color:#296662}
 .pd-facts table{width:100%;border-collapse:collapse;font-size:14px}
 .pd-facts td{padding:8px 0;border-bottom:1px solid rgba(41,102,98,0.10);color:rgba(28,10,4,0.80)}
 .pd-facts td:first-child{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#296662;font-weight:600}
@@ -707,6 +772,7 @@ ${listingLd(p, lang, state)}</head>
   ${archiveNotice}
   <div class="pd-cols">
     <div class="pd-desc">
+      ${twoCentsHtml(p, lang)}
       <h2>${t.desc}</h2>
       ${paras.map(x => '<p>' + esc(x) + '</p>').join('\n      ')}
     </div>
@@ -715,6 +781,7 @@ ${listingLd(p, lang, state)}</head>
         <h2>${t.facts}</h2>
         <table>${factRows.map(r => '<tr><td>' + r[0] + '</td><td style="text-align:right">' + esc(String(r[1])) + '</td></tr>').join('')}</table>
       </div>
+      ${truthHtml(p, lang)}
       <div class="pd-cta">
         <h3>${archived || pending ? (en ? 'Looking for something similar?' : 'Procura algo semelhante?') : t.cta}</h3>
         <p>${archived || pending
@@ -938,8 +1005,32 @@ async function dropDeadPhotos(props) {
   }
 }
 
+// ---------- finder / browse record (one listing → data/listings-<lang>.json) ----------
+function finderRecord(p, lang) {
+  const en = lang === 'en';
+  return {
+    ref: p.ref, operation: p.operation, price: p.price,
+    priceSale: p.priceSale, priceRent: p.priceRent,
+    priceLabel: en ? p.priceLabelEN : p.priceLabelPT,
+    title: en ? p.titleEN : p.titlePT,
+    description: ((en ? p.descEN : p.descPT)[1] || (en ? p.descEN : p.descPT)[0] || '').slice(0, 180),
+    location: p.city, bedrooms: p.bedrooms, bathrooms: p.bathrooms,
+    image: p.photos[0] || null,
+    url: en ? ('property-' + p.slug + '.html') : ('pt/imovel-' + p.slug + '.html'),
+    // --- fields for the client-side browse (js/listings-browse.js) ---
+    zone: p.zone || null,
+    type: p.type || null,
+    areaUseful: p.areaUseful, areaBuilt: p.areaBuilt, plot: p.plot,
+    pool: !!(p.poolPrivate || p.poolShared),
+    energy: p.energyLetter || null,
+    exclusive: !!p.exclusive,
+    updated: p.updated || null,
+    beachMinutes: beachMinutes(p),
+  };
+}
+
 // ---------- main ----------
-(async () => {
+async function main() {
   const xml = await getFeedXml();
   const props = blocks(xml, 'propiedad').map(parseProperty)
     .filter(p => p.id && (p.price > 0));
@@ -965,17 +1056,7 @@ async function dropDeadPhotos(props) {
   const feedUpdated = props.map(p => String(p.updated || '')).sort().pop() || '';
   fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });
   for (const lang of ['en', 'pt']) {
-    const en = lang === 'en';
-    const json = props.map(p => ({
-      ref: p.ref, operation: p.operation, price: p.price,
-      priceSale: p.priceSale, priceRent: p.priceRent,
-      priceLabel: en ? p.priceLabelEN : p.priceLabelPT,
-      title: en ? p.titleEN : p.titlePT,
-      description: ((en ? p.descEN : p.descPT)[1] || (en ? p.descEN : p.descPT)[0] || '').slice(0, 180),
-      location: p.city, bedrooms: p.bedrooms, bathrooms: p.bathrooms,
-      image: p.photos[0] || null,
-      url: en ? ('property-' + p.slug + '.html') : ('pt/imovel-' + p.slug + '.html'),
-    }));
+    const json = props.map(p => finderRecord(p, lang));
     // feedUpdated is the newest fechaact in the feed, NOT the build time.
     // A wall-clock stamp here changed on every run and collided with the
     // nightly bot's copy every time Parv built locally (2026-09-11).
@@ -1037,4 +1118,12 @@ async function dropDeadPhotos(props) {
   updateSitemap([...props, ...archived]);
 
   console.log('Done.');
-})().catch(e => { console.error(e); process.exit(1); });
+}
+
+if (require.main === module) {
+  main().catch(e => { console.error(e); process.exit(1); });
+}
+
+// Exposed for one-off maintenance scripts (e.g. refreshing the finder JSON
+// from the archive without pulling the feed).
+module.exports = { parseProperty, finderRecord, beachMinutes, detailHtml };

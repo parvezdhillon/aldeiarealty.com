@@ -14,7 +14,17 @@
       "bedrooms": 4,
       "bathrooms": 2,
       "image": "https://fotos15.apinmo.com/14306/29869007/7-1.jpg",
-      "url": "property-ad1.html"
+      "url": "property-ad1.html",
+      "zone": "Santo Onofre e Serra do Bouro",
+      "type": "Apartamento",
+      "areaUseful": 119.5,
+      "areaBuilt": 122.8,
+      "plot": null,
+      "pool": false,
+      "energy": "C",
+      "exclusive": true,
+      "updated": "2026-08-19 11:38:56",
+      "beachMinutes": 15
     },
     {
       "ref": "AR20260828",
@@ -29,7 +39,17 @@
       "bedrooms": 4,
       "bathrooms": 3,
       "image": "https://fotos15.apinmo.com/14306/30044766/20-1.jpg",
-      "url": "property-ar20260828.html"
+      "url": "property-ar20260828.html",
+      "zone": "Nadadouro",
+      "type": "Villa",
+      "areaUseful": 248.85,
+      "areaBuilt": 454.64,
+      "plot": 753.28,
+      "pool": true,
+      "energy": "B",
+      "exclusive": true,
+      "updated": "2026-09-02 12:01:27",
+      "beachMinutes": 5
     },
     {
       "ref": "AR100926",
@@ -44,7 +64,17 @@
       "bedrooms": 4,
       "bathrooms": 2,
       "image": "https://fotos15.apinmo.com/14306/30157549/10-1.jpg",
-      "url": "property-ar100926.html"
+      "url": "property-ar100926.html",
+      "zone": "Salir de Matos",
+      "type": "Villa",
+      "areaUseful": 220,
+      "areaBuilt": 440,
+      "plot": 1388,
+      "pool": true,
+      "energy": "C",
+      "exclusive": true,
+      "updated": "2026-09-10 09:19:21",
+      "beachMinutes": 22
     }
   ]
 }
