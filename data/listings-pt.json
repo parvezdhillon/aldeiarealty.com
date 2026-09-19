@@ -1,13 +1,13 @@
 {
-  "feedUpdated": "2026-09-10 09:19:21",
+  "feedUpdated": "2026-09-18 11:29:04",
   "listings": [
     {
       "ref": "AD1",
       "operation": "sale",
-      "price": 270000,
-      "priceSale": 270000,
+      "price": 260000,
+      "priceSale": 260000,
       "priceRent": null,
-      "priceLabel": "270.000 €",
+      "priceLabel": "260.000 €",
       "title": "Apartamento T3+1 · Rua Manuel Mafra 33,  · Caldas da Rainha",
       "description": "Apartamento T4 espaçoso, com quatro quartos e duas casas de banho completas, situado a uma distância pedestre do centro da cidade. O apartamento dispõe de uma cozinha funcional e b",
       "location": "Caldas da Rainha",
@@ -23,7 +23,7 @@
       "pool": false,
       "energy": "C",
       "exclusive": true,
-      "updated": "2026-08-19 11:38:56",
+      "updated": "2026-09-18 11:29:04",
       "beachMinutes": 15
     },
     {
