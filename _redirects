@@ -11,3 +11,6 @@
 /ficha/ codigo=14306_30157549 /property-ar100926.html 301
 /ficha/* /pt/properties.html 302 Language=pt
 /ficha/* /properties.html 302
+
+# Legacy paths from earlier navigation (bookmarks, print, search index).
+/buy /properties 301

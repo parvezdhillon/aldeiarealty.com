@@ -1052,6 +1052,9 @@ function writeRedirects(allProps) {
   lines.push('/ficha/* /pt/properties.html 302 Language=pt');
   lines.push('/ficha/* /properties.html 302');
   lines.push('');
+  lines.push('# Legacy paths from earlier navigation (bookmarks, print, search index).');
+  lines.push('/buy /properties 301');
+  lines.push('');
   fs.writeFileSync(path.join(ROOT, '_redirects'), lines.join('\n'));
   console.log('Wrote _redirects (' + allProps.length + ' properties)');
 }
