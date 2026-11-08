@@ -14,3 +14,7 @@
 
 # Legacy paths from earlier navigation (bookmarks, print, search index).
 /buy /properties 301
+
+# Agent landing pages — clean URLs used on QR codes and business cards.
+/agents/:slug /agents/:slug.html 200
+/pt/agentes/:slug /pt/agentes/:slug.html 200

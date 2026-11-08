@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Stilwell;Davina;;;
+FN:Davina Stilwell
+ORG:Aldeia Realty
+TITLE:Real Estate Agent
+TEL;TYPE=CELL,VOICE:+351964152650
+TEL;TYPE=CELL,VOICE:+447914000130
+EMAIL;TYPE=WORK:davina@aldeiarealty.com
+URL:https://aldeiarealty.com/agents/davina
+ADR;TYPE=WORK:;;Rua Dr. Leão Azedo\, 31/33 R/C;Caldas da Rainha;;2500-226;Portugal
+END:VCARD

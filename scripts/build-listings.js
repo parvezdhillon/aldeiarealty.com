@@ -1055,6 +1055,10 @@ function writeRedirects(allProps) {
   lines.push('# Legacy paths from earlier navigation (bookmarks, print, search index).');
   lines.push('/buy /properties 301');
   lines.push('');
+  lines.push('# Agent landing pages — clean URLs used on QR codes and business cards.');
+  lines.push('/agents/:slug /agents/:slug.html 200');
+  lines.push('/pt/agentes/:slug /pt/agentes/:slug.html 200');
+  lines.push('');
   fs.writeFileSync(path.join(ROOT, '_redirects'), lines.join('\n'));
   console.log('Wrote _redirects (' + allProps.length + ' properties)');
 }

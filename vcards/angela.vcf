@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Dhillon;Angela;;;
+FN:Angela Dhillon
+ORG:Aldeia Realty
+TITLE:CEO & Broker-in-Charge
+TEL;TYPE=CELL,VOICE:+351912771309
+TEL;TYPE=CELL,VOICE:+12522958896
+EMAIL;TYPE=WORK:angela@aldeiarealty.com
+URL:https://aldeiarealty.com/agents/angela
+ADR;TYPE=WORK:;;Rua Dr. Leão Azedo\, 31/33 R/C;Caldas da Rainha;;2500-226;Portugal
+END:VCARD

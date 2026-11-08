@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Laborinho;Catarina;;;
+FN:Catarina Laborinho
+ORG:Aldeia Realty
+TITLE:Real Estate Agent
+TEL;TYPE=CELL,VOICE:+351966277727
+EMAIL;TYPE=WORK:catarina@aldeiarealty.com
+URL:https://aldeiarealty.com/agents/catarina
+ADR;TYPE=WORK:;;Rua Dr. Leão Azedo\, 31/33 R/C;Caldas da Rainha;;2500-226;Portugal
+END:VCARD

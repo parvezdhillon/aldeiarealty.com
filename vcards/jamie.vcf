@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Raffle;Jamie;;;
+FN:Jamie Raffle
+ORG:Aldeia Realty
+TITLE:Real Estate Agent
+TEL;TYPE=CELL,VOICE:+351926102995
+EMAIL;TYPE=WORK:jamie@aldeiarealty.com
+URL:https://aldeiarealty.com/agents/jamie
+ADR;TYPE=WORK:;;Rua Dr. Leão Azedo\, 31/33 R/C;Caldas da Rainha;;2500-226;Portugal
+END:VCARD

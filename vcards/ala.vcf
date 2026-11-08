@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Hadj Ammar;Ala;;;
+FN:Ala Hadj Ammar
+ORG:Aldeia Realty
+TITLE:Real Estate Associate
+TEL;TYPE=CELL,VOICE:+351937767566
+EMAIL;TYPE=WORK:ala@aldeiarealty.com
+URL:https://aldeiarealty.com/agents/ala
+ADR;TYPE=WORK:;;Rua Dr. Leão Azedo\, 31/33 R/C;Caldas da Rainha;;2500-226;Portugal
+END:VCARD

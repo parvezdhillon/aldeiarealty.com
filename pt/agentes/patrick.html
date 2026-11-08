@@ -58,6 +58,12 @@ body{background:var(--white-warm);color:var(--black);font-family:var(--body);lin
 .qr-card img{width:170px;height:170px;display:block;margin:0 auto 14px}
 .qr-card .ql{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);line-height:1.8}
 .qr-card .qu{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--teal);font-weight:600;word-break:break-all}
+.qr-card .qc-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:top;display:block;margin:0 auto 10px;border:3px solid var(--white);box-shadow:var(--shadow-soft)}
+.qr-card .qc-name{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-0.02em}
+.qr-card .qc-role{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-dark);font-weight:700;margin:4px 0 10px}
+.qr-card .qc-contact{font-size:13px;line-height:1.75;margin-bottom:14px}
+.qr-card .qc-contact a{color:var(--teal);text-decoration:none;font-weight:600}
+.qr-card .qc-save{margin-top:14px}
 .section{padding:72px 0;background:var(--white-warm)}
 .section.alt{background:var(--parchment);border-top:3px solid var(--gold)}
 .bio-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:56px;align-items:start}
@@ -119,15 +125,21 @@ body{background:var(--white-warm);color:var(--black);font-family:var(--body);lin
       <div class="role">Agente Imobiliário Sénior &middot; Aldeia Realty &middot; Leiria</div>
       <div class="langs"><span>EN</span></div>
       <div class="btn-row">
-        <a class="btn btn-primary" href="https://wa.me/12522958896?text=Olá,%20gostaria%20de%20falar%20com%20Patrick%20da%20Aldeia%20Realty." target="_blank" rel="noopener">WhatsApp Patrick</a>
+        <a class="btn btn-primary" href="https://wa.me/12523332132?text=Olá,%20gostaria%20de%20falar%20com%20Patrick%20da%20Aldeia%20Realty." target="_blank" rel="noopener">WhatsApp Patrick</a>
         <a class="btn btn-secondary" href="mailto:patrick@aldeiarealty.com">Email para Patrick</a>
+        <a class="btn btn-secondary" href="tel:+351924706285">+351 924 706 285</a>
       </div>
     </div>
   </div>
   <div class="qr-card">
+    <img class="qc-photo" src="../../images/team/patrick-headshot.jpg" alt="Patrick Reid">
+    <div class="qc-name">Patrick Reid</div>
+    <div class="qc-role">Agente Imobiliário Sénior</div>
+    <div class="qc-contact"><a href="tel:+351924706285">+351 924 706 285</a><br><a href="tel:+12523332132">+1 252 333 2132</a><br><a href="mailto:patrick@aldeiarealty.com">patrick@aldeiarealty.com</a></div>
     <img src="../../images/qr/patrick.png" alt="QR code">
     <div class="ql">Digitalize para abrir esta p&aacute;gina</div>
     <div class="qu">aldeiarealty.com/agents/patrick</div>
+    <a class="btn btn-secondary qc-save" href="../../vcards/patrick.vcf" download>Guardar contacto</a>
   </div>
 </div></header>
 <section class="section"><div class="container bio-grid">
@@ -157,7 +169,7 @@ body{background:var(--white-warm);color:var(--black);font-family:var(--body);lin
 <section class="cta"><div class="disc"></div><div>
   <div class="kicker">Marcar visita</div>
   <h2>Comece a sua mudan&ccedil;a com <em>Patrick</em>.</h2><p>Uma mensagem no WhatsApp basta &mdash; tratamos do resto.</p>
-  <div class="btn-row"><a class="btn btn-gold" href="https://wa.me/12522958896?text=Olá,%20gostaria%20de%20falar%20com%20Patrick%20da%20Aldeia%20Realty." target="_blank" rel="noopener">WhatsApp Patrick</a>
+  <div class="btn-row"><a class="btn btn-gold" href="https://wa.me/12523332132?text=Olá,%20gostaria%20de%20falar%20com%20Patrick%20da%20Aldeia%20Realty." target="_blank" rel="noopener">WhatsApp Patrick</a>
   <a class="btn btn-outline-light" href="../our-team.html">Conhe&ccedil;a toda a equipa</a></div>
 </div></section>
 <footer class="site-footer">

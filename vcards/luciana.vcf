@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Aires;Luciana;;;
+FN:Luciana Aires
+ORG:Aldeia Realty
+TITLE:Real Estate Agent
+TEL;TYPE=CELL,VOICE:+351968104963
+EMAIL;TYPE=WORK:luciana@aldeiarealty.com
+URL:https://aldeiarealty.com/agents/luciana
+ADR;TYPE=WORK:;;Rua Dr. Leão Azedo\, 31/33 R/C;Caldas da Rainha;;2500-226;Portugal
+END:VCARD

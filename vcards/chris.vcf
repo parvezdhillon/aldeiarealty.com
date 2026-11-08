@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Gallinger;Chris;;;
+FN:Chris Gallinger
+ORG:Aldeia Realty
+TITLE:Real Estate Agent
+TEL;TYPE=CELL,VOICE:+351928311035
+EMAIL;TYPE=WORK:chris@aldeiarealty.com
+URL:https://aldeiarealty.com/agents/chris
+ADR;TYPE=WORK:;;Rua Dr. Leão Azedo\, 31/33 R/C;Caldas da Rainha;;2500-226;Portugal
+END:VCARD

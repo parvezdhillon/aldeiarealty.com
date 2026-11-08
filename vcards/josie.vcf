@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Philippe;Josie;;;
+FN:Josie Philippe
+ORG:Aldeia Realty
+TITLE:Acquisition Specialist
+TEL;TYPE=CELL,VOICE:+351913860371
+EMAIL;TYPE=WORK:josie@aldeiarealty.com
+URL:https://aldeiarealty.com/agents/josie
+ADR;TYPE=WORK:;;Rua Dr. Leão Azedo\, 31/33 R/C;Caldas da Rainha;;2500-226;Portugal
+END:VCARD
