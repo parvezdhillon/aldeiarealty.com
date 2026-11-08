@@ -217,7 +217,7 @@ function sectionHtml(props, lang) {
   const h2 = en ? 'Our <em>current listings</em>.' : 'Os nossos <em>im&oacute;veis atuais</em>.';
   const sub = en
     ? 'Listed and represented by Aldeia Realty. Updated daily from our property system.'
-    : 'Angariados e representados pela Aldeia Realty. Atualizado diariamente a partir do nosso sistema.';
+    : 'Angariação e representação Aldeia Realty. Atualizado diariamente a partir do nosso CRM.';
   return `<section class="section white">
   <div class="container">
     <div class="section-header"><div class="kicker">${kicker}</div><h2>${h2}</h2><p class="sub">${sub}</p></div>
@@ -602,10 +602,10 @@ function homeSectionHtml(props, lang) {
   const kicker = en ? 'Available now' : 'Dispon&iacute;vel agora';
   const h2 = en
     ? 'Homes we are <em>listing right now</em>.'
-    : 'Im&oacute;veis que estamos a <em>angariar agora</em>.';
+    : 'Os im&oacute;veis que temos <em>neste momento</em>.';
   const sub = en
     ? 'Listed and represented by Aldeia Realty. Updated daily from our property system.'
-    : 'Angariados e representados pela Aldeia Realty. Atualizado diariamente a partir do nosso sistema.';
+    : 'Angariação e representação Aldeia Realty. Atualizado diariamente a partir do nosso CRM.';
   const more = en ? 'Browse All Properties &rarr;' : 'Ver Todos os Im&oacute;veis &rarr;';
   return `<section class="section dove">
   <div class="container">

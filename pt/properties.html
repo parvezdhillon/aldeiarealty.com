@@ -78,7 +78,7 @@ body{background:var(--white-warm);color:var(--black);font-family:var(--body);fon
 
 /* PAGE HERO (teal background - gold kicker OK here) */
 .page-hero{background:var(--gold-wash);padding:80px 0 96px;border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
-.page-hero::after{content:'';position:absolute;width:320px;height:320px;border-radius:50%;background:var(--gold);right:-80px;top:-120px;pointer-events:none}
+.page-hero::after{content:'';position:absolute;right:3%;bottom:-12%;height:460px;aspect-ratio:864/917;background:url('../images/brand/swallow-tealsoft.png') no-repeat center/contain;opacity:.22;pointer-events:none}
 .page-hero .container{position:relative;z-index:1}
 .page-hero .kicker{color:var(--teal)}
 .page-hero h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,5.5vw,72px);line-height:0.98;letter-spacing:-0.03em;color:var(--black);margin-bottom:20px}
@@ -457,7 +457,7 @@ body{background:var(--white-warm);color:var(--black);font-family:var(--body);fon
 <nav class="site-nav">
   <div class="site-nav-inner">
     <div class="site-nav-logo">
-      <a href="index.html"><img src="../logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty" /></a>
+      <a href="index.html"><img src="../logos/AR-Logo-Horizontal-FullColour-nav.png" alt="Aldeia Realty" /></a>
     </div>
     <div class="site-nav-links">
       <a href="index.html">In&iacute;cio</a>
@@ -473,7 +473,7 @@ body{background:var(--white-warm);color:var(--black);font-family:var(--body);fon
           <a href="areas/index.html">Áreas</a>
           <a href="resources.html">Recursos</a>
           <a href="faq.html">FAQ</a>
-          <a href="partner.html">Parceiro</a>
+          <a href="partner.html">Parcerias</a>
           <a href="contact.html">Contacto</a>
         </div>
       </div>
@@ -512,8 +512,8 @@ body{background:var(--white-warm);color:var(--black);font-family:var(--body);fon
 <h3>Diga-nos o que procura.</h3>
 <p class="intro">Representamos uma carteira pequena e criteriosamente escolhida &mdash; por isso pesquisamos tamb&eacute;m todo o mercado por si. Envie-nos o seu pedido e um consultor Aldeia responder&aacute; com uma sele&ccedil;&atilde;o em 24 horas.</p>
 <div class="ar-rgrid">
-<div class="ar-ff"><label for="r-type">Tipo de im&oacute;vel</label><select id="r-type"><option value="">Qualquer tipo</option><option value="House">Moradia</option><option value="Apartment">Apartamento</option><option value="Villa">Moradia isolada</option><option value="Farmhouse">Quinta</option><option value="Land">Terreno / lote</option></select></div>
-<div class="ar-ff"><label for="r-style">Tipologia</label><select id="r-style"><option value="">Indiferente</option><option value="Detached">Isolada</option><option value="Semi-detached">Geminada</option><option value="Terraced">Banda</option></select></div>
+<div class="ar-ff"><label for="r-type">Tipo de im&oacute;vel</label><select id="r-type"><option value="">Qualquer tipo</option><option value="House">Casa</option><option value="Apartment">Apartamento</option><option value="Villa">Moradia</option><option value="Farmhouse">Quinta</option><option value="Land">Terreno / lote</option></select></div>
+<div class="ar-ff"><label for="r-style">Estilo</label><select id="r-style"><option value="">Indiferente</option><option value="Detached">Isolada</option><option value="Semi-detached">Geminada</option><option value="Terraced">Banda</option></select></div>
 <div class="ar-ff"><label for="r-beds">Quartos</label><select id="r-beds"><option value="">Indiferente</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option></select></div>
 <div class="ar-ff"><label for="r-baths">Casas de banho</label><select id="r-baths"><option value="">Indiferente</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option></select></div>
 <div class="ar-ff"><label for="r-budget">Or&ccedil;amento at&eacute; (&euro;)</label><input id="r-budget" type="number" min="0" step="1000" placeholder="&mdash;"/></div>
@@ -555,7 +555,7 @@ fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept'
 <!-- AR:LISTINGS:START (auto-generated - do not edit between markers) -->
 <section class="section white">
   <div class="container">
-    <div class="section-header"><div class="kicker">Dispon&iacute;vel agora</div><h2>Os nossos <em>im&oacute;veis atuais</em>.</h2><p class="sub">Angariados e representados pela Aldeia Realty. Atualizado diariamente a partir do nosso sistema.</p></div>
+    <div class="section-header"><div class="kicker">Dispon&iacute;vel agora</div><h2>Os nossos <em>im&oacute;veis atuais</em>.</h2><p class="sub">Angariação e representação Aldeia Realty. Atualizado diariamente a partir do nosso CRM.</p></div>
     <div id="ar-browse" class="ar-browse" data-lang="pt" data-count="3"></div>
     <div class="grid-3" id="ar-grid">
       <div class="prop-card">
@@ -601,7 +601,7 @@ fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept'
 <!-- AR:ARCHIVE:END -->
 <section class="section dove">
   <div class="container">
-    <div class="section-header"><div class="kicker">Descobrir</div><h2>Onde <em>servimos</em>.</h2></div>
+    <div class="section-header"><div class="kicker">Descobrir</div><h2>Onde <em>trabalhamos</em>.</h2></div>
     <div class="grid-3" style="grid-template-columns:repeat(5,1fr)">
       <div class="area-card"><img src="../images/locations/loc-caldas.jpg" alt="Caldas da Rainha" /><div class="area-content"><h3>Caldas da Rainha</h3><p>O cora&ccedil;&atilde;o cultural da Costa de Prata.</p></div></div>
       <div class="area-card"><img src="../images/locations/loc-obidos.jpg" alt="&Oacute;bidos" /><div class="area-content"><h3>&Oacute;bidos</h3><p>Vila medieval muralhada com castelo de conto de fadas.</p></div></div>
@@ -627,9 +627,9 @@ fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept'
 <footer class="site-footer">
   <div class="footer-inner">
     <div>
-      <div class="footer-logo"><img src="../logos/AR-Logo-Horizontal-FullColour@2x.png" alt="Aldeia Realty" /></div>
+      <div class="footer-logo"><img src="../logos/AR-Logo-Horizontal-FullColour-nav.png" alt="Aldeia Realty" /></div>
       <div class="footer-tagline">Modern Heritage &middot; Modern Business</div>
-      <p class="footer-desc">Uma ag&ecirc;ncia imobili&aacute;ria boutique que o guia para casa na Costa de Prata de Portugal com confian&ccedil;a, experi&ecirc;ncia e servi&ccedil;o moderno.</p>
+      <p class="footer-desc">Uma ag&ecirc;ncia imobili&aacute;ria boutique que o guia at&eacute; casa na Costa de Prata, com confian&ccedil;a, experi&ecirc;ncia e um servi&ccedil;o moderno.</p>
       <div class="footer-social"><a href="https://www.instagram.com/aldeiarealty/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg></a><a href="https://www.facebook.com/share/17yLgpitNh/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.6l.4-3h-3V9.1c0-.9.3-1.5 1.6-1.5h1.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.2v3h2.6v7h2.7z"/></svg></a><a href="https://share.google/gbTJUs35o6mbW1ZyQ" target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.8v2.9h4.1c-.2 1.1-1.2 3.1-4.1 3.1-2.5 0-4.5-2-4.5-4.6S9.5 7.6 12 7.6c1.4 0 2.3.6 2.9 1.1l2-1.9C15.6 5.6 14 4.9 12 4.9c-4 0-7.2 3.2-7.2 7.2s3.2 7.2 7.2 7.2c4.2 0 6.9-2.9 6.9-7 0-.5 0-.8-.1-1.2H12z"/></svg></a></div>
     </div>
     <div class="footer-col">
@@ -654,7 +654,7 @@ fetch('https://formspree.io/f/xkoenyzb',{method:'POST',body:fd,headers:{'Accept'
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Contacto</div>
-      <div class="footer-contact">Phone: <a href="tel:+351912771309">+351 912 771 309</a></div>
+      <div class="footer-contact">Telefone: <a href="tel:+351912771309">+351 912 771 309</a></div>
       <div class="footer-contact">WhatsApp: <a href="https://wa.me/12522958896">+1 252 295 8896</a></div>
       <div class="footer-contact"><a href="mailto:info@aldeiarealty.com">info@aldeiarealty.com</a></div>
       <div class="footer-contact">Rua Dr. Le&atilde;o Azedo, 31/33 R/C<br>2500-226 Caldas da Rainha, Portugal</div>

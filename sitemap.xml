@@ -328,7 +328,7 @@
   <!-- AR:SITEMAP-LISTINGS:START (auto-generated - do not edit between markers) -->
   <url>
     <loc>https://www.aldeiarealty.com/property-ad1.html</loc>
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/property-ad1.html" />
@@ -337,7 +337,7 @@
   </url>
   <url>
     <loc>https://www.aldeiarealty.com/pt/imovel-ad1.html</loc>
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/property-ad1.html" />
@@ -346,7 +346,7 @@
   </url>
   <url>
     <loc>https://www.aldeiarealty.com/property-ar20260828.html</loc>
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/property-ar20260828.html" />
@@ -355,7 +355,7 @@
   </url>
   <url>
     <loc>https://www.aldeiarealty.com/pt/imovel-ar20260828.html</loc>
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/property-ar20260828.html" />
@@ -364,7 +364,7 @@
   </url>
   <url>
     <loc>https://www.aldeiarealty.com/property-ar100926.html</loc>
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/property-ar100926.html" />
@@ -373,7 +373,7 @@
   </url>
   <url>
     <loc>https://www.aldeiarealty.com/pt/imovel-ar100926.html</loc>
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.aldeiarealty.com/property-ar100926.html" />
@@ -441,4 +441,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url><loc>https://www.aldeiarealty.com/agents/angela.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/pt/agentes/angela.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/agents/patrick.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/pt/agentes/patrick.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/agents/fernanda.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/pt/agentes/fernanda.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/agents/luciana.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/pt/agentes/luciana.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/agents/jamie.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/pt/agentes/jamie.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/agents/davina.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/pt/agentes/davina.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/agents/catarina.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/pt/agentes/catarina.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/agents/chris.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/pt/agentes/chris.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/agents/ala.html</loc></url>
+  <url><loc>https://www.aldeiarealty.com/pt/agentes/ala.html</loc></url>
 </urlset>
