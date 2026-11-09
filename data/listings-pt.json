@@ -1,5 +1,5 @@
 {
-  "feedUpdated": "2026-11-05 08:41:41",
+  "feedUpdated": "2026-11-08 19:47:56",
   "listings": [
     {
       "ref": "AD1",
@@ -59,11 +59,11 @@
       "priceRent": null,
       "priceLabel": "635.000 €",
       "title": "Moradia T3+1 com piscina, anexo e pomar em Salir de Matos",
-      "description": "Venha conhecer! Junte-se a nós no sábado, 7 de novembro, das 15:00 às 18:00, nesta espaçosa propriedade em Salir de Matos.",
+      "description": "A dez minutos de Caldas da Rainha, onde tudo o que tem à frente são campos agrícolas e um pomar. Esta moradia isolada de dois pisos situa-se no lugar de Trabalhias, em 1.388 m² de ",
       "location": "Caldas da Rainha",
       "bedrooms": 4,
       "bathrooms": 2,
-      "image": "https://fotos15.apinmo.com/14306/30157549/12-1.jpg",
+      "image": "https://fotos15.apinmo.com/14306/30157549/13-1.jpg",
       "url": "pt/imovel-ar100926.html",
       "zone": "Salir de Matos",
       "type": "Villa",
@@ -73,7 +73,7 @@
       "pool": true,
       "energy": "C",
       "exclusive": true,
-      "updated": "2026-11-05 08:41:41",
+      "updated": "2026-11-08 19:47:56",
       "beachMinutes": 22
     }
   ]
