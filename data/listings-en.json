@@ -1,5 +1,5 @@
 {
-  "feedUpdated": "2026-11-09 21:40:30",
+  "feedUpdated": "2026-11-10 16:18:47",
   "listings": [
     {
       "ref": "AD1",
@@ -73,8 +73,33 @@
       "pool": true,
       "energy": "C",
       "exclusive": true,
-      "updated": "2026-11-09 21:40:30",
+      "updated": "2026-11-10 14:13:02",
       "beachMinutes": 22
+    },
+    {
+      "ref": "AR20261104",
+      "operation": "sale",
+      "price": 695000,
+      "priceSale": 695000,
+      "priceRent": null,
+      "priceLabel": "695.000 €",
+      "title": "Furnished 3-bedroom house with sea views and covered pool in Ferrel, Peniche",
+      "description": "On a quiet residential street in Ferrel, this villa catches the sun all day from its south-facing plot. It’s ready to move into and is sold fully furnished, so it suits a family ho",
+      "location": "Peniche",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "image": "https://fotos15.apinmo.com/14306/30702129/12-1.jpg",
+      "url": "property-ar20261104.html",
+      "zone": "Ferrel",
+      "type": "Pareado",
+      "areaUseful": 159.9,
+      "areaBuilt": 257.1,
+      "plot": 362.5,
+      "pool": true,
+      "energy": "C",
+      "exclusive": false,
+      "updated": "2026-11-10 16:18:47",
+      "beachMinutes": 5
     }
   ]
 }
