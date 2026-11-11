@@ -108,6 +108,8 @@ function parseProperty(b) {
     parking: parseInt(field(b, 'parking') || '0', 10) > 0,
     poolPrivate: field(b, 'piscina_prop') === '1',
     poolShared: field(b, 'piscina_com') === '1',
+    seaView: field(b, 'vistasalmar') === '1', // NOT distmar — that is distance, not a view
+    garden: field(b, 'jardin') === '1',
     elevator: field(b, 'ascensor') === '1',
     energyLetter: field(b, 'energialetra'),
     energyCert: field(b, 'refcertificado'),
@@ -197,13 +199,23 @@ function cardHtml(p, lang, state) {
   const linkText = archived
     ? (en ? 'View Details &rarr;' : 'Ver Detalhes &rarr;')
     : (en ? 'View Property &rarr;' : 'Ver Im&oacute;vel &rarr;');
-  return `      <div class="prop-card${archived ? ' is-archived' : ''}">
+  // Coral, not gold: gold-on-white fails contrast. Inline so no page CSS is needed.
+  const exclusiveLabel = p.exclusive
+    ? ' · <span style="color:#a33d22">' + (en ? 'Exclusive listing' : 'Exclusivo Aldeia') + '</span>'
+    : '';
+  // Filter hooks for anything reading the static cards (the live filter bar
+  // itself runs off data/listings-<lang>.json — see js/listings-browse.js).
+  const dataAttrs = ' data-beds="' + (p.bedrooms || 0) + '" data-baths="' + (p.bathrooms || 0)
+    + '" data-sqm="' + Math.round(p.areaBuilt || 0)
+    + '" data-pool="' + ((p.poolPrivate || p.poolShared) ? 1 : 0)
+    + '" data-seaview="' + (p.seaView ? 1 : 0) + '" data-garden="' + (p.garden ? 1 : 0) + '"';
+  return `      <div class="prop-card${archived ? ' is-archived' : ''}"${dataAttrs}>
         <a href="${detailHref}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%">
         <div class="prop-img" style="background-image:url('${p.photos[0] || ''}')"><div class="prop-badge">${badge}</div></div>
         <div class="prop-body">
           <div class="prop-loc">${esc(p.city)} &middot; ${priceLabel}</div>
           <h3>${esc(title)}</h3>
-          <p>${esc(facts)}${p.exclusive ? (en ? ' · Exclusive listing' : ' · Exclusivo Aldeia') : ''}</p>
+          <p>${esc(facts)}${exclusiveLabel}</p>
           <span class="prop-link">${linkText}</span>
         </div>
         </a>
@@ -1022,6 +1034,8 @@ function finderRecord(p, lang) {
     type: p.type || null,
     areaUseful: p.areaUseful, areaBuilt: p.areaBuilt, plot: p.plot,
     pool: !!(p.poolPrivate || p.poolShared),
+    seaView: !!p.seaView,
+    garden: !!p.garden,
     energy: p.energyLetter || null,
     exclusive: !!p.exclusive,
     updated: p.updated || null,

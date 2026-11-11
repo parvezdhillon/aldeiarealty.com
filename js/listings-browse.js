@@ -6,7 +6,8 @@
  * into #ar-grid, so the page works with no JS and paints instantly. This
  * script then loads data/listings-<lang>.json and takes over the grid:
  *
- *   - filter bar (town · price · T · sale/rent · near beach · pool · land)
+ *   - filter bar (town · price · T · baths · size · sale/rent · near beach ·
+ *     sea view · pool · garden · land)
  *   - results update instantly, no page load
  *   - URL reflects the filters (?town=…&max=…) so a view is shareable
  *   - empty state offers "alert me" → Formspree
@@ -34,6 +35,9 @@
     town: 'Zona', allTowns: 'Todas as zonas', other: 'Outras',
     price: 'Preço', anyPrice: 'Qualquer preço', upTo: 'até', from: 'a partir de',
     typ: 'Tipologia', anyT: 'Qualquer T',
+    baths: 'Casas de banho', anyBaths: 'Qualquer n.º', size: 'Área', anySize: 'Qualquer área',
+    sea: 'Vista mar', garden: 'Jardim',
+    noSea: 'Com ou sem vista mar', noGarden: 'Com ou sem jardim',
     sale: 'Venda', rent: 'Arrendar', both: 'Ambos',
     beach: 'Praia < 15 min', pool: 'Piscina', land: 'Terreno',
     sort: 'Ordenar', sortNew: 'Mais recentes', sortLow: 'Preço ↑', sortHigh: 'Preço ↓',
@@ -59,6 +63,9 @@
     town: 'Town', allTowns: 'All five areas', other: 'Other',
     price: 'Price', anyPrice: 'Any price', upTo: 'up to', from: 'from',
     typ: 'Typology', anyT: 'Any T',
+    baths: 'Bathrooms', anyBaths: 'Any', size: 'Size', anySize: 'Any size',
+    sea: 'Sea view', garden: 'Garden',
+    noSea: 'With or without a sea view', noGarden: 'With or without a garden',
     sale: 'Sale', rent: 'Rent', both: 'Both',
     beach: 'Beach < 15 min', pool: 'Pool', land: 'Land',
     sort: 'Sort', sortNew: 'Newest', sortLow: 'Price ↑', sortHigh: 'Price ↓',
@@ -83,6 +90,8 @@
   };
 
   var PRICE_STEPS = [150000, 200000, 250000, 300000, 400000, 500000, 650000, 800000, 1000000, 1500000];
+  var SIZE_STEPS = [100, 150, 200, 300, 400];   // minimum gross built area, m²
+  var BATH_STEPS = [1, 2, 3, 4];                // minimum full bathrooms
 
   // ---------- helpers ----------
   function fold(s) { return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim(); }
@@ -109,18 +118,25 @@
     return 'other';
   }
   function tOf(p) { return p.bedrooms || 0; }
+  // One size figure everywhere: gross built area (m_cons), the same number
+  // the build prints on the static cards. Falls back to useful area.
+  function sqmOf(p) { return p.areaBuilt || p.areaUseful || 0; }
 
   // ---------- state ↔ URL ----------
-  var state = { town: '', min: 0, max: 0, t: 0, op: 'any', beach: false, pool: false, land: false, sort: 'new' };
+  var state = { town: '', min: 0, max: 0, t: 0, ba: 0, sqm: 0, op: 'any', beach: false, sea: false, pool: false, garden: false, land: false, sort: 'new' };
   function readUrl() {
     var q = new URLSearchParams(location.search);
     state.town = q.get('town') || '';
     state.min = +q.get('min') || 0;
     state.max = +q.get('max') || 0;
     state.t = +q.get('t') || 0;
+    state.ba = +q.get('ba') || 0;
+    state.sqm = +q.get('sqm') || 0;
     state.op = q.get('op') || 'any';
     state.beach = q.get('beach') === '1';
+    state.sea = q.get('sea') === '1';
     state.pool = q.get('pool') === '1';
+    state.garden = q.get('garden') === '1';
     state.land = q.get('land') === '1';
     state.sort = q.get('sort') || 'new';
   }
@@ -130,16 +146,20 @@
     if (state.min) q.set('min', state.min);
     if (state.max) q.set('max', state.max);
     if (state.t) q.set('t', state.t);
+    if (state.ba) q.set('ba', state.ba);
+    if (state.sqm) q.set('sqm', state.sqm);
     if (state.op !== 'any') q.set('op', state.op);
     if (state.beach) q.set('beach', '1');
+    if (state.sea) q.set('sea', '1');
     if (state.pool) q.set('pool', '1');
+    if (state.garden) q.set('garden', '1');
     if (state.land) q.set('land', '1');
     if (state.sort !== 'new') q.set('sort', state.sort);
     var qs = q.toString();
     history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
   }
   function isFiltered() {
-    return !!(state.town || state.min || state.max || state.t || state.op !== 'any' || state.beach || state.pool || state.land);
+    return !!(state.town || state.min || state.max || state.t || state.ba || state.sqm || state.op !== 'any' || state.beach || state.sea || state.pool || state.garden || state.land);
   }
 
   // ---------- filtering ----------
@@ -153,8 +173,12 @@
     if (s.min && !(price >= s.min)) return false;
     if (s.max && !(price <= s.max)) return false;
     if (s.t && !(tOf(p) >= s.t)) return false;
+    if (s.ba && !((p.bathrooms || 0) >= s.ba)) return false;
+    if (s.sqm && !(sqmOf(p) >= s.sqm)) return false;
     if (s.beach && !(p.beachMinutes != null && p.beachMinutes <= BEACH_MAX)) return false;
+    if (s.sea && !p.seaView) return false;
     if (s.pool && !p.pool) return false;
+    if (s.garden && !p.garden) return false;
     if (s.land && !(p.plot && p.plot >= LAND_MIN)) return false;
     return true;
   }
@@ -176,16 +200,20 @@
     var mins = '<option value="0">' + esc(T.anyPrice) + '</option>' + PRICE_STEPS.map(function (v) { return opt(v, T.from + ' ' + euroShort(v), state.min); }).join('');
     var maxs = '<option value="0">' + esc(T.anyPrice) + '</option>' + PRICE_STEPS.map(function (v) { return opt(v, T.upTo + ' ' + euroShort(v), state.max); }).join('');
     var ts = '<option value="0">' + esc(T.anyT) + '</option>' + [1, 2, 3, 4, 5].map(function (n) { return opt(n, 'T' + n + ' +', state.t); }).join('');
+    var bas = '<option value="0">' + esc(T.anyBaths) + '</option>' + BATH_STEPS.map(function (n) { return opt(n, n + ' +', state.ba); }).join('');
+    var sqms = '<option value="0">' + esc(T.anySize) + '</option>' + SIZE_STEPS.map(function (n) { return opt(n, n + ' m² +', state.sqm); }).join('');
     root.innerHTML =
       '<form class="ar-fbar" id="ar-fbar" onsubmit="return false">' +
         '<label class="ar-fsel"><span>' + esc(T.town) + '</span><select name="town"><option value="">' + esc(T.allTowns) + '</option>' + towns + '</select></label>' +
         '<label class="ar-fsel"><span>' + esc(T.price) + ' ' + esc(T.from) + '</span><select name="min">' + mins + '</select></label>' +
         '<label class="ar-fsel"><span>' + esc(T.price) + ' ' + esc(T.upTo) + '</span><select name="max">' + maxs + '</select></label>' +
         '<label class="ar-fsel"><span>' + esc(T.typ) + '</span><select name="t">' + ts + '</select></label>' +
+        '<label class="ar-fsel"><span>' + esc(T.baths) + '</span><select name="ba">' + bas + '</select></label>' +
+        '<label class="ar-fsel"><span>' + esc(T.size) + '</span><select name="sqm">' + sqms + '</select></label>' +
         '<div class="ar-fseg" role="group" aria-label="' + esc(T.sale + ' / ' + T.rent) + '">' +
           seg('any', isPt ? 'Tudo' : 'All') + seg('sale', T.sale) + seg('rent', T.rent) + seg('both', T.both) +
         '</div>' +
-        chip('beach', T.beach) + chip('pool', T.pool) + chip('land', T.land) +
+        chip('beach', T.beach) + chip('sea', T.sea) + chip('pool', T.pool) + chip('garden', T.garden) + chip('land', T.land) +
       '</form>' +
       '<div class="ar-fmeta">' +
         '<span class="ar-fcount" id="ar-count" aria-live="polite"></span>' +
@@ -225,7 +253,7 @@
       }
     });
     document.getElementById('ar-clear').addEventListener('click', function () {
-      state = { town: '', min: 0, max: 0, t: 0, op: 'any', beach: false, pool: false, land: false, sort: state.sort };
+      state = { town: '', min: 0, max: 0, t: 0, ba: 0, sqm: 0, op: 'any', beach: false, sea: false, pool: false, garden: false, land: false, sort: state.sort };
       renderBar(all); update();
     });
     document.getElementById('ar-copy').addEventListener('click', function () {
@@ -244,7 +272,7 @@
     var big, small = '';
     if (p.operation === 'rent') { big = euro(p.priceRent || p.price) + ' ' + T.perMonth; }
     else { big = euro(p.priceSale || p.price); if (p.priceRent) small = T.or + ' ' + euro(p.priceRent) + ' ' + T.perMonth; }
-    var m2 = p.areaUseful || p.areaBuilt;
+    var m2 = sqmOf(p);
     var facts = [
       p.bedrooms ? 'T' + p.bedrooms : null,
       p.bathrooms ? p.bathrooms + ' ' + T.bath : null,
@@ -278,8 +306,12 @@
     if (state.max) bits.push(T.upTo + ' ' + euroShort(state.max));
     if (state.min) bits.push(T.from + ' ' + euroShort(state.min));
     if (state.t) bits.push('T' + state.t + '+');
+    if (state.ba) bits.push(state.ba + '+ ' + T.baths.toLowerCase());
+    if (state.sqm) bits.push(state.sqm + ' m²+');
     if (state.beach) bits.push(T.beach.split(' ·')[0].toLowerCase());
+    if (state.sea) bits.push(T.sea.toLowerCase());
     if (state.pool) bits.push(T.pool.toLowerCase());
+    if (state.garden) bits.push(T.garden.toLowerCase());
     if (state.land) bits.push(T.land.toLowerCase());
     return bits.join(', ');
   }
@@ -297,8 +329,16 @@
     }
     if (state.town && state.town !== 'other') tryIt(T.include + ' ' + T.allTowns.toLowerCase(), { town: '' });
     if (state.t > 1) tryIt('T' + (state.t - 1) + '+', { t: state.t - 1 });
+    if (state.ba > 1) tryIt((state.ba - 1) + '+ ' + T.baths.toLowerCase(), { ba: state.ba - 1 });
+    else if (state.ba) tryIt(T.baths + ': ' + T.anyBaths.toLowerCase(), { ba: 0 });
+    if (state.sqm) {
+      var smaller = SIZE_STEPS.filter(function (v) { return v < state.sqm; }).pop() || 0;
+      tryIt(smaller ? smaller + ' m²+' : T.anySize, { sqm: smaller });
+    }
+    if (state.sea) tryIt(T.noSea, { sea: false });
     if (state.beach) tryIt(T.noBeach, { beach: false });
     if (state.pool) tryIt(T.noPool, { pool: false });
+    if (state.garden) tryIt(T.noGarden, { garden: false });
     if (state.land) tryIt(T.noLand, { land: false });
     if (state.op !== 'any') tryIt(T.anyOp, { op: 'any' });
     return out.slice(0, 3);
