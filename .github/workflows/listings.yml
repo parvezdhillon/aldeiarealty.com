@@ -38,10 +38,13 @@ jobs:
 
           # Only listing-generated paths — never sweep unrelated edits into this commit.
           git add -A -- \
-            data/listings-en.json \
+             data/listings-en.json \
             data/listings-pt.json \
             properties.html \
             pt/properties.html \
+            index.html \
+            pt/index.html \
+            sitemap.xml \
             'property-*.html' \
             'pt/imovel-*.html'
 
