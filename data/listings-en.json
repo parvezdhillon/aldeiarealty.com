@@ -1,5 +1,5 @@
 {
-  "feedUpdated": "2026-11-05 08:41:41",
+  "feedUpdated": "2026-11-10 16:18:47",
   "listings": [
     {
       "ref": "AD1",
@@ -59,11 +59,11 @@
       "priceRent": null,
       "priceLabel": "635.000 €",
       "title": "T3+1 villa with pool, guest annexe and fruit trees in Salir de Matos",
-      "description": "Come take a look! Join us on Saturday, November 7, from 15:00–18:00 at this spacious property in Salir de Matos.",
+      "description": "​Ten minutes from Caldas da Rainha, where the only thing in front of you is farmland and an orchard. This detached two-level villa sits in the hamlet of Trabalhias on 1,388 m² of l",
       "location": "Caldas da Rainha",
       "bedrooms": 4,
       "bathrooms": 2,
-      "image": "https://fotos15.apinmo.com/14306/30157549/12-1.jpg",
+      "image": "https://fotos15.apinmo.com/14306/30157549/13-1.jpg",
       "url": "property-ar100926.html",
       "zone": "Salir de Matos",
       "type": "Villa",
@@ -73,8 +73,33 @@
       "pool": true,
       "energy": "C",
       "exclusive": true,
-      "updated": "2026-11-05 08:41:41",
+      "updated": "2026-11-10 14:13:02",
       "beachMinutes": 22
+    },
+    {
+      "ref": "AR20261104",
+      "operation": "sale",
+      "price": 695000,
+      "priceSale": 695000,
+      "priceRent": null,
+      "priceLabel": "695.000 €",
+      "title": "Furnished 3-bedroom house with sea views and covered pool in Ferrel, Peniche",
+      "description": "On a quiet residential street in Ferrel, this villa catches the sun all day from its south-facing plot. It’s ready to move into and is sold fully furnished, so it suits a family ho",
+      "location": "Peniche",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "image": "https://fotos15.apinmo.com/14306/30702129/12-1.jpg",
+      "url": "property-ar20261104.html",
+      "zone": "Ferrel",
+      "type": "Pareado",
+      "areaUseful": 159.9,
+      "areaBuilt": 257.1,
+      "plot": 362.5,
+      "pool": true,
+      "energy": "C",
+      "exclusive": false,
+      "updated": "2026-11-10 16:18:47",
+      "beachMinutes": 5
     }
   ]
 }
