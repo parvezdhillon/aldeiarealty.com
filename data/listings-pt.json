@@ -1,5 +1,5 @@
 {
-  "feedUpdated": "2026-11-10 16:18:47",
+  "feedUpdated": "2026-11-11 13:47:15",
   "listings": [
     {
       "ref": "AD1",
@@ -79,7 +79,7 @@
       "garden": true,
       "energy": "C",
       "exclusive": true,
-      "updated": "2026-11-10 14:13:02",
+      "updated": "2026-11-11 13:47:15",
       "beachMinutes": 22
     },
     {
@@ -94,7 +94,7 @@
       "location": "Peniche",
       "bedrooms": 3,
       "bathrooms": 2,
-      "image": "https://fotos15.apinmo.com/14306/30702129/12-1.jpg",
+      "image": "https://fotos15.apinmo.com/14306/30702129/20-1.jpg",
       "url": "pt/imovel-ar20261104.html",
       "zone": "Ferrel",
       "type": "Pareado",
@@ -106,7 +106,7 @@
       "garden": true,
       "energy": "C",
       "exclusive": false,
-      "updated": "2026-11-10 16:18:47",
+      "updated": "2026-11-11 12:27:08",
       "beachMinutes": 5
     }
   ]
