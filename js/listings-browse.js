@@ -118,6 +118,13 @@
     return 'other';
   }
   function tOf(p) { return p.bedrooms || 0; }
+  // Same rule as the build: full baths + WCs. EN counts a WC as half a bath
+  // ("3.5 bath"); PT counts every WC ("4 WC"). The filter uses full baths only.
+  function bathText(p) {
+    var full = p.bathrooms || 0, half = p.wc || 0;
+    var n = isPt ? full + half : full + half * 0.5;
+    return n ? n + ' ' + T.bath : null;
+  }
   // One size figure everywhere: gross built area (m_cons), the same number
   // the build prints on the static cards. Falls back to useful area.
   function sqmOf(p) { return p.areaBuilt || p.areaUseful || 0; }
@@ -275,7 +282,7 @@
     var m2 = sqmOf(p);
     var facts = [
       p.bedrooms ? 'T' + p.bedrooms : null,
-      p.bathrooms ? p.bathrooms + ' ' + T.bath : null,
+      bathText(p),
       m2 ? Math.round(m2) + ' m²' : null
     ].filter(Boolean).map(esc);
     var energy = p.energy ? '<span class="ar-energy">' + esc(T.energy + ' ' + p.energy) + '</span>' : '';

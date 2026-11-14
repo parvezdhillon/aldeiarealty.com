@@ -34,6 +34,15 @@
 .pd-loc{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#296662;font-weight:600;margin-top:6px}
 .pd-cols{display:grid;grid-template-columns:2fr 1fr;gap:36px;margin:34px 0 60px}
 .pd-desc h2,.pd-facts h2{font-family:Domine,serif;font-weight:700;font-size:20px;color:#1c0a04;margin-bottom:14px}
+.pd-video-wrap{margin-top:36px;max-width:860px}
+.pd-video-wrap h2{font-family:Domine,serif;font-weight:700;font-size:20px;color:#1c0a04;margin-bottom:14px}
+.pd-video,.pd-video-frame{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin-bottom:14px}
+.pd-video{position:relative;cursor:pointer;background:#296662 center/cover no-repeat;overflow:hidden;padding:0}
+.pd-video::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(41,102,98,0.20),rgba(28,10,4,0.38))}
+.pd-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#efd48f;transition:transform .2s}
+.pd-play::after{content:'';position:absolute;left:30px;top:22px;border-style:solid;border-width:16px 0 16px 24px;border-color:transparent transparent transparent #1c0a04}
+.pd-video:hover .pd-play,.pd-video:focus-visible .pd-play{transform:scale(1.08)}
+.pd-video-note{position:absolute;right:14px;bottom:12px;font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#f4ecdc}
 .pd-desc p{font-size:15px;line-height:1.7;color:rgba(28,10,4,0.80);margin-bottom:14px}
 .pd-facts{background:#fff;border:1px solid rgba(41,102,98,0.18);border-radius:3px;padding:24px;height:fit-content}
 .pd-2c{background:#e4e7e6;border-left:3px solid #296662;padding:18px 22px;margin:0 0 22px}
@@ -253,6 +262,7 @@
     <div class="pd-price">635.000 €</div>
   </div>
   
+  
   <div class="pd-cols">
     <div class="pd-desc">
       <aside class="pd-2c"><div class="pd-2c-k">Our two cents</div><p>We'd put the espresso machine by the annexe window. Orchard on one side, nothing but fields on the other.</p><div class="pd-2c-by">&mdash; Angela &amp; Parv</div></aside>
@@ -289,6 +299,17 @@
   <div class="pd-lb-count"><span id="pdLbIdx">1</span> / <span class="pdTotal">75</span></div>
 </div>
 <script>
+document.querySelectorAll('.pd-video').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.className = 'pd-video-frame';
+    f.src = b.getAttribute('data-embed');
+    f.title = b.getAttribute('aria-label');
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    b.parentNode.replaceChild(f, b);
+  });
+});
 (function(){
   var main = document.getElementById('mainPhoto');
   if (!main) return;

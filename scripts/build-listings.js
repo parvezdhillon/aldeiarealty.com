@@ -99,6 +99,7 @@ function parseProperty(b) {
     province: field(b, 'provincia'),
     bedrooms,
     bathrooms: parseInt(field(b, 'banyos') || '0', 10) || null,
+    wc: parseInt(field(b, 'aseos') || '0', 10) || 0, // half-baths / guest WCs, separate from banyos
     areaBuilt: parseFloat(field(b, 'm_cons') || '0') || null,
     areaUseful: parseFloat(field(b, 'm_uties') || '0') || null,
     plot: parseFloat(field(b, 'm_parcela') || '0') || null,
@@ -116,6 +117,7 @@ function parseProperty(b) {
     exclusive: field(b, 'exclu') === '1',
     agent: field(b, 'agente'),
     updated: field(b, 'fechaact'),
+    videos: parseVideos(field(b, 'videos')),
     created: field(b, 'fecha'), // first listed — unlike fechaact, a re-save does not move it
     titleEN: field(b, 'titulo2') || field(b, 'titulo8'),
     descEN: descToParas(field(b, 'descrip2') || field(b, 'descrip8')),
@@ -183,6 +185,53 @@ function badgeText(p, en) {
   return en ? 'FOR SALE' : 'VENDA';
 }
 
+// Bathrooms as people quote them. The feed splits full bathrooms (banyos)
+// from WCs (aseos): 3 + 1 is "3.5 bath" in English and "4 WC" in Portuguese,
+// where every room with a toilet counts as one.
+function bathCount(p, en) {
+  const full = p.bathrooms || 0, half = p.wc || 0;
+  return en ? full + half * 0.5 : full + half;
+}
+function bathLabel(p, en) {
+  const n = bathCount(p, en);
+  if (!n) return null;
+  return (en ? String(n) : String(n).replace('.', ',')) + ' ' + (en ? 'bath' : 'WC');
+}
+
+// ---------- listing videos (feed <videos> field) ----------
+// The field is free text typed into Inmovilla, so accept anything that
+// contains YouTube or Vimeo links (watch, youtu.be, shorts, embed, or pasted
+// iframe code), several per listing, in the order given.
+function parseVideos(raw) {
+  const text = String(raw || '');
+  const out = [], seen = new Set();
+  const add = (type, id) => { const k = type + ':' + id; if (!seen.has(k)) { seen.add(k); out.push({ type, id }); } };
+  const re = /(?:youtube(?:-nocookie)?\.com\/(?:watch\?(?:[^\s"'<>]*&(?:amp;)?)?v=|embed\/|shorts\/|live\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})|vimeo\.com\/(?:video\/)?(\d{6,})/g;
+  let m;
+  while ((m = re.exec(text))) { if (m[1]) add('youtube', m[1]); else add('vimeo', m[2]); }
+  if (!out.length && /^[A-Za-z0-9_-]{11}$/.test(text.trim())) add('youtube', text.trim());
+  return out;
+}
+
+// Click-to-play: nothing loads from the video host (and no cookies are set)
+// until the visitor presses play.
+function videoHtml(p, en) {
+  if (!p.videos || !p.videos.length) return '';
+  const label = en ? 'Play the video tour' : 'Reproduzir o vídeo do imóvel';
+  const blocks = p.videos.map(v => {
+    const embed = v.type === 'youtube'
+      ? 'https://www.youtube-nocookie.com/embed/' + v.id + '?autoplay=1&amp;rel=0'
+      : 'https://player.vimeo.com/video/' + v.id + '?autoplay=1&amp;dnt=1';
+    const poster = v.type === 'youtube' ? ` style="background-image:url('https://i.ytimg.com/vi/${v.id}/hqdefault.jpg')"` : '';
+    const host = v.type === 'youtube' ? 'YouTube' : 'Vimeo';
+    return `<button type="button" class="pd-video" data-embed="${embed}" aria-label="${label}"${poster}><span class="pd-play" aria-hidden="true"></span><span class="pd-video-note">${en ? 'Plays on ' : 'Reproduz no '}${host}</span></button>`;
+  }).join('\n    ');
+  return `<div class="pd-video-wrap">
+    <h2>${en ? 'Video tour' : 'V&iacute;deo do im&oacute;vel'}</h2>
+    ${blocks}
+  </div>`;
+}
+
 // ---------- card HTML (matches existing .prop-card design) ----------
 function cardHtml(p, lang, state) {
   const en = lang === 'en';
@@ -193,7 +242,7 @@ function cardHtml(p, lang, state) {
   const detailHref = en ? ('property-' + p.slug + '.html') : ('imovel-' + p.slug + '.html');
   const facts = [
     p.bedrooms ? 'T' + p.bedrooms : null,
-    p.bathrooms ? (p.bathrooms + ' ' + (en ? 'bath' : 'WC')) : null,
+    bathLabel(p, en),
     p.areaBuilt ? (Math.round(p.areaBuilt) + ' m²') : null,
     p.energyLetter ? ((en ? 'Energy ' : 'Energ. ') + p.energyLetter) : null,
   ].filter(Boolean).join(' · ');
@@ -550,7 +599,8 @@ function listingLd(p, lang, state) {
   };
   if (p.zone) about.address.addressLocality = p.city || p.zone;
   if (p.bedrooms) about.numberOfBedrooms = p.bedrooms;
-  if (p.bathrooms) about.numberOfBathroomsTotal = p.bathrooms;
+  // schema.org: total = full bathrooms + 0.5 per partial bathroom
+  if (p.bathrooms || p.wc) about.numberOfBathroomsTotal = (p.bathrooms || 0) + (p.wc || 0) * 0.5;
   if (p.areaBuilt) about.floorSize = { '@type': 'QuantitativeValue', value: Math.round(p.areaBuilt), unitCode: 'MTK' };
   if (p.plot) about.lotSize = { '@type': 'QuantitativeValue', value: Math.round(p.plot), unitCode: 'MTK' };
   if (p.yearBuilt && /^\d{4}$/.test(String(p.yearBuilt))) about.yearBuilt = Number(p.yearBuilt);
@@ -684,7 +734,7 @@ function detailHtml(p, lang, state) {
   };
   const condDisplay = t.condMap[p.condition] || p.condition;
   const factRows = [
-    [t.ref, p.ref], [t.beds, p.bedrooms ? 'T' + p.bedrooms : null], [t.baths, p.bathrooms],
+    [t.ref, p.ref], [t.beds, p.bedrooms ? 'T' + p.bedrooms : null], [t.baths, bathCount(p, en) || null],
     [t.built, p.areaBuilt ? p.areaBuilt + ' m²' : null], [t.useful, p.areaUseful ? p.areaUseful + ' m²' : null],
     [t.floor, p.floor || null], [t.year, p.yearBuilt || null], [t.cond, condDisplay || null],
     [t.park, p.parking ? t.yes : null], [t.energy, p.energyLetter ? p.energyLetter + (p.energyCert ? ' (' + p.energyCert + ')' : '') : null],
@@ -713,6 +763,15 @@ ${seoHead(p, lang, state)}<link rel="preconnect" href="https://fonts.googleapis.
 .pd-loc{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#296662;font-weight:600;margin-top:6px}
 .pd-cols{display:grid;grid-template-columns:2fr 1fr;gap:36px;margin:34px 0 60px}
 .pd-desc h2,.pd-facts h2{font-family:Domine,serif;font-weight:700;font-size:20px;color:#1c0a04;margin-bottom:14px}
+.pd-video-wrap{margin-top:36px;max-width:860px}
+.pd-video-wrap h2{font-family:Domine,serif;font-weight:700;font-size:20px;color:#1c0a04;margin-bottom:14px}
+.pd-video,.pd-video-frame{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin-bottom:14px}
+.pd-video{position:relative;cursor:pointer;background:#296662 center/cover no-repeat;overflow:hidden;padding:0}
+.pd-video::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(41,102,98,0.20),rgba(28,10,4,0.38))}
+.pd-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#efd48f;transition:transform .2s}
+.pd-play::after{content:'';position:absolute;left:30px;top:22px;border-style:solid;border-width:16px 0 16px 24px;border-color:transparent transparent transparent #1c0a04}
+.pd-video:hover .pd-play,.pd-video:focus-visible .pd-play{transform:scale(1.08)}
+.pd-video-note{position:absolute;right:14px;bottom:12px;font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#f4ecdc}
 .pd-desc p{font-size:15px;line-height:1.7;color:rgba(28,10,4,0.80);margin-bottom:14px}
 .pd-facts{background:#fff;border:1px solid rgba(41,102,98,0.18);border-radius:3px;padding:24px;height:fit-content}
 .pd-2c{background:#e4e7e6;border-left:3px solid #296662;padding:18px 22px;margin:0 0 22px}
@@ -785,6 +844,7 @@ ${listingLd(p, lang, state)}</head>
     <div class="pd-price">${priceLabel}</div>
   </div>
   ${archiveNotice}
+  ${videoHtml(p, en)}
   <div class="pd-cols">
     <div class="pd-desc">
       ${twoCentsHtml(p, lang)}
@@ -818,6 +878,17 @@ ${listingLd(p, lang, state)}</head>
   <div class="pd-lb-count"><span id="pdLbIdx">1</span> / <span class="pdTotal">${p.photos.length}</span></div>
 </div>
 <script>
+document.querySelectorAll('.pd-video').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.className = 'pd-video-frame';
+    f.src = b.getAttribute('data-embed');
+    f.title = b.getAttribute('aria-label');
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    b.parentNode.replaceChild(f, b);
+  });
+});
 (function(){
   var main = document.getElementById('mainPhoto');
   if (!main) return;
@@ -947,7 +1018,7 @@ function agentCardHtml(p, lang) {
   const href = '../' + (en ? 'property-' : 'imovel-') + p.slug + '.html';
   const facts = [
     p.bedrooms ? 'T' + p.bedrooms : null,
-    p.bathrooms ? (p.bathrooms + ' ' + (en ? 'bath' : 'WC')) : null,
+    bathLabel(p, en),
     p.areaBuilt ? (Math.round(p.areaBuilt) + ' m²') : null,
     p.energyLetter ? ((en ? 'Energy ' : 'Energ. ') + p.energyLetter) : null,
   ].filter(Boolean).join(' · ');
@@ -1090,7 +1161,7 @@ function finderRecord(p, lang) {
     priceLabel: en ? p.priceLabelEN : p.priceLabelPT,
     title: en ? p.titleEN : p.titlePT,
     description: ((en ? p.descEN : p.descPT)[1] || (en ? p.descEN : p.descPT)[0] || '').slice(0, 180),
-    location: p.city, bedrooms: p.bedrooms, bathrooms: p.bathrooms,
+    location: p.city, bedrooms: p.bedrooms, bathrooms: p.bathrooms, wc: p.wc || 0,
     image: p.photos[0] || null,
     url: en ? ('property-' + p.slug + '.html') : ('pt/imovel-' + p.slug + '.html'),
     // --- fields for the client-side browse (js/listings-browse.js) ---
