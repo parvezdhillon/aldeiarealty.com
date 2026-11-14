@@ -116,6 +116,7 @@ function parseProperty(b) {
     exclusive: field(b, 'exclu') === '1',
     agent: field(b, 'agente'),
     updated: field(b, 'fechaact'),
+    created: field(b, 'fecha'), // first listed — unlike fechaact, a re-save does not move it
     titleEN: field(b, 'titulo2') || field(b, 'titulo8'),
     descEN: descToParas(field(b, 'descrip2') || field(b, 'descrip8')),
     titlePT: field(b, 'titulo8') || field(b, 'titulo2'),
@@ -610,7 +611,9 @@ function listingLd(p, lang, state) {
 function homeSectionHtml(props, lang) {
   const en = lang === 'en';
   if (!props.length) return ''; // empty feed → section disappears
-  const shown = props.slice(0, 3);
+  // Newest listings first, two rows of three at most. Sorted by the date the
+  // listing was created so an edit to an old listing never bumps it up.
+  const shown = newestFirst(props).slice(0, 6);
   const kicker = en ? 'Available now' : 'Dispon&iacute;vel agora';
   const h2 = en
     ? 'Homes we are <em>listing right now</em>.'
@@ -921,6 +924,67 @@ const HOME_START = '<!-- AR:HOME-LISTINGS:START (auto-generated - do not edit be
 const HOME_END = '<!-- AR:HOME-LISTINGS:END -->';
 const ARCHIVE_START = '<!-- AR:ARCHIVE:START (auto-generated - do not edit between markers) -->';
 const ARCHIVE_END = '<!-- AR:ARCHIVE:END -->';
+// ---------- agent pages: "Current listings" block ----------
+// Every agent page shows the current Aldeia listings (two rows of three at
+// most): the agent's own listings first, then the rest, newest first.
+// The feed's `agente` ("Fernanda Gray ") is matched to the page file name
+// (agents/fernanda.html) by first name.
+const AGENT_START = '<!-- AR:AGENT-LISTINGS:START (auto-generated - do not edit between markers) -->';
+const AGENT_END = '<!-- AR:AGENT-LISTINGS:END -->';
+
+function newestFirst(props) {
+  return props.slice().sort((a, b) =>
+    String(b.created || b.updated || '').localeCompare(String(a.created || a.updated || '')));
+}
+
+function agentSlugOf(p) {
+  return String(p.agent || '').trim().split(/\s+/)[0]
+    .normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+}
+
+function agentCardHtml(p, lang) {
+  const en = lang === 'en';
+  const href = '../' + (en ? 'property-' : 'imovel-') + p.slug + '.html';
+  const facts = [
+    p.bedrooms ? 'T' + p.bedrooms : null,
+    p.bathrooms ? (p.bathrooms + ' ' + (en ? 'bath' : 'WC')) : null,
+    p.areaBuilt ? (Math.round(p.areaBuilt) + ' m²') : null,
+    p.energyLetter ? ((en ? 'Energy ' : 'Energ. ') + p.energyLetter) : null,
+  ].filter(Boolean).join(' · ');
+  const loc = [p.zone, p.city].filter(Boolean).map(esc).join(' &middot; ');
+  return `<article class="prop-card"><a href="${href}">
+<div class="prop-img" style="background-image:url('${p.photos[0] || ''}')"><div class="prop-badge">${badgeText(p, en)}</div></div>
+<div class="prop-body"><div class="prop-loc">${loc}</div>
+<div style="font-family:var(--display);font-weight:700;font-size:24px;color:var(--teal)">${en ? p.priceLabelEN : p.priceLabelPT}</div>
+<h3>${esc(en ? p.titleEN : p.titlePT)}</h3><p>${esc(facts)}</p><span class="prop-link">${en ? 'View Property &rarr;' : 'Ver Im&oacute;vel &rarr;'}</span></div></a></article>`;
+}
+
+function updateAgentPages(props) {
+  const sorted = newestFirst(props);
+  for (const [dir, lang] of [['agents', 'en'], [path.join('pt', 'agentes'), 'pt']]) {
+    const abs = path.join(ROOT, dir);
+    if (!fs.existsSync(abs)) continue;
+    for (const file of fs.readdirSync(abs).filter(f => f.endsWith('.html')).sort()) {
+      const slug = file.replace(/\.html$/, '');
+      const own = sorted.filter(p => agentSlugOf(p) === slug);
+      const shown = own.concat(sorted.filter(p => agentSlugOf(p) !== slug)).slice(0, 6);
+      const block = AGENT_START + '\n' + shown.map(p => agentCardHtml(p, lang)).join('\n') + '\n' + AGENT_END;
+      const full = path.join(abs, file);
+      const src = fs.readFileSync(full, 'utf8');
+      let out;
+      if (src.includes(AGENT_START) && src.includes(AGENT_END)) {
+        out = src.replace(new RegExp(escapeRe(AGENT_START) + '[\\s\\S]*?' + escapeRe(AGENT_END)), () => block);
+      } else {
+        // First run: take over the hand-written cards inside the grid.
+        const re = /(<div class="props-grid">)[\s\S]*?<\/article>(<\/div>)/;
+        if (!re.test(src)) { console.log('  no listings grid in ' + path.join(dir, file) + ' — skipped'); continue; }
+        out = src.replace(re, (m, open, close) => open + '\n' + block + '\n' + close);
+      }
+      if (out !== src) { fs.writeFileSync(full, out); console.log('Updated', path.join(dir, file), '(' + own.length + ' own)'); }
+    }
+  }
+}
+
 function injectSection(filePath, html, startMarker, endMarker) {
   const s = startMarker || START;
   const e = endMarker || END;
@@ -1137,7 +1201,7 @@ async function main() {
   injectSection(path.join(ROOT, 'properties.html'), sectionHtml(props, 'en'));
   injectSection(path.join(ROOT, 'pt', 'properties.html'), sectionHtml(props, 'pt'));
 
-  // 4. Homepage: the same live listings, max three, replacing the old
+  // 4. Homepage: the newest six live listings, replacing the old
   //    "Coming soon / sample listings" block. Markers only — never guess a
   //    position on the homepage.
   for (const [file, lang] of [['index.html', 'en'], [path.join('pt', 'index.html'), 'pt']]) {
@@ -1149,6 +1213,9 @@ async function main() {
       console.warn('Skipped ' + file + ' — AR:HOME-LISTINGS markers not found.');
     }
   }
+
+  // 4b. Agent pages: current listings, the agent's own first.
+  updateAgentPages(props);
 
   // 5. Archive grid ("Recently sold & rented") on the properties pages
   for (const [file, lang] of [['properties.html', 'en'], [path.join('pt', 'properties.html'), 'pt']]) {
