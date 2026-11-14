@@ -1,5 +1,5 @@
 {
-  "feedUpdated": "2026-11-12 19:25:14",
+  "feedUpdated": "2026-11-13 22:00:23",
   "listings": [
     {
       "ref": "AD1",
@@ -107,6 +107,33 @@
       "energy": "C",
       "exclusive": false,
       "updated": "2026-11-11 12:27:08",
+      "beachMinutes": 5
+    },
+    {
+      "ref": "AR20261106",
+      "operation": "sale",
+      "price": 699000,
+      "priceSale": 699000,
+      "priceRent": null,
+      "priceLabel": "699.000 €",
+      "title": "Private Pool Villa 3+1 Beds, featuring 3 en-suite, just minutes from Óbidos Lagoon.",
+      "description": "If you are looking for a peaceful retreat between the Óbidos Lagoon and the Atlantic, this detached 3+1 bedroom villa in Nadadouro could be exactly what you have been dreaming of. ",
+      "location": "Caldas da Rainha",
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "image": "https://fotos15.apinmo.com/14306/30777625/17-1.jpg",
+      "url": "property-ar20261106.html",
+      "zone": "Nadadouro",
+      "type": "Villa de Lujo",
+      "areaUseful": 212.16,
+      "areaBuilt": 240.39,
+      "plot": 665,
+      "pool": true,
+      "seaView": false,
+      "garden": true,
+      "energy": "A",
+      "exclusive": false,
+      "updated": "2026-11-13 22:00:23",
       "beachMinutes": 5
     }
   ]
